@@ -1,0 +1,790 @@
+[
+  {
+    "id": "pnp_01",
+    "category": "pick_and_place",
+    "image_path": "benchmark/images/pnp_01.png",
+    "instruction": "Pick up the red mug and place it on the shelf.",
+    "ground_truth": {
+      "objects": [
+        "red mug",
+        "shelf",
+        "table"
+      ],
+      "spatial_relations": [
+        "red mug ON table",
+        "shelf ON table"
+      ],
+      "task_type": "pick_and_place",
+      "action_sequence": [
+        "approach red mug",
+        "grasp red mug",
+        "lift red mug",
+        "move to shelf",
+        "place on shelf",
+        "release"
+      ],
+      "target_object": "red mug",
+      "destination": "shelf"
+    }
+  },
+  {
+    "id": "pnp_02",
+    "category": "pick_and_place",
+    "image_path": "benchmark/images/pnp_02.png",
+    "instruction": "Pick up the blue bowl and put it inside the cabinet.",
+    "ground_truth": {
+      "objects": [
+        "blue bowl",
+        "cabinet",
+        "table"
+      ],
+      "spatial_relations": [
+        "blue bowl ON table",
+        "cabinet ON table"
+      ],
+      "task_type": "pick_and_place",
+      "action_sequence": [
+        "approach blue bowl",
+        "grasp blue bowl",
+        "lift blue bowl",
+        "move to cabinet",
+        "place in cabinet",
+        "release"
+      ],
+      "target_object": "blue bowl",
+      "destination": "cabinet"
+    }
+  },
+  {
+    "id": "pnp_03",
+    "category": "pick_and_place",
+    "image_path": "benchmark/images/pnp_03.png",
+    "instruction": "Pick up the green mug and place it on the plate.",
+    "ground_truth": {
+      "objects": [
+        "green mug",
+        "plate",
+        "table"
+      ],
+      "spatial_relations": [
+        "green mug ON table",
+        "plate ON table"
+      ],
+      "task_type": "pick_and_place",
+      "action_sequence": [
+        "approach green mug",
+        "grasp green mug",
+        "lift green mug",
+        "move to plate",
+        "place on plate",
+        "release"
+      ],
+      "target_object": "green mug",
+      "destination": "plate"
+    }
+  },
+  {
+    "id": "pnp_04",
+    "category": "pick_and_place",
+    "image_path": "benchmark/images/pnp_04.png",
+    "instruction": "Pick up the orange box and place it on the shelf.",
+    "ground_truth": {
+      "objects": [
+        "orange box",
+        "shelf",
+        "table"
+      ],
+      "spatial_relations": [
+        "orange box ON table",
+        "shelf ON table"
+      ],
+      "task_type": "pick_and_place",
+      "action_sequence": [
+        "approach orange box",
+        "grasp orange box",
+        "lift orange box",
+        "move to shelf",
+        "place on shelf",
+        "release"
+      ],
+      "target_object": "orange box",
+      "destination": "shelf"
+    }
+  },
+  {
+    "id": "pnp_05",
+    "category": "pick_and_place",
+    "image_path": "benchmark/images/pnp_05.png",
+    "instruction": "Pick up the yellow mug and put it in the microwave.",
+    "ground_truth": {
+      "objects": [
+        "yellow mug",
+        "microwave",
+        "table"
+      ],
+      "spatial_relations": [
+        "yellow mug ON table",
+        "microwave ON table"
+      ],
+      "task_type": "pick_and_place",
+      "action_sequence": [
+        "approach yellow mug",
+        "grasp yellow mug",
+        "lift yellow mug",
+        "move to microwave",
+        "place in microwave",
+        "release"
+      ],
+      "target_object": "yellow mug",
+      "destination": "microwave"
+    }
+  },
+  {
+    "id": "pnp_06",
+    "category": "pick_and_place",
+    "image_path": "benchmark/images/pnp_06.png",
+    "instruction": "Pick up the red bowl and place it in the brown box.",
+    "ground_truth": {
+      "objects": [
+        "red bowl",
+        "brown box",
+        "table"
+      ],
+      "spatial_relations": [
+        "red bowl ON table",
+        "brown box ON table"
+      ],
+      "task_type": "pick_and_place",
+      "action_sequence": [
+        "approach red bowl",
+        "grasp red bowl",
+        "lift red bowl",
+        "move to brown box",
+        "place in brown box",
+        "release"
+      ],
+      "target_object": "red bowl",
+      "destination": "brown box"
+    }
+  },
+  {
+    "id": "pnp_07",
+    "category": "pick_and_place",
+    "image_path": "benchmark/images/pnp_07.png",
+    "instruction": "Pick up the purple mug and put it in the cabinet.",
+    "ground_truth": {
+      "objects": [
+        "purple mug",
+        "plate",
+        "cabinet",
+        "table"
+      ],
+      "spatial_relations": [
+        "purple mug ON table",
+        "plate ON table",
+        "cabinet ON table"
+      ],
+      "task_type": "pick_and_place",
+      "action_sequence": [
+        "approach purple mug",
+        "grasp purple mug",
+        "lift purple mug",
+        "move to cabinet",
+        "place in cabinet",
+        "release"
+      ],
+      "target_object": "purple mug",
+      "destination": "cabinet"
+    }
+  },
+  {
+    "id": "pnp_08",
+    "category": "pick_and_place",
+    "image_path": "benchmark/images/pnp_08.png",
+    "instruction": "Pick up the green bowl and place it on the shelf.",
+    "ground_truth": {
+      "objects": [
+        "green bowl",
+        "red mug",
+        "shelf",
+        "table"
+      ],
+      "spatial_relations": [
+        "green bowl ON table",
+        "red mug ON table",
+        "shelf ON table"
+      ],
+      "task_type": "pick_and_place",
+      "action_sequence": [
+        "approach green bowl",
+        "grasp green bowl",
+        "lift green bowl",
+        "move to shelf",
+        "place on shelf",
+        "release"
+      ],
+      "target_object": "green bowl",
+      "destination": "shelf"
+    }
+  },
+  {
+    "id": "oc_01",
+    "category": "open",
+    "image_path": "benchmark/images/oc_01.png",
+    "instruction": "Open the top drawer.",
+    "ground_truth": {
+      "objects": [
+        "top drawer",
+        "table"
+      ],
+      "spatial_relations": [
+        "top drawer ON table"
+      ],
+      "task_type": "open",
+      "action_sequence": [
+        "approach top drawer",
+        "grasp handle",
+        "pull drawer open"
+      ],
+      "target_object": "top drawer",
+      "destination": null
+    }
+  },
+  {
+    "id": "oc_02",
+    "category": "close",
+    "image_path": "benchmark/images/oc_02.png",
+    "instruction": "Close the bottom drawer.",
+    "ground_truth": {
+      "objects": [
+        "bottom drawer",
+        "table"
+      ],
+      "spatial_relations": [
+        "bottom drawer ON table"
+      ],
+      "task_type": "close",
+      "action_sequence": [
+        "approach bottom drawer",
+        "grasp handle",
+        "push drawer closed"
+      ],
+      "target_object": "bottom drawer",
+      "destination": null
+    }
+  },
+  {
+    "id": "oc_03",
+    "category": "open",
+    "image_path": "benchmark/images/oc_03.png",
+    "instruction": "Open the cabinet door.",
+    "ground_truth": {
+      "objects": [
+        "cabinet",
+        "table"
+      ],
+      "spatial_relations": [
+        "cabinet ON table"
+      ],
+      "task_type": "open",
+      "action_sequence": [
+        "approach cabinet",
+        "grasp cabinet handle",
+        "pull cabinet door open"
+      ],
+      "target_object": "cabinet",
+      "destination": null
+    }
+  },
+  {
+    "id": "oc_04",
+    "category": "close",
+    "image_path": "benchmark/images/oc_04.png",
+    "instruction": "Close the cabinet door.",
+    "ground_truth": {
+      "objects": [
+        "cabinet",
+        "table"
+      ],
+      "spatial_relations": [
+        "cabinet ON table"
+      ],
+      "task_type": "close",
+      "action_sequence": [
+        "approach cabinet",
+        "grasp cabinet door",
+        "push cabinet door closed"
+      ],
+      "target_object": "cabinet",
+      "destination": null
+    }
+  },
+  {
+    "id": "oc_05",
+    "category": "open",
+    "image_path": "benchmark/images/oc_05.png",
+    "instruction": "Open the door.",
+    "ground_truth": {
+      "objects": [
+        "door"
+      ],
+      "spatial_relations": [],
+      "task_type": "open",
+      "action_sequence": [
+        "approach door",
+        "grasp door handle",
+        "pull door open"
+      ],
+      "target_object": "door",
+      "destination": null
+    }
+  },
+  {
+    "id": "oc_06",
+    "category": "close",
+    "image_path": "benchmark/images/oc_06.png",
+    "instruction": "Close the door.",
+    "ground_truth": {
+      "objects": [
+        "door"
+      ],
+      "spatial_relations": [],
+      "task_type": "close",
+      "action_sequence": [
+        "approach door",
+        "grasp door handle",
+        "push door closed"
+      ],
+      "target_object": "door",
+      "destination": null
+    }
+  },
+  {
+    "id": "oc_07",
+    "category": "open",
+    "image_path": "benchmark/images/oc_07.png",
+    "instruction": "Open the microwave door.",
+    "ground_truth": {
+      "objects": [
+        "microwave",
+        "table"
+      ],
+      "spatial_relations": [
+        "microwave ON table"
+      ],
+      "task_type": "open",
+      "action_sequence": [
+        "approach microwave",
+        "grasp microwave handle",
+        "pull microwave door open"
+      ],
+      "target_object": "microwave",
+      "destination": null
+    }
+  },
+  {
+    "id": "oc_08",
+    "category": "close",
+    "image_path": "benchmark/images/oc_08.png",
+    "instruction": "Close the microwave door.",
+    "ground_truth": {
+      "objects": [
+        "microwave",
+        "table"
+      ],
+      "spatial_relations": [
+        "microwave ON table"
+      ],
+      "task_type": "close",
+      "action_sequence": [
+        "approach microwave",
+        "grasp microwave door",
+        "push microwave door closed"
+      ],
+      "target_object": "microwave",
+      "destination": null
+    }
+  },
+  {
+    "id": "to_01",
+    "category": "turn_on",
+    "image_path": "benchmark/images/to_01.png",
+    "instruction": "Turn on the stove.",
+    "ground_truth": {
+      "objects": [
+        "stove",
+        "knob",
+        "table"
+      ],
+      "spatial_relations": [
+        "stove ON table",
+        "knob ON stove"
+      ],
+      "task_type": "turn_on",
+      "action_sequence": [
+        "approach stove",
+        "grasp knob",
+        "rotate knob to turn on"
+      ],
+      "target_object": "stove",
+      "destination": null
+    }
+  },
+  {
+    "id": "to_02",
+    "category": "turn_off",
+    "image_path": "benchmark/images/to_02.png",
+    "instruction": "Turn off the stove.",
+    "ground_truth": {
+      "objects": [
+        "stove",
+        "knob",
+        "table"
+      ],
+      "spatial_relations": [
+        "stove ON table",
+        "knob ON stove"
+      ],
+      "task_type": "turn_off",
+      "action_sequence": [
+        "approach stove",
+        "grasp knob",
+        "rotate knob to turn off"
+      ],
+      "target_object": "stove",
+      "destination": null
+    }
+  },
+  {
+    "id": "to_03",
+    "category": "turn_on",
+    "image_path": "benchmark/images/to_03.png",
+    "instruction": "Turn on the sink faucet.",
+    "ground_truth": {
+      "objects": [
+        "faucet",
+        "sink",
+        "table"
+      ],
+      "spatial_relations": [
+        "faucet ABOVE sink",
+        "sink ON table"
+      ],
+      "task_type": "turn_on",
+      "action_sequence": [
+        "approach faucet",
+        "grasp faucet handle",
+        "rotate handle to turn on"
+      ],
+      "target_object": "faucet",
+      "destination": null
+    }
+  },
+  {
+    "id": "to_04",
+    "category": "turn_off",
+    "image_path": "benchmark/images/to_04.png",
+    "instruction": "Turn off the sink faucet.",
+    "ground_truth": {
+      "objects": [
+        "faucet",
+        "sink",
+        "table"
+      ],
+      "spatial_relations": [
+        "faucet ABOVE sink",
+        "sink ON table"
+      ],
+      "task_type": "turn_off",
+      "action_sequence": [
+        "approach faucet",
+        "grasp faucet handle",
+        "rotate handle to turn off"
+      ],
+      "target_object": "faucet",
+      "destination": null
+    }
+  },
+  {
+    "id": "to_05",
+    "category": "turn_on",
+    "image_path": "benchmark/images/to_05.png",
+    "instruction": "Turn on the microwave.",
+    "ground_truth": {
+      "objects": [
+        "microwave",
+        "table"
+      ],
+      "spatial_relations": [
+        "microwave ON table"
+      ],
+      "task_type": "turn_on",
+      "action_sequence": [
+        "approach microwave",
+        "press power button"
+      ],
+      "target_object": "microwave",
+      "destination": null
+    }
+  },
+  {
+    "id": "to_06",
+    "category": "turn_off",
+    "image_path": "benchmark/images/to_06.png",
+    "instruction": "Turn off the microwave.",
+    "ground_truth": {
+      "objects": [
+        "microwave",
+        "table"
+      ],
+      "spatial_relations": [
+        "microwave ON table"
+      ],
+      "task_type": "turn_off",
+      "action_sequence": [
+        "approach microwave",
+        "press power button"
+      ],
+      "target_object": "microwave",
+      "destination": null
+    }
+  },
+  {
+    "id": "sp_01",
+    "category": "move",
+    "image_path": "benchmark/images/sp_01.png",
+    "instruction": "Move the blue bowl to the left of the plate.",
+    "ground_truth": {
+      "objects": [
+        "blue bowl",
+        "plate",
+        "table"
+      ],
+      "spatial_relations": [
+        "blue bowl ON table",
+        "plate ON table",
+        "blue bowl RIGHT OF plate"
+      ],
+      "task_type": "move",
+      "action_sequence": [
+        "approach blue bowl",
+        "grasp blue bowl",
+        "lift blue bowl",
+        "move to left of plate",
+        "place blue bowl",
+        "release"
+      ],
+      "target_object": "blue bowl",
+      "destination": "left of plate"
+    }
+  },
+  {
+    "id": "sp_02",
+    "category": "move",
+    "image_path": "benchmark/images/sp_02.png",
+    "instruction": "Move the red mug next to the blue mug.",
+    "ground_truth": {
+      "objects": [
+        "red mug",
+        "blue mug",
+        "table"
+      ],
+      "spatial_relations": [
+        "red mug ON table",
+        "blue mug ON table"
+      ],
+      "task_type": "move",
+      "action_sequence": [
+        "approach red mug",
+        "grasp red mug",
+        "lift red mug",
+        "move to next to blue mug",
+        "place red mug",
+        "release"
+      ],
+      "target_object": "red mug",
+      "destination": "next to blue mug"
+    }
+  },
+  {
+    "id": "sp_03",
+    "category": "move",
+    "image_path": "benchmark/images/sp_03.png",
+    "instruction": "Move the green bowl behind the brown box.",
+    "ground_truth": {
+      "objects": [
+        "green bowl",
+        "brown box",
+        "table"
+      ],
+      "spatial_relations": [
+        "green bowl ON table",
+        "brown box ON table"
+      ],
+      "task_type": "move",
+      "action_sequence": [
+        "approach green bowl",
+        "grasp green bowl",
+        "lift green bowl",
+        "move to behind brown box",
+        "place green bowl",
+        "release"
+      ],
+      "target_object": "green bowl",
+      "destination": "behind brown box"
+    }
+  },
+  {
+    "id": "sp_04",
+    "category": "move",
+    "image_path": "benchmark/images/sp_04.png",
+    "instruction": "Move the yellow mug in front of the plate.",
+    "ground_truth": {
+      "objects": [
+        "yellow mug",
+        "plate",
+        "table"
+      ],
+      "spatial_relations": [
+        "yellow mug ON table",
+        "plate ON table"
+      ],
+      "task_type": "move",
+      "action_sequence": [
+        "approach yellow mug",
+        "grasp yellow mug",
+        "lift yellow mug",
+        "move to in front of plate",
+        "place yellow mug",
+        "release"
+      ],
+      "target_object": "yellow mug",
+      "destination": "in front of plate"
+    }
+  },
+  {
+    "id": "ms_01",
+    "category": "pick_and_place",
+    "image_path": "benchmark/images/ms_01.png",
+    "instruction": "Pick up the red mug, put it in the microwave, then close the microwave door.",
+    "ground_truth": {
+      "objects": [
+        "red mug",
+        "microwave",
+        "table"
+      ],
+      "spatial_relations": [
+        "red mug ON table",
+        "microwave ON table"
+      ],
+      "task_type": "pick_and_place",
+      "action_sequence": [
+        "approach red mug",
+        "grasp red mug",
+        "lift red mug",
+        "move to microwave",
+        "place in microwave",
+        "release",
+        "grasp microwave door",
+        "push microwave door closed"
+      ],
+      "target_object": "red mug",
+      "destination": "microwave"
+    }
+  },
+  {
+    "id": "ms_02",
+    "category": "pick_and_place",
+    "image_path": "benchmark/images/ms_02.png",
+    "instruction": "Pick up the blue bowl, place it in the sink, then turn on the faucet.",
+    "ground_truth": {
+      "objects": [
+        "blue bowl",
+        "faucet",
+        "sink",
+        "table"
+      ],
+      "spatial_relations": [
+        "blue bowl ON table",
+        "faucet ABOVE sink",
+        "sink ON table"
+      ],
+      "task_type": "pick_and_place",
+      "action_sequence": [
+        "approach blue bowl",
+        "grasp blue bowl",
+        "lift blue bowl",
+        "move to sink",
+        "place in sink",
+        "release",
+        "approach faucet",
+        "grasp faucet handle",
+        "rotate handle to turn on"
+      ],
+      "target_object": "blue bowl",
+      "destination": "sink"
+    }
+  },
+  {
+    "id": "ms_03",
+    "category": "pick_and_place",
+    "image_path": "benchmark/images/ms_03.png",
+    "instruction": "Open the cabinet, pick up the green mug, and place it inside the cabinet.",
+    "ground_truth": {
+      "objects": [
+        "green mug",
+        "cabinet",
+        "table"
+      ],
+      "spatial_relations": [
+        "green mug ON table",
+        "cabinet ON table"
+      ],
+      "task_type": "pick_and_place",
+      "action_sequence": [
+        "approach cabinet",
+        "grasp cabinet handle",
+        "pull cabinet door open",
+        "approach green mug",
+        "grasp green mug",
+        "lift green mug",
+        "move to cabinet",
+        "place in cabinet",
+        "release"
+      ],
+      "target_object": "green mug",
+      "destination": "cabinet"
+    }
+  },
+  {
+    "id": "ms_04",
+    "category": "pick_and_place",
+    "image_path": "benchmark/images/ms_04.png",
+    "instruction": "Open the drawer, pick up the orange mug, and put it in the drawer.",
+    "ground_truth": {
+      "objects": [
+        "drawer",
+        "orange mug",
+        "table"
+      ],
+      "spatial_relations": [
+        "drawer ON table",
+        "orange mug ON table"
+      ],
+      "task_type": "pick_and_place",
+      "action_sequence": [
+        "approach drawer",
+        "grasp handle",
+        "pull drawer open",
+        "approach orange mug",
+        "grasp orange mug",
+        "lift orange mug",
+        "move to drawer",
+        "place in drawer",
+        "release"
+      ],
+      "target_object": "orange mug",
+      "destination": "drawer"
+    }
+  }
+]

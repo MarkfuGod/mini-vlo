@@ -1,0 +1,961 @@
+{
+  "model": "qwen-vl-plus",
+  "num_scenarios": 30,
+  "summary": {
+    "object_f1": 0.7601587301587301,
+    "task_accuracy": 1.0,
+    "action_rouge_l": 0.7176427062999954,
+    "semantic_similarity": 0.9272824112886268,
+    "spatial_accuracy": 0.6277777777777778,
+    "composite": 0.8065723251050261
+  },
+  "per_scenario": [
+    {
+      "scenario_id": "pnp_01",
+      "instruction": "Pick up the red mug and place it on the shelf.",
+      "prediction": {
+        "objects": [
+          "red mug",
+          "shelf"
+        ],
+        "spatial_relations": [
+          "red mug ON TABLE",
+          "shelf ON TABLE"
+        ],
+        "task_type": "pick_and_place",
+        "action_sequence": [
+          "approach red mug",
+          "grasp red mug",
+          "lift red mug",
+          "move red mug TO shelf",
+          "release red mug"
+        ],
+        "target_object": "red mug",
+        "destination": "shelf",
+        "raw_text": "```json\n{\n  \"objects\": [\n    \"red mug\",\n    \"shelf\"\n  ],\n  \"spatial_relations\": [\n    \"red mug ON TABLE\",\n    \"shelf ON TABLE\"\n  ],\n  \"task_type\": \"pick_and_place\",\n  \"action_sequence\": [\n    \"approach red mug\",\n    \"grasp red mug\",\n    \"lift red mug\",\n    \"move red mug TO shelf\",\n    \"release red mug\"\n  ],\n  \"target_object\": \"red mug\",\n  \"destination\": \"shelf\"\n}\n```"
+      },
+      "metrics": {
+        "object_f1": 0.8,
+        "task_accuracy": 1.0,
+        "action_rouge_l": 0.787878787878788,
+        "semantic_similarity": 0.9564190694860526,
+        "spatial_accuracy": 1.0,
+        "composite": 0.9088595714729681
+      }
+    },
+    {
+      "scenario_id": "pnp_02",
+      "instruction": "Pick up the blue bowl and put it inside the cabinet.",
+      "prediction": {
+        "objects": [
+          "cabinet",
+          "blue bowl"
+        ],
+        "spatial_relations": [
+          "blue bowl ON floor",
+          "cabinet ON floor"
+        ],
+        "task_type": "pick_and_place",
+        "action_sequence": [
+          "approach blue bowl",
+          "grasp blue bowl",
+          "lift blue bowl",
+          "move to cabinet",
+          "open cabinet",
+          "place blue bowl IN cabinet",
+          "close cabinet"
+        ],
+        "target_object": "blue bowl",
+        "destination": "cabinet",
+        "raw_text": "```json\n{\n  \"objects\": [\"cabinet\", \"blue bowl\"],\n  \"spatial_relations\": [\n    \"blue bowl ON floor\",\n    \"cabinet ON floor\"\n  ],\n  \"task_type\": \"pick_and_place\",\n  \"action_sequence\": [\n    \"approach blue bowl\",\n    \"grasp blue bowl\",\n    \"lift blue bowl\",\n    \"move to cabinet\",\n    \"open cabinet\",\n    \"place blue bowl IN cabinet\",\n    \"close cabinet\"\n  ],\n  \"target_object\": \"blue bowl\",\n  \"destination\": \"cabinet\"\n}\n```"
+      },
+      "metrics": {
+        "object_f1": 0.8,
+        "task_accuracy": 1.0,
+        "action_rouge_l": 0.8108108108108109,
+        "semantic_similarity": 0.9670459480358976,
+        "spatial_accuracy": 0.0,
+        "composite": 0.7155713517693417
+      }
+    },
+    {
+      "scenario_id": "pnp_03",
+      "instruction": "Pick up the green mug and place it on the plate.",
+      "prediction": {
+        "objects": [
+          "plate",
+          "green mug"
+        ],
+        "spatial_relations": [
+          "green mug ON table",
+          "plate ON table"
+        ],
+        "task_type": "pick_and_place",
+        "action_sequence": [
+          "approach green mug",
+          "grasp green mug",
+          "lift green mug",
+          "move to plate",
+          "place green mug ON plate"
+        ],
+        "target_object": "green mug",
+        "destination": "plate",
+        "raw_text": "```json\n{\n  \"objects\": [\"plate\", \"green mug\"],\n  \"spatial_relations\": [\n    \"green mug ON table\",\n    \"plate ON table\"\n  ],\n  \"task_type\": \"pick_and_place\",\n  \"action_sequence\": [\n    \"approach green mug\",\n    \"grasp green mug\",\n    \"lift green mug\",\n    \"move to plate\",\n    \"place green mug ON plate\"\n  ],\n  \"target_object\": \"green mug\",\n  \"destination\": \"plate\"\n}\n```"
+      },
+      "metrics": {
+        "object_f1": 0.8,
+        "task_accuracy": 1.0,
+        "action_rouge_l": 0.9090909090909091,
+        "semantic_similarity": 0.9835301914200347,
+        "spatial_accuracy": 1.0,
+        "composite": 0.9385242201021888
+      }
+    },
+    {
+      "scenario_id": "pnp_04",
+      "instruction": "Pick up the orange box and place it on the shelf.",
+      "prediction": {
+        "objects": [
+          "orange box",
+          "shelf"
+        ],
+        "spatial_relations": [
+          "orange box ON TABLE",
+          "shelf ON TABLE"
+        ],
+        "task_type": "pick_and_place",
+        "action_sequence": [
+          "approach orange box",
+          "grasp orange box",
+          "lift orange box",
+          "move to shelf",
+          "place orange box ON shelf"
+        ],
+        "target_object": "orange box",
+        "destination": "shelf",
+        "raw_text": "```json\n{\n  \"objects\": [\"orange box\", \"shelf\"],\n  \"spatial_relations\": [\"orange box ON TABLE\", \"shelf ON TABLE\"],\n  \"task_type\": \"pick_and_place\",\n  \"action_sequence\": [\n    \"approach orange box\",\n    \"grasp orange box\",\n    \"lift orange box\",\n    \"move to shelf\",\n    \"place orange box ON shelf\"\n  ],\n  \"target_object\": \"orange box\",\n  \"destination\": \"shelf\"\n}\n```"
+      },
+      "metrics": {
+        "object_f1": 0.8,
+        "task_accuracy": 1.0,
+        "action_rouge_l": 0.9090909090909091,
+        "semantic_similarity": 0.9835301914200347,
+        "spatial_accuracy": 1.0,
+        "composite": 0.9385242201021888
+      }
+    },
+    {
+      "scenario_id": "pnp_05",
+      "instruction": "Pick up the yellow mug and put it in the microwave.",
+      "prediction": {
+        "objects": [
+          "yellow mug",
+          "microwave"
+        ],
+        "spatial_relations": [
+          "yellow mug ON table",
+          "microwave ON table"
+        ],
+        "task_type": "pick_and_place",
+        "action_sequence": [
+          "approach yellow mug",
+          "grasp yellow mug",
+          "lift yellow mug",
+          "move to microwave",
+          "open microwave door",
+          "place yellow mug in microwave",
+          "close microwave door"
+        ],
+        "target_object": "yellow mug",
+        "destination": "microwave",
+        "raw_text": "```json\n{\n  \"objects\": [\"yellow mug\", \"microwave\"],\n  \"spatial_relations\": [\n    \"yellow mug ON table\",\n    \"microwave ON table\"\n  ],\n  \"task_type\": \"pick_and_place\",\n  \"action_sequence\": [\n    \"approach yellow mug\",\n    \"grasp yellow mug\",\n    \"lift yellow mug\",\n    \"move to microwave\",\n    \"open microwave door\",\n    \"place yellow mug in microwave\",\n    \"close microwave door\"\n  ],\n  \"target_object\": \"yellow mug\",\n  \"destination\": \"microwave\"\n}\n```"
+      },
+      "metrics": {
+        "object_f1": 0.8,
+        "task_accuracy": 1.0,
+        "action_rouge_l": 0.7692307692307693,
+        "semantic_similarity": 0.9506541513652699,
+        "spatial_accuracy": 1.0,
+        "composite": 0.9039769841192078
+      }
+    },
+    {
+      "scenario_id": "pnp_06",
+      "instruction": "Pick up the red bowl and place it in the brown box.",
+      "prediction": {
+        "objects": [
+          "brown box",
+          "red bowl"
+        ],
+        "spatial_relations": [
+          "brown box ON table",
+          "red bowl ON table"
+        ],
+        "task_type": "pick_and_place",
+        "action_sequence": [
+          "approach red bowl",
+          "grasp red bowl",
+          "lift red bowl",
+          "move red bowl TO brown box",
+          "release red bowl"
+        ],
+        "target_object": "red bowl",
+        "destination": "brown box",
+        "raw_text": "```json\n{\n  \"objects\": [\"brown box\", \"red bowl\"],\n  \"spatial_relations\": [\n    \"brown box ON table\",\n    \"red bowl ON table\"\n  ],\n  \"task_type\": \"pick_and_place\",\n  \"action_sequence\": [\n    \"approach red bowl\",\n    \"grasp red bowl\",\n    \"lift red bowl\",\n    \"move red bowl TO brown box\",\n    \"release red bowl\"\n  ],\n  \"target_object\": \"red bowl\",\n  \"destination\": \"brown box\"\n}\n```"
+      },
+      "metrics": {
+        "object_f1": 0.8,
+        "task_accuracy": 1.0,
+        "action_rouge_l": 0.7777777777777778,
+        "semantic_similarity": 0.9489613548093694,
+        "spatial_accuracy": 1.0,
+        "composite": 0.9053478265174295
+      }
+    },
+    {
+      "scenario_id": "pnp_07",
+      "instruction": "Pick up the purple mug and put it in the cabinet.",
+      "prediction": {
+        "objects": [
+          "purple mug",
+          "plate",
+          "cabinet"
+        ],
+        "spatial_relations": [
+          "purple mug ON table",
+          "plate ON table",
+          "cabinet ON table"
+        ],
+        "task_type": "pick_and_place",
+        "action_sequence": [
+          "approach purple mug",
+          "grasp purple mug",
+          "lift purple mug",
+          "move to cabinet",
+          "open cabinet",
+          "place purple mug in cabinet",
+          "close cabinet"
+        ],
+        "target_object": "purple mug",
+        "destination": "cabinet",
+        "raw_text": "```json\n{\n  \"objects\": [\"purple mug\", \"plate\", \"cabinet\"],\n  \"spatial_relations\": [\n    \"purple mug ON table\",\n    \"plate ON table\",\n    \"cabinet ON table\"\n  ],\n  \"task_type\": \"pick_and_place\",\n  \"action_sequence\": [\n    \"approach purple mug\",\n    \"grasp purple mug\",\n    \"lift purple mug\",\n    \"move to cabinet\",\n    \"open cabinet\",\n    \"place purple mug in cabinet\",\n    \"close cabinet\"\n  ],\n  \"target_object\": \"purple mug\",\n  \"destination\": \"cabinet\"\n}\n```"
+      },
+      "metrics": {
+        "object_f1": 0.8571428571428571,
+        "task_accuracy": 1.0,
+        "action_rouge_l": 0.8108108108108109,
+        "semantic_similarity": 0.967189407121714,
+        "spatial_accuracy": 1.0,
+        "composite": 0.9270286150150764
+      }
+    },
+    {
+      "scenario_id": "pnp_08",
+      "instruction": "Pick up the green bowl and place it on the shelf.",
+      "prediction": {
+        "objects": [
+          "red mug",
+          "green bowl",
+          "shelf"
+        ],
+        "spatial_relations": [
+          "red mug ON floor",
+          "green bowl ON floor",
+          "shelf ON floor"
+        ],
+        "task_type": "pick_and_place",
+        "action_sequence": [
+          "approach green bowl",
+          "grasp green bowl",
+          "lift green bowl",
+          "move to shelf",
+          "place green bowl ON shelf"
+        ],
+        "target_object": "green bowl",
+        "destination": "shelf",
+        "raw_text": "```json\n{\n  \"objects\": [\"red mug\", \"green bowl\", \"shelf\"],\n  \"spatial_relations\": [\n    \"red mug ON floor\",\n    \"green bowl ON floor\",\n    \"shelf ON floor\"\n  ],\n  \"task_type\": \"pick_and_place\",\n  \"action_sequence\": [\n    \"approach green bowl\",\n    \"grasp green bowl\",\n    \"lift green bowl\",\n    \"move to shelf\",\n    \"place green bowl ON shelf\"\n  ],\n  \"target_object\": \"green bowl\",\n  \"destination\": \"shelf\"\n}\n```"
+      },
+      "metrics": {
+        "object_f1": 0.8571428571428571,
+        "task_accuracy": 1.0,
+        "action_rouge_l": 0.9090909090909091,
+        "semantic_similarity": 0.9837576207514998,
+        "spatial_accuracy": 0.0,
+        "composite": 0.7499982773970533
+      }
+    },
+    {
+      "scenario_id": "oc_01",
+      "instruction": "Open the top drawer.",
+      "prediction": {
+        "objects": [
+          "top drawer"
+        ],
+        "spatial_relations": [
+          "top drawer ON table"
+        ],
+        "task_type": "open",
+        "action_sequence": [
+          "approach top drawer",
+          "grasp top drawer handle",
+          "pull top drawer open"
+        ],
+        "target_object": "top drawer",
+        "destination": null,
+        "raw_text": "```json\n{\n  \"objects\": [\n    \"top drawer\"\n  ],\n  \"spatial_relations\": [\n    \"top drawer ON table\"\n  ],\n  \"task_type\": \"open\",\n  \"action_sequence\": [\n    \"approach top drawer\",\n    \"grasp top drawer handle\",\n    \"pull top drawer open\"\n  ],\n  \"target_object\": \"top drawer\",\n  \"destination\": null\n}\n```"
+      },
+      "metrics": {
+        "object_f1": 0.6666666666666666,
+        "task_accuracy": 1.0,
+        "action_rouge_l": 0.8421052631578948,
+        "semantic_similarity": 0.9683006310306368,
+        "spatial_accuracy": 1.0,
+        "composite": 0.8954145121710397
+      }
+    },
+    {
+      "scenario_id": "oc_02",
+      "instruction": "Close the bottom drawer.",
+      "prediction": {
+        "objects": [
+          "bottom drawer"
+        ],
+        "spatial_relations": [
+          "bottom drawer ON table"
+        ],
+        "task_type": "close",
+        "action_sequence": [
+          "approach bottom drawer",
+          "push bottom drawer",
+          "confirm bottom drawer is closed"
+        ],
+        "target_object": "bottom drawer",
+        "destination": null,
+        "raw_text": "```json\n{\n  \"objects\": [\n    \"bottom drawer\"\n  ],\n  \"spatial_relations\": [\n    \"bottom drawer ON table\"\n  ],\n  \"task_type\": \"close\",\n  \"action_sequence\": [\n    \"approach bottom drawer\",\n    \"push bottom drawer\",\n    \"confirm bottom drawer is closed\"\n  ],\n  \"target_object\": \"bottom drawer\",\n  \"destination\": null\n}\n```"
+      },
+      "metrics": {
+        "object_f1": 0.6666666666666666,
+        "task_accuracy": 1.0,
+        "action_rouge_l": 0.631578947368421,
+        "semantic_similarity": 0.9252126882606606,
+        "spatial_accuracy": 1.0,
+        "composite": 0.8446916604591497
+      }
+    },
+    {
+      "scenario_id": "oc_03",
+      "instruction": "Open the cabinet door.",
+      "prediction": {
+        "objects": [
+          "cabinet"
+        ],
+        "spatial_relations": [
+          "cabinet ON floor"
+        ],
+        "task_type": "open",
+        "action_sequence": [
+          "approach cabinet",
+          "grasp cabinet door",
+          "pull cabinet door outward"
+        ],
+        "target_object": "cabinet",
+        "destination": null,
+        "raw_text": "```json\n{\n  \"objects\": [\n    \"cabinet\"\n  ],\n  \"spatial_relations\": [\n    \"cabinet ON floor\"\n  ],\n  \"task_type\": \"open\",\n  \"action_sequence\": [\n    \"approach cabinet\",\n    \"grasp cabinet door\",\n    \"pull cabinet door outward\"\n  ],\n  \"target_object\": \"cabinet\",\n  \"destination\": null\n}\n```"
+      },
+      "metrics": {
+        "object_f1": 0.6666666666666666,
+        "task_accuracy": 1.0,
+        "action_rouge_l": 0.7777777777777778,
+        "semantic_similarity": 0.9351438002390361,
+        "spatial_accuracy": 0.0,
+        "composite": 0.6759176489366961
+      }
+    },
+    {
+      "scenario_id": "oc_04",
+      "instruction": "Close the cabinet door.",
+      "prediction": {
+        "objects": [
+          "cabinet"
+        ],
+        "spatial_relations": [
+          "cabinet ON floor"
+        ],
+        "task_type": "close",
+        "action_sequence": [
+          "approach cabinet",
+          "grasp cabinet door",
+          "pull cabinet door towards body",
+          "release cabinet door"
+        ],
+        "target_object": "cabinet",
+        "destination": null,
+        "raw_text": "```json\n{\n  \"objects\": [\n    \"cabinet\"\n  ],\n  \"spatial_relations\": [\n    \"cabinet ON floor\"\n  ],\n  \"task_type\": \"close\",\n  \"action_sequence\": [\n    \"approach cabinet\",\n    \"grasp cabinet door\",\n    \"pull cabinet door towards body\",\n    \"release cabinet door\"\n  ],\n  \"target_object\": \"cabinet\",\n  \"destination\": null\n}\n```"
+      },
+      "metrics": {
+        "object_f1": 0.6666666666666666,
+        "task_accuracy": 1.0,
+        "action_rouge_l": 0.6363636363636364,
+        "semantic_similarity": 0.9201150588984627,
+        "spatial_accuracy": 0.0,
+        "composite": 0.6446290723857533
+      }
+    },
+    {
+      "scenario_id": "oc_05",
+      "instruction": "Open the door.",
+      "prediction": {
+        "objects": [
+          "door"
+        ],
+        "spatial_relations": [
+          "door is in room"
+        ],
+        "task_type": "open",
+        "action_sequence": [
+          "approach door",
+          "grasp door handle",
+          "pull door towards right"
+        ],
+        "target_object": "door",
+        "destination": null,
+        "raw_text": "```json\n{\n  \"objects\": [\n    \"door\"\n  ],\n  \"spatial_relations\": [\n    \"door is in room\"\n  ],\n  \"task_type\": \"open\",\n  \"action_sequence\": [\n    \"approach door\",\n    \"grasp door handle\",\n    \"pull door towards right\"\n  ],\n  \"target_object\": \"door\",\n  \"destination\": null\n}\n```"
+      },
+      "metrics": {
+        "object_f1": 1.0,
+        "task_accuracy": 1.0,
+        "action_rouge_l": 0.823529411764706,
+        "semantic_similarity": 0.9589940926145842,
+        "spatial_accuracy": 1.0,
+        "composite": 0.956504700875858
+      }
+    },
+    {
+      "scenario_id": "oc_06",
+      "instruction": "Close the door.",
+      "prediction": {
+        "objects": [
+          "door"
+        ],
+        "spatial_relations": [
+          "door ON wall"
+        ],
+        "task_type": "close",
+        "action_sequence": [
+          "approach door",
+          "grasp door handle",
+          "pull door towards frame"
+        ],
+        "target_object": "door",
+        "destination": null,
+        "raw_text": "```json\n{\n  \"objects\": [\n    \"door\"\n  ],\n  \"spatial_relations\": [\n    \"door ON wall\"\n  ],\n  \"task_type\": \"close\",\n  \"action_sequence\": [\n    \"approach door\",\n    \"grasp door handle\",\n    \"pull door towards frame\"\n  ],\n  \"target_object\": \"door\",\n  \"destination\": null\n}\n```"
+      },
+      "metrics": {
+        "object_f1": 1.0,
+        "task_accuracy": 1.0,
+        "action_rouge_l": 0.7058823529411765,
+        "semantic_similarity": 0.9296696802013682,
+        "spatial_accuracy": 1.0,
+        "composite": 0.927110406628509
+      }
+    },
+    {
+      "scenario_id": "oc_07",
+      "instruction": "Open the microwave door.",
+      "prediction": {
+        "objects": [
+          "microwave"
+        ],
+        "spatial_relations": [
+          "microwave ON counter"
+        ],
+        "task_type": "open",
+        "action_sequence": [
+          "approach microwave",
+          "grasp microwave door",
+          "open microwave door"
+        ],
+        "target_object": "microwave",
+        "destination": null,
+        "raw_text": "```json\n{\n  \"objects\": [\n    \"microwave\"\n  ],\n  \"spatial_relations\": [\n    \"microwave ON counter\"\n  ],\n  \"task_type\": \"open\",\n  \"action_sequence\": [\n    \"approach microwave\",\n    \"grasp microwave door\",\n    \"open microwave door\"\n  ],\n  \"target_object\": \"microwave\",\n  \"destination\": null\n}\n```"
+      },
+      "metrics": {
+        "object_f1": 0.6666666666666666,
+        "task_accuracy": 1.0,
+        "action_rouge_l": 0.7058823529411765,
+        "semantic_similarity": 0.9487179487179487,
+        "spatial_accuracy": 0.0,
+        "composite": 0.6642533936651585
+      }
+    },
+    {
+      "scenario_id": "oc_08",
+      "instruction": "Close the microwave door.",
+      "prediction": {
+        "objects": [
+          "microwave"
+        ],
+        "spatial_relations": [],
+        "task_type": "close",
+        "action_sequence": [
+          "approach microwave",
+          "grasp microwave door",
+          "close microwave door"
+        ],
+        "target_object": "microwave door",
+        "destination": null,
+        "raw_text": "```json\n{\n  \"objects\": [\n    \"microwave\"\n  ],\n  \"spatial_relations\": [],\n  \"task_type\": \"close\",\n  \"action_sequence\": [\n    \"approach microwave\",\n    \"grasp microwave door\",\n    \"close microwave door\"\n  ],\n  \"target_object\": \"microwave door\",\n  \"destination\": null\n}\n```"
+      },
+      "metrics": {
+        "object_f1": 0.6666666666666666,
+        "task_accuracy": 1.0,
+        "action_rouge_l": 0.823529411764706,
+        "semantic_similarity": 0.9414688716912717,
+        "spatial_accuracy": 0.0,
+        "composite": 0.686332990024529
+      }
+    },
+    {
+      "scenario_id": "to_01",
+      "instruction": "Turn on the stove.",
+      "prediction": {
+        "objects": [
+          "stove"
+        ],
+        "spatial_relations": [
+          "stove ON table"
+        ],
+        "task_type": "turn_on",
+        "action_sequence": [
+          "approach stove",
+          "interact with stove"
+        ],
+        "target_object": "stove",
+        "destination": null,
+        "raw_text": "```json\n{\n  \"objects\": [\n    \"stove\"\n  ],\n  \"spatial_relations\": [\n    \"stove ON table\"\n  ],\n  \"task_type\": \"turn_on\",\n  \"action_sequence\": [\n    \"approach stove\",\n    \"interact with stove\"\n  ],\n  \"target_object\": \"stove\",\n  \"destination\": null\n}\n```"
+      },
+      "metrics": {
+        "object_f1": 0.5,
+        "task_accuracy": 1.0,
+        "action_rouge_l": 0.2857142857142857,
+        "semantic_similarity": 0.7099295739719539,
+        "spatial_accuracy": 0.5,
+        "composite": 0.599128771937248
+      }
+    },
+    {
+      "scenario_id": "to_02",
+      "instruction": "Turn off the stove.",
+      "prediction": {
+        "objects": [
+          "stove",
+          "stove_burner"
+        ],
+        "spatial_relations": [
+          "stove_burner ON stove"
+        ],
+        "task_type": "turn_off",
+        "action_sequence": [
+          "approach stove_burner",
+          "interact with stove_burner"
+        ],
+        "target_object": "stove_burner",
+        "destination": null,
+        "raw_text": "```json\n{\n  \"objects\": [\"stove\", \"stove_burner\"],\n  \"spatial_relations\": [\"stove_burner ON stove\"],\n  \"task_type\": \"turn_off\",\n  \"action_sequence\": [\n    \"approach stove_burner\",\n    \"interact with stove_burner\"\n  ],\n  \"target_object\": \"stove_burner\",\n  \"destination\": null\n}\n```"
+      },
+      "metrics": {
+        "object_f1": 0.4,
+        "task_accuracy": 1.0,
+        "action_rouge_l": 0.25,
+        "semantic_similarity": 0.5737097324805089,
+        "spatial_accuracy": 0.0,
+        "composite": 0.4447419464961018
+      }
+    },
+    {
+      "scenario_id": "to_03",
+      "instruction": "Turn on the sink faucet.",
+      "prediction": {
+        "objects": [
+          "faucet",
+          "sink"
+        ],
+        "spatial_relations": [
+          "faucet ON sink"
+        ],
+        "task_type": "turn_on",
+        "action_sequence": [
+          "approach faucet",
+          "grasp faucet handle",
+          "rotate faucet handle clockwise"
+        ],
+        "target_object": "faucet",
+        "destination": null,
+        "raw_text": "```json\n{\n  \"objects\": [\n    \"faucet\",\n    \"sink\"\n  ],\n  \"spatial_relations\": [\n    \"faucet ON sink\"\n  ],\n  \"task_type\": \"turn_on\",\n  \"action_sequence\": [\n    \"approach faucet\",\n    \"grasp faucet handle\",\n    \"rotate faucet handle clockwise\"\n  ],\n  \"target_object\": \"faucet\",\n  \"destination\": null\n}\n```"
+      },
+      "metrics": {
+        "object_f1": 0.8,
+        "task_accuracy": 1.0,
+        "action_rouge_l": 0.7368421052631577,
+        "semantic_similarity": 0.9233805168766388,
+        "spatial_accuracy": 0.0,
+        "composite": 0.6920445244279594
+      }
+    },
+    {
+      "scenario_id": "to_04",
+      "instruction": "Turn off the sink faucet.",
+      "prediction": {
+        "objects": [
+          "faucet",
+          "sink"
+        ],
+        "spatial_relations": [
+          "faucet ON sink"
+        ],
+        "task_type": "turn_off",
+        "action_sequence": [
+          "approach faucet",
+          "rotate faucet handle clockwise"
+        ],
+        "target_object": "faucet",
+        "destination": null,
+        "raw_text": "```json\n{\n  \"objects\": [\"faucet\", \"sink\"],\n  \"spatial_relations\": [\n    \"faucet ON sink\"\n  ],\n  \"task_type\": \"turn_off\",\n  \"action_sequence\": [\n    \"approach faucet\",\n    \"rotate faucet handle clockwise\"\n  ],\n  \"target_object\": \"faucet\",\n  \"destination\": null\n}\n```"
+      },
+      "metrics": {
+        "object_f1": 0.8,
+        "task_accuracy": 1.0,
+        "action_rouge_l": 0.5,
+        "semantic_similarity": 0.9053662845289709,
+        "spatial_accuracy": 0.0,
+        "composite": 0.6410732569057943
+      }
+    },
+    {
+      "scenario_id": "to_05",
+      "instruction": "Turn on the microwave.",
+      "prediction": {
+        "objects": [
+          "microwave"
+        ],
+        "spatial_relations": [
+          "microwave ON table"
+        ],
+        "task_type": "turn_on",
+        "action_sequence": [
+          "approach microwave",
+          "press power button on microwave"
+        ],
+        "target_object": "microwave",
+        "destination": null,
+        "raw_text": "```json\n{\n  \"objects\": [\n    \"microwave\"\n  ],\n  \"spatial_relations\": [\n    \"microwave ON table\"\n  ],\n  \"task_type\": \"turn_on\",\n  \"action_sequence\": [\n    \"approach microwave\",\n    \"press power button on microwave\"\n  ],\n  \"target_object\": \"microwave\",\n  \"destination\": null\n}\n```"
+      },
+      "metrics": {
+        "object_f1": 0.6666666666666666,
+        "task_accuracy": 1.0,
+        "action_rouge_l": 0.8333333333333333,
+        "semantic_similarity": 0.9550230183180096,
+        "spatial_accuracy": 1.0,
+        "composite": 0.8910046036636019
+      }
+    },
+    {
+      "scenario_id": "to_06",
+      "instruction": "Turn off the microwave.",
+      "prediction": {
+        "objects": [
+          "microwave"
+        ],
+        "spatial_relations": [
+          "microwave ON table"
+        ],
+        "task_type": "turn_off",
+        "action_sequence": [
+          "approach microwave",
+          "press control panel of microwave"
+        ],
+        "target_object": "microwave",
+        "destination": null,
+        "raw_text": "```json\n{\n  \"objects\": [\n    \"microwave\"\n  ],\n  \"spatial_relations\": [\n    \"microwave ON table\"\n  ],\n  \"task_type\": \"turn_off\",\n  \"action_sequence\": [\n    \"approach microwave\",\n    \"press control panel of microwave\"\n  ],\n  \"target_object\": \"microwave\",\n  \"destination\": null\n}\n```"
+      },
+      "metrics": {
+        "object_f1": 0.6666666666666666,
+        "task_accuracy": 1.0,
+        "action_rouge_l": 0.5,
+        "semantic_similarity": 0.8606629658238704,
+        "spatial_accuracy": 1.0,
+        "composite": 0.8054659264981074
+      }
+    },
+    {
+      "scenario_id": "sp_01",
+      "instruction": "Move the blue bowl to the left of the plate.",
+      "prediction": {
+        "objects": [
+          "plate",
+          "blue bowl"
+        ],
+        "spatial_relations": [
+          "blue bowl ON table",
+          "plate ON table"
+        ],
+        "task_type": "move",
+        "action_sequence": [
+          "approach blue bowl",
+          "grasp blue bowl",
+          "lift blue bowl",
+          "place blue bowl to the left of plate",
+          "release blue bowl"
+        ],
+        "target_object": "blue bowl",
+        "destination": "left of plate",
+        "raw_text": "```json\n{\n  \"objects\": [\"plate\", \"blue bowl\"],\n  \"spatial_relations\": [\n    \"blue bowl ON table\",\n    \"plate ON table\"\n  ],\n  \"task_type\": \"move\",\n  \"action_sequence\": [\n    \"approach blue bowl\",\n    \"grasp blue bowl\",\n    \"lift blue bowl\",\n    \"place blue bowl to the left of plate\",\n    \"release blue bowl\"\n  ],\n  \"target_object\": \"blue bowl\",\n  \"destination\": \"left of plate\"\n}\n```"
+      },
+      "metrics": {
+        "object_f1": 0.8,
+        "task_accuracy": 1.0,
+        "action_rouge_l": 0.7894736842105262,
+        "semantic_similarity": 0.9820411876937903,
+        "spatial_accuracy": 0.6666666666666666,
+        "composite": 0.8476363077141966
+      }
+    },
+    {
+      "scenario_id": "sp_02",
+      "instruction": "Move the red mug next to the blue mug.",
+      "prediction": {
+        "objects": [
+          "red mug",
+          "blue mug"
+        ],
+        "spatial_relations": [
+          "red mug ON table",
+          "blue mug ON table"
+        ],
+        "task_type": "move",
+        "action_sequence": [
+          "approach red mug",
+          "grasp red mug",
+          "lift red mug",
+          "place red mug near blue mug",
+          "release red mug"
+        ],
+        "target_object": "red mug",
+        "destination": "next to blue mug",
+        "raw_text": "```json\n{\n  \"objects\": [\"red mug\", \"blue mug\"],\n  \"spatial_relations\": [\n    \"red mug ON table\",\n    \"blue mug ON table\"\n  ],\n  \"task_type\": \"move\",\n  \"action_sequence\": [\n    \"approach red mug\",\n    \"grasp red mug\",\n    \"lift red mug\",\n    \"place red mug near blue mug\",\n    \"release red mug\"\n  ],\n  \"target_object\": \"red mug\",\n  \"destination\": \"next to blue mug\"\n}\n```"
+      },
+      "metrics": {
+        "object_f1": 0.8,
+        "task_accuracy": 1.0,
+        "action_rouge_l": 0.7027027027027027,
+        "semantic_similarity": 0.9659466784984929,
+        "spatial_accuracy": 1.0,
+        "composite": 0.893729876240239
+      }
+    },
+    {
+      "scenario_id": "sp_03",
+      "instruction": "Move the green bowl behind the brown box.",
+      "prediction": {
+        "objects": [
+          "brown box",
+          "green bowl"
+        ],
+        "spatial_relations": [
+          "green bowl ON table",
+          "brown box ON table"
+        ],
+        "task_type": "move",
+        "action_sequence": [
+          "approach green bowl",
+          "grasp green bowl",
+          "lift green bowl",
+          "place green bowl behind brown box"
+        ],
+        "target_object": "green bowl",
+        "destination": "behind brown box",
+        "raw_text": "```json\n{\n  \"objects\": [\"brown box\", \"green bowl\"],\n  \"spatial_relations\": [\n    \"green bowl ON table\",\n    \"brown box ON table\"\n  ],\n  \"task_type\": \"move\",\n  \"action_sequence\": [\n    \"approach green bowl\",\n    \"grasp green bowl\",\n    \"lift green bowl\",\n    \"place green bowl behind brown box\"\n  ],\n  \"target_object\": \"green bowl\",\n  \"destination\": \"behind brown box\"\n}\n```"
+      },
+      "metrics": {
+        "object_f1": 0.8,
+        "task_accuracy": 1.0,
+        "action_rouge_l": 0.7272727272727272,
+        "semantic_similarity": 0.9790041236246526,
+        "spatial_accuracy": 1.0,
+        "composite": 0.9012553701794761
+      }
+    },
+    {
+      "scenario_id": "sp_04",
+      "instruction": "Move the yellow mug in front of the plate.",
+      "prediction": {
+        "objects": [
+          "plate",
+          "yellow mug"
+        ],
+        "spatial_relations": [
+          "yellow mug ON table",
+          "plate ON table"
+        ],
+        "task_type": "move",
+        "action_sequence": [
+          "approach yellow mug",
+          "grasp yellow mug",
+          "lift yellow mug",
+          "place yellow mug in front of plate"
+        ],
+        "target_object": "yellow mug",
+        "destination": "in front of plate",
+        "raw_text": "```json\n{\n  \"objects\": [\"plate\", \"yellow mug\"],\n  \"spatial_relations\": [\n    \"yellow mug ON table\",\n    \"plate ON table\"\n  ],\n  \"task_type\": \"move\",\n  \"action_sequence\": [\n    \"approach yellow mug\",\n    \"grasp yellow mug\",\n    \"lift yellow mug\",\n    \"place yellow mug in front of plate\"\n  ],\n  \"target_object\": \"yellow mug\",\n  \"destination\": \"in front of plate\"\n}\n```"
+      },
+      "metrics": {
+        "object_f1": 0.8,
+        "task_accuracy": 1.0,
+        "action_rouge_l": 0.742857142857143,
+        "semantic_similarity": 0.9785538811221318,
+        "spatial_accuracy": 1.0,
+        "composite": 0.904282204795855
+      }
+    },
+    {
+      "scenario_id": "ms_01",
+      "instruction": "Pick up the red mug, put it in the microwave, then close the microwave door.",
+      "prediction": {
+        "objects": [
+          "red mug",
+          "microwave"
+        ],
+        "spatial_relations": [
+          "red mug ON table",
+          "microwave ON table"
+        ],
+        "task_type": "pick_and_place",
+        "action_sequence": [
+          "approach red mug",
+          "grasp red mug",
+          "lift red mug",
+          "move red mug TO microwave",
+          "place red mug IN microwave",
+          "close microwave door"
+        ],
+        "target_object": "red mug",
+        "destination": "microwave",
+        "raw_text": "```json\n{\n  \"objects\": [\"red mug\", \"microwave\"],\n  \"spatial_relations\": [\n    \"red mug ON table\",\n    \"microwave ON table\"\n  ],\n  \"task_type\": \"pick_and_place\",\n  \"action_sequence\": [\n    \"approach red mug\",\n    \"grasp red mug\",\n    \"lift red mug\",\n    \"move red mug TO microwave\",\n    \"place red mug IN microwave\",\n    \"close microwave door\"\n  ],\n  \"target_object\": \"red mug\",\n  \"destination\": \"microwave\"\n}\n```"
+      },
+      "metrics": {
+        "object_f1": 0.8,
+        "task_accuracy": 1.0,
+        "action_rouge_l": 0.7555555555555555,
+        "semantic_similarity": 0.9393759701576182,
+        "spatial_accuracy": 1.0,
+        "composite": 0.8989863051426348
+      }
+    },
+    {
+      "scenario_id": "ms_02",
+      "instruction": "Pick up the blue bowl, place it in the sink, then turn on the faucet.",
+      "prediction": {
+        "objects": [
+          "blue bowl",
+          "sink",
+          "faucet"
+        ],
+        "spatial_relations": [
+          "blue bowl ON table",
+          "sink ON table",
+          "faucet ON table"
+        ],
+        "task_type": "pick_and_place",
+        "action_sequence": [
+          "approach blue bowl",
+          "grasp blue bowl",
+          "lift blue bowl",
+          "move blue bowl TO sink",
+          "release blue bowl",
+          "turn on faucet"
+        ],
+        "target_object": "blue bowl",
+        "destination": "sink",
+        "raw_text": "```json\n{\n  \"objects\": [\"blue bowl\", \"sink\", \"faucet\"],\n  \"spatial_relations\": [\n    \"blue bowl ON table\",\n    \"sink ON table\",\n    \"faucet ON table\"\n  ],\n  \"task_type\": \"pick_and_place\",\n  \"action_sequence\": [\n    \"approach blue bowl\",\n    \"grasp blue bowl\",\n    \"lift blue bowl\",\n    \"move blue bowl TO sink\",\n    \"release blue bowl\",\n    \"turn on faucet\"\n  ],\n  \"target_object\": \"blue bowl\",\n  \"destination\": \"sink\"\n}\n```"
+      },
+      "metrics": {
+        "object_f1": 0.8571428571428571,
+        "task_accuracy": 1.0,
+        "action_rouge_l": 0.6521739130434783,
+        "semantic_similarity": 0.9091354712785827,
+        "spatial_accuracy": 0.6666666666666666,
+        "composite": 0.817023781626317
+      }
+    },
+    {
+      "scenario_id": "ms_03",
+      "instruction": "Open the cabinet, pick up the green mug, and place it inside the cabinet.",
+      "prediction": {
+        "objects": [
+          "cabinet",
+          "green mug"
+        ],
+        "spatial_relations": [
+          "green mug ON floor",
+          "cabinet ON floor"
+        ],
+        "task_type": "pick_and_place",
+        "action_sequence": [
+          "approach cabinet",
+          "open cabinet",
+          "approach green mug",
+          "grasp green mug",
+          "lift green mug",
+          "move green mug TO cabinet",
+          "release green mug"
+        ],
+        "target_object": "green mug",
+        "destination": "cabinet",
+        "raw_text": "```json\n{\n  \"objects\": [\"cabinet\", \"green mug\"],\n  \"spatial_relations\": [\n    \"green mug ON floor\",\n    \"cabinet ON floor\"\n  ],\n  \"task_type\": \"pick_and_place\",\n  \"action_sequence\": [\n    \"approach cabinet\",\n    \"open cabinet\",\n    \"approach green mug\",\n    \"grasp green mug\",\n    \"lift green mug\",\n    \"move green mug TO cabinet\",\n    \"release green mug\"\n  ],\n  \"target_object\": \"green mug\",\n  \"destination\": \"cabinet\"\n}\n```"
+      },
+      "metrics": {
+        "object_f1": 0.8,
+        "task_accuracy": 1.0,
+        "action_rouge_l": 0.6956521739130435,
+        "semantic_similarity": 0.9246776699788091,
+        "spatial_accuracy": 0.0,
+        "composite": 0.6840659687783706
+      }
+    },
+    {
+      "scenario_id": "ms_04",
+      "instruction": "Open the drawer, pick up the orange mug, and put it in the drawer.",
+      "prediction": {
+        "objects": [
+          "drawer",
+          "orange mug"
+        ],
+        "spatial_relations": [
+          "orange mug ON table",
+          "drawer ON table"
+        ],
+        "task_type": "pick_and_place",
+        "action_sequence": [
+          "approach drawer",
+          "open drawer",
+          "approach orange mug",
+          "grasp orange mug",
+          "lift orange mug",
+          "move orange mug TO drawer",
+          "release orange mug"
+        ],
+        "target_object": "orange mug",
+        "destination": "drawer",
+        "raw_text": "```json\n{\n  \"objects\": [\"drawer\", \"orange mug\"],\n  \"spatial_relations\": [\n    \"orange mug ON table\",\n    \"drawer ON table\"\n  ],\n  \"task_type\": \"pick_and_place\",\n  \"action_sequence\": [\n    \"approach drawer\",\n    \"open drawer\",\n    \"approach orange mug\",\n    \"grasp orange mug\",\n    \"lift orange mug\",\n    \"move orange mug TO drawer\",\n    \"release orange mug\"\n  ],\n  \"target_object\": \"orange mug\",\n  \"destination\": \"drawer\"\n}\n```"
+      },
+      "metrics": {
+        "object_f1": 0.8,
+        "task_accuracy": 1.0,
+        "action_rouge_l": 0.7272727272727272,
+        "semantic_similarity": 0.9429545582409309,
+        "spatial_accuracy": 1.0,
+        "composite": 0.8940454571027316
+      }
+    }
+  ]
+}
