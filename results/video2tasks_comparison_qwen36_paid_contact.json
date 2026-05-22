@@ -1,0 +1,905 @@
+{
+  "model": "qwen3.6-plus",
+  "base_url": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+  "frames_per_sample": 4,
+  "samples": [
+    {
+      "id": "close_drawer",
+      "video": "demos/video2tasks_compare/close_drawer.mp4",
+      "instruction": "Close the drawer.",
+      "task_type": "close",
+      "target_object": "drawer",
+      "destination": "closed position",
+      "actions": [
+        "reach drawer handle",
+        "push drawer inward",
+        "close drawer"
+      ]
+    },
+    {
+      "id": "get_napkin",
+      "video": "demos/video2tasks_compare/get_napkin.mp4",
+      "instruction": "Get the napkin.",
+      "task_type": "pick_and_place",
+      "target_object": "napkin",
+      "destination": "hand",
+      "actions": [
+        "reach napkin",
+        "grasp napkin",
+        "lift napkin"
+      ]
+    },
+    {
+      "id": "hang_towel",
+      "video": "demos/video2tasks_compare/hang_towel.mp4",
+      "instruction": "Hang the towel.",
+      "task_type": "hang",
+      "target_object": "towel",
+      "destination": "rack",
+      "actions": [
+        "grasp towel",
+        "move towel to rack",
+        "hang towel"
+      ]
+    },
+    {
+      "id": "measure_apple",
+      "video": "demos/video2tasks_compare/measure_apple.mp4",
+      "instruction": "Measure the apple.",
+      "task_type": "measure",
+      "target_object": "apple",
+      "destination": "measuring tool",
+      "actions": [
+        "bring measuring tool to apple",
+        "align tool with apple",
+        "measure apple"
+      ]
+    },
+    {
+      "id": "open_bottle",
+      "video": "demos/video2tasks_compare/open_bottle.mp4",
+      "instruction": "Open the bottle.",
+      "task_type": "open",
+      "target_object": "bottle",
+      "destination": "open state",
+      "actions": [
+        "grasp bottle",
+        "twist cap",
+        "open bottle"
+      ]
+    },
+    {
+      "id": "sweep_trash",
+      "video": "demos/video2tasks_compare/sweep_trash.mp4",
+      "instruction": "Sweep the trash into the dustpan.",
+      "task_type": "sweep",
+      "target_object": "trash",
+      "destination": "dustpan",
+      "actions": [
+        "move broom to trash",
+        "sweep trash",
+        "collect trash in dustpan"
+      ]
+    },
+    {
+      "id": "take_out_toaster",
+      "video": "demos/video2tasks_compare/take_out_toaster.mp4",
+      "instruction": "Take out the toaster and put it on the wooden plate.",
+      "task_type": "pick_and_place",
+      "target_object": "toaster",
+      "destination": "wooden plate",
+      "actions": [
+        "grasp toaster",
+        "lift toaster",
+        "move toaster to wooden plate",
+        "place toaster"
+      ]
+    },
+    {
+      "id": "turn_on_lamp",
+      "video": "demos/video2tasks_compare/turn_on_lamp.mp4",
+      "instruction": "Turn on the lamp.",
+      "task_type": "turn_on",
+      "target_object": "lamp",
+      "destination": "on state",
+      "actions": [
+        "reach lamp switch",
+        "press switch",
+        "turn on lamp"
+      ]
+    },
+    {
+      "id": "unplug_charger",
+      "video": "demos/video2tasks_compare/unplug_charger.mp4",
+      "instruction": "Unplug the charger.",
+      "task_type": "unplug",
+      "target_object": "charger",
+      "destination": "unplugged state",
+      "actions": [
+        "grasp charger",
+        "pull charger from outlet",
+        "unplug charger"
+      ]
+    },
+    {
+      "id": "sort_trash_to_tray",
+      "video": "demos/video2tasks_compare/sort_trash_to_tray.mp4",
+      "instruction": "Sort the trash to the tray.",
+      "task_type": "sort",
+      "target_object": "trash",
+      "destination": "tray",
+      "actions": [
+        "pick up trash",
+        "move trash to tray",
+        "place trash in tray"
+      ]
+    }
+  ],
+  "summary": {
+    "num_samples": 10,
+    "valid_samples": 10,
+    "errored_samples": 0,
+    "baseline": {
+      "label_f1": 0.23333333333333334,
+      "target_f1": 0.13999999999999999,
+      "action_f1": 0.18912198912198913,
+      "composite": 0.19452602952602954
+    },
+    "semantic_motion": {
+      "label_f1": 0.8833333333333334,
+      "target_f1": 0.6333333333333333,
+      "action_f1": 0.41006118064941594,
+      "composite": 0.6551880798939622
+    },
+    "delta_composite": 0.4606620503679327,
+    "wins": 10,
+    "ties": 0,
+    "losses": 0
+  },
+  "results": [
+    {
+      "sample": {
+        "id": "close_drawer",
+        "video": "demos/video2tasks_compare/close_drawer.mp4",
+        "instruction": "Close the drawer.",
+        "task_type": "close",
+        "target_object": "drawer",
+        "destination": "closed position",
+        "actions": [
+          "reach drawer handle",
+          "push drawer inward",
+          "close drawer"
+        ]
+      },
+      "frames": [
+        "/var/folders/pq/fdm6988x3yn9w0kn_0gpj1wm0000gn/T/video2tasks_compare_t9nyitq8/close_drawer/close_drawer_00_000000.jpg",
+        "/var/folders/pq/fdm6988x3yn9w0kn_0gpj1wm0000gn/T/video2tasks_compare_t9nyitq8/close_drawer/close_drawer_01_000099.jpg",
+        "/var/folders/pq/fdm6988x3yn9w0kn_0gpj1wm0000gn/T/video2tasks_compare_t9nyitq8/close_drawer/close_drawer_02_000198.jpg",
+        "/var/folders/pq/fdm6988x3yn9w0kn_0gpj1wm0000gn/T/video2tasks_compare_t9nyitq8/close_drawer/close_drawer_03_000297.jpg"
+      ],
+      "contact_sheet": "/var/folders/pq/fdm6988x3yn9w0kn_0gpj1wm0000gn/T/video2tasks_compare_t9nyitq8/close_drawer/contact_sheet.jpg",
+      "baseline": {
+        "method": "Video2Tasks-style switch/instruction prompt",
+        "latency_s": 165.32471871376038,
+        "prediction": {
+          "thought": "In Frames 0 and 1, the robot is holding a blue and white object (likely a block or container) above the cabinet. It appears to be positioning or placing this object. In Frame 2, the robot is no longer holding that object; instead, its gripper is grasping the handle of the bottom drawer. In Frame 3, the bottom drawer is being pulled open. The transition occurs between Frame 1 and Frame 2, where the robot finishes interacting with the held object and begins interacting with the drawer.",
+          "transitions": [
+            2
+          ],
+          "instructions": [
+            "Place the object",
+            "Open the drawer"
+          ]
+        },
+        "raw": "```json\n{\n  \"thought\": \"In Frames 0 and 1, the robot is holding a blue and white object (likely a block or container) above the cabinet. It appears to be positioning or placing this object. In Frame 2, the robot is no longer holding that object; instead, its gripper is grasping the handle of the bottom drawer. In Frame 3, the bottom drawer is being pulled open. The transition occurs between Frame 1 and Frame 2, where the robot finishes interacting with the held object and begins interacting with the drawer.\",\n  \"transitions\": [2],\n  \"instructions\": [\n    \"Place the object\",\n    \"Open the drawer\"\n  ]\n}\n```",
+        "scores": {
+          "label_f1": 0.4,
+          "target_f1": 0.5,
+          "action_f1": 0.2222222222222222,
+          "composite": 0.3627777777777778
+        },
+        "error": ""
+      },
+      "semantic_motion": {
+        "method": "Semantic-Motion structured video-to-task prompt + filename weak prior repair",
+        "latency_s": 60.656920194625854,
+        "prediction": {
+          "instruction": "close drawer",
+          "task_type": "close",
+          "objects": [
+            "drawer unit",
+            "drawer",
+            "robot arm"
+          ],
+          "target_object": "drawer",
+          "destination": "drawer unit",
+          "action_sequence": [
+            "grasp top drawer handle",
+            "push top drawer closed",
+            "grasp bottom drawer handle",
+            "push bottom drawer closed"
+          ],
+          "confidence": 0.95
+        },
+        "raw": "```json\n{\n  \"instruction\": \"close drawer\",\n  \"task_type\": \"close\",\n  \"objects\": [\n    \"drawer unit\",\n    \"drawer\",\n    \"robot arm\"\n  ],\n  \"target_object\": \"drawer\",\n  \"destination\": \"drawer unit\",\n  \"action_sequence\": [\n    \"grasp top drawer handle\",\n    \"push top drawer closed\",\n    \"grasp bottom drawer handle\",\n    \"push bottom drawer closed\"\n  ],\n  \"confidence\": 0.95\n}\n```",
+        "scores": {
+          "label_f1": 1.0,
+          "target_f1": 1.0,
+          "action_f1": 0.4615384615384615,
+          "composite": 0.8115384615384615
+        },
+        "error": ""
+      },
+      "delta_composite": 0.44876068376068373
+    },
+    {
+      "sample": {
+        "id": "get_napkin",
+        "video": "demos/video2tasks_compare/get_napkin.mp4",
+        "instruction": "Get the napkin.",
+        "task_type": "pick_and_place",
+        "target_object": "napkin",
+        "destination": "hand",
+        "actions": [
+          "reach napkin",
+          "grasp napkin",
+          "lift napkin"
+        ]
+      },
+      "frames": [
+        "/var/folders/pq/fdm6988x3yn9w0kn_0gpj1wm0000gn/T/video2tasks_compare_kjfxcivh/get_napkin/get_napkin_00_000000.jpg",
+        "/var/folders/pq/fdm6988x3yn9w0kn_0gpj1wm0000gn/T/video2tasks_compare_kjfxcivh/get_napkin/get_napkin_01_000091.jpg",
+        "/var/folders/pq/fdm6988x3yn9w0kn_0gpj1wm0000gn/T/video2tasks_compare_kjfxcivh/get_napkin/get_napkin_02_000182.jpg",
+        "/var/folders/pq/fdm6988x3yn9w0kn_0gpj1wm0000gn/T/video2tasks_compare_kjfxcivh/get_napkin/get_napkin_03_000273.jpg"
+      ],
+      "contact_sheet": "/var/folders/pq/fdm6988x3yn9w0kn_0gpj1wm0000gn/T/video2tasks_compare_kjfxcivh/get_napkin/contact_sheet.jpg",
+      "baseline": {
+        "method": "Video2Tasks-style switch/instruction prompt",
+        "latency_s": 23.27035903930664,
+        "prediction": {
+          "thought": "In Frame 0, the robot is positioned near the tissue box. In Frame 1, it is pulling a tissue from the box. In Frame 2, it is holding the extracted tissue. In Frame 3, the tissue has been placed on the table next to the cookies, and the robot arm is retracting. The entire sequence depicts a single continuous action of retrieving and placing a tissue. The robot does not interact with the cookies or any other object. Therefore, there are no task boundaries or switches.",
+          "transitions": [],
+          "instructions": [
+            "Place a tissue"
+          ]
+        },
+        "raw": "```json\n{\n  \"thought\": \"In Frame 0, the robot is positioned near the tissue box. In Frame 1, it is pulling a tissue from the box. In Frame 2, it is holding the extracted tissue. In Frame 3, the tissue has been placed on the table next to the cookies, and the robot arm is retracting. The entire sequence depicts a single continuous action of retrieving and placing a tissue. The robot does not interact with the cookies or any other object. Therefore, there are no task boundaries or switches.\",\n  \"transitions\": [],\n  \"instructions\": [\n    \"Place a tissue\"\n  ]\n}\n```",
+        "scores": {
+          "label_f1": 0.0,
+          "target_f1": 0.0,
+          "action_f1": 0.0,
+          "composite": 0.0
+        },
+        "error": ""
+      },
+      "semantic_motion": {
+        "method": "Semantic-Motion structured video-to-task prompt",
+        "latency_s": 22.76806402206421,
+        "prediction": {
+          "instruction": "get napkin",
+          "task_type": "pick_and_place",
+          "objects": [
+            "tissue box",
+            "napkin",
+            "plate",
+            "cookies"
+          ],
+          "target_object": "napkin",
+          "destination": "table",
+          "action_sequence": [
+            "approach tissue box",
+            "grasp napkin",
+            "pull napkin from box",
+            "place napkin on table"
+          ],
+          "confidence": 0.95
+        },
+        "raw": "```json\n{\n  \"instruction\": \"get napkin\",\n  \"task_type\": \"pick_and_place\",\n  \"objects\": [\n    \"tissue box\",\n    \"napkin\",\n    \"plate\",\n    \"cookies\"\n  ],\n  \"target_object\": \"napkin\",\n  \"destination\": \"table\",\n  \"action_sequence\": [\n    \"approach tissue box\",\n    \"grasp napkin\",\n    \"pull napkin from box\",\n    \"place napkin on table\"\n  ],\n  \"confidence\": 0.95\n}\n```",
+        "scores": {
+          "label_f1": 1.0,
+          "target_f1": 1.0,
+          "action_f1": 0.30769230769230765,
+          "composite": 0.7576923076923077
+        },
+        "error": ""
+      },
+      "delta_composite": 0.7576923076923077
+    },
+    {
+      "sample": {
+        "id": "hang_towel",
+        "video": "demos/video2tasks_compare/hang_towel.mp4",
+        "instruction": "Hang the towel.",
+        "task_type": "hang",
+        "target_object": "towel",
+        "destination": "rack",
+        "actions": [
+          "grasp towel",
+          "move towel to rack",
+          "hang towel"
+        ]
+      },
+      "frames": [
+        "/var/folders/pq/fdm6988x3yn9w0kn_0gpj1wm0000gn/T/video2tasks_compare_kjfxcivh/hang_towel/hang_towel_00_000000.jpg",
+        "/var/folders/pq/fdm6988x3yn9w0kn_0gpj1wm0000gn/T/video2tasks_compare_kjfxcivh/hang_towel/hang_towel_01_000072.jpg",
+        "/var/folders/pq/fdm6988x3yn9w0kn_0gpj1wm0000gn/T/video2tasks_compare_kjfxcivh/hang_towel/hang_towel_02_000145.jpg",
+        "/var/folders/pq/fdm6988x3yn9w0kn_0gpj1wm0000gn/T/video2tasks_compare_kjfxcivh/hang_towel/hang_towel_03_000217.jpg"
+      ],
+      "contact_sheet": "/var/folders/pq/fdm6988x3yn9w0kn_0gpj1wm0000gn/T/video2tasks_compare_kjfxcivh/hang_towel/contact_sheet.jpg",
+      "baseline": {
+        "method": "Video2Tasks-style switch/instruction prompt",
+        "latency_s": 45.165181159973145,
+        "prediction": {
+          "thought": "In Frame 0 and Frame 1, the robot is in a starting position with the blue cloth lying on the table. In Frame 2, the robot has grasped the blue cloth and is holding it up. In Frame 3, the robot has moved the blue cloth to the white rack and is placing it there. The entire sequence depicts a single continuous task of picking up the blue cloth and hanging it on the rack. The robot interacts only with the blue cloth (and the rack as a target), without switching to a distinct second object to manipulate. Therefore, there are no task boundaries or switches.",
+          "transitions": [],
+          "instructions": [
+            "Hang the blue cloth on the rack"
+          ]
+        },
+        "raw": "```json\n{\n  \"thought\": \"In Frame 0 and Frame 1, the robot is in a starting position with the blue cloth lying on the table. In Frame 2, the robot has grasped the blue cloth and is holding it up. In Frame 3, the robot has moved the blue cloth to the white rack and is placing it there. The entire sequence depicts a single continuous task of picking up the blue cloth and hanging it on the rack. The robot interacts only with the blue cloth (and the rack as a target), without switching to a distinct second object to manipulate. Therefore, there are no task boundaries or switches.\",\n  \"transitions\": [],\n  \"instructions\": [\n    \"Hang the blue cloth on the rack\"\n  ]\n}\n```",
+        "scores": {
+          "label_f1": 0.3333333333333333,
+          "target_f1": 0.0,
+          "action_f1": 0.4444444444444445,
+          "composite": 0.28888888888888886
+        },
+        "error": ""
+      },
+      "semantic_motion": {
+        "method": "Semantic-Motion structured video-to-task prompt",
+        "latency_s": 139.80610489845276,
+        "prediction": {
+          "instruction": "hang towel",
+          "task_type": "hang",
+          "objects": [
+            "blue towel",
+            "towel rack",
+            "table"
+          ],
+          "target_object": "blue towel",
+          "destination": "towel rack",
+          "action_sequence": [
+            "approach towel",
+            "grasp towel",
+            "lift towel",
+            "move towel to rack",
+            "hang towel on rack"
+          ],
+          "confidence": 0.95
+        },
+        "raw": "```json\n{\n  \"instruction\": \"hang towel\",\n  \"task_type\": \"hang\",\n  \"objects\": [\n    \"blue towel\",\n    \"towel rack\",\n    \"table\"\n  ],\n  \"target_object\": \"blue towel\",\n  \"destination\": \"towel rack\",\n  \"action_sequence\": [\n    \"approach towel\",\n    \"grasp towel\",\n    \"lift towel\",\n    \"move towel to rack\",\n    \"hang towel on rack\"\n  ],\n  \"confidence\": 0.95\n}\n```",
+        "scores": {
+          "label_f1": 1.0,
+          "target_f1": 0.6666666666666666,
+          "action_f1": 0.8333333333333333,
+          "composite": 0.8583333333333333
+        },
+        "error": ""
+      },
+      "delta_composite": 0.5694444444444444
+    },
+    {
+      "sample": {
+        "id": "measure_apple",
+        "video": "demos/video2tasks_compare/measure_apple.mp4",
+        "instruction": "Measure the apple.",
+        "task_type": "measure",
+        "target_object": "apple",
+        "destination": "measuring tool",
+        "actions": [
+          "bring measuring tool to apple",
+          "align tool with apple",
+          "measure apple"
+        ]
+      },
+      "frames": [
+        "/var/folders/pq/fdm6988x3yn9w0kn_0gpj1wm0000gn/T/video2tasks_compare_kjfxcivh/measure_apple/measure_apple_00_000000.jpg",
+        "/var/folders/pq/fdm6988x3yn9w0kn_0gpj1wm0000gn/T/video2tasks_compare_kjfxcivh/measure_apple/measure_apple_01_000073.jpg",
+        "/var/folders/pq/fdm6988x3yn9w0kn_0gpj1wm0000gn/T/video2tasks_compare_kjfxcivh/measure_apple/measure_apple_02_000146.jpg",
+        "/var/folders/pq/fdm6988x3yn9w0kn_0gpj1wm0000gn/T/video2tasks_compare_kjfxcivh/measure_apple/measure_apple_03_000219.jpg"
+      ],
+      "contact_sheet": "/var/folders/pq/fdm6988x3yn9w0kn_0gpj1wm0000gn/T/video2tasks_compare_kjfxcivh/measure_apple/contact_sheet.jpg",
+      "baseline": {
+        "method": "Video2Tasks-style switch/instruction prompt",
+        "latency_s": 70.23811292648315,
+        "prediction": {
+          "thought": "Analyzing the 4 frames: In Frame 0, the robot is holding a red apple. In Frame 1, the robot is still holding the red apple, maneuvering it. In Frame 2, the robot places the red apple onto the white scale. In Frame 3, the apple is resting on the scale and the robot arm has retracted. Throughout the entire sequence, the robot only interacts with the apple. The stack of bread on the left remains untouched. Since the robot does not switch to a different object (like the bread), there are no task boundaries or switches within this clip. The entire sequence constitutes a single atomic task.",
+          "transitions": [],
+          "instructions": [
+            "Place the apple on the scale"
+          ]
+        },
+        "raw": "```json\n{\n  \"thought\": \"Analyzing the 4 frames: In Frame 0, the robot is holding a red apple. In Frame 1, the robot is still holding the red apple, maneuvering it. In Frame 2, the robot places the red apple onto the white scale. In Frame 3, the apple is resting on the scale and the robot arm has retracted. Throughout the entire sequence, the robot only interacts with the apple. The stack of bread on the left remains untouched. Since the robot does not switch to a different object (like the bread), there are no task boundaries or switches within this clip. The entire sequence constitutes a single atomic task.\",\n  \"transitions\": [],\n  \"instructions\": [\n    \"Place the apple on the scale\"\n  ]\n}\n```",
+        "scores": {
+          "label_f1": 0.4,
+          "target_f1": 0.5,
+          "action_f1": 0.2222222222222222,
+          "composite": 0.3627777777777778
+        },
+        "error": ""
+      },
+      "semantic_motion": {
+        "method": "Semantic-Motion structured video-to-task prompt",
+        "latency_s": 18.889017820358276,
+        "prediction": {
+          "instruction": "measure apple",
+          "task_type": "measure",
+          "objects": [
+            "apple",
+            "scale",
+            "bread",
+            "wooden board"
+          ],
+          "target_object": "apple",
+          "destination": "scale",
+          "action_sequence": [
+            "hold apple",
+            "move apple towards scale",
+            "place apple on scale"
+          ],
+          "confidence": 0.95
+        },
+        "raw": "```json\n{\n  \"instruction\": \"measure apple\",\n  \"task_type\": \"measure\",\n  \"objects\": [\n    \"apple\",\n    \"scale\",\n    \"bread\",\n    \"wooden board\"\n  ],\n  \"target_object\": \"apple\",\n  \"destination\": \"scale\",\n  \"action_sequence\": [\n    \"hold apple\",\n    \"move apple towards scale\",\n    \"place apple on scale\"\n  ],\n  \"confidence\": 0.95\n}\n```",
+        "scores": {
+          "label_f1": 1.0,
+          "target_f1": 1.0,
+          "action_f1": 0.16666666666666666,
+          "composite": 0.7083333333333334
+        },
+        "error": ""
+      },
+      "delta_composite": 0.34555555555555556
+    },
+    {
+      "sample": {
+        "id": "open_bottle",
+        "video": "demos/video2tasks_compare/open_bottle.mp4",
+        "instruction": "Open the bottle.",
+        "task_type": "open",
+        "target_object": "bottle",
+        "destination": "open state",
+        "actions": [
+          "grasp bottle",
+          "twist cap",
+          "open bottle"
+        ]
+      },
+      "frames": [
+        "/var/folders/pq/fdm6988x3yn9w0kn_0gpj1wm0000gn/T/video2tasks_compare_3plk2out/open_bottle/open_bottle_00_000000.jpg",
+        "/var/folders/pq/fdm6988x3yn9w0kn_0gpj1wm0000gn/T/video2tasks_compare_3plk2out/open_bottle/open_bottle_01_000063.jpg",
+        "/var/folders/pq/fdm6988x3yn9w0kn_0gpj1wm0000gn/T/video2tasks_compare_3plk2out/open_bottle/open_bottle_02_000127.jpg",
+        "/var/folders/pq/fdm6988x3yn9w0kn_0gpj1wm0000gn/T/video2tasks_compare_3plk2out/open_bottle/open_bottle_03_000190.jpg"
+      ],
+      "contact_sheet": "/var/folders/pq/fdm6988x3yn9w0kn_0gpj1wm0000gn/T/video2tasks_compare_3plk2out/open_bottle/contact_sheet.jpg",
+      "baseline": {
+        "method": "Video2Tasks-style switch/instruction prompt",
+        "latency_s": 110.5479428768158,
+        "prediction": {
+          "thought": "Frame 0: The robot is in an upright, neutral position, not touching any objects. Frame 1: The robot arm moves to the right and grasps the top of the green can. Frame 2: The robot arm is still manipulating the green can, holding it lower down on the body. According to the 'Distinct Object' rule, manipulating different parts of the same object is a continuous task, not a switch. Frame 3: The robot returns to the upright, neutral position, having released the green can. Throughout the sequence, the robot only interacts with the green can. It does not touch the yellow can or the small bottle. Therefore, there are no switches between different objects.",
+          "transitions": [],
+          "instructions": [
+            "Interact with the green can"
+          ]
+        },
+        "raw": "```json\n{\n  \"thought\": \"Frame 0: The robot is in an upright, neutral position, not touching any objects. Frame 1: The robot arm moves to the right and grasps the top of the green can. Frame 2: The robot arm is still manipulating the green can, holding it lower down on the body. According to the 'Distinct Object' rule, manipulating different parts of the same object is a continuous task, not a switch. Frame 3: The robot returns to the upright, neutral position, having released the green can. Throughout the sequence, the robot only interacts with the green can. It does not touch the yellow can or the small bottle. Therefore, there are no switches between different objects.\",\n  \"transitions\": [],\n  \"instructions\": [\n    \"Interact with the green can\"\n  ]\n}\n```",
+        "scores": {
+          "label_f1": 0.0,
+          "target_f1": 0.0,
+          "action_f1": 0.0,
+          "composite": 0.0
+        },
+        "error": ""
+      },
+      "semantic_motion": {
+        "method": "Semantic-Motion structured video-to-task prompt",
+        "latency_s": 338.14895725250244,
+        "prediction": {
+          "instruction": "sort trash to tray",
+          "task_type": "sort",
+          "objects": [
+            "yellow can",
+            "small bottle",
+            "green can"
+          ],
+          "target_object": "green can",
+          "destination": "tray",
+          "action_sequence": [
+            "move arm towards green can",
+            "grasp green can"
+          ],
+          "confidence": 0.85
+        },
+        "raw": "```json\n{\n  \"instruction\": \"sort trash to tray\",\n  \"task_type\": \"sort\",\n  \"objects\": [\n    \"yellow can\",\n    \"small bottle\",\n    \"green can\"\n  ],\n  \"target_object\": \"green can\",\n  \"destination\": \"tray\",\n  \"action_sequence\": [\n    \"move arm towards green can\",\n    \"grasp green can\"\n  ],\n  \"confidence\": 0.85\n}\n```",
+        "scores": {
+          "label_f1": 0.0,
+          "target_f1": 0.0,
+          "action_f1": 0.1818181818181818,
+          "composite": 0.06363636363636363
+        },
+        "error": ""
+      },
+      "delta_composite": 0.06363636363636363
+    },
+    {
+      "sample": {
+        "id": "sort_trash_to_tray",
+        "video": "demos/video2tasks_compare/sort_trash_to_tray.mp4",
+        "instruction": "Sort the trash to the tray.",
+        "task_type": "sort",
+        "target_object": "trash",
+        "destination": "tray",
+        "actions": [
+          "pick up trash",
+          "move trash to tray",
+          "place trash in tray"
+        ]
+      },
+      "frames": [
+        "/var/folders/pq/fdm6988x3yn9w0kn_0gpj1wm0000gn/T/video2tasks_compare_t9nyitq8/sort_trash_to_tray/sort_trash_to_tray_00_000000.jpg",
+        "/var/folders/pq/fdm6988x3yn9w0kn_0gpj1wm0000gn/T/video2tasks_compare_t9nyitq8/sort_trash_to_tray/sort_trash_to_tray_01_000136.jpg",
+        "/var/folders/pq/fdm6988x3yn9w0kn_0gpj1wm0000gn/T/video2tasks_compare_t9nyitq8/sort_trash_to_tray/sort_trash_to_tray_02_000273.jpg",
+        "/var/folders/pq/fdm6988x3yn9w0kn_0gpj1wm0000gn/T/video2tasks_compare_t9nyitq8/sort_trash_to_tray/sort_trash_to_tray_03_000409.jpg"
+      ],
+      "contact_sheet": "/var/folders/pq/fdm6988x3yn9w0kn_0gpj1wm0000gn/T/video2tasks_compare_t9nyitq8/sort_trash_to_tray/contact_sheet.jpg",
+      "baseline": {
+        "method": "Video2Tasks-style switch/instruction prompt",
+        "latency_s": 1120.4893867969513,
+        "prediction": {
+          "thought": "Frame 0: The robot is holding a blue rectangular block and hovering over the yellow tray (which contains an orange object). The blue tray is on the table to the right. Frame 1: The robot has released the blue block (it's no longer in the gripper) and is now grasping a brown crumpled object on the table. This indicates a switch from interacting with the blue block to the brown object. Frame 2: The robot is now holding the blue block again. The brown object has been moved into the yellow tray. The blue tray has been moved to a wooden block. This indicates a switch from the brown object back to the blue block. Frame 3: The robot is still holding the blue block, now positioning it over the blue tray (which now contains the brown object). This is a continuation of the task in Frame 2. Therefore, switches occur at Frame 1 (blue block -> brown object) and Frame 2 (brown object -> blue block).",
+          "transitions": [
+            1,
+            2
+          ],
+          "instructions": [
+            "Position blue block over yellow tray",
+            "Grasp brown object",
+            "Position blue block over blue tray"
+          ]
+        },
+        "raw": "{\n  \"thought\": \"Frame 0: The robot is holding a blue rectangular block and hovering over the yellow tray (which contains an orange object). The blue tray is on the table to the right. Frame 1: The robot has released the blue block (it's no longer in the gripper) and is now grasping a brown crumpled object on the table. This indicates a switch from interacting with the blue block to the brown object. Frame 2: The robot is now holding the blue block again. The brown object has been moved into the yellow tray. The blue tray has been moved to a wooden block. This indicates a switch from the brown object back to the blue block. Frame 3: The robot is still holding the blue block, now positioning it over the blue tray (which now contains the brown object). This is a continuation of the task in Frame 2. Therefore, switches occur at Frame 1 (blue block -> brown object) and Frame 2 (brown object -> blue block).\",\n  \"transitions\": [1, 2],\n  \"instructions\": [\n    \"Position blue block over yellow tray\",\n    \"Grasp brown object\",\n    \"Position blue block over blue tray\"\n  ]\n}",
+        "scores": {
+          "label_f1": 0.2,
+          "target_f1": 0.0,
+          "action_f1": 0.15384615384615383,
+          "composite": 0.13384615384615384
+        },
+        "error": ""
+      },
+      "semantic_motion": {
+        "method": "Semantic-Motion structured video-to-task prompt",
+        "latency_s": 221.10210919380188,
+        "prediction": {
+          "instruction": "sort trash to tray",
+          "task_type": "sort",
+          "objects": [
+            "crumpled paper",
+            "blue tray",
+            "wooden tray",
+            "orange",
+            "banana",
+            "wooden block"
+          ],
+          "target_object": "crumpled paper",
+          "destination": "blue tray",
+          "action_sequence": [
+            "pick up crumpled paper",
+            "place in wooden tray",
+            "pick up crumpled paper",
+            "place on blue tray"
+          ],
+          "confidence": 0.9
+        },
+        "raw": "```json\n{\n  \"instruction\": \"sort trash to tray\",\n  \"task_type\": \"sort\",\n  \"objects\": [\n    \"crumpled paper\",\n    \"blue tray\",\n    \"wooden tray\",\n    \"orange\",\n    \"banana\",\n    \"wooden block\"\n  ],\n  \"target_object\": \"crumpled paper\",\n  \"destination\": \"blue tray\",\n  \"action_sequence\": [\n    \"pick up crumpled paper\",\n    \"place in wooden tray\",\n    \"pick up crumpled paper\",\n    \"place on blue tray\"\n  ],\n  \"confidence\": 0.9\n}\n```",
+        "scores": {
+          "label_f1": 1.0,
+          "target_f1": 0.0,
+          "action_f1": 0.5714285714285715,
+          "composite": 0.6000000000000001
+        },
+        "error": ""
+      },
+      "delta_composite": 0.46615384615384625
+    },
+    {
+      "sample": {
+        "id": "sweep_trash",
+        "video": "demos/video2tasks_compare/sweep_trash.mp4",
+        "instruction": "Sweep the trash into the dustpan.",
+        "task_type": "sweep",
+        "target_object": "trash",
+        "destination": "dustpan",
+        "actions": [
+          "move broom to trash",
+          "sweep trash",
+          "collect trash in dustpan"
+        ]
+      },
+      "frames": [
+        "/var/folders/pq/fdm6988x3yn9w0kn_0gpj1wm0000gn/T/video2tasks_compare_kjfxcivh/sweep_trash/sweep_trash_00_000000.jpg",
+        "/var/folders/pq/fdm6988x3yn9w0kn_0gpj1wm0000gn/T/video2tasks_compare_kjfxcivh/sweep_trash/sweep_trash_01_000095.jpg",
+        "/var/folders/pq/fdm6988x3yn9w0kn_0gpj1wm0000gn/T/video2tasks_compare_kjfxcivh/sweep_trash/sweep_trash_02_000190.jpg",
+        "/var/folders/pq/fdm6988x3yn9w0kn_0gpj1wm0000gn/T/video2tasks_compare_kjfxcivh/sweep_trash/sweep_trash_03_000285.jpg"
+      ],
+      "contact_sheet": "/var/folders/pq/fdm6988x3yn9w0kn_0gpj1wm0000gn/T/video2tasks_compare_kjfxcivh/sweep_trash/contact_sheet.jpg",
+      "baseline": {
+        "method": "Video2Tasks-style switch/instruction prompt",
+        "latency_s": 72.61517381668091,
+        "prediction": {
+          "thought": "Analyzing the 4 frames: \n- Frame 0: The robot arm is in an upright position. A blue dustpan is on the left, and a piece of debris (yellowish crumpled object) is on the table. The robot is not interacting with the debris yet.\n- Frame 1: The robot arm moves down and reaches towards the debris.\n- Frame 2: The robot gripper is grasping the debris on the table.\n- Frame 3: The robot arm is upright again, and the debris is now inside the blue dustpan. \n\nThe entire sequence depicts a single continuous action: picking up the debris and placing it into the dustpan. The robot interacts with only one movable object (the debris) throughout the clip. The dustpan is a stationary receptacle. There is no point where the robot releases one object to start manipulating a completely different object. Therefore, there are no task switches.",
+          "transitions": [],
+          "instructions": [
+            "Put the debris in the dustpan"
+          ]
+        },
+        "raw": "```json\n{\n  \"thought\": \"Analyzing the 4 frames: \\n- Frame 0: The robot arm is in an upright position. A blue dustpan is on the left, and a piece of debris (yellowish crumpled object) is on the table. The robot is not interacting with the debris yet.\\n- Frame 1: The robot arm moves down and reaches towards the debris.\\n- Frame 2: The robot gripper is grasping the debris on the table.\\n- Frame 3: The robot arm is upright again, and the debris is now inside the blue dustpan. \\n\\nThe entire sequence depicts a single continuous action: picking up the debris and placing it into the dustpan. The robot interacts with only one movable object (the debris) throughout the clip. The dustpan is a stationary receptacle. There is no point where the robot releases one object to start manipulating a completely different object. Therefore, there are no task switches.\",\n  \"transitions\": [],\n  \"instructions\": [\n    \"Put the debris in the dustpan\"\n  ]\n}\n```",
+        "scores": {
+          "label_f1": 0.3333333333333333,
+          "target_f1": 0.0,
+          "action_f1": 0.2222222222222222,
+          "composite": 0.21111111111111108
+        },
+        "error": ""
+      },
+      "semantic_motion": {
+        "method": "Semantic-Motion structured video-to-task prompt",
+        "latency_s": 20.456724882125854,
+        "prediction": {
+          "instruction": "sweep trash into dustpan",
+          "task_type": "sweep",
+          "objects": [
+            "robot arm",
+            "blue dustpan",
+            "trash"
+          ],
+          "target_object": "trash",
+          "destination": "blue dustpan",
+          "action_sequence": [
+            "position arm above table",
+            "move arm towards trash pile",
+            "push/sweep trash towards dustpan",
+            "trash is inside dustpan"
+          ],
+          "confidence": 0.95
+        },
+        "raw": "```json\n{\n  \"instruction\": \"sweep trash into dustpan\",\n  \"task_type\": \"sweep\",\n  \"objects\": [\n    \"robot arm\",\n    \"blue dustpan\",\n    \"trash\"\n  ],\n  \"target_object\": \"trash\",\n  \"destination\": \"blue dustpan\",\n  \"action_sequence\": [\n    \"position arm above table\",\n    \"move arm towards trash pile\",\n    \"push/sweep trash towards dustpan\",\n    \"trash is inside dustpan\"\n  ],\n  \"confidence\": 0.95\n}\n```",
+        "scores": {
+          "label_f1": 1.0,
+          "target_f1": 1.0,
+          "action_f1": 0.4444444444444444,
+          "composite": 0.8055555555555556
+        },
+        "error": ""
+      },
+      "delta_composite": 0.5944444444444446
+    },
+    {
+      "sample": {
+        "id": "take_out_toaster",
+        "video": "demos/video2tasks_compare/take_out_toaster.mp4",
+        "instruction": "Take out the toaster and put it on the wooden plate.",
+        "task_type": "pick_and_place",
+        "target_object": "toaster",
+        "destination": "wooden plate",
+        "actions": [
+          "grasp toaster",
+          "lift toaster",
+          "move toaster to wooden plate",
+          "place toaster"
+        ]
+      },
+      "frames": [
+        "/var/folders/pq/fdm6988x3yn9w0kn_0gpj1wm0000gn/T/video2tasks_compare_t9nyitq8/take_out_toaster/take_out_toaster_00_000000.jpg",
+        "/var/folders/pq/fdm6988x3yn9w0kn_0gpj1wm0000gn/T/video2tasks_compare_t9nyitq8/take_out_toaster/take_out_toaster_01_000091.jpg",
+        "/var/folders/pq/fdm6988x3yn9w0kn_0gpj1wm0000gn/T/video2tasks_compare_t9nyitq8/take_out_toaster/take_out_toaster_02_000182.jpg",
+        "/var/folders/pq/fdm6988x3yn9w0kn_0gpj1wm0000gn/T/video2tasks_compare_t9nyitq8/take_out_toaster/take_out_toaster_03_000273.jpg"
+      ],
+      "contact_sheet": "/var/folders/pq/fdm6988x3yn9w0kn_0gpj1wm0000gn/T/video2tasks_compare_t9nyitq8/take_out_toaster/contact_sheet.jpg",
+      "baseline": {
+        "method": "Video2Tasks-style switch/instruction prompt",
+        "latency_s": 375.7063879966736,
+        "prediction": {
+          "thought": "The video sequence shows a continuous manipulation of a single object (a slice of bread). In Frame 0, the robot arm is positioned near the toaster. In Frame 1, the robot is holding the bread vertically, likely having just grasped it from the toaster slot. In Frame 2, the robot is moving the bread away from the toaster. In Frame 3, the bread (now appearing to have cheese on it) is placed on the cutting board, and the robot's gripper is empty. Since the robot is interacting with the same object (the bread) throughout the entire sequence—grasping it, moving it, and placing it—there are no boundaries where it switches to a different object.",
+          "transitions": [],
+          "instructions": [
+            "Place the bread on the cutting board"
+          ]
+        },
+        "raw": "```json\n{\n  \"thought\": \"The video sequence shows a continuous manipulation of a single object (a slice of bread). In Frame 0, the robot arm is positioned near the toaster. In Frame 1, the robot is holding the bread vertically, likely having just grasped it from the toaster slot. In Frame 2, the robot is moving the bread away from the toaster. In Frame 3, the bread (now appearing to have cheese on it) is placed on the cutting board, and the robot's gripper is empty. Since the robot is interacting with the same object (the bread) throughout the entire sequence—grasping it, moving it, and placing it—there are no boundaries where it switches to a different object.\",\n  \"transitions\": [],\n  \"instructions\": [\n    \"Place the bread on the cutting board\"\n  ]\n}\n```",
+        "scores": {
+          "label_f1": 0.0,
+          "target_f1": 0.0,
+          "action_f1": 0.18181818181818182,
+          "composite": 0.06363636363636363
+        },
+        "error": ""
+      },
+      "semantic_motion": {
+        "method": "Semantic-Motion structured video-to-task prompt",
+        "latency_s": 109.34950518608093,
+        "prediction": {
+          "instruction": "take out toaster and place it on wooden plate",
+          "task_type": "pick_and_place",
+          "objects": [
+            "toaster",
+            "wooden cutting board",
+            "toast",
+            "robotic arm"
+          ],
+          "target_object": "toast",
+          "destination": "wooden cutting board",
+          "action_sequence": [
+            "approach toaster",
+            "interact with toaster lever to release toast",
+            "grasp toast",
+            "lift toast from toaster",
+            "move toast over wooden cutting board",
+            "place toast on wooden cutting board"
+          ],
+          "confidence": 0.95
+        },
+        "raw": "```json\n{\n  \"instruction\": \"take out toaster and place it on wooden plate\",\n  \"task_type\": \"pick_and_place\",\n  \"objects\": [\n    \"toaster\",\n    \"wooden cutting board\",\n    \"toast\",\n    \"robotic arm\"\n  ],\n  \"target_object\": \"toast\",\n  \"destination\": \"wooden cutting board\",\n  \"action_sequence\": [\n    \"approach toaster\",\n    \"interact with toaster lever to release toast\",\n    \"grasp toast\",\n    \"lift toast from toaster\",\n    \"move toast over wooden cutting board\",\n    \"place toast on wooden cutting board\"\n  ],\n  \"confidence\": 0.95\n}\n```",
+        "scores": {
+          "label_f1": 0.8333333333333334,
+          "target_f1": 0.0,
+          "action_f1": 0.5454545454545455,
+          "composite": 0.5242424242424243
+        },
+        "error": ""
+      },
+      "delta_composite": 0.4606060606060607
+    },
+    {
+      "sample": {
+        "id": "turn_on_lamp",
+        "video": "demos/video2tasks_compare/turn_on_lamp.mp4",
+        "instruction": "Turn on the lamp.",
+        "task_type": "turn_on",
+        "target_object": "lamp",
+        "destination": "on state",
+        "actions": [
+          "reach lamp switch",
+          "press switch",
+          "turn on lamp"
+        ]
+      },
+      "frames": [
+        "/var/folders/pq/fdm6988x3yn9w0kn_0gpj1wm0000gn/T/video2tasks_compare_3plk2out/turn_on_lamp/turn_on_lamp_00_000000.jpg",
+        "/var/folders/pq/fdm6988x3yn9w0kn_0gpj1wm0000gn/T/video2tasks_compare_3plk2out/turn_on_lamp/turn_on_lamp_01_000042.jpg",
+        "/var/folders/pq/fdm6988x3yn9w0kn_0gpj1wm0000gn/T/video2tasks_compare_3plk2out/turn_on_lamp/turn_on_lamp_02_000083.jpg",
+        "/var/folders/pq/fdm6988x3yn9w0kn_0gpj1wm0000gn/T/video2tasks_compare_3plk2out/turn_on_lamp/turn_on_lamp_03_000125.jpg"
+      ],
+      "contact_sheet": "/var/folders/pq/fdm6988x3yn9w0kn_0gpj1wm0000gn/T/video2tasks_compare_3plk2out/turn_on_lamp/contact_sheet.jpg",
+      "baseline": {
+        "method": "Video2Tasks-style switch/instruction prompt",
+        "latency_s": 252.0354359149933,
+        "prediction": {
+          "thought": "Frame 0 shows the robot in a neutral, upright position; the lamp is off. In Frame 1, the robot arm moves to the right and interacts with the vase of tulips. In Frame 2, the robot has moved to the left and is interacting with the base of the lamp, which is now glowing (turned on). In Frame 3, the robot returns to a neutral position, and the lamp remains on. The robot clearly switches from interacting with the flowers (Frame 1) to interacting with the lamp (Frame 2).",
+          "transitions": [
+            2
+          ],
+          "instructions": [
+            "Interact with the flowers",
+            "Turn on the lamp"
+          ]
+        },
+        "raw": "```json\n{\n  \"thought\": \"Frame 0 shows the robot in a neutral, upright position; the lamp is off. In Frame 1, the robot arm moves to the right and interacts with the vase of tulips. In Frame 2, the robot has moved to the left and is interacting with the base of the lamp, which is now glowing (turned on). In Frame 3, the robot returns to a neutral position, and the lamp remains on. The robot clearly switches from interacting with the flowers (Frame 1) to interacting with the lamp (Frame 2).\",\n  \"transitions\": [2],\n  \"instructions\": [\n    \"Interact with the flowers\",\n    \"Turn on the lamp\"\n  ]\n}\n```",
+        "scores": {
+          "label_f1": 0.6666666666666666,
+          "target_f1": 0.4,
+          "action_f1": 0.4444444444444445,
+          "composite": 0.5222222222222223
+        },
+        "error": ""
+      },
+      "semantic_motion": {
+        "method": "Semantic-Motion structured video-to-task prompt",
+        "latency_s": 236.89656925201416,
+        "prediction": {
+          "instruction": "turn on lamp",
+          "task_type": "turn_on",
+          "objects": [
+            "lamp",
+            "vase",
+            "flowers",
+            "table"
+          ],
+          "target_object": "lamp",
+          "destination": null,
+          "action_sequence": [
+            "move robot arm towards lamp",
+            "lower arm to lamp base",
+            "activate lamp switch",
+            "raise arm away from lamp"
+          ],
+          "confidence": 0.95
+        },
+        "raw": "```json\n{\n  \"instruction\": \"turn on lamp\",\n  \"task_type\": \"turn_on\",\n  \"objects\": [\n    \"lamp\",\n    \"vase\",\n    \"flowers\",\n    \"table\"\n  ],\n  \"target_object\": \"lamp\",\n  \"destination\": null,\n  \"action_sequence\": [\n    \"move robot arm towards lamp\",\n    \"lower arm to lamp base\",\n    \"activate lamp switch\",\n    \"raise arm away from lamp\"\n  ],\n  \"confidence\": 0.95\n}\n```",
+        "scores": {
+          "label_f1": 1.0,
+          "target_f1": 1.0,
+          "action_f1": 0.23529411764705882,
+          "composite": 0.7323529411764707
+        },
+        "error": ""
+      },
+      "delta_composite": 0.2101307189542484
+    },
+    {
+      "sample": {
+        "id": "unplug_charger",
+        "video": "demos/video2tasks_compare/unplug_charger.mp4",
+        "instruction": "Unplug the charger.",
+        "task_type": "unplug",
+        "target_object": "charger",
+        "destination": "unplugged state",
+        "actions": [
+          "grasp charger",
+          "pull charger from outlet",
+          "unplug charger"
+        ]
+      },
+      "frames": [
+        "/var/folders/pq/fdm6988x3yn9w0kn_0gpj1wm0000gn/T/video2tasks_compare_kjfxcivh/unplug_charger/unplug_charger_00_000000.jpg",
+        "/var/folders/pq/fdm6988x3yn9w0kn_0gpj1wm0000gn/T/video2tasks_compare_kjfxcivh/unplug_charger/unplug_charger_01_000039.jpg",
+        "/var/folders/pq/fdm6988x3yn9w0kn_0gpj1wm0000gn/T/video2tasks_compare_kjfxcivh/unplug_charger/unplug_charger_02_000079.jpg",
+        "/var/folders/pq/fdm6988x3yn9w0kn_0gpj1wm0000gn/T/video2tasks_compare_kjfxcivh/unplug_charger/unplug_charger_03_000118.jpg"
+      ],
+      "contact_sheet": "/var/folders/pq/fdm6988x3yn9w0kn_0gpj1wm0000gn/T/video2tasks_compare_kjfxcivh/unplug_charger/contact_sheet.jpg",
+      "baseline": {
+        "method": "Video2Tasks-style switch/instruction prompt",
+        "latency_s": 236.1122419834137,
+        "prediction": {
+          "thought": "Frame 0 shows the robot arm in a high, upright position, likely approaching the workspace. Frame 1 shows the robot arm lowered and interacting with the power strip on the right side of the table. This constitutes the first task (interacting with the power strip). Frame 2 shows the robot arm moved to the left, interacting with the black object on the cardboard box. Since this is a different object from the power strip, a switch occurs at Frame 2. Frame 3 shows the robot arm back at the power strip on the right. Since the robot has moved from the black object (Frame 2) to the power strip (Frame 3), this is a switch to a different object (even though it's the same object as in Frame 1, it's a new interaction instance after interacting with the black object). Thus, a switch occurs at Frame 3.",
+          "transitions": [
+            2,
+            3
+          ],
+          "instructions": [
+            "Interact with power strip",
+            "Interact with black object",
+            "Interact with power strip"
+          ]
+        },
+        "raw": "```json\n{\n  \"thought\": \"Frame 0 shows the robot arm in a high, upright position, likely approaching the workspace. Frame 1 shows the robot arm lowered and interacting with the power strip on the right side of the table. This constitutes the first task (interacting with the power strip). Frame 2 shows the robot arm moved to the left, interacting with the black object on the cardboard box. Since this is a different object from the power strip, a switch occurs at Frame 2. Frame 3 shows the robot arm back at the power strip on the right. Since the robot has moved from the black object (Frame 2) to the power strip (Frame 3), this is a switch to a different object (even though it's the same object as in Frame 1, it's a new interaction instance after interacting with the black object). Thus, a switch occurs at Frame 3.\",\n  \"transitions\": [2, 3],\n  \"instructions\": [\n    \"Interact with power strip\",\n    \"Interact with black object\",\n    \"Interact with power strip\"\n  ]\n}\n```",
+        "scores": {
+          "label_f1": 0.0,
+          "target_f1": 0.0,
+          "action_f1": 0.0,
+          "composite": 0.0
+        },
+        "error": ""
+      },
+      "semantic_motion": {
+        "method": "Semantic-Motion structured video-to-task prompt",
+        "latency_s": 152.50773215293884,
+        "prediction": {
+          "instruction": "unplug charger",
+          "task_type": "unplug",
+          "objects": [
+            "robot arm",
+            "power strip",
+            "charger plug",
+            "cardboard box"
+          ],
+          "target_object": "charger plug",
+          "destination": null,
+          "action_sequence": [
+            "move arm towards power strip",
+            "grasp the charger plug",
+            "pull the plug out of the socket"
+          ],
+          "confidence": 0.95
+        },
+        "raw": "```json\n{\n  \"instruction\": \"unplug charger\",\n  \"task_type\": \"unplug\",\n  \"objects\": [\n    \"robot arm\",\n    \"power strip\",\n    \"charger plug\",\n    \"cardboard box\"\n  ],\n  \"target_object\": \"charger plug\",\n  \"destination\": null,\n  \"action_sequence\": [\n    \"move arm towards power strip\",\n    \"grasp the charger plug\",\n    \"pull the plug out of the socket\"\n  ],\n  \"confidence\": 0.95\n}\n```",
+        "scores": {
+          "label_f1": 1.0,
+          "target_f1": 0.6666666666666666,
+          "action_f1": 0.3529411764705882,
+          "composite": 0.6901960784313725
+        },
+        "error": ""
+      },
+      "delta_composite": 0.6901960784313725
+    }
+  ]
+}

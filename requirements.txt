@@ -3,3 +3,4 @@ Pillow
 matplotlib
 rouge-score
 pydantic
+opencv-python

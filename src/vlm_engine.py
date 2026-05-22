@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import base64
 import json
+import mimetypes
 import os
 import re
 from pathlib import Path
@@ -17,6 +18,11 @@ from src.scenario import Prediction
 def _encode_image_base64(image_path: str | Path) -> str:
     with open(image_path, "rb") as f:
         return base64.b64encode(f.read()).decode("utf-8")
+
+
+def _image_data_url(image_path: str | Path) -> str:
+    mime_type = mimetypes.guess_type(str(image_path))[0] or "image/png"
+    return f"data:{mime_type};base64,{_encode_image_base64(image_path)}"
 
 
 def _parse_json_response(text: str) -> dict:
@@ -55,9 +61,13 @@ class VLMEngine:
             "DASHSCOPE_API_KEY", os.getenv("OPENAI_API_KEY", "")
         )
         self.base_url = base_url or os.getenv(
-            "OPENAI_BASE_URL",
-            "https://dashscope.aliyuncs.com/compatible-mode/v1",
+            "DASHSCOPE_BASE_URL",
+            os.getenv(
+                "OPENAI_BASE_URL",
+                "https://dashscope.aliyuncs.com/compatible-mode/v1",
+            ),
         )
+        self.timeout = float(os.getenv("VLM_TIMEOUT", "60"))
         self.model = model or os.getenv("VLM_MODEL", "qwen-vl-plus")
 
         if not self.api_key:
@@ -66,11 +76,14 @@ class VLMEngine:
                 "environment variable."
             )
 
-        self.client = OpenAI(api_key=self.api_key, base_url=self.base_url)
+        self.client = OpenAI(
+            api_key=self.api_key,
+            base_url=self.base_url,
+            timeout=self.timeout,
+        )
 
     def analyze(self, image_path: str | Path, instruction: str) -> Prediction:
         """Send image + instruction to the VLM and return a Prediction."""
-        b64 = _encode_image_base64(image_path)
         user_text = build_user_prompt(instruction)
 
         response = self.client.chat.completions.create(
@@ -83,7 +96,7 @@ class VLMEngine:
                         {
                             "type": "image_url",
                             "image_url": {
-                                "url": f"data:image/png;base64,{b64}",
+                                "url": _image_data_url(image_path),
                             },
                         },
                         {"type": "text", "text": user_text},
