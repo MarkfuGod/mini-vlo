@@ -4,3 +4,6 @@ matplotlib
 rouge-score
 pydantic
 opencv-python
+numpy>=1.24
+tqdm>=4.66
+pyyaml>=6.0

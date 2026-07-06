@@ -1,0 +1,39 @@
+[
+  {
+    "sample_id": "demo_0_agentview_rgb_video",
+    "motion_quality_score": 0.8179012537002563,
+    "semantic_consistency_score": 0.1,
+    "final_score": 0.1,
+    "decision": "drop",
+    "reason_codes": [
+      "low_semantic_score",
+      "manipulation_irrelevant",
+      "object_mismatch",
+      "possible_hallucination",
+      "semantic_mismatch",
+      "temporal_mismatch"
+    ],
+    "aux": {
+      "motion": {
+        "velocity_ratio": 0.0,
+        "acceleration_ratio": 0.0,
+        "jerk_ratio": 0.05185185185185185,
+        "jitter_ratio": 0.14074074074074075
+      },
+      "semantic": {
+        "label": "inconsistent",
+        "confidence": 0.2,
+        "error_types": [
+          "possible_hallucination",
+          "object_mismatch",
+          "temporal_mismatch",
+          "manipulation_irrelevant"
+        ],
+        "suggested_text": "move the robotic arm toward the black cabinet and open its door",
+        "verifier": "qwen3-vl-plus"
+      },
+      "text": "Overall video task sequence:\n0.00s-0.00s: move wooden_spoon to on knife\n0.60s-0.60s: open dishwasher\n1.25s-1.25s: pick and place knife to dishwasher\n1.85s-1.85s: pick and place wooden sticks to black box\n2.50s-3.75s: pick and place knife to black_box\n4.35s-4.35s: pick and place cylindrical_object to base_station\n5.00s-5.00s: pick and place screwdriver to null\n5.60s-5.60s: pick and place wooden_sticks to black_box\n6.25s-6.25s: pick and place black_device to null\n6.85s-6.85s: pick and place pencils to metal_hinge",
+      "label": null
+    }
+  }
+]
