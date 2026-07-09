@@ -42,6 +42,11 @@ def _load_motion_plugin(spec: str):
     return func
 
 
+def _parse_motion_tracks(value: str):
+    tracks = [item.strip() for item in value.split(",") if item.strip()]
+    return tracks or None
+
+
 def parse_args():
     parser = argparse.ArgumentParser(
         description="Generate video task labels and filter them with Module C."
@@ -98,6 +103,12 @@ def parse_args():
         help="Optional override for semantic.verifier in the refinement config",
     )
     parser.add_argument(
+        "--motion-aggregation",
+        choices=["min", "mean"],
+        default="",
+        help="Optional override for motion_quality.aggregation.",
+    )
+    parser.add_argument(
         "--sample-level",
         choices=["segment", "video"],
         default="segment",
@@ -110,19 +121,40 @@ def parse_args():
         help="Which segment text field to filter",
     )
     parser.add_argument(
+        "--motion-path",
+        default="",
+        help=(
+            "Unified motion JSON file or directory. Files are auto-detected as "
+            "LIBERO, Module D, or standard tracks; directories are searched by "
+            "video stem."
+        ),
+    )
+    parser.add_argument(
         "--motion-dir",
         default="",
-        help="Optional motion directory. Expect <video_stem>.json.",
+        help="Deprecated alias for a motion directory. Prefer --motion-path.",
+    )
+    parser.add_argument(
+        "--motion-fps",
+        type=float,
+        default=24.0,
+        help="FPS used to timestamp Module D frame_N motion files.",
+    )
+    parser.add_argument(
+        "--motion-tracks",
+        default="",
+        help="Comma-separated track names to keep, e.g. Root,Hand_R,Hand_L.",
     )
     parser.add_argument(
         "--libero-traj-file",
         default="",
-        help="Optional LIBERO demo_0_traj.json path",
+        help="Deprecated alias for a LIBERO demo_0_traj.json path. Prefer --motion-path.",
     )
     parser.add_argument(
         "--allow-dummy-motion",
         action="store_true",
-        help="Allow synthetic placeholder motion for flow debugging",
+        default=True,
+        help="Allow synthetic placeholder motion when no real motion is found (default).",
     )
     parser.add_argument(
         "--allow-missing-motion",
@@ -225,6 +257,7 @@ def main() -> None:
     sample_options = PrepareSamplesOptions(
         text_source=args.text_source,
         sample_level=args.sample_level,
+        motion_path=args.motion_path or None,
         motion_dir=args.motion_dir or None,
         libero_traj_file=args.libero_traj_file or None,
         allow_dummy_motion=args.allow_dummy_motion,
@@ -232,6 +265,8 @@ def main() -> None:
         motion_plugin=_load_motion_plugin(args.motion_plugin)
         if args.motion_plugin
         else None,
+        motion_fps=args.motion_fps,
+        motion_tracks=_parse_motion_tracks(args.motion_tracks),
     )
     prepare_result = convert_perception_objects([record_dict], sample_options)
     write_samples(
@@ -247,6 +282,8 @@ def main() -> None:
     cfg = load_config(args.refine_config)
     if args.semantic_verifier:
         cfg.semantic_cfg.verifier = args.semantic_verifier
+    if args.motion_aggregation:
+        cfg.motion_cfg.aggregation = args.motion_aggregation
     samples = load_samples(samples_path)
     results = refine_samples(samples, cfg)
 

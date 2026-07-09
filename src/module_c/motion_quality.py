@@ -11,6 +11,7 @@ class MotionQualityConfig:
     max_acceleration: float
     max_jerk: float
     max_jitter_ratio: float
+    aggregation: str = "min"
 
 
 def _safe_diff(arr: np.ndarray, dt: np.ndarray) -> np.ndarray:
@@ -80,4 +81,47 @@ def score_motion_quality(
         "jitter_ratio": jitter_ratio,
     }
     return score, details, reasons
+
+
+def score_motion_tracks(
+    tracks: dict[str, tuple[list[list[float]], list[float]]],
+    cfg: MotionQualityConfig,
+) -> tuple[float, dict, list[str]]:
+    track_results: dict[str, dict] = {}
+    track_scores: list[float] = []
+    reasons: list[str] = []
+
+    for name, (positions, timestamps) in tracks.items():
+        score, details, track_reasons = score_motion_quality(
+            positions=positions,
+            timestamps=timestamps,
+            cfg=cfg,
+        )
+        track_scores.append(score)
+        track_results[name] = {
+            "score": score,
+            **details,
+            "reason_codes": track_reasons,
+        }
+        reasons.extend(f"{name}:{reason}" for reason in track_reasons)
+
+    if not track_scores:
+        return 0.0, {"valid": 0.0, "tracks": {}}, ["motion_tracks_missing"]
+
+    aggregation = cfg.aggregation
+    if aggregation == "mean":
+        score = float(np.mean(track_scores))
+    elif aggregation == "min":
+        score = float(np.min(track_scores))
+    else:
+        aggregation = "min"
+        score = float(np.min(track_scores))
+        reasons.append("unsupported_motion_aggregation")
+
+    aux = {
+        "aggregation": aggregation,
+        "track_count": float(len(track_scores)),
+        "tracks": track_results,
+    }
+    return score, aux, reasons
 

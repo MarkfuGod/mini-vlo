@@ -3,24 +3,33 @@ from __future__ import annotations
 import argparse
 import importlib
 import json
+import re
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Callable
 
 
 MotionTuple = tuple[list[list[float]], list[float]]
-MotionPlugin = Callable[[dict[str, Any], dict[str, Any], str, str], MotionTuple | None]
+MotionTracks = dict[str, MotionTuple]
+MotionPluginResult = MotionTuple | MotionTracks
+MotionPlugin = Callable[
+    [dict[str, Any], dict[str, Any], str, str],
+    MotionPluginResult | None,
+]
 
 
 @dataclass
 class PrepareSamplesOptions:
     text_source: str = "task_instruction"
     sample_level: str = "segment"
+    motion_path: str | Path | None = None
     motion_dir: str | Path | None = None
     libero_traj_file: str | Path | None = None
-    allow_dummy_motion: bool = False
+    allow_dummy_motion: bool = True
     allow_missing_motion: bool = False
     motion_plugin: MotionPlugin | None = None
+    motion_fps: float = 24.0
+    motion_tracks: list[str] | None = None
 
 
 @dataclass
@@ -45,7 +54,120 @@ def _is_valid_motion(positions: list[list[float]], timestamps: list[float]) -> b
     return all(timestamps[i] < timestamps[i + 1] for i in range(len(timestamps) - 1))
 
 
-def _build_dummy_motion(frame_timestamps: list[float]) -> MotionTuple:
+def _normalize_track(
+    positions: Any,
+    timestamps: Any,
+) -> MotionTuple | None:
+    if not isinstance(positions, list) or not isinstance(timestamps, list):
+        return None
+    try:
+        normalized_positions = [
+            [float(point[0]), float(point[1]), float(point[2])]
+            for point in positions
+            if isinstance(point, list) and len(point) == 3
+        ]
+        normalized_timestamps = [float(ts) for ts in timestamps]
+    except (TypeError, ValueError):
+        return None
+    if not _is_valid_motion(normalized_positions, normalized_timestamps):
+        return None
+    return normalized_positions, normalized_timestamps
+
+
+def _normalize_track_obj(obj: Any) -> MotionTuple | None:
+    if not isinstance(obj, dict):
+        return None
+    return _normalize_track(obj.get("positions"), obj.get("timestamps"))
+
+
+def _normalize_motion_tracks(obj: Any) -> MotionTracks | None:
+    if not isinstance(obj, dict):
+        return None
+
+    tracks_obj = obj.get("tracks")
+    if isinstance(tracks_obj, dict):
+        tracks = {}
+        for name, track_obj in tracks_obj.items():
+            if isinstance(track_obj, tuple) and len(track_obj) == 2:
+                track = _normalize_track(track_obj[0], track_obj[1])
+            else:
+                track = _normalize_track_obj(track_obj)
+            if track is not None:
+                tracks[str(name)] = track
+        return tracks or None
+
+    single_track = _normalize_track_obj(obj)
+    if single_track is not None:
+        return {"default": single_track}
+
+    keyed_tracks = {}
+    for name, track_obj in obj.items():
+        if isinstance(track_obj, tuple) and len(track_obj) == 2:
+            track = _normalize_track(track_obj[0], track_obj[1])
+        else:
+            track = _normalize_track_obj(track_obj)
+        if track is not None:
+            keyed_tracks[str(name)] = track
+    if keyed_tracks:
+        return keyed_tracks
+
+    return None
+
+
+def _normalize_plugin_motion(motion: MotionPluginResult | None) -> MotionTracks | None:
+    if motion is None:
+        return None
+    if isinstance(motion, tuple) and len(motion) == 2:
+        track = _normalize_track(motion[0], motion[1])
+        return {"default": track} if track is not None else None
+    return _normalize_motion_tracks(motion)
+
+
+def _motion_to_sample_obj(motion: MotionTracks) -> dict[str, Any]:
+    return {
+        "tracks": {
+            name: {
+                "positions": positions,
+                "timestamps": timestamps,
+            }
+            for name, (positions, timestamps) in motion.items()
+        }
+    }
+
+
+def _filter_tracks_by_segment(
+    tracks: MotionTracks,
+    segment_obj: dict[str, Any] | None,
+) -> MotionTracks | None:
+    if segment_obj is None:
+        return tracks
+
+    start = segment_obj.get("start_time_sec")
+    end = segment_obj.get("end_time_sec")
+    if start is None or end is None or float(end) <= float(start):
+        return tracks
+
+    start_time = float(start)
+    end_time = float(end)
+    filtered_tracks: MotionTracks = {}
+    for name, (positions, timestamps) in tracks.items():
+        filtered = [
+            (pos, ts)
+            for pos, ts in zip(positions, timestamps)
+            if start_time <= ts <= end_time
+        ]
+        if not filtered:
+            continue
+        track = _normalize_track(
+            [pos for pos, _ in filtered],
+            [ts for _, ts in filtered],
+        )
+        if track is not None:
+            filtered_tracks[name] = track
+    return filtered_tracks or None
+
+
+def _build_dummy_motion(frame_timestamps: list[float]) -> MotionTracks:
     if len(frame_timestamps) >= 4:
         timestamps = frame_timestamps
     elif len(frame_timestamps) >= 2:
@@ -56,42 +178,168 @@ def _build_dummy_motion(frame_timestamps: list[float]) -> MotionTuple:
     else:
         timestamps = [0.0, 0.1, 0.2, 0.3]
     positions = [[0.02 * i, 0.0, 0.0] for i in range(len(timestamps))]
-    return positions, timestamps
+    return {"default": (positions, timestamps)}
 
 
 def _load_motion_from_file(
     motion_dir: Path,
     video_stem: str,
     segment_id: str,
-) -> MotionTuple | None:
-    motion_path = motion_dir / f"{video_stem}.json"
-    if not motion_path.exists():
+    motion_fps: float,
+    motion_tracks: list[str] | None,
+) -> MotionTracks | None:
+    candidates = [
+        motion_dir / f"{video_stem}.json",
+        motion_dir / f"{video_stem}_trajectory.json",
+    ]
+    motion_path = next((path for path in candidates if path.exists()), None)
+    if motion_path is None:
         return None
 
     obj = _read_json(motion_path)
-    if "positions" in obj and "timestamps" in obj:
-        positions = obj["positions"]
-        timestamps = obj["timestamps"]
-    elif "segments" in obj and segment_id in obj["segments"]:
-        segment = obj["segments"][segment_id]
-        positions = segment["positions"]
-        timestamps = segment["timestamps"]
-    else:
+    if "segments" in obj and segment_id in obj["segments"]:
+        obj = obj["segments"][segment_id]
+
+    motion = _normalize_motion_tracks(obj)
+    if motion is None:
+        motion = _normalize_module_d_motion(obj, motion_fps, motion_tracks)
+    return motion
+
+
+def _normalize_motion_file_obj(
+    obj: Any,
+    segment_obj: dict[str, Any],
+    segment_id: str,
+    motion_fps: float,
+    motion_tracks: list[str] | None,
+) -> MotionTracks | None:
+    if not isinstance(obj, dict):
         return None
 
-    if not _is_valid_motion(positions, timestamps):
+    motion_obj = obj
+    if "segments" in motion_obj and segment_id in motion_obj["segments"]:
+        motion_obj = motion_obj["segments"][segment_id]
+
+    motion = _normalize_libero_motion(motion_obj, segment_obj)
+    if motion is None:
+        motion = _normalize_motion_tracks(motion_obj)
+    if motion is None:
+        motion = _normalize_module_d_motion(motion_obj, motion_fps, motion_tracks)
+    if motion is not None and "segments" not in motion_obj:
+        motion = _filter_tracks_by_segment(motion, segment_obj)
+    return motion
+
+
+def _load_motion_from_path(
+    motion_path: Path,
+    video_stem: str,
+    segment_id: str,
+    segment_obj: dict[str, Any],
+    motion_fps: float,
+    motion_tracks: list[str] | None,
+) -> MotionTracks | None:
+    if not motion_path.exists():
         return None
-    return positions, timestamps
+
+    if motion_path.is_dir():
+        motion = _load_motion_from_file(
+            motion_path,
+            video_stem,
+            segment_id,
+            motion_fps,
+            motion_tracks,
+        )
+        return _filter_tracks_by_segment(motion, segment_obj) if motion else None
+
+    if motion_path.is_file():
+        return _normalize_motion_file_obj(
+            _read_json(motion_path),
+            segment_obj,
+            segment_id,
+            motion_fps,
+            motion_tracks,
+        )
+
+    return None
+
+
+def _normalize_module_d_motion(
+    obj: Any,
+    motion_fps: float,
+    motion_tracks: list[str] | None,
+) -> MotionTracks | None:
+    if not isinstance(obj, dict):
+        return None
+
+    fps = float(motion_fps or 0.0)
+    if fps <= 0:
+        return None
+
+    parsed_frames: list[tuple[int, dict[str, Any]]] = []
+    for key, value in obj.items():
+        match = re.match(r"frame_(\d+)$", str(key))
+        if match and isinstance(value, dict):
+            parsed_frames.append((int(match.group(1)), value))
+    if not parsed_frames:
+        return None
+
+    parsed_frames.sort(key=lambda item: item[0])
+    selected = set(motion_tracks) if motion_tracks else None
+    available_names = []
+    seen_names = set()
+    for _, frame_obj in parsed_frames:
+        for name, point in frame_obj.items():
+            if selected is not None and name not in selected:
+                continue
+            if isinstance(point, dict) and name not in seen_names:
+                seen_names.add(name)
+                available_names.append(str(name))
+
+    first_frame = parsed_frames[0][0]
+    tracks: MotionTracks = {}
+    for name in available_names:
+        positions: list[list[float]] = []
+        timestamps: list[float] = []
+        for frame_id, frame_obj in parsed_frames:
+            point = frame_obj.get(name)
+            if not isinstance(point, dict):
+                continue
+            try:
+                positions.append(
+                    [
+                        float(point["x"]),
+                        float(point["y"]),
+                        float(point["z"]),
+                    ]
+                )
+                timestamps.append((frame_id - first_frame) / fps)
+            except (KeyError, TypeError, ValueError):
+                continue
+        track = _normalize_track(positions, timestamps)
+        if track is not None:
+            tracks[name] = track
+
+    return tracks or None
 
 
 def _load_libero_motion_from_file(
     traj_path: Path,
     segment_obj: dict[str, Any] | None = None,
-) -> MotionTuple | None:
+) -> MotionTracks | None:
     if not traj_path.exists():
         return None
 
     obj = _read_json(traj_path)
+    return _normalize_libero_motion(obj, segment_obj)
+
+
+def _normalize_libero_motion(
+    obj: Any,
+    segment_obj: dict[str, Any] | None = None,
+) -> MotionTracks | None:
+    if not isinstance(obj, dict):
+        return None
+
     steps = obj.get("steps", [])
     if not isinstance(steps, list):
         return None
@@ -110,24 +358,10 @@ def _load_libero_motion_from_file(
         positions.append([float(pos[0]), float(pos[1]), float(pos[2])])
         timestamps.append(timestamp)
 
-    if segment_obj is not None:
-        start = segment_obj.get("start_time_sec")
-        end = segment_obj.get("end_time_sec")
-        if start is not None and end is not None and float(end) > float(start):
-            start_time = float(start)
-            end_time = float(end)
-            filtered = [
-                (pos, ts)
-                for pos, ts in zip(positions, timestamps)
-                if start_time <= ts <= end_time
-            ]
-            if filtered:
-                positions = [pos for pos, _ in filtered]
-                timestamps = [ts for _, ts in filtered]
-
-    if not _is_valid_motion(positions, timestamps):
+    track = _normalize_track(positions, timestamps)
+    if track is None:
         return None
-    return positions, timestamps
+    return _filter_tracks_by_segment({"eef": track}, segment_obj)
 
 
 def _load_motion_plugin(spec: str) -> MotionPlugin:
@@ -139,6 +373,11 @@ def _load_motion_plugin(spec: str) -> MotionPlugin:
     if func is None or not callable(func):
         raise ValueError(f"Motion plugin function not found or not callable: {spec}")
     return func
+
+
+def _parse_motion_tracks(value: str) -> list[str] | None:
+    tracks = [item.strip() for item in value.split(",") if item.strip()]
+    return tracks or None
 
 
 def _extract_text(segment: dict[str, Any], text_source: str) -> str:
@@ -216,27 +455,44 @@ def _resolve_motion(
     segment_id: str,
     frame_ts: list[float],
     options: PrepareSamplesOptions,
-) -> MotionTuple | None:
+) -> MotionTracks | None:
+    motion_path = Path(options.motion_path) if options.motion_path else None
     motion_dir = Path(options.motion_dir) if options.motion_dir else None
     libero_traj_file = (
         Path(options.libero_traj_file) if options.libero_traj_file else None
     )
 
-    motion: MotionTuple | None = None
+    motion: MotionTracks | None = None
     if options.motion_plugin is not None:
-        motion = options.motion_plugin(
-            perception_obj,
-            segment_obj,
+        motion = _normalize_plugin_motion(
+            options.motion_plugin(
+                perception_obj,
+                segment_obj,
+                video_stem,
+                segment_id,
+            )
+        )
+    if motion is None and motion_path is not None:
+        motion = _load_motion_from_path(
+            motion_path,
             video_stem,
             segment_id,
+            segment_obj,
+            options.motion_fps,
+            options.motion_tracks,
         )
-        if motion is not None and not _is_valid_motion(motion[0], motion[1]):
-            motion = None
     if motion is None and libero_traj_file is not None:
         motion = _load_libero_motion_from_file(libero_traj_file, segment_obj)
     if motion is None and motion_dir is not None:
-        motion = _load_motion_from_file(motion_dir, video_stem, segment_id)
-    if motion is None and options.allow_dummy_motion:
+        motion = _load_motion_from_file(
+            motion_dir,
+            video_stem,
+            segment_id,
+            options.motion_fps,
+            options.motion_tracks,
+        )
+        motion = _filter_tracks_by_segment(motion, segment_obj) if motion else None
+    if motion is None and options.allow_dummy_motion and not options.allow_missing_motion:
         motion = _build_dummy_motion(frame_ts)
     return motion
 
@@ -300,11 +556,7 @@ def convert_perception_objects(
                 ],
             }
             if motion is not None:
-                positions, timestamps = motion
-                sample["motion"] = {
-                    "positions": positions,
-                    "timestamps": timestamps,
-                }
+                sample["motion"] = _motion_to_sample_obj(motion)
                 if options.libero_traj_file is not None:
                     sample["motion_source"] = str(options.libero_traj_file)
             samples.append(sample)
@@ -336,11 +588,7 @@ def convert_perception_objects(
                 "text": text,
             }
             if motion is not None:
-                positions, timestamps = motion
-                sample["motion"] = {
-                    "positions": positions,
-                    "timestamps": timestamps,
-                }
+                sample["motion"] = _motion_to_sample_obj(motion)
                 if options.libero_traj_file is not None:
                     sample["motion_source"] = str(options.libero_traj_file)
             samples.append(sample)
@@ -406,19 +654,40 @@ def main() -> None:
         help="Write one sample per segment or one aggregated sample per video",
     )
     parser.add_argument(
+        "--motion-path",
+        default="",
+        help=(
+            "Unified motion JSON file or directory. Files are auto-detected as "
+            "LIBERO, Module D, or standard tracks; directories are searched by "
+            "video stem."
+        ),
+    )
+    parser.add_argument(
         "--motion-dir",
         default="",
-        help="Optional motion directory. Expect <video_stem>.json.",
+        help="Deprecated alias for a motion directory. Prefer --motion-path.",
+    )
+    parser.add_argument(
+        "--motion-fps",
+        type=float,
+        default=24.0,
+        help="FPS used to timestamp Module D frame_N motion files.",
+    )
+    parser.add_argument(
+        "--motion-tracks",
+        default="",
+        help="Comma-separated track names to keep, e.g. Root,Hand_R,Hand_L.",
     )
     parser.add_argument(
         "--libero-traj-file",
         default="",
-        help="Optional LIBERO demo_0_traj.json path.",
+        help="Deprecated alias for a LIBERO demo_0_traj.json path. Prefer --motion-path.",
     )
     parser.add_argument(
         "--allow-dummy-motion",
         action="store_true",
-        help="Allow synthetic placeholder motion when no real motion is found",
+        default=True,
+        help="Allow synthetic placeholder motion when no real motion is found (default).",
     )
     parser.add_argument(
         "--allow-missing-motion",
@@ -446,6 +715,7 @@ def main() -> None:
     options = PrepareSamplesOptions(
         text_source=args.text_source,
         sample_level=args.sample_level,
+        motion_path=args.motion_path or None,
         motion_dir=args.motion_dir or None,
         libero_traj_file=args.libero_traj_file or None,
         allow_dummy_motion=args.allow_dummy_motion,
@@ -453,6 +723,8 @@ def main() -> None:
         motion_plugin=_load_motion_plugin(args.motion_plugin)
         if args.motion_plugin
         else None,
+        motion_fps=args.motion_fps,
+        motion_tracks=_parse_motion_tracks(args.motion_tracks),
     )
     result = convert_perception_files(
         files,

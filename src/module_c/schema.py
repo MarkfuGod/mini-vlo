@@ -5,9 +5,14 @@ from typing import Any
 
 
 @dataclass
-class MotionData:
+class MotionTrack:
     positions: list[list[float]]
     timestamps: list[float]
+
+
+@dataclass
+class MotionData:
+    tracks: dict[str, MotionTrack]
 
 
 @dataclass

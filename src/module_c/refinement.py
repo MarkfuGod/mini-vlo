@@ -8,8 +8,8 @@ from typing import Iterable
 
 import yaml
 
-from .motion_quality import MotionQualityConfig, score_motion_quality
-from .schema import MotionData, RefinementResult, Sample
+from .motion_quality import MotionQualityConfig, score_motion_tracks
+from .schema import MotionData, MotionTrack, RefinementResult, Sample
 from .semantic_consistency import (
     SemanticConfig,
     build_verifier,
@@ -36,6 +36,39 @@ def load_config(path: str | Path) -> RefinementConfig:
     )
 
 
+def _load_motion_data(motion_obj: object) -> MotionData | None:
+    if not isinstance(motion_obj, dict):
+        return None
+
+    tracks_obj = motion_obj.get("tracks")
+    if isinstance(tracks_obj, dict):
+        tracks = {}
+        for name, track_obj in tracks_obj.items():
+            if not isinstance(track_obj, dict):
+                continue
+            positions = track_obj.get("positions")
+            timestamps = track_obj.get("timestamps")
+            if positions is not None and timestamps is not None:
+                tracks[str(name)] = MotionTrack(
+                    positions=positions,
+                    timestamps=timestamps,
+                )
+        return MotionData(tracks=tracks) if tracks else None
+
+    positions = motion_obj.get("positions")
+    timestamps = motion_obj.get("timestamps")
+    if positions is not None and timestamps is not None:
+        return MotionData(
+            tracks={
+                "default": MotionTrack(
+                    positions=positions,
+                    timestamps=timestamps,
+                )
+            }
+        )
+    return None
+
+
 def load_samples(jsonl_path: str | Path) -> list[Sample]:
     samples: list[Sample] = []
     with open(jsonl_path, "r", encoding="utf-8") as f:
@@ -43,13 +76,7 @@ def load_samples(jsonl_path: str | Path) -> list[Sample]:
             if not line.strip():
                 continue
             obj = json.loads(line)
-            motion_obj = obj.get("motion")
-            motion: MotionData | None = None
-            if isinstance(motion_obj, dict):
-                positions = motion_obj.get("positions")
-                timestamps = motion_obj.get("timestamps")
-                if positions is not None and timestamps is not None:
-                    motion = MotionData(positions=positions, timestamps=timestamps)
+            motion = _load_motion_data(obj.get("motion"))
             samples.append(
                 Sample(
                     sample_id=obj["sample_id"],
@@ -74,9 +101,11 @@ def refine_samples(
             motion_aux = {"valid": 0.0, "missing": 1.0}
             motion_reasons = ["motion_missing"]
         else:
-            motion_score, motion_aux, motion_reasons = score_motion_quality(
-                positions=sample.motion.positions,
-                timestamps=sample.motion.timestamps,
+            motion_score, motion_aux, motion_reasons = score_motion_tracks(
+                tracks={
+                    name: (track.positions, track.timestamps)
+                    for name, track in sample.motion.tracks.items()
+                },
                 cfg=cfg.motion_cfg,
             )
 

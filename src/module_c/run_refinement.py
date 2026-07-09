@@ -17,6 +17,12 @@ def main() -> None:
     parser.add_argument("--input", required=True, help="Input JSONL samples.")
     parser.add_argument("--output", required=True, help="Output JSONL results.")
     parser.add_argument(
+        "--motion-aggregation",
+        choices=["min", "mean"],
+        default="",
+        help="Optional override for motion_quality.aggregation.",
+    )
+    parser.add_argument(
         "--pretty-output",
         default="",
         help="Optional pretty JSON path for human-readable inspection.",
@@ -24,6 +30,8 @@ def main() -> None:
     args = parser.parse_args()
 
     cfg = load_config(args.config)
+    if args.motion_aggregation:
+        cfg.motion_cfg.aggregation = args.motion_aggregation
     samples = load_samples(args.input)
     results = refine_samples(samples, cfg)
     save_results(results, args.output)

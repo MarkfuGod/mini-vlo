@@ -7,6 +7,7 @@ motion_quality:
   max_acceleration: 6.0
   max_jerk: 20.0
   max_jitter_ratio: 0.30
+  aggregation: min
 
 semantic:
   verifier: qwen3-vl-plus
