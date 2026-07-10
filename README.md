@@ -204,6 +204,15 @@ python generate_charts.py
 
 Creates radar, bar, and heatmap charts in `assets/`.
 
+### Module D: High-Fidelity Rendering Pipeline
+Before the VLM can analyze a scene, Module D automatically processes .fbx or .bvh files to generate standardized datasets:
+
+Automated Multi-View Synthesis: Generates both Egocentric (First-Person, bound to head/eyes) and Fixed (Third-Person, tracking the root bone) .mp4 views to capture both micro hand-object interactions and macro-intents.
+
+Dynamic Scene Context: Automatically injects geometric semantic anchors (e.g., obstacles for vault, chairs for sit, handles for grab) based on file semantics, using a clean, denoised background to prevent VLM hallucination.
+
+3D Trajectory Extraction: Simultaneously exports precise spatial coordinates (Root, Hand_L, Hand_R) frame-by-frame into JSON format for downstream physical validation and evaluation metrics.
+
 ## Project Structure
 
 ```
@@ -215,6 +224,10 @@ mini_vlo/
 ├── run_eval.py               # Main evaluation entry point
 ├── run_semantic_motion.py    # Perception + augmentation stream runner
 ├── run_video_task.py         # Video-to-task stream runner
+├── module_d/                 
+│   ├── project.blend      
+│   ├── render_pipeline.py    # Automated multi-view & trajectory 
+│   ├── motions/              # Drop your .fbx/.bvh files here
 ├── src/
 │   ├── vlm_engine.py         # Qwen-VL API client (OpenAI-compatible)
 │   ├── evaluator.py          # Metrics engine (F1, ROUGE-L, cosine sim, etc.)
