@@ -2,13 +2,18 @@
 
 A lightweight **Vision-Language Observer (VLO)** system that evaluates whether a VLM (Vision-Language Model) can correctly understand robot manipulation task scenes and natural language instructions. Inspired by [Being-H0.5](https://github.com/BeingBeyond/Being-H), this project tests the perceptual and reasoning foundation that underlies Vision-Language-Action (VLA) models — without requiring GPUs, large datasets, or action generation.
 
-Beyond static scene evaluation, Mini-VLO also supports a video pipeline:
+Beyond static scene evaluation, Mini-VLO now provides a versioned multi-view
+Semantic-Motion pipeline:
 
-1. **Module D** renders FBX/BVH motion into multi-view videos + 3D trajectories
-2. **Video-to-task** turns videos into structured task labels via Qwen-VL
-3. **Module C** filters those labels with semantic consistency + motion-quality checks
+1. A `ViewBundle` pairs Fixed/Ego videos, a shared timebase, motion and provenance.
+2. Overlapping 16 s / 8 s macro windows and dense 1–3 s micro windows produce
+   fused loco-manipulation semantics.
+3. An LLM rewriter generates variants behind a deterministic fact-preservation gate.
+4. Module C applies fail-closed sync, motion and independent semantic checks.
 
-Runs on **Apple Silicon Mac (M1 16GB)** using the Qwen-VL API (Module D needs Blender).
+The legacy single-video path remains for compatibility, but formal refinement
+requires paired views and real motion. Module D still needs Blender and was not
+changed as part of the current repair.
 
 ## What is VLO?
 
@@ -135,7 +140,9 @@ Each scenario includes a **generated schematic image** (top-down robot workspace
 
 **Implications for VLA**:
 
-- The V+L understanding foundation is solid for common manipulation tasks. A Being-H-style action head built on top of this understanding would likely perform well on pick-and-place and spatial tasks.
+- The static synthetic benchmark shows promising structured recognition for its
+  30 scenarios. It does not establish video boundary, multi-view, contact, or
+  downstream control performance.
 - Appliance interaction (knobs, buttons, faucets) needs more specific visual grounding — the model sees the appliance but struggles to identify sub-components (knob, handle, button).
 - This aligns with Being-H's own benchmark results where simpler tasks (PnP) outperform complex manipulation (multi-step sequences).
 
@@ -152,7 +159,11 @@ Each scenario includes a **generated schematic image** (top-down robot workspace
 git clone https://github.com/MarkfuGod/mini-vlo.git
 cd mini-vlo
 pip install -r requirements.txt
+cp .env.example .env
 ```
+
+Set `DASHSCOPE_API_KEY`, `DASHSCOPE_BASE_URL`, and `VLM_MODEL` in the local
+`.env` file. The file is ignored by Git; do not commit real API keys.
 
 ### 1. Generate Benchmark
 
@@ -165,7 +176,6 @@ This creates 30 synthetic robot task images and `benchmark/scenarios.json`.
 ### 2. Run Evaluation
 
 ```bash
-export DASHSCOPE_API_KEY="your-api-key-here"
 python run_eval.py --model qwen-vl-plus
 ```
 
@@ -175,20 +185,33 @@ Options:
 - `--limit 5` to test with only the first 5 scenarios
 - `--output results/my_run.json` to specify output path
 
-### 3. Run Semantic-Motion Streams
+### 3. Run Paired Semantic-Motion Perception
 
-The first two streams from the Semantic-Motion proposal are implemented as a
-video-to-task framework on top of the existing recognition model:
-
-- **Video Perception**: samples keyframes, runs VLM recognition per frame, and
-converts outputs into macro-intents and micro-instructions.
-- **Temporal Aggregation**: detects task boundaries from task/target/action
-changes and merges frame evidence into task segments.
-- **Augmentation**: rewrites each segment into diverse instruction variants.
+The primary input is a manifest sample containing synchronized `fixed` and
+`ego` views, shared FPS/frame count, trajectory and provenance. Perception uses
+overlapping macro windows, Hanning-weighted transition aggregation and dense
+micro windows. The schema includes locomotion/manipulation domain, body part,
+contact state, posture, evidence frames and trajectory references.
 
 ```bash
-export DASHSCOPE_API_KEY="your-api-key-here"
-python run_video_task.py --video demos/task.mp4 --model qwen-vl-plus --max-frames 12 --variants 3
+python run_video_task.py \
+  --manifest data/libero_goal/processed/manifest.json \
+  --sample-id put_the_bowl_on_the_plate_demo_0 \
+  --view-mode fused \
+  --model qwen3-vl-flash \
+  --rewriter llm \
+  --max-frames 16 \
+  --variants 3
+```
+
+Use `--view-mode fixed`, `ego`, and `fused` for controlled ablations.
+`--rewriter template` is debug-only; `--rewriter none` performs no augmentation.
+The production default is the fact-checked LLM rewriter.
+
+The compatibility single-video entry remains available:
+
+```bash
+python run_video_task.py --video demos/task.mp4 --model qwen3-vl-flash --rewriter llm
 ```
 
 If you already extracted frames, use:
@@ -197,43 +220,48 @@ If you already extracted frames, use:
 python run_video_task.py --frame-dir demos/task_frames --fps 2 --model qwen-vl-plus
 ```
 
-The output is saved to `results/video_task_*.json`. It contains frame-level
-evidence, detected task segments, macro-intents, micro-instructions, and
-augmented task labels. No pretraining or fine-tuning is required; the
-recognition model is used through an adapter.
+The output is saved to `results/video_task_*.json` as
+`semantic-motion-video-task/v2`. It embeds the `ViewBundle`, synchronized
+evidence, task segments, fact-validation audit and reproducibility metadata.
 
 ### 4. Module C: Filter Generated Task Labels
 
-Module C converts `VideoTaskRecord` outputs into samples, scores motion quality
-(LIBERO EEF tracks and/or Module D bone tracks), checks semantic consistency
-with a VLM verifier, and emits `keep` / `drop` decisions.
+Module C converts `VideoTaskRecord` outputs into samples and applies three
+independent gates: deterministic synchronization/schema checks, 3D motion
+quality, and per-view semantic verification. Missing motion, API/parse failure,
+low confidence, missing paired views, mock verification, and dummy motion all
+drop by default.
 
 One-shot generate + filter:
 
 ```bash
-export DASHSCOPE_API_KEY="your-api-key-here"
-# Optional: real semantic verifier (otherwise use --semantic-verifier mock)
-export QWEN3VL_PLUS_API_KEY="your-qwen3vl-plus-key"
-
 python run_generate_filter.py \
-  --video demos/task.mp4 \
-  --instruction "open the drawer" \
-  --vlm-model qwen-vl-plus \
+  --manifest data/libero_goal/processed/manifest.json \
+  --sample-id put_the_bowl_on_the_plate_demo_0 \
+  --view-mode fused \
+  --vlm-model qwen3-vl-flash \
+  --rewrite-model qwen3-vl-flash \
+  --semantic-verifier qwen3-vl-flash \
+  --judge-model YOUR_INDEPENDENT_JUDGE_MODEL \
   --refine-config configs/module_c_default.yaml \
-  --sample-level video
+  --sample-level segment
 ```
 
-With an existing motion trajectory (LIBERO file, Module D JSON, or a directory):
+The manifest trajectory is used automatically. For a compatibility single-video
+debug run, pass real motion and explicitly disable only the paired-view gate:
 
 ```bash
 python run_generate_filter.py \
   --video demos/task.mp4 \
-  --vlm-model qwen-vl-plus \
+  --vlm-model qwen3-vl-flash \
   --motion-path path/to/trajectory_or_dir \
-  --motion-fps 24 \
-  --motion-tracks Root,Hand_R,Hand_L \
+  --allow-single-view-debug \
   --sample-level segment
 ```
+
+`--debug-dummy-motion`, `--allow-missing-motion`, `--allow-mock-debug`, and
+`--allow-single-view-debug` exist only for diagnostics. Outputs produced with
+those paths are excluded from formal evaluation.
 
 Outputs land in `results/`:
 
@@ -263,7 +291,76 @@ Defaults read `module_d/motions/` and write `module_d/output_videos/`. Override 
 `MODULE_D_MOTION_DIR` / `MODULE_D_OUTPUT_DIR`. Full setup notes:
 [`module_d/README.md`](module_d/README.md).
 
-### 6. Generate Charts
+### 6. Prepare and Evaluate a Small LIBERO Goal Subset
+
+Download selected task-level HDF5 files from the official
+[`yifengzhu-hf/LIBERO-datasets`](https://huggingface.co/datasets/yifengzhu-hf/LIBERO-datasets/tree/main/libero_goal)
+repository into `data/libero_goal/raw/`, then export one paired-view demo per task:
+
+```bash
+python tools/prepare_libero_goal_samples.py --demos-per-task 1
+```
+
+This writes synchronized `agentview_rgb` / `eye_in_hand_rgb` videos, EEF
+trajectories, weak task-title labels, and
+`data/libero_goal/processed/manifest.json`. Run the controlled view ablation:
+
+```bash
+python tools/evaluate_libero_goal.py --views all --max-frames 16
+```
+
+The official BDDL/file title is only a weak task-level ground truth. It is not
+valid ground truth for temporal boundaries, micro-actions, contact states, or
+`keep/drop` refinement decisions.
+
+### 7. Gold Evaluation and Motion Corruptions
+
+Generate 20–30 paired-view annotation packets:
+
+```bash
+python tools/create_gold_annotation_packets.py --limit 30
+```
+
+Packets remain `pending_human` until two independent annotators and an
+adjudicator complete them. Formal metrics reject pending packets. Once
+adjudicated:
+
+```bash
+python tools/evaluate_semantic_motion.py \
+  --gold data/gold/annotations/SAMPLE.json \
+  --prediction results/video_task_SAMPLE.json
+
+python -m src.module_c.evaluate \
+  --input results/refined_SAMPLE.jsonl \
+  --output results/refinement_metrics.json
+
+python tools/evaluate_motion_corruptions.py \
+  --motion data/libero_goal/processed/TASK/demo_0_traj.json
+```
+
+The metric suite includes Boundary F1 (±0.5 s), segmental F1@IoU, mean IoU,
+macro/micro slot and order scores, keep/drop precision/recall/F1/AUROC and
+false-keep rate, Brier/ECE, coverage–accuracy, and controlled corruption AUROC.
+
+### 8. Fair Video2Tasks Comparison
+
+Install the exact upstream revision and run its real overlapping-window and
+Hanning aggregation functions:
+
+```bash
+pip install -r requirements-video2tasks.txt
+python compare_video2tasks.py \
+  --mode full-upstream \
+  --model qwen3-vl-flash \
+  --output results/video2tasks_comparison_fair.json
+```
+
+Both arms receive the same model, windows, 16 frames/window, token budget and
+failure policy. Filename and closed task-list priors are disabled. Historical
+0.655 vs 0.195 files are prompt-only legacy artifacts and are not evidence of
+full-pipeline superiority.
+
+### 9. Generate Charts
 
 ```bash
 python generate_charts.py
@@ -283,7 +380,8 @@ mini-vlo/
 ├── run_semantic_motion.py    # Perception + augmentation stream runner
 ├── run_video_task.py         # Video-to-task stream runner
 ├── run_generate_filter.py    # Video-to-task + Module C filter (one-shot)
-├── compare_video2tasks.py    # Compare video-to-task runs
+├── compare_video2tasks.py    # Fair pinned-upstream Video2Tasks comparison
+├── requirements-video2tasks.txt
 ├── configs/
 │   └── module_c_default.yaml # Module C thresholds + verifier settings
 ├── module_d/
@@ -295,16 +393,34 @@ mini-vlo/
 │   ├── evaluator.py          # Metrics engine (F1, ROUGE-L, cosine sim, etc.)
 │   ├── prompts.py            # Structured VLM prompt templates
 │   ├── scenario.py           # Pydantic data models
-│   ├── semantic_motion/      # Semantic-Motion / video-to-task framework
-│   └── module_c/             # Refinement: semantic + motion-quality filter
+│   ├── semantic_motion/      # ViewBundle, fusion, windowing and augmentation
+│   ├── evaluation/           # Gold schemas and independent metrics
+│   ├── baselines/            # Pinned external baseline adapters
+│   └── module_c/             # Fail-closed sync + motion + semantic refinement
 ├── benchmark/
 │   ├── scenarios.json        # 30 scenario definitions with ground truth
 │   └── images/               # Generated schematic workspace images
 ├── demos/                    # Example videos
 ├── assets/                   # Charts for README
+├── data/gold/                # Pending/adjudicated annotation packets
+├── tools/                    # Evaluation, corruption and LIBERO utilities
 ├── tests/
 └── results/                  # Evaluation / generation / refinement outputs
 ```
+
+## Verification Status
+
+- Automatically verified: Python compilation, paired-view contract/fusion,
+  window aggregation, fact-preservation rejection, strict refinement, temporal
+  and classification metrics, motion corruptions, and the pinned upstream
+  adapter.
+- Available but API-dependent: Qwen perception, LLM rewriting and independent
+  semantic judging.
+- Pending human work: the generated paired-view packets have not yet been
+  independently double-annotated and adjudicated, so no formal boundary or
+  keep/drop accuracy is claimed.
+- Pending external environment: Module D rendering still requires Blender and
+  a reproducible scene; no new Module D acceptance claim is made here.
 
 ## Extending
 

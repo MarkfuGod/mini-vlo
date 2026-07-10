@@ -1,0 +1,714 @@
+{
+  "schema_version": "semantic-motion-video-task/v2",
+  "video_path": "data/libero_goal/processed/put_the_bowl_on_the_plate_demo/demo_0_agentview_rgb.mp4",
+  "view_bundle": {
+    "schema_version": "semantic-motion-view-bundle/v1",
+    "sample_id": "put_the_bowl_on_the_plate_demo_0",
+    "timebase": {
+      "fps": 20.0,
+      "frame_count": 90,
+      "frame_start": 0,
+      "duration_sec": 4.5,
+      "time_unit": "seconds",
+      "frame_map": {
+        "video_frame_start": 0,
+        "source_frame_start": 0,
+        "frame_count": 90,
+        "step": 1,
+        "explicit_source_frames": []
+      }
+    },
+    "views": {
+      "fixed": {
+        "view_id": "fixed",
+        "video_path": "data/libero_goal/processed/put_the_bowl_on_the_plate_demo/demo_0_agentview_rgb.mp4",
+        "camera_name": "",
+        "camera_type": "fixed",
+        "fps": 20.0,
+        "frame_count": 90,
+        "duration_sec": 4.5,
+        "metadata": {}
+      },
+      "ego": {
+        "view_id": "ego",
+        "video_path": "data/libero_goal/processed/put_the_bowl_on_the_plate_demo/demo_0_eye_in_hand_rgb.mp4",
+        "camera_name": "",
+        "camera_type": "egocentric",
+        "fps": 20.0,
+        "frame_count": 90,
+        "duration_sec": 4.5,
+        "metadata": {}
+      }
+    },
+    "trajectory": {
+      "path": "data/libero_goal/processed/put_the_bowl_on_the_plate_demo/demo_0_traj.json",
+      "source": "LIBERO Goal",
+      "spatial_unit": "meters",
+      "coordinate_frame": "world",
+      "track_names": [
+        "eef"
+      ],
+      "metadata": {}
+    },
+    "provenance": {
+      "dataset": "LIBERO Goal",
+      "source_id": "put_the_bowl_on_the_plate_demo_0",
+      "generator": "src.semantic_motion.view_bundle",
+      "revision": "fe3cdfd1b0758949153e6369ac16e9320ccd13a9",
+      "config": {},
+      "checksums": {}
+    },
+    "metadata": {}
+  },
+  "source_instruction": "",
+  "frames": [],
+  "multi_view_frames": [
+    {
+      "frame_id": 0,
+      "timestamp_sec": 0.0,
+      "view_frames": {
+        "fixed": {
+          "frame_id": 0,
+          "frame_index": 0,
+          "timestamp_sec": 0.0,
+          "image_path": ".semantic_motion_work/offline_eval/macro/window_000/fixed/frame_00000000.jpg",
+          "view_id": "fixed"
+        },
+        "ego": {
+          "frame_id": 0,
+          "frame_index": 0,
+          "timestamp_sec": 0.0,
+          "image_path": ".semantic_motion_work/offline_eval/macro/window_000/ego/frame_00000000.jpg",
+          "view_id": "ego"
+        }
+      },
+      "view_annotations": {},
+      "fused_annotation": {
+        "scenario_id": "put_the_bowl_on_the_plate_demo_0_macro_000",
+        "image_path": ".semantic_motion_work/offline_eval/macro/window_000/fixed/frame_00000000.jpg",
+        "source_instruction": "",
+        "objects": [
+          "bowl",
+          "plate"
+        ],
+        "spatial_relations": [],
+        "macro_intent": {
+          "task_type": "pick_and_place",
+          "target_object": "bowl",
+          "destination": "plate",
+          "confidence": 0.95,
+          "domain": "manipulation"
+        },
+        "micro_instructions": [
+          {
+            "step_id": 1,
+            "text": "approach bowl",
+            "verb": "approach",
+            "object": "bowl",
+            "confidence": 0.95,
+            "body_part": "gripper",
+            "contact_state": "approach",
+            "posture": null,
+            "observed_trajectory": null,
+            "evidence_frame_ids": []
+          },
+          {
+            "step_id": 2,
+            "text": "grasp bowl",
+            "verb": "grasp",
+            "object": "bowl",
+            "confidence": 0.95,
+            "body_part": "gripper",
+            "contact_state": "grasp",
+            "posture": null,
+            "observed_trajectory": null,
+            "evidence_frame_ids": []
+          },
+          {
+            "step_id": 3,
+            "text": "move bowl to plate",
+            "verb": "move",
+            "object": "bowl",
+            "confidence": 0.95,
+            "body_part": "gripper",
+            "contact_state": "grasp",
+            "posture": null,
+            "observed_trajectory": null,
+            "evidence_frame_ids": []
+          },
+          {
+            "step_id": 4,
+            "text": "release bowl",
+            "verb": "release",
+            "object": "bowl",
+            "confidence": 0.95,
+            "body_part": "gripper",
+            "contact_state": "release",
+            "posture": null,
+            "observed_trajectory": null,
+            "evidence_frame_ids": []
+          }
+        ],
+        "raw_recognition": "",
+        "view_id": "fused",
+        "metadata": {
+          "category": "video",
+          "recognition_confidence": 0.95,
+          "prediction_instruction": "Put the bowl on the plate.",
+          "transitions": [],
+          "view_mode": "fused",
+          "evidence_paths": [
+            ".semantic_motion_work/offline_eval/macro/window_000/fixed/frame_00000000.jpg",
+            ".semantic_motion_work/offline_eval/macro/window_000/fixed/frame_00000029.jpg",
+            ".semantic_motion_work/offline_eval/macro/window_000/fixed/frame_00000059.jpg",
+            ".semantic_motion_work/offline_eval/macro/window_000/fixed/frame_00000089.jpg",
+            ".semantic_motion_work/offline_eval/macro/window_000/ego/frame_00000000.jpg",
+            ".semantic_motion_work/offline_eval/macro/window_000/ego/frame_00000029.jpg",
+            ".semantic_motion_work/offline_eval/macro/window_000/ego/frame_00000059.jpg",
+            ".semantic_motion_work/offline_eval/macro/window_000/ego/frame_00000089.jpg"
+          ]
+        }
+      }
+    },
+    {
+      "frame_id": 1,
+      "timestamp_sec": 1.45,
+      "view_frames": {
+        "fixed": {
+          "frame_id": 1,
+          "frame_index": 29,
+          "timestamp_sec": 1.45,
+          "image_path": ".semantic_motion_work/offline_eval/macro/window_000/fixed/frame_00000029.jpg",
+          "view_id": "fixed"
+        },
+        "ego": {
+          "frame_id": 1,
+          "frame_index": 29,
+          "timestamp_sec": 1.45,
+          "image_path": ".semantic_motion_work/offline_eval/macro/window_000/ego/frame_00000029.jpg",
+          "view_id": "ego"
+        }
+      },
+      "view_annotations": {},
+      "fused_annotation": {
+        "scenario_id": "put_the_bowl_on_the_plate_demo_0_macro_000",
+        "image_path": ".semantic_motion_work/offline_eval/macro/window_000/fixed/frame_00000000.jpg",
+        "source_instruction": "",
+        "objects": [
+          "bowl",
+          "plate"
+        ],
+        "spatial_relations": [],
+        "macro_intent": {
+          "task_type": "pick_and_place",
+          "target_object": "bowl",
+          "destination": "plate",
+          "confidence": 0.95,
+          "domain": "manipulation"
+        },
+        "micro_instructions": [
+          {
+            "step_id": 1,
+            "text": "approach bowl",
+            "verb": "approach",
+            "object": "bowl",
+            "confidence": 0.95,
+            "body_part": "gripper",
+            "contact_state": "approach",
+            "posture": null,
+            "observed_trajectory": null,
+            "evidence_frame_ids": []
+          },
+          {
+            "step_id": 2,
+            "text": "grasp bowl",
+            "verb": "grasp",
+            "object": "bowl",
+            "confidence": 0.95,
+            "body_part": "gripper",
+            "contact_state": "grasp",
+            "posture": null,
+            "observed_trajectory": null,
+            "evidence_frame_ids": []
+          },
+          {
+            "step_id": 3,
+            "text": "move bowl to plate",
+            "verb": "move",
+            "object": "bowl",
+            "confidence": 0.95,
+            "body_part": "gripper",
+            "contact_state": "grasp",
+            "posture": null,
+            "observed_trajectory": null,
+            "evidence_frame_ids": []
+          },
+          {
+            "step_id": 4,
+            "text": "release bowl",
+            "verb": "release",
+            "object": "bowl",
+            "confidence": 0.95,
+            "body_part": "gripper",
+            "contact_state": "release",
+            "posture": null,
+            "observed_trajectory": null,
+            "evidence_frame_ids": []
+          }
+        ],
+        "raw_recognition": "",
+        "view_id": "fused",
+        "metadata": {
+          "category": "video",
+          "recognition_confidence": 0.95,
+          "prediction_instruction": "Put the bowl on the plate.",
+          "transitions": [],
+          "view_mode": "fused",
+          "evidence_paths": [
+            ".semantic_motion_work/offline_eval/macro/window_000/fixed/frame_00000000.jpg",
+            ".semantic_motion_work/offline_eval/macro/window_000/fixed/frame_00000029.jpg",
+            ".semantic_motion_work/offline_eval/macro/window_000/fixed/frame_00000059.jpg",
+            ".semantic_motion_work/offline_eval/macro/window_000/fixed/frame_00000089.jpg",
+            ".semantic_motion_work/offline_eval/macro/window_000/ego/frame_00000000.jpg",
+            ".semantic_motion_work/offline_eval/macro/window_000/ego/frame_00000029.jpg",
+            ".semantic_motion_work/offline_eval/macro/window_000/ego/frame_00000059.jpg",
+            ".semantic_motion_work/offline_eval/macro/window_000/ego/frame_00000089.jpg"
+          ]
+        }
+      }
+    },
+    {
+      "frame_id": 2,
+      "timestamp_sec": 2.95,
+      "view_frames": {
+        "fixed": {
+          "frame_id": 2,
+          "frame_index": 59,
+          "timestamp_sec": 2.95,
+          "image_path": ".semantic_motion_work/offline_eval/macro/window_000/fixed/frame_00000059.jpg",
+          "view_id": "fixed"
+        },
+        "ego": {
+          "frame_id": 2,
+          "frame_index": 59,
+          "timestamp_sec": 2.95,
+          "image_path": ".semantic_motion_work/offline_eval/macro/window_000/ego/frame_00000059.jpg",
+          "view_id": "ego"
+        }
+      },
+      "view_annotations": {},
+      "fused_annotation": {
+        "scenario_id": "put_the_bowl_on_the_plate_demo_0_macro_000",
+        "image_path": ".semantic_motion_work/offline_eval/macro/window_000/fixed/frame_00000000.jpg",
+        "source_instruction": "",
+        "objects": [
+          "bowl",
+          "plate"
+        ],
+        "spatial_relations": [],
+        "macro_intent": {
+          "task_type": "pick_and_place",
+          "target_object": "bowl",
+          "destination": "plate",
+          "confidence": 0.95,
+          "domain": "manipulation"
+        },
+        "micro_instructions": [
+          {
+            "step_id": 1,
+            "text": "approach bowl",
+            "verb": "approach",
+            "object": "bowl",
+            "confidence": 0.95,
+            "body_part": "gripper",
+            "contact_state": "approach",
+            "posture": null,
+            "observed_trajectory": null,
+            "evidence_frame_ids": []
+          },
+          {
+            "step_id": 2,
+            "text": "grasp bowl",
+            "verb": "grasp",
+            "object": "bowl",
+            "confidence": 0.95,
+            "body_part": "gripper",
+            "contact_state": "grasp",
+            "posture": null,
+            "observed_trajectory": null,
+            "evidence_frame_ids": []
+          },
+          {
+            "step_id": 3,
+            "text": "move bowl to plate",
+            "verb": "move",
+            "object": "bowl",
+            "confidence": 0.95,
+            "body_part": "gripper",
+            "contact_state": "grasp",
+            "posture": null,
+            "observed_trajectory": null,
+            "evidence_frame_ids": []
+          },
+          {
+            "step_id": 4,
+            "text": "release bowl",
+            "verb": "release",
+            "object": "bowl",
+            "confidence": 0.95,
+            "body_part": "gripper",
+            "contact_state": "release",
+            "posture": null,
+            "observed_trajectory": null,
+            "evidence_frame_ids": []
+          }
+        ],
+        "raw_recognition": "",
+        "view_id": "fused",
+        "metadata": {
+          "category": "video",
+          "recognition_confidence": 0.95,
+          "prediction_instruction": "Put the bowl on the plate.",
+          "transitions": [],
+          "view_mode": "fused",
+          "evidence_paths": [
+            ".semantic_motion_work/offline_eval/macro/window_000/fixed/frame_00000000.jpg",
+            ".semantic_motion_work/offline_eval/macro/window_000/fixed/frame_00000029.jpg",
+            ".semantic_motion_work/offline_eval/macro/window_000/fixed/frame_00000059.jpg",
+            ".semantic_motion_work/offline_eval/macro/window_000/fixed/frame_00000089.jpg",
+            ".semantic_motion_work/offline_eval/macro/window_000/ego/frame_00000000.jpg",
+            ".semantic_motion_work/offline_eval/macro/window_000/ego/frame_00000029.jpg",
+            ".semantic_motion_work/offline_eval/macro/window_000/ego/frame_00000059.jpg",
+            ".semantic_motion_work/offline_eval/macro/window_000/ego/frame_00000089.jpg"
+          ]
+        }
+      }
+    },
+    {
+      "frame_id": 3,
+      "timestamp_sec": 4.45,
+      "view_frames": {
+        "fixed": {
+          "frame_id": 3,
+          "frame_index": 89,
+          "timestamp_sec": 4.45,
+          "image_path": ".semantic_motion_work/offline_eval/macro/window_000/fixed/frame_00000089.jpg",
+          "view_id": "fixed"
+        },
+        "ego": {
+          "frame_id": 3,
+          "frame_index": 89,
+          "timestamp_sec": 4.45,
+          "image_path": ".semantic_motion_work/offline_eval/macro/window_000/ego/frame_00000089.jpg",
+          "view_id": "ego"
+        }
+      },
+      "view_annotations": {},
+      "fused_annotation": {
+        "scenario_id": "put_the_bowl_on_the_plate_demo_0_macro_000",
+        "image_path": ".semantic_motion_work/offline_eval/macro/window_000/fixed/frame_00000000.jpg",
+        "source_instruction": "",
+        "objects": [
+          "bowl",
+          "plate"
+        ],
+        "spatial_relations": [],
+        "macro_intent": {
+          "task_type": "pick_and_place",
+          "target_object": "bowl",
+          "destination": "plate",
+          "confidence": 0.95,
+          "domain": "manipulation"
+        },
+        "micro_instructions": [
+          {
+            "step_id": 1,
+            "text": "approach bowl",
+            "verb": "approach",
+            "object": "bowl",
+            "confidence": 0.95,
+            "body_part": "gripper",
+            "contact_state": "approach",
+            "posture": null,
+            "observed_trajectory": null,
+            "evidence_frame_ids": []
+          },
+          {
+            "step_id": 2,
+            "text": "grasp bowl",
+            "verb": "grasp",
+            "object": "bowl",
+            "confidence": 0.95,
+            "body_part": "gripper",
+            "contact_state": "grasp",
+            "posture": null,
+            "observed_trajectory": null,
+            "evidence_frame_ids": []
+          },
+          {
+            "step_id": 3,
+            "text": "move bowl to plate",
+            "verb": "move",
+            "object": "bowl",
+            "confidence": 0.95,
+            "body_part": "gripper",
+            "contact_state": "grasp",
+            "posture": null,
+            "observed_trajectory": null,
+            "evidence_frame_ids": []
+          },
+          {
+            "step_id": 4,
+            "text": "release bowl",
+            "verb": "release",
+            "object": "bowl",
+            "confidence": 0.95,
+            "body_part": "gripper",
+            "contact_state": "release",
+            "posture": null,
+            "observed_trajectory": null,
+            "evidence_frame_ids": []
+          }
+        ],
+        "raw_recognition": "",
+        "view_id": "fused",
+        "metadata": {
+          "category": "video",
+          "recognition_confidence": 0.95,
+          "prediction_instruction": "Put the bowl on the plate.",
+          "transitions": [],
+          "view_mode": "fused",
+          "evidence_paths": [
+            ".semantic_motion_work/offline_eval/macro/window_000/fixed/frame_00000000.jpg",
+            ".semantic_motion_work/offline_eval/macro/window_000/fixed/frame_00000029.jpg",
+            ".semantic_motion_work/offline_eval/macro/window_000/fixed/frame_00000059.jpg",
+            ".semantic_motion_work/offline_eval/macro/window_000/fixed/frame_00000089.jpg",
+            ".semantic_motion_work/offline_eval/macro/window_000/ego/frame_00000000.jpg",
+            ".semantic_motion_work/offline_eval/macro/window_000/ego/frame_00000029.jpg",
+            ".semantic_motion_work/offline_eval/macro/window_000/ego/frame_00000059.jpg",
+            ".semantic_motion_work/offline_eval/macro/window_000/ego/frame_00000089.jpg"
+          ]
+        }
+      }
+    }
+  ],
+  "task_segments": [
+    {
+      "segment_id": "segment_000",
+      "start_time_sec": 0.0,
+      "end_time_sec": 4.5,
+      "frame_ids": [
+        0,
+        13,
+        20,
+        26,
+        33,
+        39,
+        40,
+        46,
+        53,
+        59,
+        60,
+        66,
+        69,
+        79,
+        89
+      ],
+      "task_instruction": "put the bowl on the plate.",
+      "objects": [
+        "bowl",
+        "plate"
+      ],
+      "spatial_relations": [],
+      "macro_intent": {
+        "task_type": "pick_and_place",
+        "target_object": "bowl",
+        "destination": "plate",
+        "confidence": 0.95,
+        "domain": "manipulation"
+      },
+      "micro_instructions": [
+        {
+          "step_id": 1,
+          "text": "approach bowl",
+          "verb": "approach",
+          "object": "bowl",
+          "confidence": 0.95,
+          "body_part": "gripper",
+          "contact_state": "approach",
+          "posture": null,
+          "observed_trajectory": {
+            "track_names": [
+              "eef"
+            ],
+            "start_time_sec": 0.0,
+            "end_time_sec": 2.0,
+            "coordinate_frame": "world"
+          },
+          "evidence_frame_ids": [
+            0,
+            13,
+            26,
+            39
+          ]
+        },
+        {
+          "step_id": 2,
+          "text": "grasp bowl",
+          "verb": "grasp",
+          "object": "bowl",
+          "confidence": 0.95,
+          "body_part": "gripper",
+          "contact_state": "grasp",
+          "posture": null,
+          "observed_trajectory": {
+            "track_names": [
+              "eef"
+            ],
+            "start_time_sec": 0.0,
+            "end_time_sec": 2.0,
+            "coordinate_frame": "world"
+          },
+          "evidence_frame_ids": [
+            0,
+            13,
+            26,
+            39
+          ]
+        },
+        {
+          "step_id": 3,
+          "text": "move bowl to plate",
+          "verb": "move",
+          "object": "bowl",
+          "confidence": 0.95,
+          "body_part": "gripper",
+          "contact_state": "grasp",
+          "posture": null,
+          "observed_trajectory": {
+            "track_names": [
+              "eef"
+            ],
+            "start_time_sec": 0.0,
+            "end_time_sec": 2.0,
+            "coordinate_frame": "world"
+          },
+          "evidence_frame_ids": [
+            0,
+            13,
+            26,
+            39
+          ]
+        },
+        {
+          "step_id": 4,
+          "text": "release bowl",
+          "verb": "release",
+          "object": "bowl",
+          "confidence": 0.95,
+          "body_part": "gripper",
+          "contact_state": "release",
+          "posture": null,
+          "observed_trajectory": {
+            "track_names": [
+              "eef"
+            ],
+            "start_time_sec": 0.0,
+            "end_time_sec": 2.0,
+            "coordinate_frame": "world"
+          },
+          "evidence_frame_ids": [
+            0,
+            13,
+            26,
+            39
+          ]
+        }
+      ],
+      "augmented_instructions": [
+        {
+          "text": "put the bowl on the plate.",
+          "strategy": "source_only",
+          "source_step_ids": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "metadata": {
+            "rewriter": "none",
+            "augmented": false
+          }
+        }
+      ],
+      "confidence": 0.95,
+      "start_frame": 0,
+      "end_frame": 90,
+      "evidence_by_view": {
+        "fixed": [
+          0,
+          13,
+          20,
+          26,
+          33,
+          39,
+          40,
+          46,
+          53,
+          59,
+          60,
+          66,
+          69,
+          79,
+          89
+        ],
+        "ego": [
+          0,
+          13,
+          20,
+          26,
+          33,
+          39,
+          40,
+          46,
+          53,
+          59,
+          60,
+          66,
+          69,
+          79,
+          89
+        ]
+      },
+      "metadata": {
+        "micro_window_count": 4,
+        "view_mode": "fused",
+        "trajectory_linked": true,
+        "augmentation_audit": []
+      }
+    }
+  ],
+  "metadata": {
+    "method": "paired_overlapping_macro_dense_micro_v1",
+    "view_mode": "fused",
+    "macro_window_sec": 16.0,
+    "macro_step_sec": 8.0,
+    "macro_frames": 4,
+    "micro_window_sec": 2.0,
+    "micro_step_sec": 1.0,
+    "micro_frames": 4,
+    "cut_frames": [],
+    "macro_window_count": 1,
+    "provenance": {
+      "dataset": "LIBERO Goal",
+      "source_id": "put_the_bowl_on_the_plate_demo_0",
+      "generator": "src.semantic_motion.view_bundle",
+      "revision": "fe3cdfd1b0758949153e6369ac16e9320ccd13a9",
+      "config": {},
+      "checksums": {}
+    },
+    "generation_model": "R",
+    "rewriter": "SourceInstructionRewriter",
+    "rewrite_prompt_version": ""
+  }
+}

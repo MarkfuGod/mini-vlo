@@ -1,0 +1,65 @@
+{
+  "model": "qwen3-vl-flash",
+  "test": "semantic judge against LIBERO weak task title",
+  "results": [
+    {
+      "sample_id": "put_the_bowl_on_the_plate_demo_0",
+      "view": "ego",
+      "text": "put the bowl on the plate",
+      "result": {
+        "label": "consistent",
+        "confidence": 0.9,
+        "error_types": [],
+        "suggested_text": "place the bowl on the plate",
+        "verifier": "qwen3-vl-flash"
+      },
+      "reason_codes": []
+    },
+    {
+      "sample_id": "put_the_bowl_on_the_stove_demo_0",
+      "view": "ego",
+      "text": "put the bowl on the stove",
+      "result": {
+        "label": "inconsistent",
+        "confidence": 0.95,
+        "error_types": [
+          "action_mismatch",
+          "goal_state_mismatch",
+          "hallucination_check"
+        ],
+        "suggested_text": "move the bowl toward the stove area",
+        "verifier": "qwen3-vl-flash"
+      },
+      "reason_codes": [
+        "action_mismatch",
+        "goal_state_mismatch",
+        "hallucination_check",
+        "semantic_mismatch"
+      ]
+    },
+    {
+      "sample_id": "turn_on_the_stove_demo_0",
+      "view": "ego",
+      "text": "turn on the stove",
+      "result": {
+        "label": "inconsistent",
+        "confidence": 0.95,
+        "error_types": [
+          "actor_mismatch",
+          "action_mismatch",
+          "goal_state_mismatch",
+          "possible_hallucination"
+        ],
+        "suggested_text": "the robot gripper moves toward the stove area but does not interact with any stove knob or control; no turning-on action is observed",
+        "verifier": "qwen3-vl-flash"
+      },
+      "reason_codes": [
+        "actor_mismatch",
+        "action_mismatch",
+        "goal_state_mismatch",
+        "possible_hallucination",
+        "semantic_mismatch"
+      ]
+    }
+  ]
+}

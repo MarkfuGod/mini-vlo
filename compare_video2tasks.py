@@ -25,6 +25,12 @@ import cv2
 import numpy as np
 from openai import OpenAI
 
+from src.baselines import (
+    UPSTREAM_REVISION,
+    run_upstream_video2tasks,
+    upstream_prompt,
+)
+from src.evaluation.metrics import boundary_metrics
 from src.vlm_engine import _parse_json_response
 
 
@@ -53,16 +59,14 @@ Your response must be a valid JSON object including a 'thought' field for step-b
 
 
 SEMANTIC_MOTION_PROMPT = """You are a video-to-task semantic engine for robot manipulation demonstrations.
-Analyze the sampled video frames as one short task clip.
-
-The benchmark task space includes: close drawer, get napkin, hang towel,
-measure apple, open bottle, sweep trash into dustpan, take out toaster and
-place it on wooden plate, turn on lamp, unplug charger, sort trash to tray.
+Analyze the sampled video frames without using filenames or a closed task list.
 
 Return ONLY valid JSON with these fields:
 {
-  "instruction": "one concise natural-language task label",
-  "task_type": "pick_and_place|open|close|turn_on|turn_off|move|sweep|hang|measure|unplug|sort|other",
+  "transitions": [0],
+  "instructions": ["one evidence-grounded label per temporal segment"],
+  "instruction": "one concise whole-window task label",
+  "task_type": "concise open-vocabulary task type",
   "objects": ["visible task-relevant objects"],
   "target_object": "primary object being manipulated",
   "destination": "goal object/location, or null",
@@ -76,14 +80,9 @@ what changes from early frames to late frames matters more than any single frame
 
 
 def build_semantic_motion_prompt(sample: dict[str, Any]) -> str:
-    """Build the Semantic-Motion prompt with optional dataset metadata."""
-    return (
-        SEMANTIC_MOTION_PROMPT
-        + "\n\n"
-        + f"Benchmark sample id / filename hint: {sample['id']}. "
-        + "Treat this as a weak prior when visual evidence is ambiguous. "
-        + "Do not choose another task unless the frames clearly contradict it."
-    )
+    """Return a blind prompt; sample metadata is deliberately not exposed."""
+    del sample
+    return SEMANTIC_MOTION_PROMPT
 
 
 SAMPLES = [
@@ -209,6 +208,33 @@ def sample_frames(video_path: str | Path, out_dir: str | Path, n_frames: int) ->
         cv2.imwrite(str(path), frame)
         paths.append(path)
     cap.release()
+    return paths
+
+
+def extract_frame_indices(
+    video_path: str | Path,
+    out_dir: str | Path,
+    frame_indices: list[int],
+    window_id: int,
+) -> list[Path]:
+    """Extract the exact frame ids selected by the pinned upstream windowing."""
+    out_dir = Path(out_dir) / f"window_{window_id:04d}"
+    out_dir.mkdir(parents=True, exist_ok=True)
+    cap = cv2.VideoCapture(str(video_path))
+    if not cap.isOpened():
+        raise RuntimeError(f"Cannot open video: {video_path}")
+    paths = []
+    try:
+        for local_index, frame_index in enumerate(frame_indices):
+            cap.set(cv2.CAP_PROP_POS_FRAMES, int(frame_index))
+            ok, frame = cap.read()
+            if not ok or frame is None:
+                continue
+            path = out_dir / f"{local_index:02d}_{frame_index:08d}.jpg"
+            cv2.imwrite(str(path), frame)
+            paths.append(path)
+    finally:
+        cap.release()
     return paths
 
 
@@ -403,7 +429,7 @@ def run_sample(
                 api_key,
                 base_url,
                 model,
-            build_semantic_motion_prompt(sample),
+                build_semantic_motion_prompt(sample),
                 model_inputs,
                 max_tokens=512,
                 timeout=timeout,
@@ -438,6 +464,119 @@ def run_sample(
             "error": semantic_error,
         },
         "delta_composite": semantic_scores["composite"] - baseline_scores["composite"],
+    }
+
+
+def run_full_upstream_sample(
+    sample: dict[str, Any],
+    api_key: str,
+    base_url: str,
+    model: str,
+    frame_root: Path,
+    timeout: float,
+) -> dict[str, Any]:
+    """Run both prompts over identical upstream windows and aggregation."""
+
+    def run_method(method: str) -> tuple[dict[str, Any], float, str]:
+        started = time.time()
+
+        def infer(frame_indices: list[int], window_id: int) -> dict[str, Any]:
+            frame_paths = extract_frame_indices(
+                sample["video"],
+                frame_root / sample["id"] / method,
+                frame_indices,
+                window_id,
+            )
+            prompt = (
+                upstream_prompt(len(frame_paths))
+                if method == "baseline"
+                else build_semantic_motion_prompt({})
+            )
+            response = call_vlm(
+                api_key,
+                base_url,
+                model,
+                prompt,
+                frame_paths,
+                max_tokens=512,
+                timeout=timeout,
+            )
+            parsed = dict(response["json"])
+            if method == "semantic_motion":
+                if not parsed.get("instructions") and parsed.get("instruction"):
+                    parsed["instructions"] = [parsed["instruction"]]
+                parsed.setdefault("transitions", [])
+            return parsed
+
+        try:
+            output = run_upstream_video2tasks(
+                sample["video"],
+                infer,
+                sample_id=sample["id"],
+                window_sec=16.0,
+                step_sec=8.0,
+                frames_per_window=16,
+            )
+            return output, time.time() - started, ""
+        except Exception as exc:
+            return {}, time.time() - started, f"{type(exc).__name__}: {exc}"
+
+    baseline, baseline_latency, baseline_error = run_method("baseline")
+    semantic, semantic_latency, semantic_error = run_method("semantic_motion")
+
+    def final_scores(output: dict[str, Any]) -> dict[str, float]:
+        instructions = [
+            str(segment.get("instruction", ""))
+            for segment in output.get("segments", [])
+        ]
+        return score_prediction(
+            sample,
+            {"instructions": instructions},
+            mode="baseline",
+        )
+
+    def final_boundaries(output: dict[str, Any]) -> dict[str, float]:
+        fps = float(output.get("fps", 1.0) or 1.0)
+        predicted = [
+            float(segment["start_frame"]) / fps
+            for segment in output.get("segments", [])[1:]
+        ]
+        return boundary_metrics(
+            predicted,
+            [float(value) for value in sample.get("boundaries_sec", [])],
+            tolerance_sec=0.5,
+        )
+
+    baseline_scores = final_scores(baseline)
+    semantic_scores = final_scores(semantic)
+    return {
+        "sample": sample,
+        "comparison_mode": "full_upstream_windowing_and_aggregation",
+        "input_budget": {
+            "window_sec": 16.0,
+            "step_sec": 8.0,
+            "frames_per_window": 16,
+            "max_tokens_per_call": 512,
+            "same_model": True,
+        },
+        "baseline": {
+            "method": "Video2Tasks upstream prompt and upstream aggregation",
+            "latency_s": baseline_latency,
+            "prediction": baseline,
+            "scores": baseline_scores,
+            "boundary": final_boundaries(baseline),
+            "error": baseline_error,
+        },
+        "semantic_motion": {
+            "method": "Blind Semantic-Motion prompt and upstream aggregation",
+            "latency_s": semantic_latency,
+            "prediction": semantic,
+            "scores": semantic_scores,
+            "boundary": final_boundaries(semantic),
+            "error": semantic_error,
+        },
+        "delta_composite": semantic_scores["composite"]
+        - baseline_scores["composite"],
     }
 
 
@@ -516,6 +655,11 @@ def refresh_scores(result: dict[str, Any]) -> dict[str, Any]:
 
 def main():
     parser = argparse.ArgumentParser(description="Compare against Video2Tasks baseline")
+    parser.add_argument(
+        "--mode",
+        choices=["full-upstream", "prompt-only-legacy"],
+        default="full-upstream",
+    )
     parser.add_argument("--model", default="qwen3.6-plus")
     parser.add_argument("--base-url", default=os.getenv("DASHSCOPE_BASE_URL"))
     parser.add_argument("--api-key", default=os.getenv("DASHSCOPE_API_KEY"))
@@ -525,7 +669,7 @@ def main():
     parser.add_argument("--resume", action="store_true")
     parser.add_argument(
         "--output",
-        default="results/video2tasks_comparison_qwen36.json",
+        default="results/video2tasks_comparison_fair.json",
     )
     args = parser.parse_args()
 
@@ -552,7 +696,14 @@ def main():
         payload = {
             "model": args.model,
             "base_url": args.base_url,
-            "frames_per_sample": args.frames,
+            "comparison_mode": args.mode,
+            "upstream_revision": (
+                UPSTREAM_REVISION if args.mode == "full-upstream" else None
+            ),
+            "filename_or_task_list_prior": False,
+            "frames_per_sample": (
+                16 if args.mode == "full-upstream" else args.frames
+            ),
             "samples": SAMPLES,
             "summary": summarize(results),
             "results": results,
@@ -572,24 +723,38 @@ def main():
             if previous_complete:
                 print(f"{sample['id']} already done, skipping", flush=True)
                 continue
-            result = run_sample(
-                sample,
-                args.api_key,
-                args.base_url,
-                args.model,
-                frame_root,
-                args.frames,
-                args.timeout,
-                args.attempts,
-            )
-            previous = completed.get(sample["id"])
-            result["baseline"] = merge_method_result(previous, result, "baseline")
-            result["semantic_motion"] = merge_method_result(
-                previous,
-                result,
-                "semantic_motion",
-            )
-            result = refresh_scores(result)
+            if args.mode == "full-upstream":
+                result = run_full_upstream_sample(
+                    sample,
+                    args.api_key,
+                    args.base_url,
+                    args.model,
+                    frame_root,
+                    args.timeout,
+                )
+            else:
+                result = run_sample(
+                    sample,
+                    args.api_key,
+                    args.base_url,
+                    args.model,
+                    frame_root,
+                    args.frames,
+                    args.timeout,
+                    args.attempts,
+                )
+                previous = completed.get(sample["id"])
+                result["baseline"] = merge_method_result(
+                    previous,
+                    result,
+                    "baseline",
+                )
+                result["semantic_motion"] = merge_method_result(
+                    previous,
+                    result,
+                    "semantic_motion",
+                )
+                result = refresh_scores(result)
             results = [
                 item
                 for item in results

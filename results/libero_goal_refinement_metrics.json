@@ -1,0 +1,10 @@
+{
+  "total": 1,
+  "eligible_formal": 0,
+  "excluded": {
+    "missing_gold_label": 1
+  },
+  "decision_distribution": {
+    "drop": 1
+  }
+}

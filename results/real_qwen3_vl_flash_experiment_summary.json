@@ -1,0 +1,88 @@
+{
+  "experiment": "real_qwen3_vl_flash_multiview_ablation_v1",
+  "formal": false,
+  "formal_reason": "LIBERO filename is weak task-level truth; no adjudicated boundary/keep-drop gold",
+  "sample_id": "put_the_bowl_on_the_plate_demo_0",
+  "weak_ground_truth_instruction": "put the bowl on the plate",
+  "model": "qwen3-vl-flash",
+  "generator_judge_same_model": true,
+  "view_ablation": {
+    "fixed": {
+      "weak_title_token_f1": 0.0,
+      "segments": 2,
+      "prediction": "grasp and move the black cylindrical object toward the white square with a hole. ; rotate the circular object using the robot arm after making contact."
+    },
+    "ego": {
+      "weak_title_token_f1": 0.28571428571428575,
+      "segments": 2,
+      "prediction": "move the black bowl from the floor to the stove top. ; place the bowl onto the plate."
+    },
+    "fused": {
+      "weak_title_token_f1": 0.16,
+      "segments": 2,
+      "prediction": "place the black bowl onto the white plate with red rim using the robot arm. ; lift the bowl from the plate and hold it above, then release back onto the plate.",
+      "cut_frames": [
+        67
+      ]
+    }
+  },
+  "augmentation": {
+    "requested_variants": 4,
+    "accepted_variants": 0,
+    "rejected_variants": 4,
+    "reason_counts": {
+      "action_omitted:lower": 1,
+      "action_order_changed": 2,
+      "fact_changed:actions": 2,
+      "fact_changed:body_parts": 2,
+      "fact_changed:contact_states": 2,
+      "action_omitted:approach": 2,
+      "action_omitted:grasp": 2,
+      "action_omitted:move": 2,
+      "action_omitted:release": 2,
+      "destination_omitted": 2,
+      "action_omitted:lift": 1
+    }
+  },
+  "refinement": {
+    "decisions": [
+      "drop",
+      "drop"
+    ],
+    "motion_quality_scores": [
+      0.9871780276298523,
+      0.9999971985816956
+    ],
+    "semantic_labels": [
+      "inconsistent",
+      "inconsistent"
+    ],
+    "reason_codes": [
+      [
+        "fixed:action_mismatch",
+        "fixed:actor_mismatch",
+        "fixed:goal_state_mismatch",
+        "fixed:object_mismatch",
+        "fixed:semantic_mismatch",
+        "semantic_mismatch",
+        "semantic_not_consistent"
+      ],
+      [
+        "ego:action_mismatch",
+        "ego:goal_state_mismatch",
+        "ego:semantic_mismatch",
+        "fixed:action_mismatch",
+        "fixed:goal_state_mismatch",
+        "fixed:semantic_mismatch",
+        "semantic_mismatch",
+        "semantic_not_consistent"
+      ]
+    ]
+  },
+  "limitations": [
+    "weak task-title truth only",
+    "same Qwen model family used for generation and judging",
+    "one LIBERO sample",
+    "no adjudicated boundary or keep/drop gold"
+  ]
+}

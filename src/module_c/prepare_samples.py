@@ -25,8 +25,8 @@ class PrepareSamplesOptions:
     motion_path: str | Path | None = None
     motion_dir: str | Path | None = None
     libero_traj_file: str | Path | None = None
-    allow_dummy_motion: bool = True
-    allow_missing_motion: bool = False
+    allow_dummy_motion: bool = False
+    allow_missing_motion: bool = True
     motion_plugin: MotionPlugin | None = None
     motion_fps: float = 24.0
     motion_tracks: list[str] | None = None
@@ -123,8 +123,19 @@ def _normalize_plugin_motion(motion: MotionPluginResult | None) -> MotionTracks 
     return _normalize_motion_tracks(motion)
 
 
-def _motion_to_sample_obj(motion: MotionTracks) -> dict[str, Any]:
+def _motion_to_sample_obj(
+    motion: MotionTracks,
+    *,
+    spatial_unit: str = "meters",
+    coordinate_frame: str = "world",
+    source: str = "unknown",
+    is_dummy: bool = False,
+) -> dict[str, Any]:
     return {
+        "spatial_unit": spatial_unit,
+        "coordinate_frame": coordinate_frame,
+        "source": source,
+        "is_dummy": is_dummy,
         "tracks": {
             name: {
                 "positions": positions,
@@ -445,7 +456,81 @@ def _frame_timestamps(perception_obj: dict[str, Any]) -> list[float]:
             frame_ts.append(float(item["frame"]["timestamp_sec"]))
         except (KeyError, TypeError, ValueError):
             pass
+    for item in perception_obj.get("multi_view_frames", []):
+        try:
+            frame_ts.append(float(item["timestamp_sec"]))
+        except (KeyError, TypeError, ValueError):
+            pass
     return sorted(set(frame_ts))
+
+
+def _bundle_sample_fields(perception_obj: dict[str, Any]) -> dict[str, Any]:
+    bundle = perception_obj.get("view_bundle")
+    if not isinstance(bundle, dict):
+        return {}
+    views_obj = bundle.get("views", {})
+    views: dict[str, str] = {}
+    if isinstance(views_obj, dict):
+        for view_id, stream in views_obj.items():
+            if isinstance(stream, dict) and stream.get("video_path"):
+                views[str(view_id)] = str(stream["video_path"])
+            elif isinstance(stream, str):
+                views[str(view_id)] = stream
+    timebase = bundle.get("timebase", {})
+    trajectory = bundle.get("trajectory")
+    return {
+        "views": views,
+        "fps": timebase.get("fps") if isinstance(timebase, dict) else None,
+        "frame_count": (
+            timebase.get("frame_count") if isinstance(timebase, dict) else None
+        ),
+        "trajectory": trajectory if isinstance(trajectory, dict) else {},
+        "provenance": (
+            bundle.get("provenance")
+            if isinstance(bundle.get("provenance"), dict)
+            else {}
+        ),
+    }
+
+
+def _motion_metadata(
+    options: PrepareSamplesOptions,
+    bundle_fields: dict[str, Any],
+    *,
+    is_dummy: bool,
+) -> dict[str, Any]:
+    if is_dummy:
+        return {
+            "spatial_unit": "meters",
+            "coordinate_frame": "debug",
+            "source": "debug_dummy",
+            "is_dummy": True,
+        }
+    trajectory = bundle_fields.get("trajectory", {})
+    metadata = {
+        "spatial_unit": str(trajectory.get("spatial_unit", "meters")),
+        "coordinate_frame": str(trajectory.get("coordinate_frame", "world")),
+        "source": str(trajectory.get("source", "unknown")),
+        "is_dummy": False,
+    }
+    motion_path_value = (
+        options.motion_path or options.libero_traj_file or options.motion_dir
+    )
+    if motion_path_value:
+        motion_path = Path(motion_path_value)
+        metadata["source"] = str(motion_path)
+        if motion_path.is_file():
+            try:
+                obj = _read_json(motion_path)
+                metadata["spatial_unit"] = str(
+                    obj.get("spatial_unit", obj.get("units", metadata["spatial_unit"]))
+                )
+                metadata["coordinate_frame"] = str(
+                    obj.get("coordinate_frame", metadata["coordinate_frame"])
+                )
+            except (OSError, json.JSONDecodeError):
+                pass
+    return metadata
 
 
 def _resolve_motion(
@@ -455,7 +540,7 @@ def _resolve_motion(
     segment_id: str,
     frame_ts: list[float],
     options: PrepareSamplesOptions,
-) -> MotionTracks | None:
+) -> tuple[MotionTracks | None, bool]:
     motion_path = Path(options.motion_path) if options.motion_path else None
     motion_dir = Path(options.motion_dir) if options.motion_dir else None
     libero_traj_file = (
@@ -492,9 +577,10 @@ def _resolve_motion(
             options.motion_tracks,
         )
         motion = _filter_tracks_by_segment(motion, segment_obj) if motion else None
-    if motion is None and options.allow_dummy_motion and not options.allow_missing_motion:
+    if motion is None and options.allow_dummy_motion:
         motion = _build_dummy_motion(frame_ts)
-    return motion
+        return motion, True
+    return motion, False
 
 
 def convert_perception_objects(
@@ -506,7 +592,10 @@ def convert_perception_objects(
     samples: list[dict[str, Any]] = []
 
     for obj in perception_objects:
+        bundle_fields = _bundle_sample_fields(obj)
         video_path = str(obj.get("video_path", "")).strip()
+        if not video_path and bundle_fields.get("views"):
+            video_path = next(iter(bundle_fields["views"].values()))
         if not video_path:
             skipped += 1
             continue
@@ -531,7 +620,7 @@ def convert_perception_objects(
                 "end_time_sec": frame_ts[-1] if frame_ts else 0.0,
                 "task_segments": segments,
             }
-            motion = _resolve_motion(
+            motion, is_dummy = _resolve_motion(
                 obj,
                 video_segment,
                 video_stem,
@@ -554,9 +643,23 @@ def convert_perception_objects(
                 "source_segments": [
                     str(segment.get("segment_id", "segment")) for segment in segments
                 ],
+                "views": bundle_fields.get("views", {}),
+                "fps": bundle_fields.get("fps"),
+                "frame_count": bundle_fields.get("frame_count"),
+                "segment_start_sec": video_segment["start_time_sec"],
+                "segment_end_sec": video_segment["end_time_sec"],
+                "provenance": bundle_fields.get("provenance", {}),
             }
             if motion is not None:
-                sample["motion"] = _motion_to_sample_obj(motion)
+                motion_metadata = _motion_metadata(
+                    options,
+                    bundle_fields,
+                    is_dummy=is_dummy,
+                )
+                sample["motion"] = _motion_to_sample_obj(
+                    motion,
+                    **motion_metadata,
+                )
                 if options.libero_traj_file is not None:
                     sample["motion_source"] = str(options.libero_traj_file)
             samples.append(sample)
@@ -570,7 +673,7 @@ def convert_perception_objects(
                 skipped += 1
                 continue
 
-            motion = _resolve_motion(
+            motion, is_dummy = _resolve_motion(
                 obj,
                 segment,
                 video_stem,
@@ -586,9 +689,23 @@ def convert_perception_objects(
                 "sample_id": f"{video_stem}_{segment_id}",
                 "video_path": video_path,
                 "text": text,
+                "views": bundle_fields.get("views", {}),
+                "fps": bundle_fields.get("fps"),
+                "frame_count": bundle_fields.get("frame_count"),
+                "segment_start_sec": segment.get("start_time_sec"),
+                "segment_end_sec": segment.get("end_time_sec"),
+                "provenance": bundle_fields.get("provenance", {}),
             }
             if motion is not None:
-                sample["motion"] = _motion_to_sample_obj(motion)
+                motion_metadata = _motion_metadata(
+                    options,
+                    bundle_fields,
+                    is_dummy=is_dummy,
+                )
+                sample["motion"] = _motion_to_sample_obj(
+                    motion,
+                    **motion_metadata,
+                )
                 if options.libero_traj_file is not None:
                     sample["motion_source"] = str(options.libero_traj_file)
             samples.append(sample)
@@ -684,15 +801,18 @@ def main() -> None:
         help="Deprecated alias for a LIBERO demo_0_traj.json path. Prefer --motion-path.",
     )
     parser.add_argument(
+        "--debug-dummy-motion",
         "--allow-dummy-motion",
+        dest="allow_dummy_motion",
         action="store_true",
-        default=True,
-        help="Allow synthetic placeholder motion when no real motion is found (default).",
+        default=False,
+        help="Explicit debug-only placeholder motion; never valid for formal results.",
     )
     parser.add_argument(
         "--allow-missing-motion",
         action="store_true",
-        help="Allow writing samples without motion field",
+        default=True,
+        help="Write samples without motion (enabled because quality gates are disabled)",
     )
     parser.add_argument(
         "--motion-plugin",

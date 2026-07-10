@@ -1,0 +1,178 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{semantic_motion_report}[2026/07/10 Semantic-Motion project report style]
+
+% Original single-column engineering-report style. It borrows the restrained
+% typography of conference templates such as neurips_2024.sty, but deliberately
+% does not copy NeurIPS submission layout, anonymity rules, or two-column format.
+
+\RequirePackage[a4paper,top=25mm,bottom=27mm,left=28mm,right=28mm,headheight=15pt]{geometry}
+\RequirePackage{graphicx}
+\RequirePackage{booktabs}
+\RequirePackage{tabularx}
+\RequirePackage{array}
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
+\RequirePackage{microtype}
+\RequirePackage{setspace}
+\RequirePackage{titlesec}
+\RequirePackage{fancyhdr}
+\RequirePackage{caption}
+\RequirePackage{subcaption}
+\RequirePackage{xcolor}
+\RequirePackage{enumitem}
+\RequirePackage{listings}
+\RequirePackage{url}
+\RequirePackage[hidelinks,unicode]{hyperref}
+\RequirePackage[nameinlink,noabbrev]{cleveref}
+
+\IfFileExists{newtxtext.sty}{%
+  \RequirePackage{newtxtext}
+  \RequirePackage{newtxmath}
+}{}
+
+\definecolor{SMBlue}{RGB}{34,76,120}
+\definecolor{SMGray}{RGB}{88,96,105}
+\definecolor{SMLightGray}{RGB}{244,246,248}
+\definecolor{SMRule}{RGB}{205,211,217}
+
+\setstretch{1.12}
+\setlength{\parindent}{1.5em}
+\setlength{\parskip}{0.2em}
+\setlist{nosep,leftmargin=2em}
+\captionsetup{font=small,labelfont=bf,labelsep=period}
+\captionsetup[sub]{font=footnotesize}
+\setlength{\textfloatsep}{14pt plus 3pt minus 3pt}
+\setlength{\floatsep}{12pt plus 2pt minus 2pt}
+
+\titleformat{\chapter}[display]
+  {\normalfont\bfseries\color{SMBlue}}
+  {\filright\large Chapter \thechapter}
+  {0.4ex}
+  {\filright\Huge}
+  [\vspace{0.6ex}\titlerule]
+\titlespacing*{\chapter}{0pt}{-12pt}{22pt}
+\titleformat{\section}
+  {\normalfont\Large\bfseries\color{SMBlue}}
+  {\thesection}{0.75em}{}
+\titleformat{\subsection}
+  {\normalfont\large\bfseries}
+  {\thesubsection}{0.75em}{}
+\titleformat{\subsubsection}
+  {\normalfont\normalsize\bfseries}
+  {\thesubsubsection}{0.75em}{}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\nouppercase{\leftmark}}
+\fancyhead[R]{\small Semantic-Motion}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancypagestyle{plain}{%
+  \fancyhf{}
+  \fancyfoot[C]{\thepage}
+  \renewcommand{\headrulewidth}{0pt}
+}
+
+\lstdefinestyle{semanticmotion}{
+  basicstyle=\ttfamily\footnotesize,
+  backgroundcolor=\color{SMLightGray},
+  frame=single,
+  rulecolor=\color{SMRule},
+  breaklines=true,
+  columns=fullflexible,
+  keepspaces=true,
+  numbers=left,
+  numberstyle=\scriptsize\color{SMGray},
+  numbersep=8pt,
+  showstringspaces=false,
+  tabsize=2,
+  xleftmargin=1.2em,
+  framexleftmargin=1em
+}
+\lstset{style=semanticmotion}
+
+\newcommand{\sm@title}{Semantic-Motion}
+\newcommand{\sm@subtitle}{An End-to-End Engineering Pipeline for Multimodal Data Refinement}
+\newcommand{\sm@author}{Student Name}
+\newcommand{\sm@studentid}{Student ID}
+\newcommand{\sm@supervisor}{Supervisor Name}
+\newcommand{\sm@programme}{COMP7705 Project Report}
+\newcommand{\sm@institution}{The University of Hong Kong\\School of Computing and Data Science}
+\newcommand{\sm@date}{\today}
+
+\newcommand{\ProjectTitle}[1]{\renewcommand{\sm@title}{#1}}
+\newcommand{\ProjectSubtitle}[1]{\renewcommand{\sm@subtitle}{#1}}
+\newcommand{\AuthorName}[1]{\renewcommand{\sm@author}{#1}}
+\newcommand{\StudentID}[1]{\renewcommand{\sm@studentid}{#1}}
+\newcommand{\SupervisorName}[1]{\renewcommand{\sm@supervisor}{#1}}
+\newcommand{\ProgrammeName}[1]{\renewcommand{\sm@programme}{#1}}
+\newcommand{\InstitutionName}[1]{\renewcommand{\sm@institution}{#1}}
+\newcommand{\SubmissionDate}[1]{\renewcommand{\sm@date}{#1}}
+
+\newcommand{\makeprojecttitle}{%
+  \hypersetup{pageanchor=false}
+  \begin{titlepage}
+    \centering
+    {\large \sm@institution\par}
+    \vspace{2.2cm}
+    {\Huge\bfseries\color{SMBlue}\sm@title\par}
+    \vspace{0.6cm}
+    {\Large\sm@subtitle\par}
+    \vfill
+    \begin{tabular}{@{}ll@{}}
+      Author: & \sm@author \\
+      Student ID: & \sm@studentid \\
+      Supervisor: & \sm@supervisor \\
+      Programme: & \sm@programme \\
+      Submission date: & \sm@date
+    \end{tabular}
+    \vfill
+  \end{titlepage}
+  \hypersetup{pageanchor=true}
+}
+
+\newenvironment{projectabstract}
+  {\chapter*{Abstract}\addcontentsline{toc}{chapter}{Abstract}\begin{quotation}\small}
+  {\end{quotation}}
+
+\newenvironment{declaration}
+  {\chapter*{Declaration}\addcontentsline{toc}{chapter}{Declaration}}
+  {\par}
+
+\newenvironment{contributions}
+  {\chapter*{Contributions}\addcontentsline{toc}{chapter}{Contributions}}
+  {\par}
+
+\newcommand{\frontmatterstyle}{%
+  \clearpage
+  \pagenumbering{roman}
+  \pagestyle{plain}
+}
+
+\newcommand{\mainmatterstyle}{%
+  \clearpage
+  \pagenumbering{arabic}
+  \pagestyle{fancy}
+}
+
+\newcommand{\requirement}[2]{%
+  \par\noindent\textbf{#1}\quad #2\par
+}
+
+\newcommand{\resultmetric}[2]{%
+  \textbf{#1}: #2
+}
+
+\newcommand{\codepath}[1]{\texttt{\detokenize{#1}}}
+
+\hypersetup{
+  pdftitle={\sm@title},
+  pdfauthor={\sm@author},
+  pdfsubject={Semantic-Motion engineering project report},
+  colorlinks=true,
+  linkcolor=SMBlue,
+  citecolor=SMBlue,
+  urlcolor=SMBlue
+}
+

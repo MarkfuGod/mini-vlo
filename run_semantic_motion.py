@@ -15,7 +15,13 @@ from datetime import datetime
 from pathlib import Path
 
 from src.scenario import Prediction, load_scenarios
-from src.semantic_motion import SemanticMotionPipeline, VLMRecognitionModel
+from src.semantic_motion import (
+    LLMInstructionRewriter,
+    SemanticMotionPipeline,
+    SourceInstructionRewriter,
+    TemplateInstructionRewriter,
+    VLMRecognitionModel,
+)
 
 
 ROOT = Path(__file__).parent
@@ -60,6 +66,12 @@ def parse_args():
         help="Number of augmented instruction variants per scenario",
     )
     parser.add_argument(
+        "--rewriter",
+        choices=["llm", "template", "none"],
+        default="llm",
+    )
+    parser.add_argument("--rewrite-model", default=None)
+    parser.add_argument(
         "--output",
         default=None,
         help="Path to save Semantic-Motion JSON records",
@@ -79,7 +91,17 @@ def main():
         base_url=args.base_url,
         model=args.model,
     )
-    pipeline = SemanticMotionPipeline(recognizer=recognizer)
+    if args.rewriter == "llm":
+        rewriter = LLMInstructionRewriter(
+            api_key=args.api_key,
+            base_url=args.base_url,
+            model=args.rewrite_model or args.model,
+        )
+    elif args.rewriter == "template":
+        rewriter = TemplateInstructionRewriter()
+    else:
+        rewriter = SourceInstructionRewriter()
+    pipeline = SemanticMotionPipeline(recognizer=recognizer, rewriter=rewriter)
     print(
         "Semantic-Motion ready "
         f"model={recognizer.model} base_url={recognizer.base_url}"
@@ -136,6 +158,8 @@ def main():
             {
                 "streams": ["perception", "augmentation"],
                 "recognition_model": recognizer.model,
+                "rewriter": args.rewriter,
+                "rewrite_model": args.rewrite_model or args.model,
                 "num_records": len(records),
                 "records": records,
             },

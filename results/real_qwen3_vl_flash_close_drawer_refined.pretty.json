@@ -1,0 +1,31 @@
+[
+  {
+    "sample_id": "close_drawer_video",
+    "motion_quality_score": null,
+    "semantic_label": "consistent",
+    "semantic_confidence": 1.0,
+    "decision": "keep",
+    "reason_codes": [
+      "motion_missing",
+      "qwen3-vl-flash_request_failed",
+      "semantic_only_mode"
+    ],
+    "aux": {
+      "motion": {
+        "valid": 0.0,
+        "missing": 1.0
+      },
+      "semantic": {
+        "label": "consistent",
+        "confidence": 1.0,
+        "error_types": [
+          "qwen3-vl-flash_request_failed"
+        ],
+        "suggested_text": "Overall video task sequence:\n0.00s-3.30s: pick and place open drawer to white box\n6.61s-6.61s: pick and place object inside box drawer to table\n9.91s-9.91s: pick and place blue object to outside the box",
+        "verifier": "qwen3-vl-flash_fallback"
+      },
+      "text": "Overall video task sequence:\n0.00s-3.30s: pick and place open drawer to white box\n6.61s-6.61s: pick and place object inside box drawer to table\n9.91s-9.91s: pick and place blue object to outside the box",
+      "label": null
+    }
+  }
+]

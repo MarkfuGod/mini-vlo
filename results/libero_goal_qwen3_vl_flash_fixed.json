@@ -1,0 +1,1082 @@
+{
+  "model": "qwen3-vl-flash",
+  "evaluation": "weak task-title instruction token F1",
+  "warning": "LIBERO titles are task-level labels only. These scores do not measure temporal boundaries, micro-actions, cross-view fusion, or refinement.",
+  "sample_view_count": 3,
+  "mean_instruction_token_f1": 0.0,
+  "results": [
+    {
+      "sample_id": "put_the_bowl_on_the_plate_demo_0",
+      "view": "fixed",
+      "video_path": "data/libero_goal/processed/put_the_bowl_on_the_plate_demo/demo_0_agentview_rgb.mp4",
+      "ground_truth_instruction": "put the bowl on the plate",
+      "ground_truth_source": "official LIBERO BDDL filename",
+      "ground_truth_scope": "weak task-level label only",
+      "prediction": "pick and place silver object to white square object ; pick and place wooden sticks to black box",
+      "instruction_token_f1": 0.0,
+      "record": {
+        "video_path": "data/libero_goal/processed/put_the_bowl_on_the_plate_demo/demo_0_agentview_rgb.mp4",
+        "source_instruction": "",
+        "frames": [
+          {
+            "frame": {
+              "frame_id": 0,
+              "frame_index": 0,
+              "timestamp_sec": 0.0,
+              "image_path": ".semantic_motion_work/libero_goal/put_the_bowl_on_the_plate_demo_0/fixed/frames/frame_0000_000000.jpg"
+            },
+            "annotation": {
+              "scenario_id": "video_frame_0000",
+              "image_path": ".semantic_motion_work/libero_goal/put_the_bowl_on_the_plate_demo_0/fixed/frames/frame_0000_000000.jpg",
+              "source_instruction": "Analyze this video frame at 0.00s. Infer the robot manipulation task, target object, destination, and primitive action sequence from the visible scene.",
+              "objects": [
+                "robot arm",
+                "black box",
+                "red circular object",
+                "silver object",
+                "blue object",
+                "white square object",
+                "black circular object",
+                "wooden planks",
+                "gray platform"
+              ],
+              "spatial_relations": [
+                "robot arm ON gray platform",
+                "black box ON left side of scene",
+                "red circular object ABOVE silver object",
+                "silver object BETWEEN black box and blue object",
+                "blue object TO THE RIGHT OF silver object",
+                "white square object TO THE RIGHT OF blue object",
+                "black circular object BELOW white square object",
+                "wooden planks IN FRONT OF black box"
+              ],
+              "macro_intent": {
+                "task_type": "pick_and_place",
+                "target_object": "silver object",
+                "destination": "white square object",
+                "confidence": 1.0
+              },
+              "micro_instructions": [
+                {
+                  "step_id": 1,
+                  "text": "approach silver object",
+                  "verb": "approach",
+                  "object": "silver object",
+                  "confidence": 1.0
+                },
+                {
+                  "step_id": 2,
+                  "text": "grasp silver object",
+                  "verb": "grasp",
+                  "object": "silver object",
+                  "confidence": 1.0
+                },
+                {
+                  "step_id": 3,
+                  "text": "lift silver object",
+                  "verb": "lift",
+                  "object": "silver object",
+                  "confidence": 1.0
+                },
+                {
+                  "step_id": 4,
+                  "text": "move silver object to the right",
+                  "verb": "move",
+                  "object": "silver object to the right",
+                  "confidence": 1.0
+                },
+                {
+                  "step_id": 5,
+                  "text": "place silver object on white square object",
+                  "verb": "place",
+                  "object": "silver object on white square object",
+                  "confidence": 1.0
+                }
+              ],
+              "raw_recognition": "{\n  \"objects\": [\"robot arm\", \"black box\", \"red circular object\", \"silver object\", \"blue object\", \"white square object\", \"black circular object\", \"wooden planks\", \"gray platform\"],\n  \"spatial_relations\": [\n    \"robot arm ON gray platform\",\n    \"black box ON left side of scene\",\n    \"red circular object ABOVE silver object\",\n    \"silver object BETWEEN black box and blue object\",\n    \"blue object TO THE RIGHT OF silver object\",\n    \"white square object TO THE RIGHT OF blue object\",\n    \"black circular object BELOW white square object\",\n    \"wooden planks IN FRONT OF black box\"\n  ],\n  \"task_type\": \"pick_and_place\",\n  \"action_sequence\": [\n    \"approach silver object\",\n    \"grasp silver object\",\n    \"lift silver object\",\n    \"move silver object to the right\",\n    \"place silver object on white square object\"\n  ],\n  \"target_object\": \"silver object\",\n  \"destination\": \"white square object\"\n}",
+              "metadata": {
+                "category": "video",
+                "recognition_confidence": 1.0
+              }
+            }
+          },
+          {
+            "frame": {
+              "frame_id": 1,
+              "frame_index": 89,
+              "timestamp_sec": 4.45,
+              "image_path": ".semantic_motion_work/libero_goal/put_the_bowl_on_the_plate_demo_0/fixed/frames/frame_0001_000089.jpg"
+            },
+            "annotation": {
+              "scenario_id": "video_frame_0001",
+              "image_path": ".semantic_motion_work/libero_goal/put_the_bowl_on_the_plate_demo_0/fixed/frames/frame_0001_000089.jpg",
+              "source_instruction": "Analyze this video frame at 4.45s. Infer the robot manipulation task, target object, destination, and primitive action sequence from the visible scene.",
+              "objects": [
+                "robot arm",
+                "black box",
+                "wooden sticks",
+                "circular object",
+                "counter"
+              ],
+              "spatial_relations": [
+                "black box ON counter",
+                "wooden sticks ON counter",
+                "circular object ON counter",
+                "robot arm near wooden sticks"
+              ],
+              "macro_intent": {
+                "task_type": "pick_and_place",
+                "target_object": "wooden sticks",
+                "destination": "black box",
+                "confidence": 1.0
+              },
+              "micro_instructions": [
+                {
+                  "step_id": 1,
+                  "text": "approach wooden sticks",
+                  "verb": "approach",
+                  "object": "wooden sticks",
+                  "confidence": 1.0
+                },
+                {
+                  "step_id": 2,
+                  "text": "grasp wooden sticks",
+                  "verb": "grasp",
+                  "object": "wooden sticks",
+                  "confidence": 1.0
+                },
+                {
+                  "step_id": 3,
+                  "text": "lift wooden sticks",
+                  "verb": "lift",
+                  "object": "wooden sticks",
+                  "confidence": 1.0
+                },
+                {
+                  "step_id": 4,
+                  "text": "move wooden sticks toward black box",
+                  "verb": "move",
+                  "object": "wooden sticks toward black box",
+                  "confidence": 1.0
+                },
+                {
+                  "step_id": 5,
+                  "text": "place wooden sticks into black box",
+                  "verb": "place",
+                  "object": "wooden sticks into black box",
+                  "confidence": 1.0
+                }
+              ],
+              "raw_recognition": "{\n  \"objects\": [\"robot arm\", \"black box\", \"wooden sticks\", \"circular object\", \"counter\"],\n  \"spatial_relations\": [\"black box ON counter\", \"wooden sticks ON counter\", \"circular object ON counter\", \"robot arm near wooden sticks\"],\n  \"task_type\": \"pick_and_place\",\n  \"action_sequence\": [\"approach wooden sticks\", \"grasp wooden sticks\", \"lift wooden sticks\", \"move wooden sticks toward black box\", \"place wooden sticks into black box\"],\n  \"target_object\": \"wooden sticks\",\n  \"destination\": \"black box\"\n}",
+              "metadata": {
+                "category": "video",
+                "recognition_confidence": 1.0
+              }
+            }
+          }
+        ],
+        "task_segments": [
+          {
+            "segment_id": "segment_000",
+            "start_time_sec": 0.0,
+            "end_time_sec": 0.0,
+            "frame_ids": [
+              0
+            ],
+            "task_instruction": "pick and place silver object to white square object",
+            "objects": [
+              "robot arm",
+              "black box",
+              "red circular object",
+              "silver object",
+              "blue object",
+              "white square object",
+              "black circular object",
+              "wooden planks",
+              "gray platform"
+            ],
+            "spatial_relations": [
+              "robot arm ON gray platform",
+              "black box ON left side of scene",
+              "red circular object ABOVE silver object",
+              "silver object BETWEEN black box and blue object",
+              "blue object TO THE RIGHT OF silver object",
+              "white square object TO THE RIGHT OF blue object",
+              "black circular object BELOW white square object",
+              "wooden planks IN FRONT OF black box"
+            ],
+            "macro_intent": {
+              "task_type": "pick_and_place",
+              "target_object": "silver object",
+              "destination": "white square object",
+              "confidence": 1.0
+            },
+            "micro_instructions": [
+              {
+                "step_id": 1,
+                "text": "approach silver object",
+                "verb": "approach",
+                "object": "silver object",
+                "confidence": 1.0
+              },
+              {
+                "step_id": 2,
+                "text": "grasp silver object",
+                "verb": "grasp",
+                "object": "silver object",
+                "confidence": 1.0
+              },
+              {
+                "step_id": 3,
+                "text": "lift silver object",
+                "verb": "lift",
+                "object": "silver object",
+                "confidence": 1.0
+              },
+              {
+                "step_id": 4,
+                "text": "move silver object to the right",
+                "verb": "move",
+                "object": "silver object to the right",
+                "confidence": 1.0
+              },
+              {
+                "step_id": 5,
+                "text": "place silver object on white square object",
+                "verb": "place",
+                "object": "silver object on white square object",
+                "confidence": 1.0
+              }
+            ],
+            "augmented_instructions": [
+              {
+                "text": "pick and place silver object to white square object",
+                "strategy": "source",
+                "source_step_ids": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5
+                ],
+                "metadata": {}
+              }
+            ],
+            "confidence": 1.0,
+            "metadata": {
+              "num_frames": 1
+            }
+          },
+          {
+            "segment_id": "segment_001",
+            "start_time_sec": 4.45,
+            "end_time_sec": 4.45,
+            "frame_ids": [
+              1
+            ],
+            "task_instruction": "pick and place wooden sticks to black box",
+            "objects": [
+              "robot arm",
+              "black box",
+              "wooden sticks",
+              "circular object",
+              "counter"
+            ],
+            "spatial_relations": [
+              "black box ON counter",
+              "wooden sticks ON counter",
+              "circular object ON counter",
+              "robot arm near wooden sticks"
+            ],
+            "macro_intent": {
+              "task_type": "pick_and_place",
+              "target_object": "wooden sticks",
+              "destination": "black box",
+              "confidence": 1.0
+            },
+            "micro_instructions": [
+              {
+                "step_id": 1,
+                "text": "approach wooden sticks",
+                "verb": "approach",
+                "object": "wooden sticks",
+                "confidence": 1.0
+              },
+              {
+                "step_id": 2,
+                "text": "grasp wooden sticks",
+                "verb": "grasp",
+                "object": "wooden sticks",
+                "confidence": 1.0
+              },
+              {
+                "step_id": 3,
+                "text": "lift wooden sticks",
+                "verb": "lift",
+                "object": "wooden sticks",
+                "confidence": 1.0
+              },
+              {
+                "step_id": 4,
+                "text": "move wooden sticks toward black box",
+                "verb": "move",
+                "object": "wooden sticks toward black box",
+                "confidence": 1.0
+              },
+              {
+                "step_id": 5,
+                "text": "place wooden sticks into black box",
+                "verb": "place",
+                "object": "wooden sticks into black box",
+                "confidence": 1.0
+              }
+            ],
+            "augmented_instructions": [
+              {
+                "text": "pick and place wooden sticks to black box",
+                "strategy": "source",
+                "source_step_ids": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5
+                ],
+                "metadata": {}
+              }
+            ],
+            "confidence": 1.0,
+            "metadata": {
+              "num_frames": 1
+            }
+          }
+        ],
+        "metadata": {
+          "num_sampled_frames": 2,
+          "num_task_segments": 2,
+          "method": "keyframe_perception_temporal_boundary_detection_segment_instruction_augmentation"
+        }
+      }
+    },
+    {
+      "sample_id": "put_the_bowl_on_the_stove_demo_0",
+      "view": "fixed",
+      "video_path": "data/libero_goal/processed/put_the_bowl_on_the_stove_demo/demo_0_agentview_rgb.mp4",
+      "ground_truth_instruction": "put the bowl on the stove",
+      "ground_truth_source": "official LIBERO BDDL filename",
+      "ground_truth_scope": "weak task-level label only",
+      "prediction": "pick and place red mug to wooden plank ; pick and place black cylinder to wall socket",
+      "instruction_token_f1": 0.0,
+      "record": {
+        "video_path": "data/libero_goal/processed/put_the_bowl_on_the_stove_demo/demo_0_agentview_rgb.mp4",
+        "source_instruction": "",
+        "frames": [
+          {
+            "frame": {
+              "frame_id": 0,
+              "frame_index": 0,
+              "timestamp_sec": 0.0,
+              "image_path": ".semantic_motion_work/libero_goal/put_the_bowl_on_the_stove_demo_0/fixed/frames/frame_0000_000000.jpg"
+            },
+            "annotation": {
+              "scenario_id": "video_frame_0000",
+              "image_path": ".semantic_motion_work/libero_goal/put_the_bowl_on_the_stove_demo_0/fixed/frames/frame_0000_000000.jpg",
+              "source_instruction": "Analyze this video frame at 0.00s. Infer the robot manipulation task, target object, destination, and primitive action sequence from the visible scene.",
+              "objects": [
+                "robot arm",
+                "black box",
+                "wooden plank",
+                "red mug",
+                "metal bowl",
+                "blue object",
+                "white circular object",
+                "black knob"
+              ],
+              "spatial_relations": [
+                "robot arm ON floor",
+                "black box ON left side of scene",
+                "wooden plank ON floor near black box",
+                "red mug ON counter",
+                "metal bowl ON counter",
+                "blue object ON counter",
+                "white circular object ON counter",
+                "black knob ON counter"
+              ],
+              "macro_intent": {
+                "task_type": "pick_and_place",
+                "target_object": "red mug",
+                "destination": "wooden plank",
+                "confidence": 1.0
+              },
+              "micro_instructions": [
+                {
+                  "step_id": 1,
+                  "text": "approach red mug",
+                  "verb": "approach",
+                  "object": "red mug",
+                  "confidence": 1.0
+                },
+                {
+                  "step_id": 2,
+                  "text": "grasp red mug",
+                  "verb": "grasp",
+                  "object": "red mug",
+                  "confidence": 1.0
+                },
+                {
+                  "step_id": 3,
+                  "text": "lift red mug",
+                  "verb": "lift",
+                  "object": "red mug",
+                  "confidence": 1.0
+                },
+                {
+                  "step_id": 4,
+                  "text": "move red mug to the left",
+                  "verb": "move",
+                  "object": "red mug to the left",
+                  "confidence": 1.0
+                },
+                {
+                  "step_id": 5,
+                  "text": "place red mug on wooden plank",
+                  "verb": "place",
+                  "object": "red mug on wooden plank",
+                  "confidence": 1.0
+                }
+              ],
+              "raw_recognition": "{\n  \"objects\": [\"robot arm\", \"black box\", \"wooden plank\", \"red mug\", \"metal bowl\", \"blue object\", \"white circular object\", \"black knob\"],\n  \"spatial_relations\": [\n    \"robot arm ON floor\",\n    \"black box ON left side of scene\",\n    \"wooden plank ON floor near black box\",\n    \"red mug ON counter\",\n    \"metal bowl ON counter\",\n    \"blue object ON counter\",\n    \"white circular object ON counter\",\n    \"black knob ON counter\"\n  ],\n  \"task_type\": \"pick_and_place\",\n  \"action_sequence\": [\n    \"approach red mug\",\n    \"grasp red mug\",\n    \"lift red mug\",\n    \"move red mug to the left\",\n    \"place red mug on wooden plank\"\n  ],\n  \"target_object\": \"red mug\",\n  \"destination\": \"wooden plank\"\n}",
+              "metadata": {
+                "category": "video",
+                "recognition_confidence": 1.0
+              }
+            }
+          },
+          {
+            "frame": {
+              "frame_id": 1,
+              "frame_index": 93,
+              "timestamp_sec": 4.65,
+              "image_path": ".semantic_motion_work/libero_goal/put_the_bowl_on_the_stove_demo_0/fixed/frames/frame_0001_000093.jpg"
+            },
+            "annotation": {
+              "scenario_id": "video_frame_0001",
+              "image_path": ".semantic_motion_work/libero_goal/put_the_bowl_on_the_stove_demo_0/fixed/frames/frame_0001_000093.jpg",
+              "source_instruction": "Analyze this video frame at 4.65s. Infer the robot manipulation task, target object, destination, and primitive action sequence from the visible scene.",
+              "objects": [
+                "robot arm",
+                "black box",
+                "wooden plank",
+                "black cylinder",
+                "circular object",
+                "wall socket",
+                "gray base"
+              ],
+              "spatial_relations": [
+                "black box ON left",
+                "wooden plank ON floor",
+                "black cylinder NEAR center",
+                "circular object ABOVE black cylinder",
+                "wall socket ON wall",
+                "robot arm ON right"
+              ],
+              "macro_intent": {
+                "task_type": "pick_and_place",
+                "target_object": "black cylinder",
+                "destination": "wall socket",
+                "confidence": 1.0
+              },
+              "micro_instructions": [
+                {
+                  "step_id": 1,
+                  "text": "approach black cylinder",
+                  "verb": "approach",
+                  "object": "black cylinder",
+                  "confidence": 1.0
+                },
+                {
+                  "step_id": 2,
+                  "text": "grasp black cylinder",
+                  "verb": "grasp",
+                  "object": "black cylinder",
+                  "confidence": 1.0
+                },
+                {
+                  "step_id": 3,
+                  "text": "lift black cylinder",
+                  "verb": "lift",
+                  "object": "black cylinder",
+                  "confidence": 1.0
+                },
+                {
+                  "step_id": 4,
+                  "text": "move black cylinder to wall socket",
+                  "verb": "move",
+                  "object": "black cylinder to wall socket",
+                  "confidence": 1.0
+                },
+                {
+                  "step_id": 5,
+                  "text": "insert black cylinder INTO wall socket",
+                  "verb": "insert",
+                  "object": "black cylinder INTO wall socket",
+                  "confidence": 1.0
+                }
+              ],
+              "raw_recognition": "{\n  \"objects\": [\"robot arm\", \"black box\", \"wooden plank\", \"black cylinder\", \"circular object\", \"wall socket\", \"gray base\"],\n  \"spatial_relations\": [\"black box ON left\", \"wooden plank ON floor\", \"black cylinder NEAR center\", \"circular object ABOVE black cylinder\", \"wall socket ON wall\", \"robot arm ON right\"],\n  \"task_type\": \"pick_and_place\",\n  \"action_sequence\": [\"approach black cylinder\", \"grasp black cylinder\", \"lift black cylinder\", \"move black cylinder to wall socket\", \"insert black cylinder INTO wall socket\"],\n  \"target_object\": \"black cylinder\",\n  \"destination\": \"wall socket\"\n}",
+              "metadata": {
+                "category": "video",
+                "recognition_confidence": 1.0
+              }
+            }
+          }
+        ],
+        "task_segments": [
+          {
+            "segment_id": "segment_000",
+            "start_time_sec": 0.0,
+            "end_time_sec": 0.0,
+            "frame_ids": [
+              0
+            ],
+            "task_instruction": "pick and place red mug to wooden plank",
+            "objects": [
+              "robot arm",
+              "black box",
+              "wooden plank",
+              "red mug",
+              "metal bowl",
+              "blue object",
+              "white circular object",
+              "black knob"
+            ],
+            "spatial_relations": [
+              "robot arm ON floor",
+              "black box ON left side of scene",
+              "wooden plank ON floor near black box",
+              "red mug ON counter",
+              "metal bowl ON counter",
+              "blue object ON counter",
+              "white circular object ON counter",
+              "black knob ON counter"
+            ],
+            "macro_intent": {
+              "task_type": "pick_and_place",
+              "target_object": "red mug",
+              "destination": "wooden plank",
+              "confidence": 1.0
+            },
+            "micro_instructions": [
+              {
+                "step_id": 1,
+                "text": "approach red mug",
+                "verb": "approach",
+                "object": "red mug",
+                "confidence": 1.0
+              },
+              {
+                "step_id": 2,
+                "text": "grasp red mug",
+                "verb": "grasp",
+                "object": "red mug",
+                "confidence": 1.0
+              },
+              {
+                "step_id": 3,
+                "text": "lift red mug",
+                "verb": "lift",
+                "object": "red mug",
+                "confidence": 1.0
+              },
+              {
+                "step_id": 4,
+                "text": "move red mug to the left",
+                "verb": "move",
+                "object": "red mug to the left",
+                "confidence": 1.0
+              },
+              {
+                "step_id": 5,
+                "text": "place red mug on wooden plank",
+                "verb": "place",
+                "object": "red mug on wooden plank",
+                "confidence": 1.0
+              }
+            ],
+            "augmented_instructions": [
+              {
+                "text": "pick and place red mug to wooden plank",
+                "strategy": "source",
+                "source_step_ids": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5
+                ],
+                "metadata": {}
+              }
+            ],
+            "confidence": 1.0,
+            "metadata": {
+              "num_frames": 1
+            }
+          },
+          {
+            "segment_id": "segment_001",
+            "start_time_sec": 4.65,
+            "end_time_sec": 4.65,
+            "frame_ids": [
+              1
+            ],
+            "task_instruction": "pick and place black cylinder to wall socket",
+            "objects": [
+              "robot arm",
+              "black box",
+              "wooden plank",
+              "black cylinder",
+              "circular object",
+              "wall socket",
+              "gray base"
+            ],
+            "spatial_relations": [
+              "black box ON left",
+              "wooden plank ON floor",
+              "black cylinder NEAR center",
+              "circular object ABOVE black cylinder",
+              "wall socket ON wall",
+              "robot arm ON right"
+            ],
+            "macro_intent": {
+              "task_type": "pick_and_place",
+              "target_object": "black cylinder",
+              "destination": "wall socket",
+              "confidence": 1.0
+            },
+            "micro_instructions": [
+              {
+                "step_id": 1,
+                "text": "approach black cylinder",
+                "verb": "approach",
+                "object": "black cylinder",
+                "confidence": 1.0
+              },
+              {
+                "step_id": 2,
+                "text": "grasp black cylinder",
+                "verb": "grasp",
+                "object": "black cylinder",
+                "confidence": 1.0
+              },
+              {
+                "step_id": 3,
+                "text": "lift black cylinder",
+                "verb": "lift",
+                "object": "black cylinder",
+                "confidence": 1.0
+              },
+              {
+                "step_id": 4,
+                "text": "move black cylinder to wall socket",
+                "verb": "move",
+                "object": "black cylinder to wall socket",
+                "confidence": 1.0
+              },
+              {
+                "step_id": 5,
+                "text": "insert black cylinder INTO wall socket",
+                "verb": "insert",
+                "object": "black cylinder INTO wall socket",
+                "confidence": 1.0
+              }
+            ],
+            "augmented_instructions": [
+              {
+                "text": "pick and place black cylinder to wall socket",
+                "strategy": "source",
+                "source_step_ids": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5
+                ],
+                "metadata": {}
+              }
+            ],
+            "confidence": 1.0,
+            "metadata": {
+              "num_frames": 1
+            }
+          }
+        ],
+        "metadata": {
+          "num_sampled_frames": 2,
+          "num_task_segments": 2,
+          "method": "keyframe_perception_temporal_boundary_detection_segment_instruction_augmentation"
+        }
+      }
+    },
+    {
+      "sample_id": "turn_on_the_stove_demo_0",
+      "view": "fixed",
+      "video_path": "data/libero_goal/processed/turn_on_the_stove_demo/demo_0_agentview_rgb.mp4",
+      "ground_truth_instruction": "turn on the stove",
+      "ground_truth_source": "official LIBERO BDDL filename",
+      "ground_truth_scope": "weak task-level label only",
+      "prediction": "pick and place gray circular object to white square with circle ; pick and place silver object to wall-mounted device",
+      "instruction_token_f1": 0.0,
+      "record": {
+        "video_path": "data/libero_goal/processed/turn_on_the_stove_demo/demo_0_agentview_rgb.mp4",
+        "source_instruction": "",
+        "frames": [
+          {
+            "frame": {
+              "frame_id": 0,
+              "frame_index": 0,
+              "timestamp_sec": 0.0,
+              "image_path": ".semantic_motion_work/libero_goal/turn_on_the_stove_demo_0/fixed/frames/frame_0000_000000.jpg"
+            },
+            "annotation": {
+              "scenario_id": "video_frame_0000",
+              "image_path": ".semantic_motion_work/libero_goal/turn_on_the_stove_demo_0/fixed/frames/frame_0000_000000.jpg",
+              "source_instruction": "Analyze this video frame at 0.00s. Infer the robot manipulation task, target object, destination, and primitive action sequence from the visible scene.",
+              "objects": [
+                "robot arm",
+                "black box",
+                "wooden plank",
+                "red plate",
+                "silver object",
+                "blue rectangle",
+                "white square with circle",
+                "gray circular object"
+              ],
+              "spatial_relations": [
+                "robot arm BELOW gray circular object",
+                "black box ON left side of scene",
+                "wooden plank NEXT TO black box",
+                "red plate ABOVE silver object",
+                "silver object NEAR robot arm",
+                "blue rectangle ON wall",
+                "white square with circle ON wall",
+                "gray circular object IN front of robot arm"
+              ],
+              "macro_intent": {
+                "task_type": "pick_and_place",
+                "target_object": "gray circular object",
+                "destination": "white square with circle",
+                "confidence": 1.0
+              },
+              "micro_instructions": [
+                {
+                  "step_id": 1,
+                  "text": "approach gray circular object",
+                  "verb": "approach",
+                  "object": "gray circular object",
+                  "confidence": 1.0
+                },
+                {
+                  "step_id": 2,
+                  "text": "grasp gray circular object",
+                  "verb": "grasp",
+                  "object": "gray circular object",
+                  "confidence": 1.0
+                },
+                {
+                  "step_id": 3,
+                  "text": "lift gray circular object",
+                  "verb": "lift",
+                  "object": "gray circular object",
+                  "confidence": 1.0
+                },
+                {
+                  "step_id": 4,
+                  "text": "move gray circular object to the right",
+                  "verb": "move",
+                  "object": "gray circular object to the right",
+                  "confidence": 1.0
+                },
+                {
+                  "step_id": 5,
+                  "text": "place gray circular object on white square with circle",
+                  "verb": "place",
+                  "object": "gray circular object on white square with circle",
+                  "confidence": 1.0
+                }
+              ],
+              "raw_recognition": "{\n  \"objects\": [\"robot arm\", \"black box\", \"wooden plank\", \"red plate\", \"silver object\", \"blue rectangle\", \"white square with circle\", \"gray circular object\"],\n  \"spatial_relations\": [\n    \"robot arm BELOW gray circular object\",\n    \"black box ON left side of scene\",\n    \"wooden plank NEXT TO black box\",\n    \"red plate ABOVE silver object\",\n    \"silver object NEAR robot arm\",\n    \"blue rectangle ON wall\",\n    \"white square with circle ON wall\",\n    \"gray circular object IN front of robot arm\"\n  ],\n  \"task_type\": \"pick_and_place\",\n  \"action_sequence\": [\n    \"approach gray circular object\",\n    \"grasp gray circular object\",\n    \"lift gray circular object\",\n    \"move gray circular object to the right\",\n    \"place gray circular object on white square with circle\"\n  ],\n  \"target_object\": \"gray circular object\",\n  \"destination\": \"white square with circle\"\n}",
+              "metadata": {
+                "category": "video",
+                "recognition_confidence": 1.0
+              }
+            }
+          },
+          {
+            "frame": {
+              "frame_id": 1,
+              "frame_index": 79,
+              "timestamp_sec": 3.95,
+              "image_path": ".semantic_motion_work/libero_goal/turn_on_the_stove_demo_0/fixed/frames/frame_0001_000079.jpg"
+            },
+            "annotation": {
+              "scenario_id": "video_frame_0001",
+              "image_path": ".semantic_motion_work/libero_goal/turn_on_the_stove_demo_0/fixed/frames/frame_0001_000079.jpg",
+              "source_instruction": "Analyze this video frame at 3.95s. Infer the robot manipulation task, target object, destination, and primitive action sequence from the visible scene.",
+              "objects": [
+                "robot arm",
+                "black object",
+                "wooden plank",
+                "red circular object",
+                "silver object",
+                "blue object",
+                "wall-mounted device"
+              ],
+              "spatial_relations": [
+                "robot arm ON floor",
+                "black object ON left side",
+                "wooden plank ON floor near black object",
+                "red circular object ON wall",
+                "silver object ON floor near robot arm",
+                "blue object ON wall next to red circular object",
+                "wall-mounted device WITH red circle ON wall"
+              ],
+              "macro_intent": {
+                "task_type": "pick_and_place",
+                "target_object": "silver object",
+                "destination": "wall-mounted device",
+                "confidence": 1.0
+              },
+              "micro_instructions": [
+                {
+                  "step_id": 1,
+                  "text": "approach silver object",
+                  "verb": "approach",
+                  "object": "silver object",
+                  "confidence": 1.0
+                },
+                {
+                  "step_id": 2,
+                  "text": "grasp silver object",
+                  "verb": "grasp",
+                  "object": "silver object",
+                  "confidence": 1.0
+                },
+                {
+                  "step_id": 3,
+                  "text": "lift silver object",
+                  "verb": "lift",
+                  "object": "silver object",
+                  "confidence": 1.0
+                },
+                {
+                  "step_id": 4,
+                  "text": "move silver object toward wall-mounted device",
+                  "verb": "move",
+                  "object": "silver object toward wall-mounted device",
+                  "confidence": 1.0
+                },
+                {
+                  "step_id": 5,
+                  "text": "place silver object on wall-mounted device",
+                  "verb": "place",
+                  "object": "silver object on wall-mounted device",
+                  "confidence": 1.0
+                }
+              ],
+              "raw_recognition": "{\n  \"objects\": [\"robot arm\", \"black object\", \"wooden plank\", \"red circular object\", \"silver object\", \"blue object\", \"wall-mounted device\"],\n  \"spatial_relations\": [\n    \"robot arm ON floor\",\n    \"black object ON left side\",\n    \"wooden plank ON floor near black object\",\n    \"red circular object ON wall\",\n    \"silver object ON floor near robot arm\",\n    \"blue object ON wall next to red circular object\",\n    \"wall-mounted device WITH red circle ON wall\"\n  ],\n  \"task_type\": \"pick_and_place\",\n  \"action_sequence\": [\n    \"approach silver object\",\n    \"grasp silver object\",\n    \"lift silver object\",\n    \"move silver object toward wall-mounted device\",\n    \"place silver object on wall-mounted device\"\n  ],\n  \"target_object\": \"silver object\",\n  \"destination\": \"wall-mounted device\"\n}",
+              "metadata": {
+                "category": "video",
+                "recognition_confidence": 1.0
+              }
+            }
+          }
+        ],
+        "task_segments": [
+          {
+            "segment_id": "segment_000",
+            "start_time_sec": 0.0,
+            "end_time_sec": 0.0,
+            "frame_ids": [
+              0
+            ],
+            "task_instruction": "pick and place gray circular object to white square with circle",
+            "objects": [
+              "robot arm",
+              "black box",
+              "wooden plank",
+              "red plate",
+              "silver object",
+              "blue rectangle",
+              "white square with circle",
+              "gray circular object"
+            ],
+            "spatial_relations": [
+              "robot arm BELOW gray circular object",
+              "black box ON left side of scene",
+              "wooden plank NEXT TO black box",
+              "red plate ABOVE silver object",
+              "silver object NEAR robot arm",
+              "blue rectangle ON wall",
+              "white square with circle ON wall",
+              "gray circular object IN front of robot arm"
+            ],
+            "macro_intent": {
+              "task_type": "pick_and_place",
+              "target_object": "gray circular object",
+              "destination": "white square with circle",
+              "confidence": 1.0
+            },
+            "micro_instructions": [
+              {
+                "step_id": 1,
+                "text": "approach gray circular object",
+                "verb": "approach",
+                "object": "gray circular object",
+                "confidence": 1.0
+              },
+              {
+                "step_id": 2,
+                "text": "grasp gray circular object",
+                "verb": "grasp",
+                "object": "gray circular object",
+                "confidence": 1.0
+              },
+              {
+                "step_id": 3,
+                "text": "lift gray circular object",
+                "verb": "lift",
+                "object": "gray circular object",
+                "confidence": 1.0
+              },
+              {
+                "step_id": 4,
+                "text": "move gray circular object to the right",
+                "verb": "move",
+                "object": "gray circular object to the right",
+                "confidence": 1.0
+              },
+              {
+                "step_id": 5,
+                "text": "place gray circular object on white square with circle",
+                "verb": "place",
+                "object": "gray circular object on white square with circle",
+                "confidence": 1.0
+              }
+            ],
+            "augmented_instructions": [
+              {
+                "text": "pick and place gray circular object to white square with circle",
+                "strategy": "source",
+                "source_step_ids": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5
+                ],
+                "metadata": {}
+              }
+            ],
+            "confidence": 1.0,
+            "metadata": {
+              "num_frames": 1
+            }
+          },
+          {
+            "segment_id": "segment_001",
+            "start_time_sec": 3.95,
+            "end_time_sec": 3.95,
+            "frame_ids": [
+              1
+            ],
+            "task_instruction": "pick and place silver object to wall-mounted device",
+            "objects": [
+              "robot arm",
+              "black object",
+              "wooden plank",
+              "red circular object",
+              "silver object",
+              "blue object",
+              "wall-mounted device"
+            ],
+            "spatial_relations": [
+              "robot arm ON floor",
+              "black object ON left side",
+              "wooden plank ON floor near black object",
+              "red circular object ON wall",
+              "silver object ON floor near robot arm",
+              "blue object ON wall next to red circular object",
+              "wall-mounted device WITH red circle ON wall"
+            ],
+            "macro_intent": {
+              "task_type": "pick_and_place",
+              "target_object": "silver object",
+              "destination": "wall-mounted device",
+              "confidence": 1.0
+            },
+            "micro_instructions": [
+              {
+                "step_id": 1,
+                "text": "approach silver object",
+                "verb": "approach",
+                "object": "silver object",
+                "confidence": 1.0
+              },
+              {
+                "step_id": 2,
+                "text": "grasp silver object",
+                "verb": "grasp",
+                "object": "silver object",
+                "confidence": 1.0
+              },
+              {
+                "step_id": 3,
+                "text": "lift silver object",
+                "verb": "lift",
+                "object": "silver object",
+                "confidence": 1.0
+              },
+              {
+                "step_id": 4,
+                "text": "move silver object toward wall-mounted device",
+                "verb": "move",
+                "object": "silver object toward wall-mounted device",
+                "confidence": 1.0
+              },
+              {
+                "step_id": 5,
+                "text": "place silver object on wall-mounted device",
+                "verb": "place",
+                "object": "silver object on wall-mounted device",
+                "confidence": 1.0
+              }
+            ],
+            "augmented_instructions": [
+              {
+                "text": "pick and place silver object to wall-mounted device",
+                "strategy": "source",
+                "source_step_ids": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5
+                ],
+                "metadata": {}
+              }
+            ],
+            "confidence": 1.0,
+            "metadata": {
+              "num_frames": 1
+            }
+          }
+        ],
+        "metadata": {
+          "num_sampled_frames": 2,
+          "num_task_segments": 2,
+          "method": "keyframe_perception_temporal_boundary_detection_segment_instruction_augmentation"
+        }
+      }
+    }
+  ]
+}

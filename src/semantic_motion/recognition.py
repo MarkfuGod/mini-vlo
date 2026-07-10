@@ -7,7 +7,7 @@ VLM/VLO recognizer can be swapped in without changing the pipeline code.
 from __future__ import annotations
 
 from pathlib import Path
-from typing import Protocol
+from typing import Iterable, Protocol
 
 from src.scenario import Prediction
 
@@ -17,6 +17,13 @@ class RecognitionModel(Protocol):
 
     def analyze(self, image_path: str | Path, instruction: str) -> Prediction:
         """Return structured robot-task understanding for an image/instruction."""
+
+    def analyze_many(
+        self,
+        image_paths: Iterable[str | Path],
+        instruction: str,
+    ) -> Prediction:
+        """Return one prediction from ordered multi-image evidence."""
 
 
 class VLMRecognitionModel:
@@ -44,3 +51,10 @@ class VLMRecognitionModel:
 
     def analyze(self, image_path: str | Path, instruction: str) -> Prediction:
         return self.engine.analyze(image_path, instruction)
+
+    def analyze_many(
+        self,
+        image_paths: Iterable[str | Path],
+        instruction: str,
+    ) -> Prediction:
+        return self.engine.analyze_many(image_paths, instruction)

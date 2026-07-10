@@ -22,7 +22,14 @@ from src.module_c.refinement import (
     save_results,
     save_results_pretty,
 )
-from src.semantic_motion import VLMRecognitionModel, VideoTaskPipeline
+from src.semantic_motion import (
+    LLMInstructionRewriter,
+    SourceInstructionRewriter,
+    TemplateInstructionRewriter,
+    VLMRecognitionModel,
+    VideoTaskPipeline,
+    load_view_bundle,
+)
 
 
 ROOT = Path(__file__).parent
@@ -57,6 +64,16 @@ def parse_args():
         "--frame-dir",
         help="Directory of pre-extracted frames, sorted by filename",
     )
+    source.add_argument(
+        "--manifest",
+        help="ViewBundle or dataset manifest with synchronized fixed/ego views",
+    )
+    parser.add_argument("--sample-id", default="")
+    parser.add_argument(
+        "--view-mode",
+        choices=["fixed", "ego", "fused"],
+        default="fused",
+    )
     parser.add_argument(
         "--instruction",
         default="",
@@ -80,6 +97,12 @@ def parse_args():
         default=3,
         help="Augmented instruction variants per detected segment",
     )
+    parser.add_argument(
+        "--rewriter",
+        choices=["llm", "template", "none"],
+        default="llm",
+    )
+    parser.add_argument("--rewrite-model", default=None)
     parser.add_argument("--api-key", default=None, help="VLM API key")
     parser.add_argument(
         "--base-url",
@@ -89,7 +112,7 @@ def parse_args():
     parser.add_argument(
         "--vlm-model",
         default=None,
-        help="Generation model name, e.g. qwen-vl-plus, qwen-vl-max",
+        help="Generation model name, e.g. qwen3-vl-flash, qwen3-vl-plus",
     )
     parser.add_argument(
         "--refine-config",
@@ -99,8 +122,13 @@ def parse_args():
     parser.add_argument(
         "--semantic-verifier",
         default=None,
-        choices=["mock", "qwen3-vl-plus"],
+        choices=["mock", "qwen3-vl-flash", "qwen3-vl-plus"],
         help="Optional override for semantic.verifier in the refinement config",
+    )
+    parser.add_argument(
+        "--judge-model",
+        default=None,
+        help="Independent semantic judge model; do not reuse generator by default.",
     )
     parser.add_argument(
         "--motion-aggregation",
@@ -151,15 +179,28 @@ def parse_args():
         help="Deprecated alias for a LIBERO demo_0_traj.json path. Prefer --motion-path.",
     )
     parser.add_argument(
+        "--debug-dummy-motion",
         "--allow-dummy-motion",
+        dest="allow_dummy_motion",
         action="store_true",
-        default=True,
-        help="Allow synthetic placeholder motion when no real motion is found (default).",
+        default=False,
+        help="Explicit debug-only placeholder; formal refinement always drops it.",
     )
     parser.add_argument(
         "--allow-missing-motion",
         action="store_true",
-        help="Allow semantic-only filtering when motion is missing",
+        default=True,
+        help="Write samples without motion (quality gates are disabled).",
+    )
+    parser.add_argument(
+        "--allow-single-view-debug",
+        action="store_true",
+        help="Disable the production paired-view sync requirement.",
+    )
+    parser.add_argument(
+        "--allow-mock-debug",
+        action="store_true",
+        help="Permit mock semantic results to keep samples (debug only).",
     )
     parser.add_argument(
         "--motion-plugin",
@@ -211,13 +252,35 @@ def main() -> None:
         base_url=args.base_url,
         model=args.vlm_model,
     )
-    pipeline = VideoTaskPipeline(recognizer=recognizer)
+    if args.rewriter == "llm":
+        rewriter = LLMInstructionRewriter(
+            api_key=args.api_key,
+            base_url=args.base_url,
+            model=args.rewrite_model or args.vlm_model,
+        )
+    elif args.rewriter == "template":
+        rewriter = TemplateInstructionRewriter()
+    else:
+        rewriter = SourceInstructionRewriter()
+    pipeline = VideoTaskPipeline(recognizer=recognizer, rewriter=rewriter)
     print(
         "Generate-filter ready "
         f"model={recognizer.model} base_url={recognizer.base_url}"
     )
 
-    if args.video:
+    bundle = None
+    if args.manifest:
+        bundle = load_view_bundle(args.manifest, sample_id=args.sample_id or None)
+        source_path = Path(args.manifest)
+        record = pipeline.run_view_bundle(
+            bundle,
+            work_dir=WORK_DIR / bundle.sample_id / args.view_mode,
+            source_instruction=args.instruction,
+            view_mode=args.view_mode,
+            num_variants=args.variants,
+            macro_frames=args.max_frames,
+        )
+    elif args.video:
         source_path = Path(args.video)
         record = pipeline.run_video(
             source_path,
@@ -257,7 +320,15 @@ def main() -> None:
     sample_options = PrepareSamplesOptions(
         text_source=args.text_source,
         sample_level=args.sample_level,
-        motion_path=args.motion_path or None,
+        motion_path=(
+            args.motion_path
+            or (
+                bundle.trajectory.path
+                if bundle is not None and bundle.trajectory is not None
+                else ""
+            )
+            or None
+        ),
         motion_dir=args.motion_dir or None,
         libero_traj_file=args.libero_traj_file or None,
         allow_dummy_motion=args.allow_dummy_motion,
@@ -282,8 +353,14 @@ def main() -> None:
     cfg = load_config(args.refine_config)
     if args.semantic_verifier:
         cfg.semantic_cfg.verifier = args.semantic_verifier
+    if args.judge_model:
+        cfg.semantic_cfg.qwen_vl_model = args.judge_model
     if args.motion_aggregation:
         cfg.motion_cfg.aggregation = args.motion_aggregation
+    if args.allow_single_view_debug:
+        cfg.sync_cfg.require_paired_views = False
+    if args.allow_mock_debug:
+        cfg.allow_mock_keep = True
     samples = load_samples(samples_path)
     results = refine_samples(samples, cfg)
 

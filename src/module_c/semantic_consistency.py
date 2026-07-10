@@ -10,15 +10,24 @@ from pathlib import Path
 from typing import Any, Protocol
 from urllib import error, request
 
+from dotenv import load_dotenv
+
 
 ROOT_DIR = Path(__file__).resolve().parents[2]
+load_dotenv(ROOT_DIR / ".env")
 
 
 @dataclass
 class SemanticConfig:
-    verifier: str = "qwen3-vl-plus"
+    verifier: str = "qwen3-vl-flash"
     prompt_file: str = "src/module_c/semantic_consistency_v1.txt"
-    request_timeout_s: float = 30.0
+    request_timeout_s: float = 300.0
+    qwen_vl_base_url: str = (
+        "https://dashscope.aliyuncs.com/compatible-mode/v1"
+    )
+    qwen_vl_api_key_env: str = "DASHSCOPE_API_KEY"
+    qwen_vl_model: str = "qwen3-vl-flash"
+    # Kept for backward compatibility with existing qwen3-vl-plus configs.
     qwen3vl_plus_base_url: str = (
         "https://ws-2rplzca29h2l058p.cn-beijing.maas.aliyuncs.com/"
         "compatible-mode/v1"
@@ -68,6 +77,18 @@ def _heuristic_result(text: str) -> dict[str, object]:
         "confidence": confidence,
         "error_types": errors,
         "suggested_text": text.strip(),
+    }
+
+
+def _failure_result(provider: str, reason: str) -> dict[str, object]:
+    """Production failures are uncertain and can never be promoted to keep."""
+    return {
+        "label": "uncertain",
+        "confidence": 0.0,
+        "error_types": [reason],
+        "suggested_text": "",
+        "verifier": f"{provider}_failed",
+        "request_failed": True,
     }
 
 
@@ -122,12 +143,10 @@ class _HTTPJSONVerifier:
 
     def verify(self, video_path: str, text: str) -> dict[str, object]:
         if not self.endpoint:
-            fallback = _heuristic_result(text)
-            fallback["error_types"] = list(fallback.get("error_types", [])) + [
-                f"{self.provider}_endpoint_missing"
-            ]
-            fallback["verifier"] = f"{self.provider}_fallback"
-            return fallback
+            return _failure_result(
+                self.provider,
+                f"{self.provider}_endpoint_missing",
+            )
 
         payload = {
             "video_path": video_path,
@@ -151,12 +170,10 @@ class _HTTPJSONVerifier:
                 raw = json.loads(resp.read().decode("utf-8"))
             return _normalize_result(raw, self.provider)
         except (error.URLError, error.HTTPError, TimeoutError, json.JSONDecodeError):
-            fallback = _heuristic_result(text)
-            fallback["error_types"] = list(fallback.get("error_types", [])) + [
-                f"{self.provider}_request_failed"
-            ]
-            fallback["verifier"] = f"{self.provider}_fallback"
-            return fallback
+            return _failure_result(
+                self.provider,
+                f"{self.provider}_request_failed",
+            )
 
 
 class _DashScopeCompatVerifier:
@@ -189,10 +206,7 @@ class _DashScopeCompatVerifier:
         )
 
     def _fallback(self, text: str, reason: str) -> dict[str, object]:
-        fallback = _heuristic_result(text)
-        fallback["error_types"] = list(fallback.get("error_types", [])) + [reason]
-        fallback["verifier"] = f"{self.provider}_fallback"
-        return fallback
+        return _failure_result(self.provider, reason)
 
     @staticmethod
     def _local_file_to_data_url(path: Path) -> str:
@@ -368,6 +382,8 @@ class _DashScopeCompatVerifier:
             local_content, local_media_reason = self._build_local_video_content(
                 video_path
             )
+            if local_media_reason:
+                return self._fallback(text, local_media_reason)
             user_content.extend(local_content)
 
         payload = {
@@ -403,10 +419,6 @@ class _DashScopeCompatVerifier:
             if parsed is None:
                 return self._fallback(text, f"{self.provider}_response_parse_failed")
             result = _normalize_result(parsed, self.provider)
-            if local_media_reason:
-                result["error_types"] = list(result.get("error_types", [])) + [
-                    local_media_reason
-                ]
             return result
         except (error.URLError, error.HTTPError, TimeoutError, json.JSONDecodeError):
             return self._fallback(text, f"{self.provider}_request_failed")
@@ -438,6 +450,18 @@ def build_verifier(cfg: SemanticConfig) -> SemanticVerifier:
     prompt_text = _load_prompt_text(cfg.prompt_file)
     if name == "mock":
         return MockVLMVerifier()
+    if name in {"qwen3-vl-flash", "qwen3_vl_flash", "qwen3vlflash"}:
+        return _DashScopeCompatVerifier(
+            provider="qwen3-vl-flash",
+            base_url=os.getenv("DASHSCOPE_BASE_URL", cfg.qwen_vl_base_url),
+            api_key_env=cfg.qwen_vl_api_key_env,
+            timeout_s=cfg.request_timeout_s,
+            prompt_text=prompt_text,
+            model=os.getenv("SEMANTIC_JUDGE_MODEL", cfg.qwen_vl_model),
+            local_video_max_upload_mb=cfg.local_video_max_upload_mb,
+            local_video_frame_count=cfg.local_video_frame_count,
+            local_video_frame_jpeg_quality=cfg.local_video_frame_jpeg_quality,
+        )
     if name in {"qwen3-vl-plus", "qwen3_vl_plus", "qwen3vlplus"}:
         return _DashScopeCompatVerifier(
             provider="qwen3-vl-plus",
@@ -452,7 +476,7 @@ def build_verifier(cfg: SemanticConfig) -> SemanticVerifier:
         )
     raise ValueError(
         f"Unknown semantic verifier: {cfg.verifier}. "
-        "Supported: mock, qwen3-vl-plus."
+        "Supported: mock, qwen3-vl-flash, qwen3-vl-plus."
     )
 
 
@@ -463,10 +487,61 @@ def verify_semantic_consistency(
 ) -> tuple[dict[str, object], list[str]]:
     result = verifier.verify(video_path=video_path, text=text)
     reasons: list[str] = list(result.get("error_types", []))
+    verifier_name = str(result.get("verifier", ""))
+    if result.get("request_failed") or verifier_name.endswith(("_failed", "_fallback")):
+        result["label"] = "uncertain"
+        result["confidence"] = 0.0
+        reasons.append("semantic_verifier_failed")
     label = result.get("label")
     if label == "uncertain":
         reasons.append("semantic_uncertain")
     if label == "inconsistent":
         reasons.append("semantic_mismatch")
-    return result, reasons
+    return result, sorted(set(reasons))
+
+
+def verify_multiview_semantic_consistency(
+    video_paths: dict[str, str],
+    text: str,
+    verifier: SemanticVerifier,
+) -> tuple[dict[str, object], list[str]]:
+    """Judge each synchronized view independently and combine fail-closed."""
+    per_view: dict[str, dict[str, object]] = {}
+    reasons: list[str] = []
+    for view_id, video_path in sorted(video_paths.items()):
+        result, view_reasons = verify_semantic_consistency(
+            video_path=video_path,
+            text=text,
+            verifier=verifier,
+        )
+        per_view[view_id] = result
+        reasons.extend(f"{view_id}:{reason}" for reason in view_reasons)
+
+    labels = [str(result.get("label", "uncertain")) for result in per_view.values()]
+    confidences = []
+    for result in per_view.values():
+        try:
+            confidences.append(float(result.get("confidence", 0.0)))
+        except (TypeError, ValueError):
+            confidences.append(0.0)
+    if not labels or "inconsistent" in labels:
+        label = "inconsistent" if labels else "uncertain"
+    elif "uncertain" in labels:
+        label = "uncertain"
+    else:
+        label = "consistent"
+    confidence = min(confidences) if confidences else 0.0
+    combined: dict[str, object] = {
+        "label": label,
+        "confidence": confidence,
+        "error_types": sorted(set(reasons)),
+        "suggested_text": text if label == "consistent" else "",
+        "verifier": "independent_multiview",
+        "per_view": per_view,
+    }
+    if label == "uncertain":
+        reasons.append("semantic_uncertain")
+    if label == "inconsistent":
+        reasons.append("semantic_mismatch")
+    return combined, sorted(set(reasons))
 

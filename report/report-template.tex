@@ -1,0 +1,140 @@
+\documentclass[11pt,oneside]{report}
+
+\usepackage{semantic_motion_report}
+\usepackage[numbers,sort&compress]{natbib}
+
+\ProjectTitle{Semantic-Motion}
+\ProjectSubtitle{A Multi-view Engineering Pipeline for Perception, Fact-preserving Language Augmentation and Fail-closed Multimodal Refinement}
+\AuthorName{Your Name}
+\StudentID{Your Student ID}
+\SupervisorName{Your Supervisor}
+\SubmissionDate{Month 2026}
+
+\begin{document}
+
+\makeprojecttitle
+\frontmatterstyle
+
+\begin{declaration}
+State originality, academic integrity, use of generative AI where required,
+and individual contributions for a group project.
+\end{declaration}
+
+\begin{projectabstract}
+Keep the abstract below 200 words. State the data problem, the four-module
+pipeline, the evaluated outputs, the strongest quantitative result, and the
+main limitation. Do not describe planned work as completed work.
+\end{projectabstract}
+
+\tableofcontents
+\listoffigures
+\listoftables
+
+\mainmatterstyle
+
+\chapter{Introduction}
+\section{Project Context: From Motion Data to VLA-ready Multimodal Data}
+\section{Engineering Problem and Motivation}
+\section{Project Aim and Engineering Deliverables}
+\section{System Requirements}
+\section{Scope and Boundaries}
+\section{Contributions}
+\section{Report Organisation}
+
+\chapter{Technical Background and Related Systems}
+\section{Vision-Language-Action Models}
+\section{Robot Learning Benchmarks}
+\section{Vision-Language Models for Robotics}
+\section{Video-to-Task Generation}
+\section{Demonstration Data Quality}
+\section{Engineering Gap}
+
+\chapter{System Requirements and Overall Design}
+\section{Inputs, Outputs and Use Cases}
+\section{Design Goals}
+\section{Overall Architecture}
+\section{Module Responsibilities and Boundaries}
+\section{Data Models and Interface Contracts}
+\subsection{Paired Multi-view Video Contract}
+\subsection{Shared Timebase and Motion Trajectory Contract}
+\section{Observability and Visualisation Design}
+\section{End-to-End Workflow}
+
+\chapter{Design and Implementation of the Four Modules}
+\section{The Rendering Module}
+\subsection{Motion Data Import and Scene Initialisation}
+\subsection{Scene Context Generation}
+\subsection{Multi-view Video Synthesis}
+\subsection{3D Motion Trajectory Export}
+\subsection{Rendering Outputs and Manifest}
+
+\section{The Perception Module}
+\subsection{Paired-view Input and Synchronous Frame Sampling}
+\subsection{Overlapping Macro Windows and Boundary Voting}
+\subsection{VLM-based Structured Scene Understanding}
+\subsection{Macro-Intent Recognition}
+\subsection{Dense Micro-Instruction Parsing}
+\subsection{Body, Contact, Posture and Trajectory Evidence}
+\subsection{Temporal Task Boundary Detection}
+\subsection{Segment-level Temporal Aggregation}
+\subsection{Static Perception Benchmark}
+
+\section{The Fact-preserving LLM Augmentation Module}
+\subsection{Input and Interface}
+\subsection{Instruction Reconstruction}
+\subsection{Augmentation Strategies}
+\subsection{Deterministic Fact Preservation and Hallucination Control}
+\subsection{Output and Provenance}
+
+\section{The Refinement Module}
+\subsection{Sample Construction}
+\subsection{Motion Data Normalisation}
+\subsection{Motion Quality Scoring}
+\subsection{Semantic Consistency Verification}
+\subsection{Deterministic Cross-modal Alignment Checks}
+\subsection{Fail-closed Refinement Decision and Explainable Outputs}
+
+\chapter{System Integration, Demonstration and Evaluation}
+\section{Research Questions}
+\section{Integration Environment and Technology Stack}
+\section{Module Integration and Interface Verification}
+\section{End-to-End Demonstration and Visualisation}
+\section{Evaluation Setup}
+\section{Perception Module Evaluation}
+\section{Pinned Video2Tasks Full-pipeline Comparison}
+\section{Refinement and Alignment Evaluation}
+\subsection{Human Gold Annotation Protocol}
+\subsection{Temporal Boundary and Segment Metrics}
+\subsection{Keep/Drop and Confidence Calibration}
+\subsection{Controlled Motion Corruptions}
+\section{Cross-module Case Studies}
+\section{Component and Configuration Analysis}
+\section{Engineering Acceptance Summary}
+
+\chapter{Engineering Discussion}
+\section{Interpretation of System Results}
+\section{Engineering Strengths}
+\section{Failure Mode Analysis}
+\section{Limitations}
+\section{Engineering Trade-offs}
+\section{Evaluation Validity}
+\section{Implications for VLA Data Pipelines}
+
+\chapter{Conclusion and Future Work}
+\section{Conclusion}
+\noindent Report only automatically verified or independently evaluated results.
+Mark API, Blender, and pending-human evidence explicitly; do not infer completion.
+\section{Future Work}
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\appendix
+\chapter{VLM System Prompts}
+\chapter{Semantic Consistency Prompt}
+\chapter{Data Schemas}
+\chapter{Configuration}
+\chapter{Additional Results}
+\chapter{User Guide}
+
+\end{document}

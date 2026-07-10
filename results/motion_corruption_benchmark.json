@@ -1,0 +1,97 @@
+{
+  "source": "data/libero_goal/processed/put_the_bowl_on_the_plate_demo/demo_0_traj.json",
+  "corruption_detection_auroc": 1.0,
+  "rows": [
+    {
+      "track": "eef",
+      "corruption": "clean",
+      "is_corrupt": false,
+      "quality_score": 0.9904195666313171,
+      "anomaly_score": 0.009580433368682861,
+      "details": {
+        "velocity_ratio": 0.0,
+        "acceleration_ratio": 0.0,
+        "jerk_ratio": 0.011494252873563218,
+        "jitter_ratio": 0.0,
+        "interval_cv": 2.0638894966396037e-06,
+        "time_gap_ratio": 1.000004768371582
+      },
+      "reason_codes": []
+    },
+    {
+      "track": "eef",
+      "corruption": "jitter",
+      "is_corrupt": true,
+      "quality_score": 0.3333314061164856,
+      "anomaly_score": 0.6666685938835144,
+      "details": {
+        "velocity_ratio": 1.0,
+        "acceleration_ratio": 1.0,
+        "jerk_ratio": 1.0,
+        "jitter_ratio": 1.0,
+        "interval_cv": 2.0638894966396037e-06,
+        "time_gap_ratio": 1.000004768371582
+      },
+      "reason_codes": [
+        "high_jitter",
+        "high_velocity_spikes",
+        "high_acceleration_spikes",
+        "high_jerk_spikes"
+      ]
+    },
+    {
+      "track": "eef",
+      "corruption": "spike",
+      "is_corrupt": true,
+      "quality_score": 0.8923434019088745,
+      "anomaly_score": 0.10765659809112549,
+      "details": {
+        "velocity_ratio": 0.02247191011235955,
+        "acceleration_ratio": 0.03409090909090909,
+        "jerk_ratio": 0.05747126436781609,
+        "jitter_ratio": 0.022727272727272728,
+        "interval_cv": 2.0638894966396037e-06,
+        "time_gap_ratio": 1.000004768371582
+      },
+      "reason_codes": []
+    },
+    {
+      "track": "eef",
+      "corruption": "drop_frame",
+      "is_corrupt": true,
+      "quality_score": 0.6379309892654419,
+      "anomaly_score": 0.3620690107345581,
+      "details": {
+        "velocity_ratio": 0.0,
+        "acceleration_ratio": 0.0,
+        "jerk_ratio": 0.034482758620689655,
+        "jitter_ratio": 0.0,
+        "interval_cv": 0.3058968186378479,
+        "time_gap_ratio": 4.000004768371582
+      },
+      "reason_codes": [
+        "irregular_frame_intervals",
+        "drop_frame_or_time_shift"
+      ]
+    },
+    {
+      "track": "eef",
+      "corruption": "time_shift",
+      "is_corrupt": true,
+      "quality_score": 0.6379309892654419,
+      "anomaly_score": 0.3620690107345581,
+      "details": {
+        "velocity_ratio": 0.0,
+        "acceleration_ratio": 0.0,
+        "jerk_ratio": 0.034482758620689655,
+        "jitter_ratio": 0.0,
+        "interval_cv": 1.721253514289856,
+        "time_gap_ratio": 21.0
+      },
+      "reason_codes": [
+        "irregular_frame_intervals",
+        "drop_frame_or_time_shift"
+      ]
+    }
+  ]
+}

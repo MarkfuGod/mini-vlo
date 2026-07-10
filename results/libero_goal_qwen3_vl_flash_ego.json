@@ -1,0 +1,956 @@
+{
+  "model": "qwen3-vl-flash",
+  "evaluation": "weak task-title instruction token F1",
+  "warning": "LIBERO titles are task-level labels only. These scores do not measure temporal boundaries, micro-actions, cross-view fusion, or refinement.",
+  "sample_view_count": 3,
+  "mean_instruction_token_f1": 0.17777777777777778,
+  "results": [
+    {
+      "sample_id": "put_the_bowl_on_the_plate_demo_0",
+      "view": "ego",
+      "video_path": "data/libero_goal/processed/put_the_bowl_on_the_plate_demo/demo_0_eye_in_hand_rgb.mp4",
+      "ground_truth_instruction": "put the bowl on the plate",
+      "ground_truth_source": "official LIBERO BDDL filename",
+      "ground_truth_scope": "weak task-level label only",
+      "prediction": "pick and place black object to red-rimmed white object ; pick and place bowl to above the plate",
+      "instruction_token_f1": 0.26666666666666666,
+      "record": {
+        "video_path": "data/libero_goal/processed/put_the_bowl_on_the_plate_demo/demo_0_eye_in_hand_rgb.mp4",
+        "source_instruction": "",
+        "frames": [
+          {
+            "frame": {
+              "frame_id": 0,
+              "frame_index": 0,
+              "timestamp_sec": 0.0,
+              "image_path": ".semantic_motion_work/libero_goal/put_the_bowl_on_the_plate_demo_0/ego/frames/frame_0000_000000.jpg"
+            },
+            "annotation": {
+              "scenario_id": "video_frame_0000",
+              "image_path": ".semantic_motion_work/libero_goal/put_the_bowl_on_the_plate_demo_0/ego/frames/frame_0000_000000.jpg",
+              "source_instruction": "Analyze this video frame at 0.00s. Infer the robot manipulation task, target object, destination, and primitive action sequence from the visible scene.",
+              "objects": [
+                "black object",
+                "gray circular object",
+                "red-rimmed white object",
+                "blue rectangular object",
+                "stove",
+                "wooden floor area"
+              ],
+              "spatial_relations": [
+                "black object ON wooden floor area",
+                "gray circular object ON counter",
+                "red-rimmed white object ON counter",
+                "blue rectangular object ON counter",
+                "stove ON left side of counter"
+              ],
+              "macro_intent": {
+                "task_type": "pick_and_place",
+                "target_object": "black object",
+                "destination": "red-rimmed white object",
+                "confidence": 1.0
+              },
+              "micro_instructions": [
+                {
+                  "step_id": 1,
+                  "text": "approach black object",
+                  "verb": "approach",
+                  "object": "black object",
+                  "confidence": 1.0
+                },
+                {
+                  "step_id": 2,
+                  "text": "grasp black object",
+                  "verb": "grasp",
+                  "object": "black object",
+                  "confidence": 1.0
+                },
+                {
+                  "step_id": 3,
+                  "text": "lift black object",
+                  "verb": "lift",
+                  "object": "black object",
+                  "confidence": 1.0
+                },
+                {
+                  "step_id": 4,
+                  "text": "move black object toward red-rimmed white object",
+                  "verb": "move",
+                  "object": "black object toward red-rimmed white object",
+                  "confidence": 1.0
+                },
+                {
+                  "step_id": 5,
+                  "text": "place black object ON red-rimmed white object",
+                  "verb": "place",
+                  "object": "black object ON red-rimmed white object",
+                  "confidence": 1.0
+                }
+              ],
+              "raw_recognition": "{\n  \"objects\": [\"black object\", \"gray circular object\", \"red-rimmed white object\", \"blue rectangular object\", \"stove\", \"wooden floor area\"],\n  \"spatial_relations\": [\"black object ON wooden floor area\", \"gray circular object ON counter\", \"red-rimmed white object ON counter\", \"blue rectangular object ON counter\", \"stove ON left side of counter\"],\n  \"task_type\": \"pick_and_place\",\n  \"action_sequence\": [\"approach black object\", \"grasp black object\", \"lift black object\", \"move black object toward red-rimmed white object\", \"place black object ON red-rimmed white object\"],\n  \"target_object\": \"black object\",\n  \"destination\": \"red-rimmed white object\"\n}",
+              "metadata": {
+                "category": "video",
+                "recognition_confidence": 1.0
+              }
+            }
+          },
+          {
+            "frame": {
+              "frame_id": 1,
+              "frame_index": 89,
+              "timestamp_sec": 4.45,
+              "image_path": ".semantic_motion_work/libero_goal/put_the_bowl_on_the_plate_demo_0/ego/frames/frame_0001_000089.jpg"
+            },
+            "annotation": {
+              "scenario_id": "video_frame_0001",
+              "image_path": ".semantic_motion_work/libero_goal/put_the_bowl_on_the_plate_demo_0/ego/frames/frame_0001_000089.jpg",
+              "source_instruction": "Analyze this video frame at 4.45s. Infer the robot manipulation task, target object, destination, and primitive action sequence from the visible scene.",
+              "objects": [
+                "bowl",
+                "plate",
+                "robot arm"
+              ],
+              "spatial_relations": [
+                "bowl ON plate",
+                "robot arm ABOVE bowl"
+              ],
+              "macro_intent": {
+                "task_type": "pick_and_place",
+                "target_object": "bowl",
+                "destination": "above the plate",
+                "confidence": 1.0
+              },
+              "micro_instructions": [
+                {
+                  "step_id": 1,
+                  "text": "approach bowl",
+                  "verb": "approach",
+                  "object": "bowl",
+                  "confidence": 1.0
+                },
+                {
+                  "step_id": 2,
+                  "text": "grasp bowl",
+                  "verb": "grasp",
+                  "object": "bowl",
+                  "confidence": 1.0
+                },
+                {
+                  "step_id": 3,
+                  "text": "lift bowl",
+                  "verb": "lift",
+                  "object": "bowl",
+                  "confidence": 1.0
+                },
+                {
+                  "step_id": 4,
+                  "text": "move bowl upward",
+                  "verb": "move",
+                  "object": "bowl upward",
+                  "confidence": 1.0
+                }
+              ],
+              "raw_recognition": "{\n  \"objects\": [\"bowl\", \"plate\", \"robot arm\"],\n  \"spatial_relations\": [\"bowl ON plate\", \"robot arm ABOVE bowl\"],\n  \"task_type\": \"pick_and_place\",\n  \"action_sequence\": [\"approach bowl\", \"grasp bowl\", \"lift bowl\", \"move bowl upward\"],\n  \"target_object\": \"bowl\",\n  \"destination\": \"above the plate\"\n}",
+              "metadata": {
+                "category": "video",
+                "recognition_confidence": 1.0
+              }
+            }
+          }
+        ],
+        "task_segments": [
+          {
+            "segment_id": "segment_000",
+            "start_time_sec": 0.0,
+            "end_time_sec": 0.0,
+            "frame_ids": [
+              0
+            ],
+            "task_instruction": "pick and place black object to red-rimmed white object",
+            "objects": [
+              "black object",
+              "gray circular object",
+              "red-rimmed white object",
+              "blue rectangular object",
+              "stove",
+              "wooden floor area"
+            ],
+            "spatial_relations": [
+              "black object ON wooden floor area",
+              "gray circular object ON counter",
+              "red-rimmed white object ON counter",
+              "blue rectangular object ON counter",
+              "stove ON left side of counter"
+            ],
+            "macro_intent": {
+              "task_type": "pick_and_place",
+              "target_object": "black object",
+              "destination": "red-rimmed white object",
+              "confidence": 1.0
+            },
+            "micro_instructions": [
+              {
+                "step_id": 1,
+                "text": "approach black object",
+                "verb": "approach",
+                "object": "black object",
+                "confidence": 1.0
+              },
+              {
+                "step_id": 2,
+                "text": "grasp black object",
+                "verb": "grasp",
+                "object": "black object",
+                "confidence": 1.0
+              },
+              {
+                "step_id": 3,
+                "text": "lift black object",
+                "verb": "lift",
+                "object": "black object",
+                "confidence": 1.0
+              },
+              {
+                "step_id": 4,
+                "text": "move black object toward red-rimmed white object",
+                "verb": "move",
+                "object": "black object toward red-rimmed white object",
+                "confidence": 1.0
+              },
+              {
+                "step_id": 5,
+                "text": "place black object ON red-rimmed white object",
+                "verb": "place",
+                "object": "black object ON red-rimmed white object",
+                "confidence": 1.0
+              }
+            ],
+            "augmented_instructions": [
+              {
+                "text": "pick and place black object to red-rimmed white object",
+                "strategy": "source",
+                "source_step_ids": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5
+                ],
+                "metadata": {}
+              }
+            ],
+            "confidence": 1.0,
+            "metadata": {
+              "num_frames": 1
+            }
+          },
+          {
+            "segment_id": "segment_001",
+            "start_time_sec": 4.45,
+            "end_time_sec": 4.45,
+            "frame_ids": [
+              1
+            ],
+            "task_instruction": "pick and place bowl to above the plate",
+            "objects": [
+              "bowl",
+              "plate",
+              "robot arm"
+            ],
+            "spatial_relations": [
+              "bowl ON plate",
+              "robot arm ABOVE bowl"
+            ],
+            "macro_intent": {
+              "task_type": "pick_and_place",
+              "target_object": "bowl",
+              "destination": "above the plate",
+              "confidence": 1.0
+            },
+            "micro_instructions": [
+              {
+                "step_id": 1,
+                "text": "approach bowl",
+                "verb": "approach",
+                "object": "bowl",
+                "confidence": 1.0
+              },
+              {
+                "step_id": 2,
+                "text": "grasp bowl",
+                "verb": "grasp",
+                "object": "bowl",
+                "confidence": 1.0
+              },
+              {
+                "step_id": 3,
+                "text": "lift bowl",
+                "verb": "lift",
+                "object": "bowl",
+                "confidence": 1.0
+              },
+              {
+                "step_id": 4,
+                "text": "move bowl upward",
+                "verb": "move",
+                "object": "bowl upward",
+                "confidence": 1.0
+              }
+            ],
+            "augmented_instructions": [
+              {
+                "text": "pick and place bowl to above the plate",
+                "strategy": "source",
+                "source_step_ids": [
+                  1,
+                  2,
+                  3,
+                  4
+                ],
+                "metadata": {}
+              }
+            ],
+            "confidence": 1.0,
+            "metadata": {
+              "num_frames": 1
+            }
+          }
+        ],
+        "metadata": {
+          "num_sampled_frames": 2,
+          "num_task_segments": 2,
+          "method": "keyframe_perception_temporal_boundary_detection_segment_instruction_augmentation"
+        }
+      }
+    },
+    {
+      "sample_id": "put_the_bowl_on_the_stove_demo_0",
+      "view": "ego",
+      "video_path": "data/libero_goal/processed/put_the_bowl_on_the_stove_demo/demo_0_eye_in_hand_rgb.mp4",
+      "ground_truth_instruction": "put the bowl on the stove",
+      "ground_truth_source": "official LIBERO BDDL filename",
+      "ground_truth_scope": "weak task-level label only",
+      "prediction": "pick and place pan to stove ; pick and place black bowl to away from liquid spill",
+      "instruction_token_f1": 0.26666666666666666,
+      "record": {
+        "video_path": "data/libero_goal/processed/put_the_bowl_on_the_stove_demo/demo_0_eye_in_hand_rgb.mp4",
+        "source_instruction": "",
+        "frames": [
+          {
+            "frame": {
+              "frame_id": 0,
+              "frame_index": 0,
+              "timestamp_sec": 0.0,
+              "image_path": ".semantic_motion_work/libero_goal/put_the_bowl_on_the_stove_demo_0/ego/frames/frame_0000_000000.jpg"
+            },
+            "annotation": {
+              "scenario_id": "video_frame_0000",
+              "image_path": ".semantic_motion_work/libero_goal/put_the_bowl_on_the_stove_demo_0/ego/frames/frame_0000_000000.jpg",
+              "source_instruction": "Analyze this video frame at 0.00s. Infer the robot manipulation task, target object, destination, and primitive action sequence from the visible scene.",
+              "objects": [
+                "stove",
+                "pan",
+                "clock",
+                "plate",
+                "book",
+                "floor"
+              ],
+              "spatial_relations": [
+                "pan ON floor",
+                "clock ON floor",
+                "plate ON floor",
+                "book ON floor",
+                "stove ON left side of floor"
+              ],
+              "macro_intent": {
+                "task_type": "pick_and_place",
+                "target_object": "pan",
+                "destination": "stove",
+                "confidence": 1.0
+              },
+              "micro_instructions": [
+                {
+                  "step_id": 1,
+                  "text": "approach pan",
+                  "verb": "approach",
+                  "object": "pan",
+                  "confidence": 1.0
+                },
+                {
+                  "step_id": 2,
+                  "text": "grasp pan",
+                  "verb": "grasp",
+                  "object": "pan",
+                  "confidence": 1.0
+                },
+                {
+                  "step_id": 3,
+                  "text": "lift pan",
+                  "verb": "lift",
+                  "object": "pan",
+                  "confidence": 1.0
+                },
+                {
+                  "step_id": 4,
+                  "text": "move pan to stove",
+                  "verb": "move",
+                  "object": "pan to stove",
+                  "confidence": 1.0
+                }
+              ],
+              "raw_recognition": "{\n  \"objects\": [\"stove\", \"pan\", \"clock\", \"plate\", \"book\", \"floor\"],\n  \"spatial_relations\": [\"pan ON floor\", \"clock ON floor\", \"plate ON floor\", \"book ON floor\", \"stove ON left side of floor\"],\n  \"task_type\": \"pick_and_place\",\n  \"action_sequence\": [\"approach pan\", \"grasp pan\", \"lift pan\", \"move pan to stove\"],\n  \"target_object\": \"pan\",\n  \"destination\": \"stove\"\n}",
+              "metadata": {
+                "category": "video",
+                "recognition_confidence": 1.0
+              }
+            }
+          },
+          {
+            "frame": {
+              "frame_id": 1,
+              "frame_index": 93,
+              "timestamp_sec": 4.65,
+              "image_path": ".semantic_motion_work/libero_goal/put_the_bowl_on_the_stove_demo_0/ego/frames/frame_0001_000093.jpg"
+            },
+            "annotation": {
+              "scenario_id": "video_frame_0001",
+              "image_path": ".semantic_motion_work/libero_goal/put_the_bowl_on_the_stove_demo_0/ego/frames/frame_0001_000093.jpg",
+              "source_instruction": "Analyze this video frame at 4.65s. Infer the robot manipulation task, target object, destination, and primitive action sequence from the visible scene.",
+              "objects": [
+                "black bowl",
+                "yellow rim",
+                "gray mat",
+                "wooden surface",
+                "liquid spill"
+              ],
+              "spatial_relations": [
+                "black bowl ON gray mat",
+                "yellow rim PART OF black bowl",
+                "liquid spill ON gray mat",
+                "gray mat ON wooden surface"
+              ],
+              "macro_intent": {
+                "task_type": "pick_and_place",
+                "target_object": "black bowl",
+                "destination": "away from liquid spill",
+                "confidence": 1.0
+              },
+              "micro_instructions": [
+                {
+                  "step_id": 1,
+                  "text": "approach black bowl",
+                  "verb": "approach",
+                  "object": "black bowl",
+                  "confidence": 1.0
+                },
+                {
+                  "step_id": 2,
+                  "text": "grasp black bowl",
+                  "verb": "grasp",
+                  "object": "black bowl",
+                  "confidence": 1.0
+                },
+                {
+                  "step_id": 3,
+                  "text": "lift black bowl",
+                  "verb": "lift",
+                  "object": "black bowl",
+                  "confidence": 1.0
+                },
+                {
+                  "step_id": 4,
+                  "text": "move black bowl away from liquid spill",
+                  "verb": "move",
+                  "object": "black bowl away from liquid spill",
+                  "confidence": 1.0
+                }
+              ],
+              "raw_recognition": "{\n  \"objects\": [\"black bowl\", \"yellow rim\", \"gray mat\", \"wooden surface\", \"liquid spill\"],\n  \"spatial_relations\": [\"black bowl ON gray mat\", \"yellow rim PART OF black bowl\", \"liquid spill ON gray mat\", \"gray mat ON wooden surface\"],\n  \"task_type\": \"pick_and_place\",\n  \"action_sequence\": [\"approach black bowl\", \"grasp black bowl\", \"lift black bowl\", \"move black bowl away from liquid spill\"],\n  \"target_object\": \"black bowl\",\n  \"destination\": \"away from liquid spill\"\n}",
+              "metadata": {
+                "category": "video",
+                "recognition_confidence": 1.0
+              }
+            }
+          }
+        ],
+        "task_segments": [
+          {
+            "segment_id": "segment_000",
+            "start_time_sec": 0.0,
+            "end_time_sec": 0.0,
+            "frame_ids": [
+              0
+            ],
+            "task_instruction": "pick and place pan to stove",
+            "objects": [
+              "stove",
+              "pan",
+              "clock",
+              "plate",
+              "book",
+              "floor"
+            ],
+            "spatial_relations": [
+              "pan ON floor",
+              "clock ON floor",
+              "plate ON floor",
+              "book ON floor",
+              "stove ON left side of floor"
+            ],
+            "macro_intent": {
+              "task_type": "pick_and_place",
+              "target_object": "pan",
+              "destination": "stove",
+              "confidence": 1.0
+            },
+            "micro_instructions": [
+              {
+                "step_id": 1,
+                "text": "approach pan",
+                "verb": "approach",
+                "object": "pan",
+                "confidence": 1.0
+              },
+              {
+                "step_id": 2,
+                "text": "grasp pan",
+                "verb": "grasp",
+                "object": "pan",
+                "confidence": 1.0
+              },
+              {
+                "step_id": 3,
+                "text": "lift pan",
+                "verb": "lift",
+                "object": "pan",
+                "confidence": 1.0
+              },
+              {
+                "step_id": 4,
+                "text": "move pan to stove",
+                "verb": "move",
+                "object": "pan to stove",
+                "confidence": 1.0
+              }
+            ],
+            "augmented_instructions": [
+              {
+                "text": "pick and place pan to stove",
+                "strategy": "source",
+                "source_step_ids": [
+                  1,
+                  2,
+                  3,
+                  4
+                ],
+                "metadata": {}
+              }
+            ],
+            "confidence": 1.0,
+            "metadata": {
+              "num_frames": 1
+            }
+          },
+          {
+            "segment_id": "segment_001",
+            "start_time_sec": 4.65,
+            "end_time_sec": 4.65,
+            "frame_ids": [
+              1
+            ],
+            "task_instruction": "pick and place black bowl to away from liquid spill",
+            "objects": [
+              "black bowl",
+              "yellow rim",
+              "gray mat",
+              "wooden surface",
+              "liquid spill"
+            ],
+            "spatial_relations": [
+              "black bowl ON gray mat",
+              "yellow rim PART OF black bowl",
+              "liquid spill ON gray mat",
+              "gray mat ON wooden surface"
+            ],
+            "macro_intent": {
+              "task_type": "pick_and_place",
+              "target_object": "black bowl",
+              "destination": "away from liquid spill",
+              "confidence": 1.0
+            },
+            "micro_instructions": [
+              {
+                "step_id": 1,
+                "text": "approach black bowl",
+                "verb": "approach",
+                "object": "black bowl",
+                "confidence": 1.0
+              },
+              {
+                "step_id": 2,
+                "text": "grasp black bowl",
+                "verb": "grasp",
+                "object": "black bowl",
+                "confidence": 1.0
+              },
+              {
+                "step_id": 3,
+                "text": "lift black bowl",
+                "verb": "lift",
+                "object": "black bowl",
+                "confidence": 1.0
+              },
+              {
+                "step_id": 4,
+                "text": "move black bowl away from liquid spill",
+                "verb": "move",
+                "object": "black bowl away from liquid spill",
+                "confidence": 1.0
+              }
+            ],
+            "augmented_instructions": [
+              {
+                "text": "pick and place black bowl to away from liquid spill",
+                "strategy": "source",
+                "source_step_ids": [
+                  1,
+                  2,
+                  3,
+                  4
+                ],
+                "metadata": {}
+              }
+            ],
+            "confidence": 1.0,
+            "metadata": {
+              "num_frames": 1
+            }
+          }
+        ],
+        "metadata": {
+          "num_sampled_frames": 2,
+          "num_task_segments": 2,
+          "method": "keyframe_perception_temporal_boundary_detection_segment_instruction_augmentation"
+        }
+      }
+    },
+    {
+      "sample_id": "turn_on_the_stove_demo_0",
+      "view": "ego",
+      "video_path": "data/libero_goal/processed/turn_on_the_stove_demo/demo_0_eye_in_hand_rgb.mp4",
+      "ground_truth_instruction": "turn on the stove",
+      "ground_truth_source": "official LIBERO BDDL filename",
+      "ground_truth_scope": "weak task-level label only",
+      "prediction": "pick and place black object with yellow top to red circular object ; pick and place black circular object to dark surface",
+      "instruction_token_f1": 0.0,
+      "record": {
+        "video_path": "data/libero_goal/processed/turn_on_the_stove_demo/demo_0_eye_in_hand_rgb.mp4",
+        "source_instruction": "",
+        "frames": [
+          {
+            "frame": {
+              "frame_id": 0,
+              "frame_index": 0,
+              "timestamp_sec": 0.0,
+              "image_path": ".semantic_motion_work/libero_goal/turn_on_the_stove_demo_0/ego/frames/frame_0000_000000.jpg"
+            },
+            "annotation": {
+              "scenario_id": "video_frame_0000",
+              "image_path": ".semantic_motion_work/libero_goal/turn_on_the_stove_demo_0/ego/frames/frame_0000_000000.jpg",
+              "source_instruction": "Analyze this video frame at 0.00s. Infer the robot manipulation task, target object, destination, and primitive action sequence from the visible scene.",
+              "objects": [
+                "black object with yellow top",
+                "stove",
+                "counter",
+                "round metallic object",
+                "blue rectangular object",
+                "red circular object"
+              ],
+              "spatial_relations": [
+                "black object with yellow top ON counter",
+                "stove ON left side of counter",
+                "round metallic object ON counter",
+                "blue rectangular object ON counter",
+                "red circular object ON counter"
+              ],
+              "macro_intent": {
+                "task_type": "pick_and_place",
+                "target_object": "black object with yellow top",
+                "destination": "red circular object",
+                "confidence": 1.0
+              },
+              "micro_instructions": [
+                {
+                  "step_id": 1,
+                  "text": "approach black object with yellow top",
+                  "verb": "approach",
+                  "object": "black object with yellow top",
+                  "confidence": 1.0
+                },
+                {
+                  "step_id": 2,
+                  "text": "grasp black object with yellow top",
+                  "verb": "grasp",
+                  "object": "black object with yellow top",
+                  "confidence": 1.0
+                },
+                {
+                  "step_id": 3,
+                  "text": "lift black object with yellow top",
+                  "verb": "lift",
+                  "object": "black object with yellow top",
+                  "confidence": 1.0
+                },
+                {
+                  "step_id": 4,
+                  "text": "move black object with yellow top toward red circular object",
+                  "verb": "move",
+                  "object": "black object with yellow top toward red circular object",
+                  "confidence": 1.0
+                },
+                {
+                  "step_id": 5,
+                  "text": "place black object with yellow top ON red circular object",
+                  "verb": "place",
+                  "object": "black object with yellow top ON red circular object",
+                  "confidence": 1.0
+                }
+              ],
+              "raw_recognition": "{\n  \"objects\": [\"black object with yellow top\", \"stove\", \"counter\", \"round metallic object\", \"blue rectangular object\", \"red circular object\"],\n  \"spatial_relations\": [\"black object with yellow top ON counter\", \"stove ON left side of counter\", \"round metallic object ON counter\", \"blue rectangular object ON counter\", \"red circular object ON counter\"],\n  \"task_type\": \"pick_and_place\",\n  \"action_sequence\": [\"approach black object with yellow top\", \"grasp black object with yellow top\", \"lift black object with yellow top\", \"move black object with yellow top toward red circular object\", \"place black object with yellow top ON red circular object\"],\n  \"target_object\": \"black object with yellow top\",\n  \"destination\": \"red circular object\"\n}",
+              "metadata": {
+                "category": "video",
+                "recognition_confidence": 1.0
+              }
+            }
+          },
+          {
+            "frame": {
+              "frame_id": 1,
+              "frame_index": 79,
+              "timestamp_sec": 3.95,
+              "image_path": ".semantic_motion_work/libero_goal/turn_on_the_stove_demo_0/ego/frames/frame_0001_000079.jpg"
+            },
+            "annotation": {
+              "scenario_id": "video_frame_0001",
+              "image_path": ".semantic_motion_work/libero_goal/turn_on_the_stove_demo_0/ego/frames/frame_0001_000079.jpg",
+              "source_instruction": "Analyze this video frame at 3.95s. Infer the robot manipulation task, target object, destination, and primitive action sequence from the visible scene.",
+              "objects": [
+                "black circular object",
+                "light-colored surface",
+                "dark surface"
+              ],
+              "spatial_relations": [
+                "black circular object ON light-colored surface",
+                "light-colored surface adjacent to dark surface"
+              ],
+              "macro_intent": {
+                "task_type": "pick_and_place",
+                "target_object": "black circular object",
+                "destination": "dark surface",
+                "confidence": 1.0
+              },
+              "micro_instructions": [
+                {
+                  "step_id": 1,
+                  "text": "approach black circular object",
+                  "verb": "approach",
+                  "object": "black circular object",
+                  "confidence": 1.0
+                },
+                {
+                  "step_id": 2,
+                  "text": "grasp black circular object",
+                  "verb": "grasp",
+                  "object": "black circular object",
+                  "confidence": 1.0
+                },
+                {
+                  "step_id": 3,
+                  "text": "lift black circular object",
+                  "verb": "lift",
+                  "object": "black circular object",
+                  "confidence": 1.0
+                },
+                {
+                  "step_id": 4,
+                  "text": "move black circular object toward destination",
+                  "verb": "move",
+                  "object": "black circular object toward destination",
+                  "confidence": 1.0
+                }
+              ],
+              "raw_recognition": "{\n  \"objects\": [\"black circular object\", \"light-colored surface\", \"dark surface\"],\n  \"spatial_relations\": [\"black circular object ON light-colored surface\", \"light-colored surface adjacent to dark surface\"],\n  \"task_type\": \"pick_and_place\",\n  \"action_sequence\": [\"approach black circular object\", \"grasp black circular object\", \"lift black circular object\", \"move black circular object toward destination\"],\n  \"target_object\": \"black circular object\",\n  \"destination\": \"dark surface\"\n}",
+              "metadata": {
+                "category": "video",
+                "recognition_confidence": 1.0
+              }
+            }
+          }
+        ],
+        "task_segments": [
+          {
+            "segment_id": "segment_000",
+            "start_time_sec": 0.0,
+            "end_time_sec": 0.0,
+            "frame_ids": [
+              0
+            ],
+            "task_instruction": "pick and place black object with yellow top to red circular object",
+            "objects": [
+              "black object with yellow top",
+              "stove",
+              "counter",
+              "round metallic object",
+              "blue rectangular object",
+              "red circular object"
+            ],
+            "spatial_relations": [
+              "black object with yellow top ON counter",
+              "stove ON left side of counter",
+              "round metallic object ON counter",
+              "blue rectangular object ON counter",
+              "red circular object ON counter"
+            ],
+            "macro_intent": {
+              "task_type": "pick_and_place",
+              "target_object": "black object with yellow top",
+              "destination": "red circular object",
+              "confidence": 1.0
+            },
+            "micro_instructions": [
+              {
+                "step_id": 1,
+                "text": "approach black object with yellow top",
+                "verb": "approach",
+                "object": "black object with yellow top",
+                "confidence": 1.0
+              },
+              {
+                "step_id": 2,
+                "text": "grasp black object with yellow top",
+                "verb": "grasp",
+                "object": "black object with yellow top",
+                "confidence": 1.0
+              },
+              {
+                "step_id": 3,
+                "text": "lift black object with yellow top",
+                "verb": "lift",
+                "object": "black object with yellow top",
+                "confidence": 1.0
+              },
+              {
+                "step_id": 4,
+                "text": "move black object with yellow top toward red circular object",
+                "verb": "move",
+                "object": "black object with yellow top toward red circular object",
+                "confidence": 1.0
+              },
+              {
+                "step_id": 5,
+                "text": "place black object with yellow top ON red circular object",
+                "verb": "place",
+                "object": "black object with yellow top ON red circular object",
+                "confidence": 1.0
+              }
+            ],
+            "augmented_instructions": [
+              {
+                "text": "pick and place black object with yellow top to red circular object",
+                "strategy": "source",
+                "source_step_ids": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5
+                ],
+                "metadata": {}
+              }
+            ],
+            "confidence": 1.0,
+            "metadata": {
+              "num_frames": 1
+            }
+          },
+          {
+            "segment_id": "segment_001",
+            "start_time_sec": 3.95,
+            "end_time_sec": 3.95,
+            "frame_ids": [
+              1
+            ],
+            "task_instruction": "pick and place black circular object to dark surface",
+            "objects": [
+              "black circular object",
+              "light-colored surface",
+              "dark surface"
+            ],
+            "spatial_relations": [
+              "black circular object ON light-colored surface",
+              "light-colored surface adjacent to dark surface"
+            ],
+            "macro_intent": {
+              "task_type": "pick_and_place",
+              "target_object": "black circular object",
+              "destination": "dark surface",
+              "confidence": 1.0
+            },
+            "micro_instructions": [
+              {
+                "step_id": 1,
+                "text": "approach black circular object",
+                "verb": "approach",
+                "object": "black circular object",
+                "confidence": 1.0
+              },
+              {
+                "step_id": 2,
+                "text": "grasp black circular object",
+                "verb": "grasp",
+                "object": "black circular object",
+                "confidence": 1.0
+              },
+              {
+                "step_id": 3,
+                "text": "lift black circular object",
+                "verb": "lift",
+                "object": "black circular object",
+                "confidence": 1.0
+              },
+              {
+                "step_id": 4,
+                "text": "move black circular object toward destination",
+                "verb": "move",
+                "object": "black circular object toward destination",
+                "confidence": 1.0
+              }
+            ],
+            "augmented_instructions": [
+              {
+                "text": "pick and place black circular object to dark surface",
+                "strategy": "source",
+                "source_step_ids": [
+                  1,
+                  2,
+                  3,
+                  4
+                ],
+                "metadata": {}
+              }
+            ],
+            "confidence": 1.0,
+            "metadata": {
+              "num_frames": 1
+            }
+          }
+        ],
+        "metadata": {
+          "num_sampled_frames": 2,
+          "num_task_segments": 2,
+          "method": "keyframe_perception_temporal_boundary_detection_segment_instruction_augmentation"
+        }
+      }
+    }
+  ]
+}

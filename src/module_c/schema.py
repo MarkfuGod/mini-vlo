@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Any
 
 
@@ -13,6 +13,10 @@ class MotionTrack:
 @dataclass
 class MotionData:
     tracks: dict[str, MotionTrack]
+    spatial_unit: str = "meters"
+    coordinate_frame: str = "world"
+    source: str = "unknown"
+    is_dummy: bool = False
 
 
 @dataclass
@@ -22,6 +26,12 @@ class Sample:
     text: str
     motion: MotionData | None = None
     label: str | None = None
+    views: dict[str, str] = field(default_factory=dict)
+    fps: float | None = None
+    frame_count: int | None = None
+    segment_start_sec: float | None = None
+    segment_end_sec: float | None = None
+    provenance: dict[str, Any] = field(default_factory=dict)
 
 
 @dataclass

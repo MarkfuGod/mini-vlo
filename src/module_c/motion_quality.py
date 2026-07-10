@@ -12,6 +12,31 @@ class MotionQualityConfig:
     max_jerk: float
     max_jitter_ratio: float
     aggregation: str = "min"
+    max_interval_cv: float = 0.25
+    max_time_gap_ratio: float = 2.5
+
+
+UNIT_TO_METERS = {
+    "meters": 1.0,
+    "meter": 1.0,
+    "m": 1.0,
+    "centimeters": 0.01,
+    "centimeter": 0.01,
+    "cm": 0.01,
+    "millimeters": 0.001,
+    "millimeter": 0.001,
+    "mm": 0.001,
+}
+
+
+def normalize_positions_to_meters(
+    positions: list[list[float]],
+    spatial_unit: str,
+) -> list[list[float]]:
+    scale = UNIT_TO_METERS.get(spatial_unit.lower())
+    if scale is None:
+        raise ValueError(f"Unsupported motion spatial unit: {spatial_unit}")
+    return (np.asarray(positions, dtype=np.float64) * scale).tolist()
 
 
 def _safe_diff(arr: np.ndarray, dt: np.ndarray) -> np.ndarray:
@@ -48,12 +73,19 @@ def score_motion_quality(
     acceleration_ratio = float(np.mean(a_norm > cfg.max_acceleration))
     jerk_ratio = float(np.mean(j_norm > cfg.max_jerk))
 
-    direction = np.sign(np.diff(v[:, 0]))
+    nonzero = v_norm > 1e-8
+    unit_velocity = np.zeros_like(v)
+    unit_velocity[nonzero] = v[nonzero] / v_norm[nonzero, None]
+    direction_cosine = np.sum(unit_velocity[:-1] * unit_velocity[1:], axis=1)
+    valid_direction_pairs = nonzero[:-1] & nonzero[1:]
     jitter_ratio = (
-        float(np.mean(direction[:-1] * direction[1:] < 0))
-        if len(direction) > 2
+        float(np.mean(direction_cosine[valid_direction_pairs] < 0.0))
+        if np.any(valid_direction_pairs)
         else 0.0
     )
+    median_dt = float(np.median(dt))
+    interval_cv = float(np.std(dt) / max(float(np.mean(dt)), 1e-6))
+    time_gap_ratio = float(np.max(dt) / max(median_dt, 1e-6))
 
     if jitter_ratio > cfg.max_jitter_ratio:
         reasons.append("high_jitter")
@@ -63,6 +95,10 @@ def score_motion_quality(
         reasons.append("high_acceleration_spikes")
     if jerk_ratio > 0.2:
         reasons.append("high_jerk_spikes")
+    if interval_cv > cfg.max_interval_cv:
+        reasons.append("irregular_frame_intervals")
+    if time_gap_ratio > cfg.max_time_gap_ratio:
+        reasons.append("drop_frame_or_time_shift")
 
     penalties = np.array(
         [
@@ -70,6 +106,12 @@ def score_motion_quality(
             min(1.0, acceleration_ratio / 0.2),
             min(1.0, jerk_ratio / 0.2),
             min(1.0, jitter_ratio / max(cfg.max_jitter_ratio, 1e-6)),
+            min(1.0, interval_cv / max(cfg.max_interval_cv, 1e-6)),
+            min(
+                1.0,
+                max(0.0, time_gap_ratio - 1.0)
+                / max(cfg.max_time_gap_ratio - 1.0, 1e-6),
+            ),
         ],
         dtype=np.float32,
     )
@@ -79,6 +121,8 @@ def score_motion_quality(
         "acceleration_ratio": acceleration_ratio,
         "jerk_ratio": jerk_ratio,
         "jitter_ratio": jitter_ratio,
+        "interval_cv": interval_cv,
+        "time_gap_ratio": time_gap_ratio,
     }
     return score, details, reasons
 

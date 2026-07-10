@@ -1,0 +1,215 @@
+[
+  {
+    "sample_id": "demo_0_agentview_rgb_segment_000",
+    "motion_quality_score": 0.9871780276298523,
+    "semantic_label": "inconsistent",
+    "semantic_confidence": 0.95,
+    "decision": "drop",
+    "reason_codes": [
+      "fixed:action_mismatch",
+      "fixed:actor_mismatch",
+      "fixed:goal_state_mismatch",
+      "fixed:object_mismatch",
+      "fixed:semantic_mismatch",
+      "semantic_mismatch",
+      "semantic_not_consistent"
+    ],
+    "aux": {
+      "sync": {
+        "valid": true,
+        "views": {
+          "fixed": {
+            "fps": 20.0,
+            "frame_count": 90,
+            "duration_sec": 4.5
+          },
+          "ego": {
+            "fps": 20.0,
+            "frame_count": 90,
+            "duration_sec": 4.5
+          }
+        },
+        "motion_coverage": {
+          "eef": [
+            0.0,
+            3.35
+          ]
+        }
+      },
+      "motion": {
+        "aggregation": "min",
+        "track_count": 1.0,
+        "tracks": {
+          "eef": {
+            "score": 0.9871780276298523,
+            "velocity_ratio": 0.0,
+            "acceleration_ratio": 0.0,
+            "jerk_ratio": 0.015384615384615385,
+            "jitter_ratio": 0.0,
+            "interval_cv": 1.3540466170525178e-06,
+            "time_gap_ratio": 1.000004768371582,
+            "reason_codes": []
+          }
+        },
+        "input_spatial_unit": "meters",
+        "normalized_spatial_unit": "meters"
+      },
+      "semantic": {
+        "label": "inconsistent",
+        "confidence": 0.95,
+        "error_types": [
+          "fixed:action_mismatch",
+          "fixed:actor_mismatch",
+          "fixed:goal_state_mismatch",
+          "fixed:object_mismatch",
+          "fixed:semantic_mismatch"
+        ],
+        "suggested_text": "",
+        "verifier": "independent_multiview",
+        "per_view": {
+          "ego": {
+            "label": "consistent",
+            "confidence": 0.95,
+            "error_types": [],
+            "suggested_text": "place the black bowl onto the white plate with red rim using the robot arm",
+            "verifier": "qwen3-vl-flash"
+          },
+          "fixed": {
+            "label": "inconsistent",
+            "confidence": 0.95,
+            "error_types": [
+              "actor_mismatch",
+              "object_mismatch",
+              "action_mismatch",
+              "goal_state_mismatch"
+            ],
+            "suggested_text": "the robot arm moves a silver object near the wall; no black bowl or white plate with red rim is visible in the clip",
+            "verifier": "qwen3-vl-flash"
+          }
+        }
+      },
+      "text": "place the black bowl onto the white plate with red rim using the robot arm.",
+      "label": null,
+      "views": {
+        "fixed": "data/libero_goal/processed/put_the_bowl_on_the_plate_demo/demo_0_agentview_rgb.mp4",
+        "ego": "data/libero_goal/processed/put_the_bowl_on_the_plate_demo/demo_0_eye_in_hand_rgb.mp4"
+      },
+      "provenance": {
+        "dataset": "LIBERO Goal",
+        "source_id": "put_the_bowl_on_the_plate_demo_0",
+        "generator": "src.semantic_motion.view_bundle",
+        "revision": "fe3cdfd1b0758949153e6369ac16e9320ccd13a9",
+        "config": {},
+        "checksums": {}
+      }
+    }
+  },
+  {
+    "sample_id": "demo_0_agentview_rgb_segment_001",
+    "motion_quality_score": 0.9999971985816956,
+    "semantic_label": "inconsistent",
+    "semantic_confidence": 0.95,
+    "decision": "drop",
+    "reason_codes": [
+      "ego:action_mismatch",
+      "ego:goal_state_mismatch",
+      "ego:semantic_mismatch",
+      "fixed:action_mismatch",
+      "fixed:goal_state_mismatch",
+      "fixed:semantic_mismatch",
+      "semantic_mismatch",
+      "semantic_not_consistent"
+    ],
+    "aux": {
+      "sync": {
+        "valid": true,
+        "views": {
+          "fixed": {
+            "fps": 20.0,
+            "frame_count": 90,
+            "duration_sec": 4.5
+          },
+          "ego": {
+            "fps": 20.0,
+            "frame_count": 90,
+            "duration_sec": 4.5
+          }
+        },
+        "motion_coverage": {
+          "eef": [
+            3.35,
+            4.45
+          ]
+        }
+      },
+      "motion": {
+        "aggregation": "min",
+        "track_count": 1.0,
+        "tracks": {
+          "eef": {
+            "score": 0.9999971985816956,
+            "velocity_ratio": 0.0,
+            "acceleration_ratio": 0.0,
+            "jerk_ratio": 0.0,
+            "jitter_ratio": 0.0,
+            "interval_cv": 3.413398417251301e-06,
+            "time_gap_ratio": 1.000004768371582,
+            "reason_codes": []
+          }
+        },
+        "input_spatial_unit": "meters",
+        "normalized_spatial_unit": "meters"
+      },
+      "semantic": {
+        "label": "inconsistent",
+        "confidence": 0.95,
+        "error_types": [
+          "ego:action_mismatch",
+          "ego:goal_state_mismatch",
+          "ego:semantic_mismatch",
+          "fixed:action_mismatch",
+          "fixed:goal_state_mismatch",
+          "fixed:semantic_mismatch"
+        ],
+        "suggested_text": "",
+        "verifier": "independent_multiview",
+        "per_view": {
+          "ego": {
+            "label": "inconsistent",
+            "confidence": 0.95,
+            "error_types": [
+              "action_mismatch",
+              "goal_state_mismatch"
+            ],
+            "suggested_text": "lift the bowl from the plate and hold it above, then release back onto the plate",
+            "verifier": "qwen3-vl-flash"
+          },
+          "fixed": {
+            "label": "inconsistent",
+            "confidence": 0.95,
+            "error_types": [
+              "action_mismatch",
+              "goal_state_mismatch"
+            ],
+            "suggested_text": "lift the bowl from the plate and hold it above, then release back onto the plate",
+            "verifier": "qwen3-vl-flash"
+          }
+        }
+      },
+      "text": "lift the bowl from the plate and hold it above, then release back onto the plate.",
+      "label": null,
+      "views": {
+        "fixed": "data/libero_goal/processed/put_the_bowl_on_the_plate_demo/demo_0_agentview_rgb.mp4",
+        "ego": "data/libero_goal/processed/put_the_bowl_on_the_plate_demo/demo_0_eye_in_hand_rgb.mp4"
+      },
+      "provenance": {
+        "dataset": "LIBERO Goal",
+        "source_id": "put_the_bowl_on_the_plate_demo_0",
+        "generator": "src.semantic_motion.view_bundle",
+        "revision": "fe3cdfd1b0758949153e6369ac16e9320ccd13a9",
+        "config": {},
+        "checksums": {}
+      }
+    }
+  }
+]

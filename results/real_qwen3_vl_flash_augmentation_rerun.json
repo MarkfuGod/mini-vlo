@@ -1,0 +1,53 @@
+{
+  "model": "qwen3-vl-flash",
+  "prompt_version": "fact_preserving_rewriter_v1",
+  "real_api": true,
+  "results": [
+    {
+      "segment_id": "segment_000",
+      "source": "place the black bowl onto the white plate with red rim using the robot arm.",
+      "variants": [],
+      "audit": [
+        {
+          "text": "use the robot arm to approach the black bowl, grasp it, lift it, move it toward the white plate with red rim, and place it onto the plate.",
+          "accepted": false,
+          "reasons": [
+            "action_order_changed"
+          ]
+        },
+        {
+          "text": "the robot arm first moves toward the black bowl, grasps it, lifts it upward, then lowers it toward the white plate with red rim before placing it there.",
+          "accepted": false,
+          "reasons": [
+            "action_omitted:approach",
+            "action_omitted:place",
+            "action_order_changed"
+          ]
+        }
+      ]
+    },
+    {
+      "segment_id": "segment_001",
+      "source": "lift the bowl from the plate and hold it above, then release back onto the plate.",
+      "variants": [],
+      "audit": [
+        {
+          "text": "Lift the bowl from the plate using the robot arm, move it upward to position it above the plate, and then release it back onto the plate.",
+          "accepted": false,
+          "reasons": [
+            "action_omitted:approach",
+            "action_omitted:grasp"
+          ]
+        },
+        {
+          "text": "Using the robot arm, grasp the bowl on the plate, lift it vertically to a position above the plate, and gently release it back onto the plate.",
+          "accepted": false,
+          "reasons": [
+            "action_omitted:approach",
+            "action_omitted:move"
+          ]
+        }
+      ]
+    }
+  ]
+}

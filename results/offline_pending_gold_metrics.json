@@ -1,0 +1,69 @@
+{
+  "formal": false,
+  "sample_id": "put_the_bowl_on_the_plate_demo_0_clip_000",
+  "boundary": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "tp": 0.0,
+    "fp": 0.0,
+    "fn": 0.0,
+    "mean_abs_error_sec": 0.0,
+    "tolerance_sec": 0.5
+  },
+  "segmental_f1_at_iou": {
+    "0.25": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "mean_iou": 0.0,
+      "threshold": 0.25,
+      "tp": 0.0,
+      "fp": 1.0,
+      "fn": 0.0
+    },
+    "0.5": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "mean_iou": 0.0,
+      "threshold": 0.5,
+      "tp": 0.0,
+      "fp": 1.0,
+      "fn": 0.0
+    },
+    "0.75": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "mean_iou": 0.0,
+      "threshold": 0.75,
+      "tp": 0.0,
+      "fp": 1.0,
+      "fn": 0.0
+    }
+  },
+  "macro": {
+    "task_accuracy": 0.0,
+    "target_f1": 0.0,
+    "destination_f1": 0.0
+  },
+  "micro": {
+    "step_f1": 0.0,
+    "body_part_f1": 0.0,
+    "contact_state_f1": 0.0,
+    "order_edit_score": 0.0
+  },
+  "augmentation": {
+    "slot_preservation_rate": 0.0,
+    "hallucination_rate": 0.0,
+    "distinct_1": 0.0,
+    "distinct_2": 0.0,
+    "self_bleu_2_overlap": 0.0
+  },
+  "provenance": {
+    "gold": "data/gold/annotations/put_the_bowl_on_the_plate_demo_0_clip_000.json",
+    "prediction": "results/offline_multiview_record.json",
+    "pending_debug": true
+  }
+}

@@ -1,0 +1,17 @@
+[
+  {
+    "sample_id": "close_drawer_video",
+    "video_path": "demos/video2tasks_compare/close_drawer.mp4",
+    "text": "Overall video task sequence:\n0.00s-3.30s: pick and place open drawer to white box\n6.61s-6.61s: pick and place object inside box drawer to table\n9.91s-9.91s: pick and place blue object to outside the box",
+    "source_segment_texts": [
+      "pick and place open drawer to white box",
+      "pick and place object inside box drawer to table",
+      "pick and place blue object to outside the box"
+    ],
+    "source_segments": [
+      "segment_000",
+      "segment_001",
+      "segment_002"
+    ]
+  }
+]

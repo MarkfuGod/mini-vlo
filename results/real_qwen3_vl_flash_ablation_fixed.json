@@ -1,0 +1,1110 @@
+{
+  "model": "qwen3-vl-flash",
+  "evaluation": "weak task-title instruction token F1",
+  "warning": "LIBERO titles are task-level labels only. These scores do not measure temporal boundaries, micro-actions, contact, or refinement correctness.",
+  "sample_view_count": 1,
+  "mean_instruction_token_f1": 0.0,
+  "results": [
+    {
+      "sample_id": "put_the_bowl_on_the_plate_demo_0",
+      "view": "fixed",
+      "video_paths": {
+        "fixed": "data/libero_goal/processed/put_the_bowl_on_the_plate_demo/demo_0_agentview_rgb.mp4",
+        "ego": "data/libero_goal/processed/put_the_bowl_on_the_plate_demo/demo_0_eye_in_hand_rgb.mp4"
+      },
+      "ground_truth_instruction": "put the bowl on the plate",
+      "ground_truth_source": "official LIBERO BDDL filename",
+      "ground_truth_scope": "weak task-level label only",
+      "prediction": "grasp and move the black cylindrical object toward the white square with a hole. ; rotate the circular object using the robot arm after making contact.",
+      "instruction_token_f1": 0.0,
+      "record": {
+        "schema_version": "semantic-motion-video-task/v2",
+        "video_path": "data/libero_goal/processed/put_the_bowl_on_the_plate_demo/demo_0_agentview_rgb.mp4",
+        "view_bundle": {
+          "schema_version": "semantic-motion-view-bundle/v1",
+          "sample_id": "put_the_bowl_on_the_plate_demo_0",
+          "timebase": {
+            "fps": 20.0,
+            "frame_count": 90,
+            "frame_start": 0,
+            "duration_sec": 4.5,
+            "time_unit": "seconds",
+            "frame_map": {
+              "video_frame_start": 0,
+              "source_frame_start": 0,
+              "frame_count": 90,
+              "step": 1,
+              "explicit_source_frames": []
+            }
+          },
+          "views": {
+            "fixed": {
+              "view_id": "fixed",
+              "video_path": "data/libero_goal/processed/put_the_bowl_on_the_plate_demo/demo_0_agentview_rgb.mp4",
+              "camera_name": "",
+              "camera_type": "fixed",
+              "fps": 20.0,
+              "frame_count": 90,
+              "duration_sec": 4.5,
+              "metadata": {}
+            },
+            "ego": {
+              "view_id": "ego",
+              "video_path": "data/libero_goal/processed/put_the_bowl_on_the_plate_demo/demo_0_eye_in_hand_rgb.mp4",
+              "camera_name": "",
+              "camera_type": "egocentric",
+              "fps": 20.0,
+              "frame_count": 90,
+              "duration_sec": 4.5,
+              "metadata": {}
+            }
+          },
+          "trajectory": {
+            "path": "data/libero_goal/processed/put_the_bowl_on_the_plate_demo/demo_0_traj.json",
+            "source": "LIBERO Goal",
+            "spatial_unit": "meters",
+            "coordinate_frame": "world",
+            "track_names": [
+              "eef"
+            ],
+            "metadata": {}
+          },
+          "provenance": {
+            "dataset": "LIBERO Goal",
+            "source_id": "put_the_bowl_on_the_plate_demo_0",
+            "generator": "src.semantic_motion.view_bundle",
+            "revision": "fe3cdfd1b0758949153e6369ac16e9320ccd13a9",
+            "config": {},
+            "checksums": {}
+          },
+          "metadata": {}
+        },
+        "source_instruction": "",
+        "frames": [],
+        "multi_view_frames": [
+          {
+            "frame_id": 0,
+            "timestamp_sec": 0.0,
+            "view_frames": {
+              "fixed": {
+                "frame_id": 0,
+                "frame_index": 0,
+                "timestamp_sec": 0.0,
+                "image_path": ".semantic_motion_work/libero_goal/put_the_bowl_on_the_plate_demo_0/fixed/macro/window_000/fixed/frame_00000000.jpg",
+                "view_id": "fixed"
+              }
+            },
+            "view_annotations": {},
+            "fused_annotation": {
+              "scenario_id": "put_the_bowl_on_the_plate_demo_0_macro_000",
+              "image_path": ".semantic_motion_work/libero_goal/put_the_bowl_on_the_plate_demo_0/fixed/macro/window_000/fixed/frame_00000000.jpg",
+              "source_instruction": "",
+              "objects": [
+                "robot arm",
+                "black box",
+                "circular object",
+                "blue object",
+                "white device",
+                "wooden planks",
+                "counter"
+              ],
+              "spatial_relations": [
+                "black box ON counter",
+                "circular object ON counter",
+                "blue object ON counter",
+                "white device ON counter",
+                "wooden planks ON floor",
+                "robot arm IN front of counter"
+              ],
+              "macro_intent": {
+                "task_type": "manipulation",
+                "target_object": "white device",
+                "destination": "new position on counter (off-center)",
+                "confidence": 0.95,
+                "domain": "manipulation"
+              },
+              "micro_instructions": [
+                {
+                  "step_id": 1,
+                  "text": "approach white device",
+                  "verb": "approach",
+                  "object": "white device",
+                  "confidence": 0.95,
+                  "body_part": "robot arm",
+                  "contact_state": "approach",
+                  "posture": "standing",
+                  "observed_trajectory": null,
+                  "evidence_frame_ids": [
+                    0,
+                    1
+                  ]
+                },
+                {
+                  "step_id": 2,
+                  "text": "grasp white device",
+                  "verb": "grasp",
+                  "object": "white device",
+                  "confidence": 0.95,
+                  "body_part": "robot arm",
+                  "contact_state": "contact",
+                  "posture": "standing",
+                  "observed_trajectory": null,
+                  "evidence_frame_ids": [
+                    1,
+                    2
+                  ]
+                },
+                {
+                  "step_id": 3,
+                  "text": "lift white device",
+                  "verb": "lift",
+                  "object": "white device",
+                  "confidence": 0.95,
+                  "body_part": "robot arm",
+                  "contact_state": "grasp",
+                  "posture": "standing",
+                  "observed_trajectory": null,
+                  "evidence_frame_ids": [
+                    2,
+                    3
+                  ]
+                },
+                {
+                  "step_id": 4,
+                  "text": "rotate white device",
+                  "verb": "rotate",
+                  "object": "white device",
+                  "confidence": 0.95,
+                  "body_part": "robot arm",
+                  "contact_state": "grasp",
+                  "posture": "standing",
+                  "observed_trajectory": null,
+                  "evidence_frame_ids": [
+                    3,
+                    4
+                  ]
+                },
+                {
+                  "step_id": 5,
+                  "text": "reposition white device",
+                  "verb": "reposition",
+                  "object": "white device",
+                  "confidence": 0.95,
+                  "body_part": "robot arm",
+                  "contact_state": "grasp",
+                  "posture": "standing",
+                  "observed_trajectory": null,
+                  "evidence_frame_ids": [
+                    4,
+                    4
+                  ]
+                }
+              ],
+              "raw_recognition": "{\n  \"objects\": [\n    \"robot arm\",\n    \"black box\",\n    \"circular object\",\n    \"blue object\",\n    \"white device\",\n    \"wooden planks\",\n    \"counter\"\n  ],\n  \"spatial_relations\": [\n    \"black box ON counter\",\n    \"circular object ON counter\",\n    \"blue object ON counter\",\n    \"white device ON counter\",\n    \"wooden planks ON floor\",\n    \"robot arm IN front of counter\"\n  ],\n  \"task_type\": \"manipulation\",\n  \"domain\": \"manipulation\",\n  \"action_sequence\": [\n    \"approach white device\",\n    \"grasp white device\",\n    \"lift white device\",\n    \"rotate white device\",\n    \"reposition white device\"\n  ],\n  \"action_details\": [\n    {\n      \"text\": \"approach white device\",\n      \"verb\": \"approach\",\n      \"object\": \"white device\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"approach\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 0,\n      \"end_image_index\": 1\n    },\n    {\n      \"text\": \"grasp white device\",\n      \"verb\": \"grasp\",\n      \"object\": \"white device\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"contact\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 1,\n      \"end_image_index\": 2\n    },\n    {\n      \"text\": \"lift white device\",\n      \"verb\": \"lift\",\n      \"object\": \"white device\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 2,\n      \"end_image_index\": 3\n    },\n    {\n      \"text\": \"rotate white device\",\n      \"verb\": \"rotate\",\n      \"object\": \"white device\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 3,\n      \"end_image_index\": 4\n    },\n    {\n      \"text\": \"reposition white device\",\n      \"verb\": \"reposition\",\n      \"object\": \"white device\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 4,\n      \"end_image_index\": 4\n    }\n  ],\n  \"target_object\": \"white device\",\n  \"destination\": \"new position on counter (off-center)\",\n  \"instruction\": \"Reposition the white device by grasping, lifting, rotating, and placing it in a new location on the counter.\",\n  \"transitions\": [1, 2, 3, 4],\n  \"confidence\": 0.95\n}",
+              "view_id": "fixed",
+              "metadata": {
+                "category": "video",
+                "recognition_confidence": 0.95,
+                "prediction_instruction": "Reposition the white device by grasping, lifting, rotating, and placing it in a new location on the counter.",
+                "transitions": [
+                  1,
+                  2,
+                  3,
+                  4
+                ],
+                "view_mode": "fixed",
+                "evidence_paths": [
+                  ".semantic_motion_work/libero_goal/put_the_bowl_on_the_plate_demo_0/fixed/macro/window_000/fixed/frame_00000000.jpg",
+                  ".semantic_motion_work/libero_goal/put_the_bowl_on_the_plate_demo_0/fixed/macro/window_000/fixed/frame_00000029.jpg",
+                  ".semantic_motion_work/libero_goal/put_the_bowl_on_the_plate_demo_0/fixed/macro/window_000/fixed/frame_00000059.jpg",
+                  ".semantic_motion_work/libero_goal/put_the_bowl_on_the_plate_demo_0/fixed/macro/window_000/fixed/frame_00000089.jpg",
+                  ".semantic_motion_work/libero_goal/put_the_bowl_on_the_plate_demo_0/fixed/macro/window_000/ego/frame_00000000.jpg",
+                  ".semantic_motion_work/libero_goal/put_the_bowl_on_the_plate_demo_0/fixed/macro/window_000/ego/frame_00000029.jpg",
+                  ".semantic_motion_work/libero_goal/put_the_bowl_on_the_plate_demo_0/fixed/macro/window_000/ego/frame_00000059.jpg",
+                  ".semantic_motion_work/libero_goal/put_the_bowl_on_the_plate_demo_0/fixed/macro/window_000/ego/frame_00000089.jpg"
+                ]
+              }
+            }
+          },
+          {
+            "frame_id": 1,
+            "timestamp_sec": 1.45,
+            "view_frames": {
+              "fixed": {
+                "frame_id": 1,
+                "frame_index": 29,
+                "timestamp_sec": 1.45,
+                "image_path": ".semantic_motion_work/libero_goal/put_the_bowl_on_the_plate_demo_0/fixed/macro/window_000/fixed/frame_00000029.jpg",
+                "view_id": "fixed"
+              }
+            },
+            "view_annotations": {},
+            "fused_annotation": {
+              "scenario_id": "put_the_bowl_on_the_plate_demo_0_macro_000",
+              "image_path": ".semantic_motion_work/libero_goal/put_the_bowl_on_the_plate_demo_0/fixed/macro/window_000/fixed/frame_00000000.jpg",
+              "source_instruction": "",
+              "objects": [
+                "robot arm",
+                "black box",
+                "circular object",
+                "blue object",
+                "white device",
+                "wooden planks",
+                "counter"
+              ],
+              "spatial_relations": [
+                "black box ON counter",
+                "circular object ON counter",
+                "blue object ON counter",
+                "white device ON counter",
+                "wooden planks ON floor",
+                "robot arm IN front of counter"
+              ],
+              "macro_intent": {
+                "task_type": "manipulation",
+                "target_object": "white device",
+                "destination": "new position on counter (off-center)",
+                "confidence": 0.95,
+                "domain": "manipulation"
+              },
+              "micro_instructions": [
+                {
+                  "step_id": 1,
+                  "text": "approach white device",
+                  "verb": "approach",
+                  "object": "white device",
+                  "confidence": 0.95,
+                  "body_part": "robot arm",
+                  "contact_state": "approach",
+                  "posture": "standing",
+                  "observed_trajectory": null,
+                  "evidence_frame_ids": [
+                    0,
+                    1
+                  ]
+                },
+                {
+                  "step_id": 2,
+                  "text": "grasp white device",
+                  "verb": "grasp",
+                  "object": "white device",
+                  "confidence": 0.95,
+                  "body_part": "robot arm",
+                  "contact_state": "contact",
+                  "posture": "standing",
+                  "observed_trajectory": null,
+                  "evidence_frame_ids": [
+                    1,
+                    2
+                  ]
+                },
+                {
+                  "step_id": 3,
+                  "text": "lift white device",
+                  "verb": "lift",
+                  "object": "white device",
+                  "confidence": 0.95,
+                  "body_part": "robot arm",
+                  "contact_state": "grasp",
+                  "posture": "standing",
+                  "observed_trajectory": null,
+                  "evidence_frame_ids": [
+                    2,
+                    3
+                  ]
+                },
+                {
+                  "step_id": 4,
+                  "text": "rotate white device",
+                  "verb": "rotate",
+                  "object": "white device",
+                  "confidence": 0.95,
+                  "body_part": "robot arm",
+                  "contact_state": "grasp",
+                  "posture": "standing",
+                  "observed_trajectory": null,
+                  "evidence_frame_ids": [
+                    3,
+                    4
+                  ]
+                },
+                {
+                  "step_id": 5,
+                  "text": "reposition white device",
+                  "verb": "reposition",
+                  "object": "white device",
+                  "confidence": 0.95,
+                  "body_part": "robot arm",
+                  "contact_state": "grasp",
+                  "posture": "standing",
+                  "observed_trajectory": null,
+                  "evidence_frame_ids": [
+                    4,
+                    4
+                  ]
+                }
+              ],
+              "raw_recognition": "{\n  \"objects\": [\n    \"robot arm\",\n    \"black box\",\n    \"circular object\",\n    \"blue object\",\n    \"white device\",\n    \"wooden planks\",\n    \"counter\"\n  ],\n  \"spatial_relations\": [\n    \"black box ON counter\",\n    \"circular object ON counter\",\n    \"blue object ON counter\",\n    \"white device ON counter\",\n    \"wooden planks ON floor\",\n    \"robot arm IN front of counter\"\n  ],\n  \"task_type\": \"manipulation\",\n  \"domain\": \"manipulation\",\n  \"action_sequence\": [\n    \"approach white device\",\n    \"grasp white device\",\n    \"lift white device\",\n    \"rotate white device\",\n    \"reposition white device\"\n  ],\n  \"action_details\": [\n    {\n      \"text\": \"approach white device\",\n      \"verb\": \"approach\",\n      \"object\": \"white device\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"approach\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 0,\n      \"end_image_index\": 1\n    },\n    {\n      \"text\": \"grasp white device\",\n      \"verb\": \"grasp\",\n      \"object\": \"white device\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"contact\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 1,\n      \"end_image_index\": 2\n    },\n    {\n      \"text\": \"lift white device\",\n      \"verb\": \"lift\",\n      \"object\": \"white device\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 2,\n      \"end_image_index\": 3\n    },\n    {\n      \"text\": \"rotate white device\",\n      \"verb\": \"rotate\",\n      \"object\": \"white device\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 3,\n      \"end_image_index\": 4\n    },\n    {\n      \"text\": \"reposition white device\",\n      \"verb\": \"reposition\",\n      \"object\": \"white device\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 4,\n      \"end_image_index\": 4\n    }\n  ],\n  \"target_object\": \"white device\",\n  \"destination\": \"new position on counter (off-center)\",\n  \"instruction\": \"Reposition the white device by grasping, lifting, rotating, and placing it in a new location on the counter.\",\n  \"transitions\": [1, 2, 3, 4],\n  \"confidence\": 0.95\n}",
+              "view_id": "fixed",
+              "metadata": {
+                "category": "video",
+                "recognition_confidence": 0.95,
+                "prediction_instruction": "Reposition the white device by grasping, lifting, rotating, and placing it in a new location on the counter.",
+                "transitions": [
+                  1,
+                  2,
+                  3,
+                  4
+                ],
+                "view_mode": "fixed",
+                "evidence_paths": [
+                  ".semantic_motion_work/libero_goal/put_the_bowl_on_the_plate_demo_0/fixed/macro/window_000/fixed/frame_00000000.jpg",
+                  ".semantic_motion_work/libero_goal/put_the_bowl_on_the_plate_demo_0/fixed/macro/window_000/fixed/frame_00000029.jpg",
+                  ".semantic_motion_work/libero_goal/put_the_bowl_on_the_plate_demo_0/fixed/macro/window_000/fixed/frame_00000059.jpg",
+                  ".semantic_motion_work/libero_goal/put_the_bowl_on_the_plate_demo_0/fixed/macro/window_000/fixed/frame_00000089.jpg",
+                  ".semantic_motion_work/libero_goal/put_the_bowl_on_the_plate_demo_0/fixed/macro/window_000/ego/frame_00000000.jpg",
+                  ".semantic_motion_work/libero_goal/put_the_bowl_on_the_plate_demo_0/fixed/macro/window_000/ego/frame_00000029.jpg",
+                  ".semantic_motion_work/libero_goal/put_the_bowl_on_the_plate_demo_0/fixed/macro/window_000/ego/frame_00000059.jpg",
+                  ".semantic_motion_work/libero_goal/put_the_bowl_on_the_plate_demo_0/fixed/macro/window_000/ego/frame_00000089.jpg"
+                ]
+              }
+            }
+          },
+          {
+            "frame_id": 2,
+            "timestamp_sec": 2.95,
+            "view_frames": {
+              "fixed": {
+                "frame_id": 2,
+                "frame_index": 59,
+                "timestamp_sec": 2.95,
+                "image_path": ".semantic_motion_work/libero_goal/put_the_bowl_on_the_plate_demo_0/fixed/macro/window_000/fixed/frame_00000059.jpg",
+                "view_id": "fixed"
+              }
+            },
+            "view_annotations": {},
+            "fused_annotation": {
+              "scenario_id": "put_the_bowl_on_the_plate_demo_0_macro_000",
+              "image_path": ".semantic_motion_work/libero_goal/put_the_bowl_on_the_plate_demo_0/fixed/macro/window_000/fixed/frame_00000000.jpg",
+              "source_instruction": "",
+              "objects": [
+                "robot arm",
+                "black box",
+                "circular object",
+                "blue object",
+                "white device",
+                "wooden planks",
+                "counter"
+              ],
+              "spatial_relations": [
+                "black box ON counter",
+                "circular object ON counter",
+                "blue object ON counter",
+                "white device ON counter",
+                "wooden planks ON floor",
+                "robot arm IN front of counter"
+              ],
+              "macro_intent": {
+                "task_type": "manipulation",
+                "target_object": "white device",
+                "destination": "new position on counter (off-center)",
+                "confidence": 0.95,
+                "domain": "manipulation"
+              },
+              "micro_instructions": [
+                {
+                  "step_id": 1,
+                  "text": "approach white device",
+                  "verb": "approach",
+                  "object": "white device",
+                  "confidence": 0.95,
+                  "body_part": "robot arm",
+                  "contact_state": "approach",
+                  "posture": "standing",
+                  "observed_trajectory": null,
+                  "evidence_frame_ids": [
+                    0,
+                    1
+                  ]
+                },
+                {
+                  "step_id": 2,
+                  "text": "grasp white device",
+                  "verb": "grasp",
+                  "object": "white device",
+                  "confidence": 0.95,
+                  "body_part": "robot arm",
+                  "contact_state": "contact",
+                  "posture": "standing",
+                  "observed_trajectory": null,
+                  "evidence_frame_ids": [
+                    1,
+                    2
+                  ]
+                },
+                {
+                  "step_id": 3,
+                  "text": "lift white device",
+                  "verb": "lift",
+                  "object": "white device",
+                  "confidence": 0.95,
+                  "body_part": "robot arm",
+                  "contact_state": "grasp",
+                  "posture": "standing",
+                  "observed_trajectory": null,
+                  "evidence_frame_ids": [
+                    2,
+                    3
+                  ]
+                },
+                {
+                  "step_id": 4,
+                  "text": "rotate white device",
+                  "verb": "rotate",
+                  "object": "white device",
+                  "confidence": 0.95,
+                  "body_part": "robot arm",
+                  "contact_state": "grasp",
+                  "posture": "standing",
+                  "observed_trajectory": null,
+                  "evidence_frame_ids": [
+                    3,
+                    4
+                  ]
+                },
+                {
+                  "step_id": 5,
+                  "text": "reposition white device",
+                  "verb": "reposition",
+                  "object": "white device",
+                  "confidence": 0.95,
+                  "body_part": "robot arm",
+                  "contact_state": "grasp",
+                  "posture": "standing",
+                  "observed_trajectory": null,
+                  "evidence_frame_ids": [
+                    4,
+                    4
+                  ]
+                }
+              ],
+              "raw_recognition": "{\n  \"objects\": [\n    \"robot arm\",\n    \"black box\",\n    \"circular object\",\n    \"blue object\",\n    \"white device\",\n    \"wooden planks\",\n    \"counter\"\n  ],\n  \"spatial_relations\": [\n    \"black box ON counter\",\n    \"circular object ON counter\",\n    \"blue object ON counter\",\n    \"white device ON counter\",\n    \"wooden planks ON floor\",\n    \"robot arm IN front of counter\"\n  ],\n  \"task_type\": \"manipulation\",\n  \"domain\": \"manipulation\",\n  \"action_sequence\": [\n    \"approach white device\",\n    \"grasp white device\",\n    \"lift white device\",\n    \"rotate white device\",\n    \"reposition white device\"\n  ],\n  \"action_details\": [\n    {\n      \"text\": \"approach white device\",\n      \"verb\": \"approach\",\n      \"object\": \"white device\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"approach\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 0,\n      \"end_image_index\": 1\n    },\n    {\n      \"text\": \"grasp white device\",\n      \"verb\": \"grasp\",\n      \"object\": \"white device\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"contact\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 1,\n      \"end_image_index\": 2\n    },\n    {\n      \"text\": \"lift white device\",\n      \"verb\": \"lift\",\n      \"object\": \"white device\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 2,\n      \"end_image_index\": 3\n    },\n    {\n      \"text\": \"rotate white device\",\n      \"verb\": \"rotate\",\n      \"object\": \"white device\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 3,\n      \"end_image_index\": 4\n    },\n    {\n      \"text\": \"reposition white device\",\n      \"verb\": \"reposition\",\n      \"object\": \"white device\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 4,\n      \"end_image_index\": 4\n    }\n  ],\n  \"target_object\": \"white device\",\n  \"destination\": \"new position on counter (off-center)\",\n  \"instruction\": \"Reposition the white device by grasping, lifting, rotating, and placing it in a new location on the counter.\",\n  \"transitions\": [1, 2, 3, 4],\n  \"confidence\": 0.95\n}",
+              "view_id": "fixed",
+              "metadata": {
+                "category": "video",
+                "recognition_confidence": 0.95,
+                "prediction_instruction": "Reposition the white device by grasping, lifting, rotating, and placing it in a new location on the counter.",
+                "transitions": [
+                  1,
+                  2,
+                  3,
+                  4
+                ],
+                "view_mode": "fixed",
+                "evidence_paths": [
+                  ".semantic_motion_work/libero_goal/put_the_bowl_on_the_plate_demo_0/fixed/macro/window_000/fixed/frame_00000000.jpg",
+                  ".semantic_motion_work/libero_goal/put_the_bowl_on_the_plate_demo_0/fixed/macro/window_000/fixed/frame_00000029.jpg",
+                  ".semantic_motion_work/libero_goal/put_the_bowl_on_the_plate_demo_0/fixed/macro/window_000/fixed/frame_00000059.jpg",
+                  ".semantic_motion_work/libero_goal/put_the_bowl_on_the_plate_demo_0/fixed/macro/window_000/fixed/frame_00000089.jpg",
+                  ".semantic_motion_work/libero_goal/put_the_bowl_on_the_plate_demo_0/fixed/macro/window_000/ego/frame_00000000.jpg",
+                  ".semantic_motion_work/libero_goal/put_the_bowl_on_the_plate_demo_0/fixed/macro/window_000/ego/frame_00000029.jpg",
+                  ".semantic_motion_work/libero_goal/put_the_bowl_on_the_plate_demo_0/fixed/macro/window_000/ego/frame_00000059.jpg",
+                  ".semantic_motion_work/libero_goal/put_the_bowl_on_the_plate_demo_0/fixed/macro/window_000/ego/frame_00000089.jpg"
+                ]
+              }
+            }
+          },
+          {
+            "frame_id": 3,
+            "timestamp_sec": 4.45,
+            "view_frames": {
+              "fixed": {
+                "frame_id": 3,
+                "frame_index": 89,
+                "timestamp_sec": 4.45,
+                "image_path": ".semantic_motion_work/libero_goal/put_the_bowl_on_the_plate_demo_0/fixed/macro/window_000/fixed/frame_00000089.jpg",
+                "view_id": "fixed"
+              }
+            },
+            "view_annotations": {},
+            "fused_annotation": {
+              "scenario_id": "put_the_bowl_on_the_plate_demo_0_macro_000",
+              "image_path": ".semantic_motion_work/libero_goal/put_the_bowl_on_the_plate_demo_0/fixed/macro/window_000/fixed/frame_00000000.jpg",
+              "source_instruction": "",
+              "objects": [
+                "robot arm",
+                "black box",
+                "circular object",
+                "blue object",
+                "white device",
+                "wooden planks",
+                "counter"
+              ],
+              "spatial_relations": [
+                "black box ON counter",
+                "circular object ON counter",
+                "blue object ON counter",
+                "white device ON counter",
+                "wooden planks ON floor",
+                "robot arm IN front of counter"
+              ],
+              "macro_intent": {
+                "task_type": "manipulation",
+                "target_object": "white device",
+                "destination": "new position on counter (off-center)",
+                "confidence": 0.95,
+                "domain": "manipulation"
+              },
+              "micro_instructions": [
+                {
+                  "step_id": 1,
+                  "text": "approach white device",
+                  "verb": "approach",
+                  "object": "white device",
+                  "confidence": 0.95,
+                  "body_part": "robot arm",
+                  "contact_state": "approach",
+                  "posture": "standing",
+                  "observed_trajectory": null,
+                  "evidence_frame_ids": [
+                    0,
+                    1
+                  ]
+                },
+                {
+                  "step_id": 2,
+                  "text": "grasp white device",
+                  "verb": "grasp",
+                  "object": "white device",
+                  "confidence": 0.95,
+                  "body_part": "robot arm",
+                  "contact_state": "contact",
+                  "posture": "standing",
+                  "observed_trajectory": null,
+                  "evidence_frame_ids": [
+                    1,
+                    2
+                  ]
+                },
+                {
+                  "step_id": 3,
+                  "text": "lift white device",
+                  "verb": "lift",
+                  "object": "white device",
+                  "confidence": 0.95,
+                  "body_part": "robot arm",
+                  "contact_state": "grasp",
+                  "posture": "standing",
+                  "observed_trajectory": null,
+                  "evidence_frame_ids": [
+                    2,
+                    3
+                  ]
+                },
+                {
+                  "step_id": 4,
+                  "text": "rotate white device",
+                  "verb": "rotate",
+                  "object": "white device",
+                  "confidence": 0.95,
+                  "body_part": "robot arm",
+                  "contact_state": "grasp",
+                  "posture": "standing",
+                  "observed_trajectory": null,
+                  "evidence_frame_ids": [
+                    3,
+                    4
+                  ]
+                },
+                {
+                  "step_id": 5,
+                  "text": "reposition white device",
+                  "verb": "reposition",
+                  "object": "white device",
+                  "confidence": 0.95,
+                  "body_part": "robot arm",
+                  "contact_state": "grasp",
+                  "posture": "standing",
+                  "observed_trajectory": null,
+                  "evidence_frame_ids": [
+                    4,
+                    4
+                  ]
+                }
+              ],
+              "raw_recognition": "{\n  \"objects\": [\n    \"robot arm\",\n    \"black box\",\n    \"circular object\",\n    \"blue object\",\n    \"white device\",\n    \"wooden planks\",\n    \"counter\"\n  ],\n  \"spatial_relations\": [\n    \"black box ON counter\",\n    \"circular object ON counter\",\n    \"blue object ON counter\",\n    \"white device ON counter\",\n    \"wooden planks ON floor\",\n    \"robot arm IN front of counter\"\n  ],\n  \"task_type\": \"manipulation\",\n  \"domain\": \"manipulation\",\n  \"action_sequence\": [\n    \"approach white device\",\n    \"grasp white device\",\n    \"lift white device\",\n    \"rotate white device\",\n    \"reposition white device\"\n  ],\n  \"action_details\": [\n    {\n      \"text\": \"approach white device\",\n      \"verb\": \"approach\",\n      \"object\": \"white device\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"approach\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 0,\n      \"end_image_index\": 1\n    },\n    {\n      \"text\": \"grasp white device\",\n      \"verb\": \"grasp\",\n      \"object\": \"white device\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"contact\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 1,\n      \"end_image_index\": 2\n    },\n    {\n      \"text\": \"lift white device\",\n      \"verb\": \"lift\",\n      \"object\": \"white device\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 2,\n      \"end_image_index\": 3\n    },\n    {\n      \"text\": \"rotate white device\",\n      \"verb\": \"rotate\",\n      \"object\": \"white device\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 3,\n      \"end_image_index\": 4\n    },\n    {\n      \"text\": \"reposition white device\",\n      \"verb\": \"reposition\",\n      \"object\": \"white device\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 4,\n      \"end_image_index\": 4\n    }\n  ],\n  \"target_object\": \"white device\",\n  \"destination\": \"new position on counter (off-center)\",\n  \"instruction\": \"Reposition the white device by grasping, lifting, rotating, and placing it in a new location on the counter.\",\n  \"transitions\": [1, 2, 3, 4],\n  \"confidence\": 0.95\n}",
+              "view_id": "fixed",
+              "metadata": {
+                "category": "video",
+                "recognition_confidence": 0.95,
+                "prediction_instruction": "Reposition the white device by grasping, lifting, rotating, and placing it in a new location on the counter.",
+                "transitions": [
+                  1,
+                  2,
+                  3,
+                  4
+                ],
+                "view_mode": "fixed",
+                "evidence_paths": [
+                  ".semantic_motion_work/libero_goal/put_the_bowl_on_the_plate_demo_0/fixed/macro/window_000/fixed/frame_00000000.jpg",
+                  ".semantic_motion_work/libero_goal/put_the_bowl_on_the_plate_demo_0/fixed/macro/window_000/fixed/frame_00000029.jpg",
+                  ".semantic_motion_work/libero_goal/put_the_bowl_on_the_plate_demo_0/fixed/macro/window_000/fixed/frame_00000059.jpg",
+                  ".semantic_motion_work/libero_goal/put_the_bowl_on_the_plate_demo_0/fixed/macro/window_000/fixed/frame_00000089.jpg",
+                  ".semantic_motion_work/libero_goal/put_the_bowl_on_the_plate_demo_0/fixed/macro/window_000/ego/frame_00000000.jpg",
+                  ".semantic_motion_work/libero_goal/put_the_bowl_on_the_plate_demo_0/fixed/macro/window_000/ego/frame_00000029.jpg",
+                  ".semantic_motion_work/libero_goal/put_the_bowl_on_the_plate_demo_0/fixed/macro/window_000/ego/frame_00000059.jpg",
+                  ".semantic_motion_work/libero_goal/put_the_bowl_on_the_plate_demo_0/fixed/macro/window_000/ego/frame_00000089.jpg"
+                ]
+              }
+            }
+          }
+        ],
+        "task_segments": [
+          {
+            "segment_id": "segment_000",
+            "start_time_sec": 0.0,
+            "end_time_sec": 2.55,
+            "frame_ids": [
+              0,
+              13,
+              20,
+              26,
+              30,
+              39,
+              40,
+              50
+            ],
+            "task_instruction": "grasp and move the black cylindrical object toward the white square with a hole.",
+            "objects": [
+              "robot arm",
+              "black box",
+              "circular object",
+              "blue rectangle",
+              "white square with hole",
+              "black cylindrical object",
+              "wooden planks",
+              "blue button",
+              "white panel"
+            ],
+            "spatial_relations": [
+              "robot arm BELOW black box",
+              "robot arm IN front of white square with hole",
+              "black cylindrical object ON counter near white square",
+              "wooden planks ON floor left of robot arm",
+              "robot arm IN front of black box",
+              "circular object ON wall",
+              "blue button ON wall",
+              "white panel ON wall",
+              "wooden planks ON floor"
+            ],
+            "macro_intent": {
+              "task_type": "manipulation",
+              "target_object": "black cylindrical object",
+              "destination": "white square with hole",
+              "confidence": 0.925,
+              "domain": "manipulation"
+            },
+            "micro_instructions": [
+              {
+                "step_id": 1,
+                "text": "approach white square with hole",
+                "verb": "approach",
+                "object": "white square with hole",
+                "confidence": 0.95,
+                "body_part": "robot arm",
+                "contact_state": "approach",
+                "posture": "standing",
+                "observed_trajectory": {
+                  "track_names": [
+                    "eef"
+                  ],
+                  "start_time_sec": 0.0,
+                  "end_time_sec": 2.0,
+                  "coordinate_frame": "world"
+                },
+                "evidence_frame_ids": [
+                  0,
+                  13,
+                  26,
+                  39
+                ]
+              },
+              {
+                "step_id": 2,
+                "text": "grasp black cylindrical object",
+                "verb": "grasp",
+                "object": "black cylindrical object",
+                "confidence": 0.95,
+                "body_part": "robot arm",
+                "contact_state": "grasp",
+                "posture": "standing",
+                "observed_trajectory": {
+                  "track_names": [
+                    "eef"
+                  ],
+                  "start_time_sec": 0.0,
+                  "end_time_sec": 2.0,
+                  "coordinate_frame": "world"
+                },
+                "evidence_frame_ids": [
+                  0,
+                  13,
+                  26,
+                  39
+                ]
+              },
+              {
+                "step_id": 3,
+                "text": "lift black cylindrical object",
+                "verb": "lift",
+                "object": "black cylindrical object",
+                "confidence": 0.95,
+                "body_part": "robot arm",
+                "contact_state": "grasp",
+                "posture": "standing",
+                "observed_trajectory": {
+                  "track_names": [
+                    "eef"
+                  ],
+                  "start_time_sec": 0.0,
+                  "end_time_sec": 2.0,
+                  "coordinate_frame": "world"
+                },
+                "evidence_frame_ids": [
+                  0,
+                  13,
+                  26,
+                  39
+                ]
+              },
+              {
+                "step_id": 4,
+                "text": "move black cylindrical object toward white square",
+                "verb": "move",
+                "object": "black cylindrical object",
+                "confidence": 0.95,
+                "body_part": "robot arm",
+                "contact_state": "grasp",
+                "posture": "standing",
+                "observed_trajectory": {
+                  "track_names": [
+                    "eef"
+                  ],
+                  "start_time_sec": 0.0,
+                  "end_time_sec": 2.0,
+                  "coordinate_frame": "world"
+                },
+                "evidence_frame_ids": [
+                  0,
+                  13,
+                  26,
+                  39
+                ]
+              },
+              {
+                "step_id": 5,
+                "text": "adjust robot arm position",
+                "verb": "adjust",
+                "object": "robot arm",
+                "confidence": 0.9,
+                "body_part": "robot arm",
+                "contact_state": "unknown",
+                "posture": "standing",
+                "observed_trajectory": {
+                  "track_names": [
+                    "eef"
+                  ],
+                  "start_time_sec": 1.0,
+                  "end_time_sec": 2.55,
+                  "coordinate_frame": "world"
+                },
+                "evidence_frame_ids": [
+                  20,
+                  30,
+                  40,
+                  50
+                ]
+              },
+              {
+                "step_id": 6,
+                "text": "move robot arm toward circular object",
+                "verb": "move",
+                "object": "robot arm",
+                "confidence": 0.9,
+                "body_part": "robot arm",
+                "contact_state": "unknown",
+                "posture": "standing",
+                "observed_trajectory": {
+                  "track_names": [
+                    "eef"
+                  ],
+                  "start_time_sec": 1.0,
+                  "end_time_sec": 2.55,
+                  "coordinate_frame": "world"
+                },
+                "evidence_frame_ids": [
+                  20,
+                  30,
+                  40,
+                  50
+                ]
+              },
+              {
+                "step_id": 7,
+                "text": "grasp circular object",
+                "verb": "grasp",
+                "object": "circular object",
+                "confidence": 0.9,
+                "body_part": "robot arm",
+                "contact_state": "contact",
+                "posture": "standing",
+                "observed_trajectory": {
+                  "track_names": [
+                    "eef"
+                  ],
+                  "start_time_sec": 1.0,
+                  "end_time_sec": 2.55,
+                  "coordinate_frame": "world"
+                },
+                "evidence_frame_ids": [
+                  20,
+                  30,
+                  40,
+                  50
+                ]
+              },
+              {
+                "step_id": 8,
+                "text": "lift circular object",
+                "verb": "lift",
+                "object": "circular object",
+                "confidence": 0.9,
+                "body_part": "robot arm",
+                "contact_state": "grasp",
+                "posture": "standing",
+                "observed_trajectory": {
+                  "track_names": [
+                    "eef"
+                  ],
+                  "start_time_sec": 1.0,
+                  "end_time_sec": 2.55,
+                  "coordinate_frame": "world"
+                },
+                "evidence_frame_ids": [
+                  20,
+                  30,
+                  40,
+                  50
+                ]
+              }
+            ],
+            "augmented_instructions": [
+              {
+                "text": "grasp and move the black cylindrical object toward the white square with a hole.",
+                "strategy": "source_only",
+                "source_step_ids": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8
+                ],
+                "metadata": {
+                  "rewriter": "none",
+                  "augmented": false
+                }
+              }
+            ],
+            "confidence": 0.925,
+            "start_frame": 0,
+            "end_frame": 51,
+            "evidence_by_view": {
+              "fixed": [
+                0,
+                13,
+                20,
+                26,
+                30,
+                39,
+                40,
+                50
+              ]
+            },
+            "metadata": {
+              "micro_window_count": 2,
+              "view_mode": "fixed",
+              "trajectory_linked": true,
+              "augmentation_audit": []
+            }
+          },
+          {
+            "segment_id": "segment_001",
+            "start_time_sec": 2.55,
+            "end_time_sec": 4.5,
+            "frame_ids": [
+              51,
+              63,
+              76,
+              89
+            ],
+            "task_instruction": "rotate the circular object using the robot arm after making contact.",
+            "objects": [
+              "robot arm",
+              "black box",
+              "circular object",
+              "wooden sticks",
+              "wall-mounted device"
+            ],
+            "spatial_relations": [
+              "robot arm IN front of black box",
+              "circular object ON wall",
+              "wooden sticks ON floor near black box",
+              "wall-mounted device ON wall to right of circular object"
+            ],
+            "macro_intent": {
+              "task_type": "manipulation",
+              "target_object": "circular object",
+              "destination": null,
+              "confidence": 0.95,
+              "domain": "manipulation"
+            },
+            "micro_instructions": [
+              {
+                "step_id": 1,
+                "text": "robot arm moves toward circular object",
+                "verb": "move",
+                "object": "robot arm",
+                "confidence": 0.95,
+                "body_part": "robot arm",
+                "contact_state": "approach",
+                "posture": "stationary with slight forward extension",
+                "observed_trajectory": {
+                  "track_names": [
+                    "eef"
+                  ],
+                  "start_time_sec": 2.55,
+                  "end_time_sec": 4.5,
+                  "coordinate_frame": "world"
+                },
+                "evidence_frame_ids": [
+                  51,
+                  63,
+                  76,
+                  89
+                ]
+              },
+              {
+                "step_id": 2,
+                "text": "robot arm makes contact with circular object",
+                "verb": "contact",
+                "object": "circular object",
+                "confidence": 0.95,
+                "body_part": "robot arm end-effector",
+                "contact_state": "contact",
+                "posture": "stable, aligned with object",
+                "observed_trajectory": {
+                  "track_names": [
+                    "eef"
+                  ],
+                  "start_time_sec": 2.55,
+                  "end_time_sec": 4.5,
+                  "coordinate_frame": "world"
+                },
+                "evidence_frame_ids": [
+                  51,
+                  63,
+                  76,
+                  89
+                ]
+              },
+              {
+                "step_id": 3,
+                "text": "robot arm rotates circular object",
+                "verb": "rotate",
+                "object": "circular object",
+                "confidence": 0.95,
+                "body_part": "robot arm end-effector",
+                "contact_state": "grasp",
+                "posture": "fixed grip, rotational motion evident",
+                "observed_trajectory": {
+                  "track_names": [
+                    "eef"
+                  ],
+                  "start_time_sec": 2.55,
+                  "end_time_sec": 4.5,
+                  "coordinate_frame": "world"
+                },
+                "evidence_frame_ids": [
+                  51,
+                  63,
+                  76,
+                  89
+                ]
+              }
+            ],
+            "augmented_instructions": [
+              {
+                "text": "rotate the circular object using the robot arm after making contact.",
+                "strategy": "source_only",
+                "source_step_ids": [
+                  1,
+                  2,
+                  3
+                ],
+                "metadata": {
+                  "rewriter": "none",
+                  "augmented": false
+                }
+              }
+            ],
+            "confidence": 0.95,
+            "start_frame": 51,
+            "end_frame": 90,
+            "evidence_by_view": {
+              "fixed": [
+                51,
+                63,
+                76,
+                89
+              ]
+            },
+            "metadata": {
+              "micro_window_count": 1,
+              "view_mode": "fixed",
+              "trajectory_linked": true,
+              "augmentation_audit": []
+            }
+          }
+        ],
+        "metadata": {
+          "method": "paired_overlapping_macro_dense_micro_v1",
+          "view_mode": "fixed",
+          "macro_window_sec": 16.0,
+          "macro_step_sec": 8.0,
+          "macro_frames": 4,
+          "micro_window_sec": 2.0,
+          "micro_step_sec": 1.0,
+          "micro_frames": 4,
+          "cut_frames": [
+            51
+          ],
+          "macro_window_count": 1,
+          "provenance": {
+            "dataset": "LIBERO Goal",
+            "source_id": "put_the_bowl_on_the_plate_demo_0",
+            "generator": "src.semantic_motion.view_bundle",
+            "revision": "fe3cdfd1b0758949153e6369ac16e9320ccd13a9",
+            "config": {},
+            "checksums": {}
+          },
+          "generation_model": "qwen3-vl-flash",
+          "rewriter": "SourceInstructionRewriter",
+          "rewrite_prompt_version": ""
+        }
+      }
+    }
+  ]
+}

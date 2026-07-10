@@ -23,8 +23,17 @@ def _split_action(action: str) -> tuple[str, str]:
     return parts[0], parts[1]
 
 
+def _optional_text(value: object) -> str | None:
+    if value is None:
+        return None
+    text = str(value).strip()
+    return text or None
+
+
 def _prediction_confidence(prediction: Prediction) -> float:
     """Heuristic confidence when the upstream recognizer does not expose one."""
+    if prediction.confidence is not None:
+        return max(0.0, min(1.0, float(prediction.confidence)))
     checks = [
         bool(prediction.objects),
         bool(prediction.task_type),
@@ -63,18 +72,40 @@ class PerceptionStream:
             target_object=prediction.target_object,
             destination=prediction.destination,
             confidence=confidence,
+            domain=(
+                prediction.domain
+                if prediction.domain in {"locomotion", "manipulation", "mixed", "unknown"}
+                else "unknown"
+            ),
         )
 
         micro_instructions: list[MicroInstruction] = []
         for idx, action in enumerate(prediction.action_sequence, start=1):
             verb, obj = _split_action(action)
+            detail = (
+                prediction.action_details[idx - 1]
+                if idx <= len(prediction.action_details)
+                and isinstance(prediction.action_details[idx - 1], dict)
+                else {}
+            )
             micro_instructions.append(
                 MicroInstruction(
                     step_id=idx,
-                    text=action,
-                    verb=verb,
-                    object=obj,
+                    text=str(detail.get("text", action)),
+                    verb=str(detail.get("verb", verb)),
+                    object=str(detail.get("object", obj)),
                     confidence=confidence,
+                    body_part=_optional_text(detail.get("body_part")),
+                    contact_state=_optional_text(detail.get("contact_state")),
+                    posture=_optional_text(detail.get("posture")),
+                    evidence_frame_ids=[
+                        int(value)
+                        for value in (
+                            detail.get("start_image_index"),
+                            detail.get("end_image_index"),
+                        )
+                        if isinstance(value, (int, float))
+                    ],
                 )
             )
 
@@ -90,6 +121,8 @@ class PerceptionStream:
             metadata={
                 "category": scenario.category,
                 "recognition_confidence": confidence,
+                "prediction_instruction": prediction.instruction,
+                "transitions": prediction.transitions,
             },
         )
 

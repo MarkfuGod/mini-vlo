@@ -8,3 +8,12 @@ dist/
 build/
 .semantic_motion_work/
 module_d/output_videos/
+data/
+report/*.aux
+report/*.bbl
+report/*.blg
+report/*.lof
+report/*.log
+report/*.lot
+report/*.out
+report/*.toc

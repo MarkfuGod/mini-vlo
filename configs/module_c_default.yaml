@@ -1,19 +1,31 @@
 thresholds:
   motion_min: 0.35
+  semantic_min_confidence: 0.70
 
 motion_quality:
   max_velocity: 2.5
   max_acceleration: 6.0
   max_jerk: 20.0
   max_jitter_ratio: 0.30
+  max_interval_cv: 0.25
+  max_time_gap_ratio: 2.5
   aggregation: min
 
+sync:
+  require_paired_views: true
+  fps_tolerance: 0.001
+  duration_tolerance_sec: 0.05
+  require_motion_coverage: true
+
+policy:
+  allow_mock_keep: false
+
 semantic:
-  verifier: qwen3-vl-plus
-  qwen3vl_plus_base_url: "https://ws-2rplzca29h2l058p.cn-beijing.maas.aliyuncs.com/compatible-mode/v1"
-  qwen3vl_plus_api_key_env: QWEN3VL_PLUS_API_KEY
-  qwen3vl_plus_model: qwen3-vl-plus
-  request_timeout_s: 30.0
+  verifier: qwen3-vl-flash
+  qwen_vl_base_url: "https://dashscope.aliyuncs.com/compatible-mode/v1"
+  qwen_vl_api_key_env: DASHSCOPE_API_KEY
+  qwen_vl_model: qwen3-vl-flash
+  request_timeout_s: 300.0
   prompt_file: src/module_c/semantic_consistency_v1.txt
   local_video_max_upload_mb: 18.0
   local_video_frame_count: 8

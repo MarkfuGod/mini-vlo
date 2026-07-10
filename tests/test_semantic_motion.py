@@ -3,7 +3,12 @@ from __future__ import annotations
 import unittest
 
 from src.scenario import GroundTruth, Prediction, Scenario
-from src.semantic_motion import SemanticMotionPipeline, VideoFrame, VideoTaskPipeline
+from src.semantic_motion import (
+    SemanticMotionPipeline,
+    TemplateInstructionRewriter,
+    VideoFrame,
+    VideoTaskPipeline,
+)
 
 
 class DummyRecognizer:
@@ -82,7 +87,10 @@ def make_scenario() -> Scenario:
 
 class SemanticMotionPipelineTest(unittest.TestCase):
     def test_perception_labels_macro_and_micro_instructions(self):
-        pipeline = SemanticMotionPipeline(recognizer=DummyRecognizer())
+        pipeline = SemanticMotionPipeline(
+            recognizer=DummyRecognizer(),
+            rewriter=TemplateInstructionRewriter(),
+        )
         record = pipeline.run_one(make_scenario(), image_root=".", num_variants=2)
 
         self.assertEqual(record.annotation.macro_intent.task_type, "pick_and_place")
@@ -93,7 +101,10 @@ class SemanticMotionPipelineTest(unittest.TestCase):
         self.assertEqual(record.annotation.micro_instructions[0].object, "red mug")
 
     def test_augmentation_generates_requested_variants(self):
-        pipeline = SemanticMotionPipeline(recognizer=DummyRecognizer())
+        pipeline = SemanticMotionPipeline(
+            recognizer=DummyRecognizer(),
+            rewriter=TemplateInstructionRewriter(),
+        )
         record = pipeline.run_one(make_scenario(), image_root=".", num_variants=3)
 
         self.assertEqual(len(record.augmented_instructions), 3)
@@ -123,7 +134,10 @@ class SemanticMotionPipelineTest(unittest.TestCase):
                 image_path="frame_blue_2.jpg",
             ),
         ]
-        pipeline = VideoTaskPipeline(recognizer=DummyVideoRecognizer())
+        pipeline = VideoTaskPipeline(
+            recognizer=DummyVideoRecognizer(),
+            rewriter=TemplateInstructionRewriter(),
+        )
         record = pipeline.run_frames(
             frames,
             video_path="demo.mp4",

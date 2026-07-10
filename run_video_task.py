@@ -13,7 +13,14 @@ import json
 from datetime import datetime
 from pathlib import Path
 
-from src.semantic_motion import VLMRecognitionModel, VideoTaskPipeline
+from src.semantic_motion import (
+    LLMInstructionRewriter,
+    SourceInstructionRewriter,
+    TemplateInstructionRewriter,
+    VLMRecognitionModel,
+    VideoTaskPipeline,
+    load_view_bundle,
+)
 
 
 ROOT = Path(__file__).parent
@@ -31,6 +38,17 @@ def parse_args():
         "--frame-dir",
         help="Directory of pre-extracted frames, sorted by filename",
     )
+    source.add_argument(
+        "--manifest",
+        help="ViewBundle or dataset manifest containing synchronized fixed/ego views",
+    )
+    parser.add_argument("--sample-id", default="", help="Sample id inside --manifest")
+    parser.add_argument(
+        "--view-mode",
+        choices=["fixed", "ego", "fused"],
+        default="fused",
+        help="Camera ablation or paired-view early fusion for --manifest",
+    )
     parser.add_argument(
         "--instruction",
         default="",
@@ -40,7 +58,7 @@ def parse_args():
         "--max-frames",
         type=int,
         default=12,
-        help="Uniformly sampled frames for --video",
+        help="Frames sampled in each overlapping macro window",
     )
     parser.add_argument(
         "--fps",
@@ -54,6 +72,22 @@ def parse_args():
         default=3,
         help="Augmented instruction variants per detected segment",
     )
+    parser.add_argument(
+        "--rewriter",
+        choices=["llm", "template", "none"],
+        default="llm",
+        help="LLM is production mode; template is deterministic debug-only mode",
+    )
+    parser.add_argument(
+        "--rewrite-model",
+        default=None,
+        help="Optional independent text-rewrite model (defaults to --model)",
+    )
+    parser.add_argument("--macro-window-sec", type=float, default=16.0)
+    parser.add_argument("--macro-step-sec", type=float, default=8.0)
+    parser.add_argument("--micro-window-sec", type=float, default=2.0)
+    parser.add_argument("--micro-step-sec", type=float, default=1.0)
+    parser.add_argument("--micro-frames", type=int, default=4)
     parser.add_argument(
         "--api-key",
         default=None,
@@ -84,13 +118,39 @@ def main():
         base_url=args.base_url,
         model=args.model,
     )
-    pipeline = VideoTaskPipeline(recognizer=recognizer)
+    if args.rewriter == "llm":
+        rewriter = LLMInstructionRewriter(
+            api_key=args.api_key,
+            base_url=args.base_url,
+            model=args.rewrite_model or args.model,
+        )
+    elif args.rewriter == "template":
+        rewriter = TemplateInstructionRewriter()
+    else:
+        rewriter = SourceInstructionRewriter()
+    pipeline = VideoTaskPipeline(recognizer=recognizer, rewriter=rewriter)
     print(
         "Video-to-task ready "
         f"model={recognizer.model} base_url={recognizer.base_url}"
     )
 
-    if args.video:
+    if args.manifest:
+        bundle = load_view_bundle(args.manifest, sample_id=args.sample_id or None)
+        source_path = Path(args.manifest)
+        record = pipeline.run_view_bundle(
+            bundle,
+            work_dir=WORK_DIR / bundle.sample_id / args.view_mode,
+            source_instruction=args.instruction,
+            view_mode=args.view_mode,
+            num_variants=args.variants,
+            macro_window_sec=args.macro_window_sec,
+            macro_step_sec=args.macro_step_sec,
+            macro_frames=args.max_frames,
+            micro_window_sec=args.micro_window_sec,
+            micro_step_sec=args.micro_step_sec,
+            micro_frames=args.micro_frames,
+        )
+    elif args.video:
         source_path = Path(args.video)
         record = pipeline.run_video(
             source_path,
@@ -120,7 +180,7 @@ def main():
         json.dump(record.model_dump(), f, indent=2, ensure_ascii=False)
 
     print(
-        f"Processed {len(record.frames)} frames into "
+        f"Processed {len(record.frames) + len(record.multi_view_frames)} evidence frames into "
         f"{len(record.task_segments)} task segment(s)."
     )
     for segment in record.task_segments:

@@ -1,0 +1,100 @@
+{
+  "status": "diagnostic_only",
+  "formal": false,
+  "reason": "offline recognizer and explicit mock judge",
+  "sample_id": "put_the_bowl_on_the_plate_demo_0",
+  "views": [
+    "ego",
+    "fixed"
+  ],
+  "segments": 1,
+  "prepared_samples": 1,
+  "refinement": [
+    {
+      "sample_id": "demo_0_agentview_rgb_segment_000",
+      "motion_quality_score": 0.9904195666313171,
+      "semantic_label": "consistent",
+      "semantic_confidence": 1.0,
+      "decision": "keep",
+      "reason_codes": [],
+      "aux": {
+        "sync": {
+          "valid": true,
+          "views": {
+            "fixed": {
+              "fps": 20.0,
+              "frame_count": 90,
+              "duration_sec": 4.5
+            },
+            "ego": {
+              "fps": 20.0,
+              "frame_count": 90,
+              "duration_sec": 4.5
+            }
+          },
+          "motion_coverage": {
+            "eef": [
+              0.0,
+              4.45
+            ]
+          }
+        },
+        "motion": {
+          "aggregation": "min",
+          "track_count": 1.0,
+          "tracks": {
+            "eef": {
+              "score": 0.9904195666313171,
+              "velocity_ratio": 0.0,
+              "acceleration_ratio": 0.0,
+              "jerk_ratio": 0.011494252873563218,
+              "jitter_ratio": 0.0,
+              "interval_cv": 2.0638894966396037e-06,
+              "time_gap_ratio": 1.000004768371582,
+              "reason_codes": []
+            }
+          },
+          "input_spatial_unit": "meters",
+          "normalized_spatial_unit": "meters"
+        },
+        "semantic": {
+          "label": "consistent",
+          "confidence": 1.0,
+          "error_types": [],
+          "suggested_text": "Evaluate only video interval 0.000s-4.500s. Candidate text: put the bowl on the plate.",
+          "verifier": "independent_multiview",
+          "per_view": {
+            "ego": {
+              "label": "consistent",
+              "confidence": 1.0,
+              "error_types": [],
+              "suggested_text": "Evaluate only video interval 0.000s-4.500s. Candidate text: put the bowl on the plate.",
+              "verifier": "mock"
+            },
+            "fixed": {
+              "label": "consistent",
+              "confidence": 1.0,
+              "error_types": [],
+              "suggested_text": "Evaluate only video interval 0.000s-4.500s. Candidate text: put the bowl on the plate.",
+              "verifier": "mock"
+            }
+          }
+        },
+        "text": "put the bowl on the plate.",
+        "label": null,
+        "views": {
+          "fixed": "data/libero_goal/processed/put_the_bowl_on_the_plate_demo/demo_0_agentview_rgb.mp4",
+          "ego": "data/libero_goal/processed/put_the_bowl_on_the_plate_demo/demo_0_eye_in_hand_rgb.mp4"
+        },
+        "provenance": {
+          "dataset": "LIBERO Goal",
+          "source_id": "put_the_bowl_on_the_plate_demo_0",
+          "generator": "",
+          "revision": "",
+          "config": {},
+          "checksums": {}
+        }
+      }
+    }
+  ]
+}

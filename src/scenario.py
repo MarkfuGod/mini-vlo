@@ -16,6 +16,22 @@ TASK_TYPES = [
     "turn_on",
     "turn_off",
     "move",
+    "walk",
+    "sit",
+    "stand",
+    "jump",
+    "reach",
+    "push",
+    "pull",
+    "rotate",
+    "carry",
+    "handover",
+    "sweep",
+    "hang",
+    "measure",
+    "unplug",
+    "sort",
+    "other",
 ]
 
 
@@ -55,6 +71,11 @@ class Prediction(BaseModel):
     action_sequence: list[str] = Field(default_factory=list)
     target_object: str = ""
     destination: Optional[str] = None
+    domain: str = "unknown"
+    instruction: str = ""
+    transitions: list[int] = Field(default_factory=list)
+    confidence: Optional[float] = None
+    action_details: list[dict] = Field(default_factory=list)
     raw_text: str = Field("", description="Raw VLM output before parsing")
 
 
