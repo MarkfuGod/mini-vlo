@@ -1,6 +1,5 @@
 thresholds:
   motion_min: 0.35
-  semantic_min: 0.35
 
 motion_quality:
   max_velocity: 2.5
@@ -15,7 +14,6 @@ semantic:
   qwen3vl_plus_api_key_env: QWEN3VL_PLUS_API_KEY
   qwen3vl_plus_model: qwen3-vl-plus
   request_timeout_s: 30.0
-  low_confidence_penalty: 0.15
   prompt_file: src/module_c/semantic_consistency_v1.txt
   local_video_max_upload_mb: 18.0
   local_video_frame_count: 8

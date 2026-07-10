@@ -1,7 +1,7 @@
 # Module C 命令行速查
 
 Module C 用于对 Mini-VLO 生成的视频任务文本做过滤：先把
-`VideoTaskRecord` 转换成 samples JSONL，再执行语义一致性评分和运动质量评分，
+`VideoTaskRecord` 转换成 samples JSONL，再执行语义一致性校验和运动质量评分，
 最后输出 `keep/drop` 决策。
 
 当前版本支持多轨迹 motion：LIBERO 的末端执行器轨迹会映射成 `eef` track，
@@ -18,7 +18,7 @@ Module C 目前实现了以下功能：
 - 支持多轨迹运动质量评分，例如同时评估 `Root`、`Hand_R`、`Hand_L`。
 - 支持无真实轨迹时自动生成占位轨迹，保证 pipeline 可以完整跑通。
 - 支持语义一致性校验，当前可使用 `qwen3-vl-plus` 或 `mock` verifier。
-- 根据语义分数和运动质量分数输出 `keep/drop` 决策与原因码。
+- 根据语义一致性标签和运动质量分数输出 `keep/drop` 决策与原因码。
 - 输出机器可读 JSONL 和人工可读 pretty JSON。
 
 ## 工作流程
@@ -81,22 +81,25 @@ Module C 的完整流程分为两步，也可以通过 `run_generate_filter.py` 
 多条 track 会按配置聚合成一个 `motion_quality_score`。默认 `aggregation: min`，
 表示任意关键轨迹质量差都会拉低总体分数。
 
-### 4. 语义一致性评分
+### 4. 语义一致性校验
 
 `semantic_consistency.py` 会把视频和 sample 文本交给 verifier，判断文本是否和视频内容一致。
 真实运行时使用 `qwen3-vl-plus`，离线联调可用 `--semantic-verifier mock`。
 
 ### 5. 决策输出
 
-`refinement.py` 综合两个分数：
+`refinement.py` 综合动作质量分数和语义一致性标签：
 
-- 没有 motion 时，只看语义分数。
-- 有 motion 时，最终分数取 `min(motion_quality_score, semantic_consistency_score)`。
-- 任一分数低于配置阈值时输出 `drop`，否则输出 `keep`。
+- 没有 motion 时，只看语义一致性标签。
+- 有 motion 时，动作质量分数低于阈值会输出 `drop`。
+- 只有语义标签为 `consistent` 且动作质量通过阈值时输出 `keep`。
+- 语义标签为 `uncertain` 或 `inconsistent` 时输出 `drop`。
 
 输出中的 `reason_codes` 会说明过滤原因，例如：
 
-- `low_semantic_score`
+- `semantic_not_consistent`
+- `semantic_mismatch`
+- `semantic_uncertain`
 - `low_motion_score`
 - `Root:high_jerk_spikes`
 - `Hand_R:high_jitter`

@@ -28,8 +28,8 @@ class Sample:
 class RefinementResult:
     sample_id: str
     motion_quality_score: float | None
-    semantic_consistency_score: float
-    final_score: float
+    semantic_label: str
+    semantic_confidence: float | None
     decision: str
     reason_codes: list[str]
     aux: dict[str, Any]

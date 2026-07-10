@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import json
-import math
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Iterable
@@ -13,14 +12,13 @@ from .schema import MotionData, MotionTrack, RefinementResult, Sample
 from .semantic_consistency import (
     SemanticConfig,
     build_verifier,
-    score_semantic_consistency,
+    verify_semantic_consistency,
 )
 
 
 @dataclass
 class RefinementConfig:
     motion_min_score: float
-    semantic_min_score: float
     motion_cfg: MotionQualityConfig
     semantic_cfg: SemanticConfig
 
@@ -28,11 +26,13 @@ class RefinementConfig:
 def load_config(path: str | Path) -> RefinementConfig:
     with open(path, "r", encoding="utf-8") as f:
         raw = yaml.safe_load(f)
+    thresholds = raw["thresholds"]
+    semantic_raw = dict(raw["semantic"])
+    semantic_raw.pop("low_confidence_penalty", None)
     return RefinementConfig(
-        motion_min_score=float(raw["thresholds"]["motion_min"]),
-        semantic_min_score=float(raw["thresholds"]["semantic_min"]),
+        motion_min_score=float(thresholds["motion_min"]),
         motion_cfg=MotionQualityConfig(**raw["motion_quality"]),
-        semantic_cfg=SemanticConfig(**raw["semantic"]),
+        semantic_cfg=SemanticConfig(**semantic_raw),
     )
 
 
@@ -109,29 +109,28 @@ def refine_samples(
                 cfg=cfg.motion_cfg,
             )
 
-        semantic_score, semantic_aux, semantic_reasons = score_semantic_consistency(
+        semantic_aux, semantic_reasons = verify_semantic_consistency(
             video_path=sample.video_path,
             text=sample.text,
             verifier=verifier,
-            cfg=cfg.semantic_cfg,
         )
 
         is_motion_low = (
             motion_score is not None and motion_score < cfg.motion_min_score
         )
-        is_semantic_low = semantic_score < cfg.semantic_min_score
-        if motion_score is None:
-            final_score = semantic_score
-            decision = "drop" if is_semantic_low else "keep"
-        else:
-            final_score = min(motion_score, semantic_score)
-            decision = "drop" if (is_motion_low or is_semantic_low) else "keep"
+        semantic_label = str(semantic_aux.get("label", "uncertain"))
+        try:
+            semantic_confidence = float(semantic_aux.get("confidence"))
+        except (TypeError, ValueError):
+            semantic_confidence = None
+        is_semantic_mismatch = semantic_label != "consistent"
+        decision = "drop" if (is_motion_low or is_semantic_mismatch) else "keep"
 
         threshold_reasons: list[str] = []
         if is_motion_low:
             threshold_reasons.append("low_motion_score")
-        if is_semantic_low:
-            threshold_reasons.append("low_semantic_score")
+        if is_semantic_mismatch:
+            threshold_reasons.append("semantic_not_consistent")
         if motion_score is None:
             threshold_reasons.append("semantic_only_mode")
 
@@ -139,8 +138,8 @@ def refine_samples(
             RefinementResult(
                 sample_id=sample.sample_id,
                 motion_quality_score=motion_score,
-                semantic_consistency_score=semantic_score,
-                final_score=final_score,
+                semantic_label=semantic_label,
+                semantic_confidence=semantic_confidence,
                 decision=decision,
                 reason_codes=sorted(
                     set(motion_reasons + semantic_reasons + threshold_reasons)
@@ -164,10 +163,8 @@ def result_to_dict(result: RefinementResult) -> dict:
             if result.motion_quality_score is None
             else float(result.motion_quality_score)
         ),
-        "semantic_consistency_score": result.semantic_consistency_score,
-        "final_score": (
-            float(result.final_score) if math.isfinite(result.final_score) else 0.0
-        ),
+        "semantic_label": result.semantic_label,
+        "semantic_confidence": result.semantic_confidence,
         "decision": result.decision,
         "reason_codes": result.reason_codes,
         "aux": result.aux,

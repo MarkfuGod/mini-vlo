@@ -17,7 +17,6 @@ ROOT_DIR = Path(__file__).resolve().parents[2]
 @dataclass
 class SemanticConfig:
     verifier: str = "qwen3-vl-plus"
-    low_confidence_penalty: float = 0.15
     prompt_file: str = "src/module_c/semantic_consistency_v1.txt"
     request_timeout_s: float = 30.0
     qwen3vl_plus_base_url: str = (
@@ -457,21 +456,17 @@ def build_verifier(cfg: SemanticConfig) -> SemanticVerifier:
     )
 
 
-def score_semantic_consistency(
+def verify_semantic_consistency(
     video_path: str,
     text: str,
     verifier: SemanticVerifier,
-    cfg: SemanticConfig,
-) -> tuple[float, dict[str, object], list[str]]:
+) -> tuple[dict[str, object], list[str]]:
     result = verifier.verify(video_path=video_path, text=text)
-    confidence = float(result["confidence"])
     reasons: list[str] = list(result.get("error_types", []))
-    score = confidence
-    if result.get("label") == "uncertain":
-        score -= cfg.low_confidence_penalty
-    if result.get("label") == "inconsistent":
-        score *= 0.5
+    label = result.get("label")
+    if label == "uncertain":
+        reasons.append("semantic_uncertain")
+    if label == "inconsistent":
         reasons.append("semantic_mismatch")
-    score = max(0.0, min(1.0, score))
-    return score, result, reasons
+    return result, reasons
 
