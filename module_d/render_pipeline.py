@@ -2,12 +2,18 @@ import bpy
 import os
 import math
 import json
+
 # ================= 配置区 =================
-# 1. 你的动作数据文件夹 (放 .fbx 或 .bvh 文件)
-MOTION_DATA_PATH = "C:/Users/lcy/Desktop/HKU final project/motions/" 
-# 2. 视频输出的总文件夹
-OUTPUT_BASE_DIR = "C:/Users/lcy/Desktop/HKU final project/output_videos/"
-# 3. 渲染引擎选择: 'BLENDER_EEVEE'
+# 默认相对本脚本目录；也可通过环境变量覆盖：
+#   MODULE_D_MOTION_DIR / MODULE_D_OUTPUT_DIR
+_SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+MOTION_DATA_PATH = os.environ.get(
+    "MODULE_D_MOTION_DIR", os.path.join(_SCRIPT_DIR, "motions")
+)
+OUTPUT_BASE_DIR = os.environ.get(
+    "MODULE_D_OUTPUT_DIR", os.path.join(_SCRIPT_DIR, "output_videos")
+)
+# 渲染引擎选择: 'BLENDER_EEVEE'
 RENDER_ENGINE = 'BLENDER_EEVEE'
 
 os.makedirs(OUTPUT_BASE_DIR, exist_ok=True)

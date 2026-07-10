@@ -2,7 +2,13 @@
 
 A lightweight **Vision-Language Observer (VLO)** system that evaluates whether a VLM (Vision-Language Model) can correctly understand robot manipulation task scenes and natural language instructions. Inspired by [Being-H0.5](https://github.com/BeingBeyond/Being-H), this project tests the perceptual and reasoning foundation that underlies Vision-Language-Action (VLA) models — without requiring GPUs, large datasets, or action generation.
 
-Runs entirely on **Apple Silicon Mac (M1 16GB)** using the Qwen-VL API.
+Beyond static scene evaluation, Mini-VLO also supports a video pipeline:
+
+1. **Module D** renders FBX/BVH motion into multi-view videos + 3D trajectories
+2. **Video-to-task** turns videos into structured task labels via Qwen-VL
+3. **Module C** filters those labels with semantic consistency + motion-quality checks
+
+Runs on **Apple Silicon Mac (M1 16GB)** using the Qwen-VL API (Module D needs Blender).
 
 ## What is VLO?
 
@@ -196,7 +202,68 @@ evidence, detected task segments, macro-intents, micro-instructions, and
 augmented task labels. No pretraining or fine-tuning is required; the
 recognition model is used through an adapter.
 
-### 4. Generate Charts
+### 4. Module C: Filter Generated Task Labels
+
+Module C converts `VideoTaskRecord` outputs into samples, scores motion quality
+(LIBERO EEF tracks and/or Module D bone tracks), checks semantic consistency
+with a VLM verifier, and emits `keep` / `drop` decisions.
+
+One-shot generate + filter:
+
+```bash
+export DASHSCOPE_API_KEY="your-api-key-here"
+# Optional: real semantic verifier (otherwise use --semantic-verifier mock)
+export QWEN3VL_PLUS_API_KEY="your-qwen3vl-plus-key"
+
+python run_generate_filter.py \
+  --video demos/task.mp4 \
+  --instruction "open the drawer" \
+  --vlm-model qwen-vl-plus \
+  --refine-config configs/module_c_default.yaml \
+  --sample-level video
+```
+
+With an existing motion trajectory (LIBERO file, Module D JSON, or a directory):
+
+```bash
+python run_generate_filter.py \
+  --video demos/task.mp4 \
+  --vlm-model qwen-vl-plus \
+  --motion-path path/to/trajectory_or_dir \
+  --motion-fps 24 \
+  --motion-tracks Root,Hand_R,Hand_L \
+  --sample-level segment
+```
+
+Outputs land in `results/`:
+
+- `video_task_*.json` — generation result
+- `module_c_samples_*.jsonl` / `.pretty.json` — Module C samples
+- `refined_*.jsonl` / `.pretty.json` — keep/drop decisions
+
+See [`src/module_c/README.md`](src/module_c/README.md) for stepwise commands,
+motion formats, and config details.
+
+### 5. Module D: Render Motion Capture to Video + Trajectories
+
+Before (or instead of) using an existing robot demo video, Module D can turn
+`.fbx` / `.bvh` files into standardized multi-view videos and JSON trajectories:
+
+- **Multi-view synthesis**: egocentric (`摄像机`) and fixed (`Camera`) `.mp4` views
+- **Scene context**: simple geometric anchors from action names (obstacle / chair / …)
+- **3D trajectories**: per-frame `Root`, `Hand_L`, `Hand_R` world coordinates
+
+```bash
+# Requires Blender + a scene with the expected camera/ground object names.
+# Sample motions are under module_d/motions/
+blender your_scene.blend --background --python module_d/render_pipeline.py
+```
+
+Defaults read `module_d/motions/` and write `module_d/output_videos/`. Override with
+`MODULE_D_MOTION_DIR` / `MODULE_D_OUTPUT_DIR`. Full setup notes:
+[`module_d/README.md`](module_d/README.md).
+
+### 6. Generate Charts
 
 ```bash
 python generate_charts.py
@@ -204,19 +271,10 @@ python generate_charts.py
 
 Creates radar, bar, and heatmap charts in `assets/`.
 
-### Module D: High-Fidelity Rendering Pipeline
-Before the VLM can analyze a scene, Module D automatically processes .fbx or .bvh files to generate standardized datasets:
-
-Automated Multi-View Synthesis: Generates both Egocentric (First-Person, bound to head/eyes) and Fixed (Third-Person, tracking the root bone) .mp4 views to capture both micro hand-object interactions and macro-intents.
-
-Dynamic Scene Context: Automatically injects geometric semantic anchors (e.g., obstacles for vault, chairs for sit, handles for grab) based on file semantics, using a clean, denoised background to prevent VLM hallucination.
-
-3D Trajectory Extraction: Simultaneously exports precise spatial coordinates (Root, Hand_L, Hand_R) frame-by-frame into JSON format for downstream physical validation and evaluation metrics.
-
 ## Project Structure
 
 ```
-mini_vlo/
+mini-vlo/
 ├── README.md
 ├── requirements.txt
 ├── generate_benchmark.py     # Generate synthetic benchmark images + ground truth
@@ -224,28 +282,37 @@ mini_vlo/
 ├── run_eval.py               # Main evaluation entry point
 ├── run_semantic_motion.py    # Perception + augmentation stream runner
 ├── run_video_task.py         # Video-to-task stream runner
-├── module_d/                 
-│   ├── project.blend      
-│   ├── render_pipeline.py    # Automated multi-view & trajectory 
-│   ├── motions/              # Drop your .fbx/.bvh files here
+├── run_generate_filter.py    # Video-to-task + Module C filter (one-shot)
+├── compare_video2tasks.py    # Compare video-to-task runs
+├── configs/
+│   └── module_c_default.yaml # Module C thresholds + verifier settings
+├── module_d/
+│   ├── README.md
+│   ├── render_pipeline.py    # Blender multi-view render + trajectory export
+│   └── motions/              # Sample / drop-in .fbx/.bvh files
 ├── src/
 │   ├── vlm_engine.py         # Qwen-VL API client (OpenAI-compatible)
 │   ├── evaluator.py          # Metrics engine (F1, ROUGE-L, cosine sim, etc.)
 │   ├── prompts.py            # Structured VLM prompt templates
 │   ├── scenario.py           # Pydantic data models
-│   └── semantic_motion/      # Semantic-Motion stream framework
+│   ├── semantic_motion/      # Semantic-Motion / video-to-task framework
+│   └── module_c/             # Refinement: semantic + motion-quality filter
 ├── benchmark/
 │   ├── scenarios.json        # 30 scenario definitions with ground truth
 │   └── images/               # Generated schematic workspace images
+├── demos/                    # Example videos
 ├── assets/                   # Charts for README
-└── results/                  # Evaluation result JSONs (timestamped)
+├── tests/
+└── results/                  # Evaluation / generation / refinement outputs
 ```
 
 ## Extending
 
 - **Add more scenarios**: Edit `generate_benchmark.py` to add new task types or objects.
-- **Swap the VLM**: Change `--model` or `--base-url` to point at any OpenAI-compatible vision API (GPT-4o, Claude, local Ollama, etc.).
+- **Swap the VLM**: Change `--model` / `--vlm-model` or `--base-url` to point at any OpenAI-compatible vision API (GPT-4o, Claude, local Ollama, etc.).
 - **Custom metrics**: Add new metric functions in `src/evaluator.py` and update the `WEIGHTS` dict.
+- **Module C thresholds**: Tune `configs/module_c_default.yaml` (motion limits, aggregation, verifier).
+- **Module D motions**: Drop new `.fbx` / `.bvh` files into `module_d/motions/` and re-run the Blender script.
 
 ## References
 

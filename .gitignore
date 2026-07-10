@@ -7,3 +7,4 @@ __pycache__/
 dist/
 build/
 .semantic_motion_work/
+module_d/output_videos/
