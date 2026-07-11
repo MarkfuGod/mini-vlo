@@ -54,7 +54,7 @@
       "dataset": "LIBERO Goal",
       "source_id": "put_the_bowl_on_the_plate_demo_0",
       "generator": "src.semantic_motion.view_bundle",
-      "revision": "fe3cdfd1b0758949153e6369ac16e9320ccd13a9",
+      "revision": "dab95c728b8c861a23f08723d22c4d3a5a97b047",
       "config": {},
       "checksums": {}
     },
@@ -89,40 +89,39 @@
         "source_instruction": "",
         "objects": [
           "robot arm",
-          "black box",
-          "plate",
           "bowl",
-          "spoon",
-          "book",
-          "wooden sticks",
-          "wall-mounted device"
+          "plate",
+          "stove",
+          "counter",
+          "wooden blocks",
+          "black object",
+          "blue device"
         ],
         "spatial_relations": [
           "robot arm ON counter",
-          "black box ON left side of counter",
-          "plate ON counter near robot arm",
-          "bowl ON counter near robot arm",
-          "spoon ON counter near black box",
-          "book ON counter near bowl",
-          "wooden sticks ON floor near black box",
-          "wall-mounted device ON wall above counter"
+          "bowl ON counter",
+          "plate ON counter",
+          "stove ON counter",
+          "wooden blocks ON counter",
+          "black object ON counter",
+          "blue device ON counter"
         ],
         "macro_intent": {
           "task_type": "pick_and_place",
-          "target_object": "plate",
-          "destination": "under bowl",
-          "confidence": 0.9,
+          "target_object": "bowl",
+          "destination": "plate",
+          "confidence": 0.95,
           "domain": "manipulation"
         },
         "micro_instructions": [
           {
             "step_id": 1,
-            "text": "approach plate",
+            "text": "approach bowl",
             "verb": "approach",
-            "object": "plate",
-            "confidence": 0.9,
+            "object": "bowl",
+            "confidence": 0.95,
             "body_part": "robot arm",
-            "contact_state": "none",
+            "contact_state": "approach",
             "posture": "standing",
             "observed_trajectory": null,
             "evidence_frame_ids": [
@@ -132,10 +131,10 @@
           },
           {
             "step_id": 2,
-            "text": "grasp plate",
+            "text": "grasp bowl",
             "verb": "grasp",
-            "object": "plate",
-            "confidence": 0.9,
+            "object": "bowl",
+            "confidence": 0.95,
             "body_part": "robot arm",
             "contact_state": "grasp",
             "posture": "standing",
@@ -147,10 +146,10 @@
           },
           {
             "step_id": 3,
-            "text": "lift plate",
+            "text": "lift bowl",
             "verb": "lift",
-            "object": "plate",
-            "confidence": 0.9,
+            "object": "bowl",
+            "confidence": 0.95,
             "body_part": "robot arm",
             "contact_state": "grasp",
             "posture": "standing",
@@ -162,10 +161,10 @@
           },
           {
             "step_id": 4,
-            "text": "move plate toward bowl",
+            "text": "move bowl toward plate",
             "verb": "move",
-            "object": "plate",
-            "confidence": 0.9,
+            "object": "bowl",
+            "confidence": 0.95,
             "body_part": "robot arm",
             "contact_state": "grasp",
             "posture": "standing",
@@ -177,10 +176,10 @@
           },
           {
             "step_id": 5,
-            "text": "place plate under bowl",
+            "text": "place bowl on plate",
             "verb": "place",
-            "object": "plate",
-            "confidence": 0.9,
+            "object": "bowl",
+            "confidence": 0.95,
             "body_part": "robot arm",
             "contact_state": "release",
             "posture": "standing",
@@ -189,35 +188,19 @@
               6,
               7
             ]
-          },
-          {
-            "step_id": 6,
-            "text": "adjust plate position",
-            "verb": "adjust",
-            "object": "plate",
-            "confidence": 0.9,
-            "body_part": "robot arm",
-            "contact_state": "contact",
-            "posture": "standing",
-            "observed_trajectory": null,
-            "evidence_frame_ids": [
-              7,
-              7
-            ]
           }
         ],
-        "raw_recognition": "{\n  \"objects\": [\n    \"robot arm\",\n    \"black box\",\n    \"plate\",\n    \"bowl\",\n    \"spoon\",\n    \"book\",\n    \"wooden sticks\",\n    \"wall-mounted device\"\n  ],\n  \"spatial_relations\": [\n    \"robot arm ON counter\",\n    \"black box ON left side of counter\",\n    \"plate ON counter near robot arm\",\n    \"bowl ON counter near robot arm\",\n    \"spoon ON counter near black box\",\n    \"book ON counter near bowl\",\n    \"wooden sticks ON floor near black box\",\n    \"wall-mounted device ON wall above counter\"\n  ],\n  \"task_type\": \"pick_and_place\",\n  \"domain\": \"manipulation\",\n  \"action_sequence\": [\n    \"approach plate\",\n    \"grasp plate\",\n    \"lift plate\",\n    \"move plate toward bowl\",\n    \"place plate under bowl\",\n    \"adjust plate position\"\n  ],\n  \"action_details\": [\n    {\n      \"text\": \"approach plate\",\n      \"verb\": \"approach\",\n      \"object\": \"plate\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"none\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 0,\n      \"end_image_index\": 2\n    },\n    {\n      \"text\": \"grasp plate\",\n      \"verb\": \"grasp\",\n      \"object\": \"plate\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 2,\n      \"end_image_index\": 3\n    },\n    {\n      \"text\": \"lift plate\",\n      \"verb\": \"lift\",\n      \"object\": \"plate\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 3,\n      \"end_image_index\": 4\n    },\n    {\n      \"text\": \"move plate toward bowl\",\n      \"verb\": \"move\",\n      \"object\": \"plate\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 4,\n      \"end_image_index\": 6\n    },\n    {\n      \"text\": \"place plate under bowl\",\n      \"verb\": \"place\",\n      \"object\": \"plate\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"release\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 6,\n      \"end_image_index\": 7\n    },\n    {\n      \"text\": \"adjust plate position\",\n      \"verb\": \"adjust\",\n      \"object\": \"plate\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"contact\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 7,\n      \"end_image_index\": 7\n    }\n  ],\n  \"target_object\": \"plate\",\n  \"destination\": \"under bowl\",\n  \"instruction\": \"Pick up the plate and place it under the bowl, adjusting its position for alignment.\",\n  \"transitions\": [2, 3, 4, 6, 7],\n  \"confidence\": 0.9\n}",
+        "raw_recognition": "{\n  \"objects\": [\n    \"robot arm\",\n    \"bowl\",\n    \"plate\",\n    \"stove\",\n    \"counter\",\n    \"wooden blocks\",\n    \"black object\",\n    \"blue device\"\n  ],\n  \"spatial_relations\": [\n    \"robot arm ON counter\",\n    \"bowl ON counter\",\n    \"plate ON counter\",\n    \"stove ON counter\",\n    \"wooden blocks ON counter\",\n    \"black object ON counter\",\n    \"blue device ON counter\"\n  ],\n  \"task_type\": \"pick_and_place\",\n  \"domain\": \"manipulation\",\n  \"action_sequence\": [\n    \"approach bowl\",\n    \"grasp bowl\",\n    \"lift bowl\",\n    \"move bowl toward plate\",\n    \"place bowl on plate\"\n  ],\n  \"action_details\": [\n    {\n      \"text\": \"approach bowl\",\n      \"verb\": \"approach\",\n      \"object\": \"bowl\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"approach\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 0,\n      \"end_image_index\": 2\n    },\n    {\n      \"text\": \"grasp bowl\",\n      \"verb\": \"grasp\",\n      \"object\": \"bowl\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 2,\n      \"end_image_index\": 3\n    },\n    {\n      \"text\": \"lift bowl\",\n      \"verb\": \"lift\",\n      \"object\": \"bowl\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 3,\n      \"end_image_index\": 4\n    },\n    {\n      \"text\": \"move bowl toward plate\",\n      \"verb\": \"move\",\n      \"object\": \"bowl\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 4,\n      \"end_image_index\": 6\n    },\n    {\n      \"text\": \"place bowl on plate\",\n      \"verb\": \"place\",\n      \"object\": \"bowl\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"release\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 6,\n      \"end_image_index\": 7\n    }\n  ],\n  \"target_object\": \"bowl\",\n  \"destination\": \"plate\",\n  \"instruction\": \"Pick up the bowl and place it on top of the plate.\",\n  \"transitions\": [2, 3, 4, 6],\n  \"confidence\": 0.95\n}",
         "view_id": "fused",
         "metadata": {
           "category": "video",
-          "recognition_confidence": 0.9,
-          "prediction_instruction": "Pick up the plate and place it under the bowl, adjusting its position for alignment.",
+          "recognition_confidence": 0.95,
+          "prediction_instruction": "Pick up the bowl and place it on top of the plate.",
           "transitions": [
             2,
             3,
             4,
-            6,
-            7
+            6
           ],
           "view_mode": "fused",
           "evidence_paths": [
@@ -259,40 +242,39 @@
         "source_instruction": "",
         "objects": [
           "robot arm",
-          "black box",
-          "plate",
           "bowl",
-          "spoon",
-          "book",
-          "wooden sticks",
-          "wall-mounted device"
+          "plate",
+          "stove",
+          "counter",
+          "wooden blocks",
+          "black object",
+          "blue device"
         ],
         "spatial_relations": [
           "robot arm ON counter",
-          "black box ON left side of counter",
-          "plate ON counter near robot arm",
-          "bowl ON counter near robot arm",
-          "spoon ON counter near black box",
-          "book ON counter near bowl",
-          "wooden sticks ON floor near black box",
-          "wall-mounted device ON wall above counter"
+          "bowl ON counter",
+          "plate ON counter",
+          "stove ON counter",
+          "wooden blocks ON counter",
+          "black object ON counter",
+          "blue device ON counter"
         ],
         "macro_intent": {
           "task_type": "pick_and_place",
-          "target_object": "plate",
-          "destination": "under bowl",
-          "confidence": 0.9,
+          "target_object": "bowl",
+          "destination": "plate",
+          "confidence": 0.95,
           "domain": "manipulation"
         },
         "micro_instructions": [
           {
             "step_id": 1,
-            "text": "approach plate",
+            "text": "approach bowl",
             "verb": "approach",
-            "object": "plate",
-            "confidence": 0.9,
+            "object": "bowl",
+            "confidence": 0.95,
             "body_part": "robot arm",
-            "contact_state": "none",
+            "contact_state": "approach",
             "posture": "standing",
             "observed_trajectory": null,
             "evidence_frame_ids": [
@@ -302,10 +284,10 @@
           },
           {
             "step_id": 2,
-            "text": "grasp plate",
+            "text": "grasp bowl",
             "verb": "grasp",
-            "object": "plate",
-            "confidence": 0.9,
+            "object": "bowl",
+            "confidence": 0.95,
             "body_part": "robot arm",
             "contact_state": "grasp",
             "posture": "standing",
@@ -317,10 +299,10 @@
           },
           {
             "step_id": 3,
-            "text": "lift plate",
+            "text": "lift bowl",
             "verb": "lift",
-            "object": "plate",
-            "confidence": 0.9,
+            "object": "bowl",
+            "confidence": 0.95,
             "body_part": "robot arm",
             "contact_state": "grasp",
             "posture": "standing",
@@ -332,10 +314,10 @@
           },
           {
             "step_id": 4,
-            "text": "move plate toward bowl",
+            "text": "move bowl toward plate",
             "verb": "move",
-            "object": "plate",
-            "confidence": 0.9,
+            "object": "bowl",
+            "confidence": 0.95,
             "body_part": "robot arm",
             "contact_state": "grasp",
             "posture": "standing",
@@ -347,10 +329,10 @@
           },
           {
             "step_id": 5,
-            "text": "place plate under bowl",
+            "text": "place bowl on plate",
             "verb": "place",
-            "object": "plate",
-            "confidence": 0.9,
+            "object": "bowl",
+            "confidence": 0.95,
             "body_part": "robot arm",
             "contact_state": "release",
             "posture": "standing",
@@ -359,35 +341,19 @@
               6,
               7
             ]
-          },
-          {
-            "step_id": 6,
-            "text": "adjust plate position",
-            "verb": "adjust",
-            "object": "plate",
-            "confidence": 0.9,
-            "body_part": "robot arm",
-            "contact_state": "contact",
-            "posture": "standing",
-            "observed_trajectory": null,
-            "evidence_frame_ids": [
-              7,
-              7
-            ]
           }
         ],
-        "raw_recognition": "{\n  \"objects\": [\n    \"robot arm\",\n    \"black box\",\n    \"plate\",\n    \"bowl\",\n    \"spoon\",\n    \"book\",\n    \"wooden sticks\",\n    \"wall-mounted device\"\n  ],\n  \"spatial_relations\": [\n    \"robot arm ON counter\",\n    \"black box ON left side of counter\",\n    \"plate ON counter near robot arm\",\n    \"bowl ON counter near robot arm\",\n    \"spoon ON counter near black box\",\n    \"book ON counter near bowl\",\n    \"wooden sticks ON floor near black box\",\n    \"wall-mounted device ON wall above counter\"\n  ],\n  \"task_type\": \"pick_and_place\",\n  \"domain\": \"manipulation\",\n  \"action_sequence\": [\n    \"approach plate\",\n    \"grasp plate\",\n    \"lift plate\",\n    \"move plate toward bowl\",\n    \"place plate under bowl\",\n    \"adjust plate position\"\n  ],\n  \"action_details\": [\n    {\n      \"text\": \"approach plate\",\n      \"verb\": \"approach\",\n      \"object\": \"plate\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"none\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 0,\n      \"end_image_index\": 2\n    },\n    {\n      \"text\": \"grasp plate\",\n      \"verb\": \"grasp\",\n      \"object\": \"plate\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 2,\n      \"end_image_index\": 3\n    },\n    {\n      \"text\": \"lift plate\",\n      \"verb\": \"lift\",\n      \"object\": \"plate\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 3,\n      \"end_image_index\": 4\n    },\n    {\n      \"text\": \"move plate toward bowl\",\n      \"verb\": \"move\",\n      \"object\": \"plate\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 4,\n      \"end_image_index\": 6\n    },\n    {\n      \"text\": \"place plate under bowl\",\n      \"verb\": \"place\",\n      \"object\": \"plate\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"release\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 6,\n      \"end_image_index\": 7\n    },\n    {\n      \"text\": \"adjust plate position\",\n      \"verb\": \"adjust\",\n      \"object\": \"plate\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"contact\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 7,\n      \"end_image_index\": 7\n    }\n  ],\n  \"target_object\": \"plate\",\n  \"destination\": \"under bowl\",\n  \"instruction\": \"Pick up the plate and place it under the bowl, adjusting its position for alignment.\",\n  \"transitions\": [2, 3, 4, 6, 7],\n  \"confidence\": 0.9\n}",
+        "raw_recognition": "{\n  \"objects\": [\n    \"robot arm\",\n    \"bowl\",\n    \"plate\",\n    \"stove\",\n    \"counter\",\n    \"wooden blocks\",\n    \"black object\",\n    \"blue device\"\n  ],\n  \"spatial_relations\": [\n    \"robot arm ON counter\",\n    \"bowl ON counter\",\n    \"plate ON counter\",\n    \"stove ON counter\",\n    \"wooden blocks ON counter\",\n    \"black object ON counter\",\n    \"blue device ON counter\"\n  ],\n  \"task_type\": \"pick_and_place\",\n  \"domain\": \"manipulation\",\n  \"action_sequence\": [\n    \"approach bowl\",\n    \"grasp bowl\",\n    \"lift bowl\",\n    \"move bowl toward plate\",\n    \"place bowl on plate\"\n  ],\n  \"action_details\": [\n    {\n      \"text\": \"approach bowl\",\n      \"verb\": \"approach\",\n      \"object\": \"bowl\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"approach\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 0,\n      \"end_image_index\": 2\n    },\n    {\n      \"text\": \"grasp bowl\",\n      \"verb\": \"grasp\",\n      \"object\": \"bowl\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 2,\n      \"end_image_index\": 3\n    },\n    {\n      \"text\": \"lift bowl\",\n      \"verb\": \"lift\",\n      \"object\": \"bowl\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 3,\n      \"end_image_index\": 4\n    },\n    {\n      \"text\": \"move bowl toward plate\",\n      \"verb\": \"move\",\n      \"object\": \"bowl\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 4,\n      \"end_image_index\": 6\n    },\n    {\n      \"text\": \"place bowl on plate\",\n      \"verb\": \"place\",\n      \"object\": \"bowl\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"release\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 6,\n      \"end_image_index\": 7\n    }\n  ],\n  \"target_object\": \"bowl\",\n  \"destination\": \"plate\",\n  \"instruction\": \"Pick up the bowl and place it on top of the plate.\",\n  \"transitions\": [2, 3, 4, 6],\n  \"confidence\": 0.95\n}",
         "view_id": "fused",
         "metadata": {
           "category": "video",
-          "recognition_confidence": 0.9,
-          "prediction_instruction": "Pick up the plate and place it under the bowl, adjusting its position for alignment.",
+          "recognition_confidence": 0.95,
+          "prediction_instruction": "Pick up the bowl and place it on top of the plate.",
           "transitions": [
             2,
             3,
             4,
-            6,
-            7
+            6
           ],
           "view_mode": "fused",
           "evidence_paths": [
@@ -429,40 +395,39 @@
         "source_instruction": "",
         "objects": [
           "robot arm",
-          "black box",
-          "plate",
           "bowl",
-          "spoon",
-          "book",
-          "wooden sticks",
-          "wall-mounted device"
+          "plate",
+          "stove",
+          "counter",
+          "wooden blocks",
+          "black object",
+          "blue device"
         ],
         "spatial_relations": [
           "robot arm ON counter",
-          "black box ON left side of counter",
-          "plate ON counter near robot arm",
-          "bowl ON counter near robot arm",
-          "spoon ON counter near black box",
-          "book ON counter near bowl",
-          "wooden sticks ON floor near black box",
-          "wall-mounted device ON wall above counter"
+          "bowl ON counter",
+          "plate ON counter",
+          "stove ON counter",
+          "wooden blocks ON counter",
+          "black object ON counter",
+          "blue device ON counter"
         ],
         "macro_intent": {
           "task_type": "pick_and_place",
-          "target_object": "plate",
-          "destination": "under bowl",
-          "confidence": 0.9,
+          "target_object": "bowl",
+          "destination": "plate",
+          "confidence": 0.95,
           "domain": "manipulation"
         },
         "micro_instructions": [
           {
             "step_id": 1,
-            "text": "approach plate",
+            "text": "approach bowl",
             "verb": "approach",
-            "object": "plate",
-            "confidence": 0.9,
+            "object": "bowl",
+            "confidence": 0.95,
             "body_part": "robot arm",
-            "contact_state": "none",
+            "contact_state": "approach",
             "posture": "standing",
             "observed_trajectory": null,
             "evidence_frame_ids": [
@@ -472,10 +437,10 @@
           },
           {
             "step_id": 2,
-            "text": "grasp plate",
+            "text": "grasp bowl",
             "verb": "grasp",
-            "object": "plate",
-            "confidence": 0.9,
+            "object": "bowl",
+            "confidence": 0.95,
             "body_part": "robot arm",
             "contact_state": "grasp",
             "posture": "standing",
@@ -487,10 +452,10 @@
           },
           {
             "step_id": 3,
-            "text": "lift plate",
+            "text": "lift bowl",
             "verb": "lift",
-            "object": "plate",
-            "confidence": 0.9,
+            "object": "bowl",
+            "confidence": 0.95,
             "body_part": "robot arm",
             "contact_state": "grasp",
             "posture": "standing",
@@ -502,10 +467,10 @@
           },
           {
             "step_id": 4,
-            "text": "move plate toward bowl",
+            "text": "move bowl toward plate",
             "verb": "move",
-            "object": "plate",
-            "confidence": 0.9,
+            "object": "bowl",
+            "confidence": 0.95,
             "body_part": "robot arm",
             "contact_state": "grasp",
             "posture": "standing",
@@ -517,10 +482,10 @@
           },
           {
             "step_id": 5,
-            "text": "place plate under bowl",
+            "text": "place bowl on plate",
             "verb": "place",
-            "object": "plate",
-            "confidence": 0.9,
+            "object": "bowl",
+            "confidence": 0.95,
             "body_part": "robot arm",
             "contact_state": "release",
             "posture": "standing",
@@ -529,35 +494,19 @@
               6,
               7
             ]
-          },
-          {
-            "step_id": 6,
-            "text": "adjust plate position",
-            "verb": "adjust",
-            "object": "plate",
-            "confidence": 0.9,
-            "body_part": "robot arm",
-            "contact_state": "contact",
-            "posture": "standing",
-            "observed_trajectory": null,
-            "evidence_frame_ids": [
-              7,
-              7
-            ]
           }
         ],
-        "raw_recognition": "{\n  \"objects\": [\n    \"robot arm\",\n    \"black box\",\n    \"plate\",\n    \"bowl\",\n    \"spoon\",\n    \"book\",\n    \"wooden sticks\",\n    \"wall-mounted device\"\n  ],\n  \"spatial_relations\": [\n    \"robot arm ON counter\",\n    \"black box ON left side of counter\",\n    \"plate ON counter near robot arm\",\n    \"bowl ON counter near robot arm\",\n    \"spoon ON counter near black box\",\n    \"book ON counter near bowl\",\n    \"wooden sticks ON floor near black box\",\n    \"wall-mounted device ON wall above counter\"\n  ],\n  \"task_type\": \"pick_and_place\",\n  \"domain\": \"manipulation\",\n  \"action_sequence\": [\n    \"approach plate\",\n    \"grasp plate\",\n    \"lift plate\",\n    \"move plate toward bowl\",\n    \"place plate under bowl\",\n    \"adjust plate position\"\n  ],\n  \"action_details\": [\n    {\n      \"text\": \"approach plate\",\n      \"verb\": \"approach\",\n      \"object\": \"plate\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"none\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 0,\n      \"end_image_index\": 2\n    },\n    {\n      \"text\": \"grasp plate\",\n      \"verb\": \"grasp\",\n      \"object\": \"plate\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 2,\n      \"end_image_index\": 3\n    },\n    {\n      \"text\": \"lift plate\",\n      \"verb\": \"lift\",\n      \"object\": \"plate\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 3,\n      \"end_image_index\": 4\n    },\n    {\n      \"text\": \"move plate toward bowl\",\n      \"verb\": \"move\",\n      \"object\": \"plate\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 4,\n      \"end_image_index\": 6\n    },\n    {\n      \"text\": \"place plate under bowl\",\n      \"verb\": \"place\",\n      \"object\": \"plate\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"release\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 6,\n      \"end_image_index\": 7\n    },\n    {\n      \"text\": \"adjust plate position\",\n      \"verb\": \"adjust\",\n      \"object\": \"plate\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"contact\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 7,\n      \"end_image_index\": 7\n    }\n  ],\n  \"target_object\": \"plate\",\n  \"destination\": \"under bowl\",\n  \"instruction\": \"Pick up the plate and place it under the bowl, adjusting its position for alignment.\",\n  \"transitions\": [2, 3, 4, 6, 7],\n  \"confidence\": 0.9\n}",
+        "raw_recognition": "{\n  \"objects\": [\n    \"robot arm\",\n    \"bowl\",\n    \"plate\",\n    \"stove\",\n    \"counter\",\n    \"wooden blocks\",\n    \"black object\",\n    \"blue device\"\n  ],\n  \"spatial_relations\": [\n    \"robot arm ON counter\",\n    \"bowl ON counter\",\n    \"plate ON counter\",\n    \"stove ON counter\",\n    \"wooden blocks ON counter\",\n    \"black object ON counter\",\n    \"blue device ON counter\"\n  ],\n  \"task_type\": \"pick_and_place\",\n  \"domain\": \"manipulation\",\n  \"action_sequence\": [\n    \"approach bowl\",\n    \"grasp bowl\",\n    \"lift bowl\",\n    \"move bowl toward plate\",\n    \"place bowl on plate\"\n  ],\n  \"action_details\": [\n    {\n      \"text\": \"approach bowl\",\n      \"verb\": \"approach\",\n      \"object\": \"bowl\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"approach\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 0,\n      \"end_image_index\": 2\n    },\n    {\n      \"text\": \"grasp bowl\",\n      \"verb\": \"grasp\",\n      \"object\": \"bowl\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 2,\n      \"end_image_index\": 3\n    },\n    {\n      \"text\": \"lift bowl\",\n      \"verb\": \"lift\",\n      \"object\": \"bowl\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 3,\n      \"end_image_index\": 4\n    },\n    {\n      \"text\": \"move bowl toward plate\",\n      \"verb\": \"move\",\n      \"object\": \"bowl\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 4,\n      \"end_image_index\": 6\n    },\n    {\n      \"text\": \"place bowl on plate\",\n      \"verb\": \"place\",\n      \"object\": \"bowl\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"release\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 6,\n      \"end_image_index\": 7\n    }\n  ],\n  \"target_object\": \"bowl\",\n  \"destination\": \"plate\",\n  \"instruction\": \"Pick up the bowl and place it on top of the plate.\",\n  \"transitions\": [2, 3, 4, 6],\n  \"confidence\": 0.95\n}",
         "view_id": "fused",
         "metadata": {
           "category": "video",
-          "recognition_confidence": 0.9,
-          "prediction_instruction": "Pick up the plate and place it under the bowl, adjusting its position for alignment.",
+          "recognition_confidence": 0.95,
+          "prediction_instruction": "Pick up the bowl and place it on top of the plate.",
           "transitions": [
             2,
             3,
             4,
-            6,
-            7
+            6
           ],
           "view_mode": "fused",
           "evidence_paths": [
@@ -599,40 +548,39 @@
         "source_instruction": "",
         "objects": [
           "robot arm",
-          "black box",
-          "plate",
           "bowl",
-          "spoon",
-          "book",
-          "wooden sticks",
-          "wall-mounted device"
+          "plate",
+          "stove",
+          "counter",
+          "wooden blocks",
+          "black object",
+          "blue device"
         ],
         "spatial_relations": [
           "robot arm ON counter",
-          "black box ON left side of counter",
-          "plate ON counter near robot arm",
-          "bowl ON counter near robot arm",
-          "spoon ON counter near black box",
-          "book ON counter near bowl",
-          "wooden sticks ON floor near black box",
-          "wall-mounted device ON wall above counter"
+          "bowl ON counter",
+          "plate ON counter",
+          "stove ON counter",
+          "wooden blocks ON counter",
+          "black object ON counter",
+          "blue device ON counter"
         ],
         "macro_intent": {
           "task_type": "pick_and_place",
-          "target_object": "plate",
-          "destination": "under bowl",
-          "confidence": 0.9,
+          "target_object": "bowl",
+          "destination": "plate",
+          "confidence": 0.95,
           "domain": "manipulation"
         },
         "micro_instructions": [
           {
             "step_id": 1,
-            "text": "approach plate",
+            "text": "approach bowl",
             "verb": "approach",
-            "object": "plate",
-            "confidence": 0.9,
+            "object": "bowl",
+            "confidence": 0.95,
             "body_part": "robot arm",
-            "contact_state": "none",
+            "contact_state": "approach",
             "posture": "standing",
             "observed_trajectory": null,
             "evidence_frame_ids": [
@@ -642,10 +590,10 @@
           },
           {
             "step_id": 2,
-            "text": "grasp plate",
+            "text": "grasp bowl",
             "verb": "grasp",
-            "object": "plate",
-            "confidence": 0.9,
+            "object": "bowl",
+            "confidence": 0.95,
             "body_part": "robot arm",
             "contact_state": "grasp",
             "posture": "standing",
@@ -657,10 +605,10 @@
           },
           {
             "step_id": 3,
-            "text": "lift plate",
+            "text": "lift bowl",
             "verb": "lift",
-            "object": "plate",
-            "confidence": 0.9,
+            "object": "bowl",
+            "confidence": 0.95,
             "body_part": "robot arm",
             "contact_state": "grasp",
             "posture": "standing",
@@ -672,10 +620,10 @@
           },
           {
             "step_id": 4,
-            "text": "move plate toward bowl",
+            "text": "move bowl toward plate",
             "verb": "move",
-            "object": "plate",
-            "confidence": 0.9,
+            "object": "bowl",
+            "confidence": 0.95,
             "body_part": "robot arm",
             "contact_state": "grasp",
             "posture": "standing",
@@ -687,10 +635,10 @@
           },
           {
             "step_id": 5,
-            "text": "place plate under bowl",
+            "text": "place bowl on plate",
             "verb": "place",
-            "object": "plate",
-            "confidence": 0.9,
+            "object": "bowl",
+            "confidence": 0.95,
             "body_part": "robot arm",
             "contact_state": "release",
             "posture": "standing",
@@ -699,35 +647,19 @@
               6,
               7
             ]
-          },
-          {
-            "step_id": 6,
-            "text": "adjust plate position",
-            "verb": "adjust",
-            "object": "plate",
-            "confidence": 0.9,
-            "body_part": "robot arm",
-            "contact_state": "contact",
-            "posture": "standing",
-            "observed_trajectory": null,
-            "evidence_frame_ids": [
-              7,
-              7
-            ]
           }
         ],
-        "raw_recognition": "{\n  \"objects\": [\n    \"robot arm\",\n    \"black box\",\n    \"plate\",\n    \"bowl\",\n    \"spoon\",\n    \"book\",\n    \"wooden sticks\",\n    \"wall-mounted device\"\n  ],\n  \"spatial_relations\": [\n    \"robot arm ON counter\",\n    \"black box ON left side of counter\",\n    \"plate ON counter near robot arm\",\n    \"bowl ON counter near robot arm\",\n    \"spoon ON counter near black box\",\n    \"book ON counter near bowl\",\n    \"wooden sticks ON floor near black box\",\n    \"wall-mounted device ON wall above counter\"\n  ],\n  \"task_type\": \"pick_and_place\",\n  \"domain\": \"manipulation\",\n  \"action_sequence\": [\n    \"approach plate\",\n    \"grasp plate\",\n    \"lift plate\",\n    \"move plate toward bowl\",\n    \"place plate under bowl\",\n    \"adjust plate position\"\n  ],\n  \"action_details\": [\n    {\n      \"text\": \"approach plate\",\n      \"verb\": \"approach\",\n      \"object\": \"plate\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"none\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 0,\n      \"end_image_index\": 2\n    },\n    {\n      \"text\": \"grasp plate\",\n      \"verb\": \"grasp\",\n      \"object\": \"plate\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 2,\n      \"end_image_index\": 3\n    },\n    {\n      \"text\": \"lift plate\",\n      \"verb\": \"lift\",\n      \"object\": \"plate\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 3,\n      \"end_image_index\": 4\n    },\n    {\n      \"text\": \"move plate toward bowl\",\n      \"verb\": \"move\",\n      \"object\": \"plate\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 4,\n      \"end_image_index\": 6\n    },\n    {\n      \"text\": \"place plate under bowl\",\n      \"verb\": \"place\",\n      \"object\": \"plate\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"release\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 6,\n      \"end_image_index\": 7\n    },\n    {\n      \"text\": \"adjust plate position\",\n      \"verb\": \"adjust\",\n      \"object\": \"plate\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"contact\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 7,\n      \"end_image_index\": 7\n    }\n  ],\n  \"target_object\": \"plate\",\n  \"destination\": \"under bowl\",\n  \"instruction\": \"Pick up the plate and place it under the bowl, adjusting its position for alignment.\",\n  \"transitions\": [2, 3, 4, 6, 7],\n  \"confidence\": 0.9\n}",
+        "raw_recognition": "{\n  \"objects\": [\n    \"robot arm\",\n    \"bowl\",\n    \"plate\",\n    \"stove\",\n    \"counter\",\n    \"wooden blocks\",\n    \"black object\",\n    \"blue device\"\n  ],\n  \"spatial_relations\": [\n    \"robot arm ON counter\",\n    \"bowl ON counter\",\n    \"plate ON counter\",\n    \"stove ON counter\",\n    \"wooden blocks ON counter\",\n    \"black object ON counter\",\n    \"blue device ON counter\"\n  ],\n  \"task_type\": \"pick_and_place\",\n  \"domain\": \"manipulation\",\n  \"action_sequence\": [\n    \"approach bowl\",\n    \"grasp bowl\",\n    \"lift bowl\",\n    \"move bowl toward plate\",\n    \"place bowl on plate\"\n  ],\n  \"action_details\": [\n    {\n      \"text\": \"approach bowl\",\n      \"verb\": \"approach\",\n      \"object\": \"bowl\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"approach\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 0,\n      \"end_image_index\": 2\n    },\n    {\n      \"text\": \"grasp bowl\",\n      \"verb\": \"grasp\",\n      \"object\": \"bowl\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 2,\n      \"end_image_index\": 3\n    },\n    {\n      \"text\": \"lift bowl\",\n      \"verb\": \"lift\",\n      \"object\": \"bowl\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 3,\n      \"end_image_index\": 4\n    },\n    {\n      \"text\": \"move bowl toward plate\",\n      \"verb\": \"move\",\n      \"object\": \"bowl\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 4,\n      \"end_image_index\": 6\n    },\n    {\n      \"text\": \"place bowl on plate\",\n      \"verb\": \"place\",\n      \"object\": \"bowl\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"release\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 6,\n      \"end_image_index\": 7\n    }\n  ],\n  \"target_object\": \"bowl\",\n  \"destination\": \"plate\",\n  \"instruction\": \"Pick up the bowl and place it on top of the plate.\",\n  \"transitions\": [2, 3, 4, 6],\n  \"confidence\": 0.95\n}",
         "view_id": "fused",
         "metadata": {
           "category": "video",
-          "recognition_confidence": 0.9,
-          "prediction_instruction": "Pick up the plate and place it under the bowl, adjusting its position for alignment.",
+          "recognition_confidence": 0.95,
+          "prediction_instruction": "Pick up the bowl and place it on top of the plate.",
           "transitions": [
             2,
             3,
             4,
-            6,
-            7
+            6
           ],
           "view_mode": "fused",
           "evidence_paths": [
@@ -763,7 +695,7 @@
         59,
         66
       ],
-      "task_instruction": "place the black bowl onto the white plate with red rim using the robot arm.",
+      "task_instruction": "pick up the metallic bowl and place it on the white plate with red rim.",
       "objects": [
         "robot arm",
         "black bowl",
@@ -781,12 +713,13 @@
         "counter"
       ],
       "spatial_relations": [
-        "robot arm ON counter",
-        "black bowl ABOVE white plate",
-        "metallic bowl NEAR white plate",
+        "black bowl ON counter",
+        "white plate WITH red rim ON counter",
+        "metallic bowl ON counter",
         "blue rectangular object ON counter",
         "black box ON left side of counter",
         "wooden planks ON floor near black box",
+        "robot arm ABOVE counter, interacting with objects",
         "bowl ON table",
         "plate ON table",
         "black box ON left",
@@ -795,11 +728,11 @@
         "plate ON counter",
         "bowl ON counter",
         "sponge ON counter",
-        "robot arm ABOVE plate"
+        "robot arm ABOVE counter"
       ],
       "macro_intent": {
         "task_type": "move",
-        "target_object": "black bowl",
+        "target_object": "metallic bowl",
         "destination": "white plate with red rim",
         "confidence": 0.9,
         "domain": "manipulation"
@@ -807,9 +740,9 @@
       "micro_instructions": [
         {
           "step_id": 1,
-          "text": "approach black bowl",
+          "text": "approach metallic bowl",
           "verb": "approach",
-          "object": "black bowl",
+          "object": "metallic bowl",
           "confidence": 0.9,
           "body_part": "robot arm",
           "contact_state": "approach",
@@ -831,9 +764,9 @@
         },
         {
           "step_id": 2,
-          "text": "grasp black bowl",
+          "text": "grasp metallic bowl",
           "verb": "grasp",
-          "object": "black bowl",
+          "object": "metallic bowl",
           "confidence": 0.9,
           "body_part": "robot arm",
           "contact_state": "grasp",
@@ -855,9 +788,9 @@
         },
         {
           "step_id": 3,
-          "text": "lift black bowl",
+          "text": "lift metallic bowl",
           "verb": "lift",
-          "object": "black bowl",
+          "object": "metallic bowl",
           "confidence": 0.9,
           "body_part": "robot arm",
           "contact_state": "grasp",
@@ -879,9 +812,9 @@
         },
         {
           "step_id": 4,
-          "text": "move black bowl toward white plate",
+          "text": "move metallic bowl toward white plate",
           "verb": "move",
-          "object": "black bowl",
+          "object": "metallic bowl",
           "confidence": 0.9,
           "body_part": "robot arm",
           "contact_state": "grasp",
@@ -903,9 +836,9 @@
         },
         {
           "step_id": 5,
-          "text": "place black bowl on white plate",
+          "text": "place metallic bowl on white plate",
           "verb": "place",
-          "object": "black bowl",
+          "object": "metallic bowl",
           "confidence": 0.9,
           "body_part": "robot arm",
           "contact_state": "release",
@@ -924,201 +857,48 @@
             26,
             39
           ]
-        },
-        {
-          "step_id": 6,
-          "text": "approach bowl",
-          "verb": "approach",
-          "object": "bowl",
-          "confidence": 0.9,
-          "body_part": "robot arm",
-          "contact_state": "approach",
-          "posture": "standing",
-          "observed_trajectory": {
-            "track_names": [
-              "eef"
-            ],
-            "start_time_sec": 1.0,
-            "end_time_sec": 3.0,
-            "coordinate_frame": "world"
-          },
-          "evidence_frame_ids": [
-            20,
-            33,
-            46,
-            59
-          ]
-        },
-        {
-          "step_id": 7,
-          "text": "lift bowl",
-          "verb": "lift",
-          "object": "bowl",
-          "confidence": 0.9,
-          "body_part": "robot arm",
-          "contact_state": "grasp",
-          "posture": "standing",
-          "observed_trajectory": {
-            "track_names": [
-              "eef"
-            ],
-            "start_time_sec": 1.0,
-            "end_time_sec": 3.0,
-            "coordinate_frame": "world"
-          },
-          "evidence_frame_ids": [
-            20,
-            33,
-            46,
-            59
-          ]
-        },
-        {
-          "step_id": 8,
-          "text": "move bowl upward",
-          "verb": "move",
-          "object": "bowl",
-          "confidence": 0.9,
-          "body_part": "robot arm",
-          "contact_state": "grasp",
-          "posture": "standing",
-          "observed_trajectory": {
-            "track_names": [
-              "eef"
-            ],
-            "start_time_sec": 1.0,
-            "end_time_sec": 3.0,
-            "coordinate_frame": "world"
-          },
-          "evidence_frame_ids": [
-            20,
-            33,
-            46,
-            59
-          ]
-        },
-        {
-          "step_id": 9,
-          "text": "lower bowl toward plate",
-          "verb": "move",
-          "object": "bowl",
-          "confidence": 0.9,
-          "body_part": "robot arm",
-          "contact_state": "grasp",
-          "posture": "standing",
-          "observed_trajectory": {
-            "track_names": [
-              "eef"
-            ],
-            "start_time_sec": 1.0,
-            "end_time_sec": 3.0,
-            "coordinate_frame": "world"
-          },
-          "evidence_frame_ids": [
-            20,
-            33,
-            46,
-            59
-          ]
-        },
-        {
-          "step_id": 10,
-          "text": "robot arm moves toward plate",
-          "verb": "move",
-          "object": "robot arm",
-          "confidence": 0.9,
-          "body_part": "robot arm",
-          "contact_state": "approach",
-          "posture": "stationary",
-          "observed_trajectory": {
-            "track_names": [
-              "eef"
-            ],
-            "start_time_sec": 2.0,
-            "end_time_sec": 3.35,
-            "coordinate_frame": "world"
-          },
-          "evidence_frame_ids": [
-            40,
-            48,
-            57,
-            66
-          ]
-        },
-        {
-          "step_id": 11,
-          "text": "robot arm lowers toward plate",
-          "verb": "lower",
-          "object": "robot arm",
-          "confidence": 0.9,
-          "body_part": "robot arm",
-          "contact_state": "approach",
-          "posture": "stationary",
-          "observed_trajectory": {
-            "track_names": [
-              "eef"
-            ],
-            "start_time_sec": 2.0,
-            "end_time_sec": 3.35,
-            "coordinate_frame": "world"
-          },
-          "evidence_frame_ids": [
-            40,
-            48,
-            57,
-            66
-          ]
-        },
-        {
-          "step_id": 12,
-          "text": "robot arm lifts plate slightly",
-          "verb": "lift",
-          "object": "plate",
-          "confidence": 0.9,
-          "body_part": "robot arm",
-          "contact_state": "contact",
-          "posture": "stationary",
-          "observed_trajectory": {
-            "track_names": [
-              "eef"
-            ],
-            "start_time_sec": 2.0,
-            "end_time_sec": 3.35,
-            "coordinate_frame": "world"
-          },
-          "evidence_frame_ids": [
-            40,
-            48,
-            57,
-            66
-          ]
-        },
-        {
-          "step_id": 13,
-          "text": "robot arm moves plate sideways",
-          "verb": "move",
-          "object": "plate",
-          "confidence": 0.9,
-          "body_part": "robot arm",
-          "contact_state": "grasp",
-          "posture": "stationary",
-          "observed_trajectory": {
-            "track_names": [
-              "eef"
-            ],
-            "start_time_sec": 2.0,
-            "end_time_sec": 3.35,
-            "coordinate_frame": "world"
-          },
-          "evidence_frame_ids": [
-            40,
-            48,
-            57,
-            66
-          ]
         }
       ],
-      "augmented_instructions": [],
+      "augmented_instructions": [
+        {
+          "text": "Lift the metallic bowl from the counter and carefully position it onto the white plate with a red rim, ensuring it sits stably without tipping.",
+          "strategy": "add emphasis on stability and careful placement",
+          "source_step_ids": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "metadata": {
+            "rewriter": "llm",
+            "model": "qwen3-vl-flash",
+            "prompt_version": "ungated_rewriter_v1",
+            "prompt_file": "/Users/gaiyi/Downloads/mini-vlo/src/semantic_motion/llm_augmentation_prompt.txt",
+            "validation": "disabled",
+            "raw_response": "{\n  \"variants\": [\n    {\n      \"text\": \"Lift the metallic bowl from the counter and carefully position it onto the white plate with a red rim, ensuring it sits stably without tipping.\",\n      \"strategy\": \"add emphasis on stability and careful placement\",\n      \"source_step_ids\": [1, 2, 3, 4, 5]\n    },\n    {\n      \"text\": \"Using the robot arm, first approach and grasp the metallic bowl, then lift it and move it horizontally to align above the white plate with red rim before lowering it gently onto the plate.\",\n      \"strategy\": \"break down motion into horizontal alignment and gentle descent\",\n      \"source_step_ids\": [1, 2, 3, 4, 5]\n    }\n  ]\n}"
+          }
+        },
+        {
+          "text": "Using the robot arm, first approach and grasp the metallic bowl, then lift it and move it horizontally to align above the white plate with red rim before lowering it gently onto the plate.",
+          "strategy": "break down motion into horizontal alignment and gentle descent",
+          "source_step_ids": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "metadata": {
+            "rewriter": "llm",
+            "model": "qwen3-vl-flash",
+            "prompt_version": "ungated_rewriter_v1",
+            "prompt_file": "/Users/gaiyi/Downloads/mini-vlo/src/semantic_motion/llm_augmentation_prompt.txt",
+            "validation": "disabled",
+            "raw_response": "{\n  \"variants\": [\n    {\n      \"text\": \"Lift the metallic bowl from the counter and carefully position it onto the white plate with a red rim, ensuring it sits stably without tipping.\",\n      \"strategy\": \"add emphasis on stability and careful placement\",\n      \"source_step_ids\": [1, 2, 3, 4, 5]\n    },\n    {\n      \"text\": \"Using the robot arm, first approach and grasp the metallic bowl, then lift it and move it horizontally to align above the white plate with red rim before lowering it gently onto the plate.\",\n      \"strategy\": \"break down motion into horizontal alignment and gentle descent\",\n      \"source_step_ids\": [1, 2, 3, 4, 5]\n    }\n  ]\n}"
+          }
+        }
+      ],
       "confidence": 0.9,
       "start_frame": 0,
       "end_frame": 67,
@@ -1158,26 +938,29 @@
         "trajectory_linked": true,
         "augmentation_audit": [
           {
-            "text": "use the robot arm to approach the black bowl, grasp it, lift it, move it toward the white plate with red rim, and place it onto the plate.",
-            "accepted": false,
-            "reasons": [
-              "action_omitted:lower",
-              "action_order_changed",
-              "fact_changed:actions",
-              "fact_changed:body_parts",
-              "fact_changed:contact_states"
-            ]
+            "text": "Lift the metallic bowl from the counter and carefully position it onto the white plate with a red rim, ensuring it sits stably without tipping.",
+            "included": true,
+            "validation": "disabled"
           },
           {
-            "text": "first have the robot arm approach the black bowl, then grasp and lift it; next, move the bowl upward, lower it toward the white plate with red rim, and finally place it on the plate.",
-            "accepted": false,
-            "reasons": [
-              "action_order_changed",
-              "fact_changed:actions",
-              "fact_changed:body_parts",
-              "fact_changed:contact_states"
-            ]
+            "text": "Using the robot arm, first approach and grasp the metallic bowl, then lift it and move it horizontally to align above the white plate with red rim before lowering it gently onto the plate.",
+            "included": true,
+            "validation": "disabled"
           }
+        ],
+        "alternative_micro_observations": [
+          [
+            "approach bowl",
+            "lift bowl",
+            "move bowl upward",
+            "lower bowl toward plate"
+          ],
+          [
+            "robot arm moves toward plate",
+            "robot arm lowers toward plate",
+            "robot arm lifts plate slightly",
+            "robot arm moves plate sideways"
+          ]
         ]
       }
     },
@@ -1245,7 +1028,7 @@
           "object": "bowl",
           "confidence": 0.95,
           "body_part": "robot arm",
-          "contact_state": "contact",
+          "contact_state": "grasp",
           "posture": "stationary",
           "observed_trajectory": {
             "track_names": [
@@ -1269,7 +1052,7 @@
           "object": "bowl",
           "confidence": 0.95,
           "body_part": "robot arm",
-          "contact_state": "grasp",
+          "contact_state": "contact",
           "posture": "upward motion",
           "observed_trajectory": {
             "track_names": [
@@ -1293,7 +1076,7 @@
           "object": "bowl",
           "confidence": 0.95,
           "body_part": "robot arm",
-          "contact_state": "grasp",
+          "contact_state": "contact",
           "posture": "upward motion",
           "observed_trajectory": {
             "track_names": [
@@ -1335,7 +1118,46 @@
           ]
         }
       ],
-      "augmented_instructions": [],
+      "augmented_instructions": [
+        {
+          "text": "Lift the bowl from the plate, hold it suspended above the plate for a moment, and then carefully lower and place it back onto the plate.",
+          "strategy": "Rephrased with temporal emphasis and added descriptive detail",
+          "source_step_ids": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "metadata": {
+            "rewriter": "llm",
+            "model": "qwen3-vl-flash",
+            "prompt_version": "ungated_rewriter_v1",
+            "prompt_file": "/Users/gaiyi/Downloads/mini-vlo/src/semantic_motion/llm_augmentation_prompt.txt",
+            "validation": "disabled",
+            "raw_response": "{\n  \"variants\": [\n    {\n      \"text\": \"Lift the bowl from the plate, hold it suspended above the plate for a moment, and then carefully lower and place it back onto the plate.\",\n      \"strategy\": \"Rephrased with temporal emphasis and added descriptive detail\",\n      \"source_step_ids\": [1, 2, 3, 4, 5]\n    },\n    {\n      \"text\": \"Pick up the bowl from the plate using the robot arm, raise it vertically to a position above the plate, and then gently set it back down in its original location.\",\n      \"strategy\": \"Action-oriented with explicit tool reference and motion description\",\n      \"source_step_ids\": [1, 2, 3, 4, 5]\n    }\n  ]\n}"
+          }
+        },
+        {
+          "text": "Pick up the bowl from the plate using the robot arm, raise it vertically to a position above the plate, and then gently set it back down in its original location.",
+          "strategy": "Action-oriented with explicit tool reference and motion description",
+          "source_step_ids": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "metadata": {
+            "rewriter": "llm",
+            "model": "qwen3-vl-flash",
+            "prompt_version": "ungated_rewriter_v1",
+            "prompt_file": "/Users/gaiyi/Downloads/mini-vlo/src/semantic_motion/llm_augmentation_prompt.txt",
+            "validation": "disabled",
+            "raw_response": "{\n  \"variants\": [\n    {\n      \"text\": \"Lift the bowl from the plate, hold it suspended above the plate for a moment, and then carefully lower and place it back onto the plate.\",\n      \"strategy\": \"Rephrased with temporal emphasis and added descriptive detail\",\n      \"source_step_ids\": [1, 2, 3, 4, 5]\n    },\n    {\n      \"text\": \"Pick up the bowl from the plate using the robot arm, raise it vertically to a position above the plate, and then gently set it back down in its original location.\",\n      \"strategy\": \"Action-oriented with explicit tool reference and motion description\",\n      \"source_step_ids\": [1, 2, 3, 4, 5]\n    }\n  ]\n}"
+          }
+        }
+      ],
       "confidence": 0.95,
       "start_frame": 67,
       "end_frame": 90,
@@ -1359,29 +1181,17 @@
         "trajectory_linked": true,
         "augmentation_audit": [
           {
-            "text": "Lift the bowl from the plate using the robot arm, raise it above the plate, and then place it back onto the plate.",
-            "accepted": false,
-            "reasons": [
-              "action_omitted:approach",
-              "action_omitted:grasp",
-              "action_omitted:move",
-              "action_omitted:release",
-              "destination_omitted"
-            ]
+            "text": "Lift the bowl from the plate, hold it suspended above the plate for a moment, and then carefully lower and place it back onto the plate.",
+            "included": true,
+            "validation": "disabled"
           },
           {
-            "text": "With the robot arm, pick up the bowl from the plate, elevate it to a position above the plate, and gently set it back down on the plate.",
-            "accepted": false,
-            "reasons": [
-              "action_omitted:approach",
-              "action_omitted:grasp",
-              "action_omitted:lift",
-              "action_omitted:move",
-              "action_omitted:release",
-              "destination_omitted"
-            ]
+            "text": "Pick up the bowl from the plate using the robot arm, raise it vertically to a position above the plate, and then gently set it back down in its original location.",
+            "included": true,
+            "validation": "disabled"
           }
-        ]
+        ],
+        "alternative_micro_observations": []
       }
     }
   ],
@@ -1402,12 +1212,14 @@
       "dataset": "LIBERO Goal",
       "source_id": "put_the_bowl_on_the_plate_demo_0",
       "generator": "src.semantic_motion.view_bundle",
-      "revision": "fe3cdfd1b0758949153e6369ac16e9320ccd13a9",
+      "revision": "dab95c728b8c861a23f08723d22c4d3a5a97b047",
       "config": {},
       "checksums": {}
     },
+    "validation_diagnostics": [],
+    "validation_enforced": false,
     "generation_model": "qwen3-vl-flash",
     "rewriter": "LLMInstructionRewriter",
-    "rewrite_prompt_version": "fact_preserving_rewriter_v1"
+    "rewrite_prompt_version": "ungated_rewriter_v1"
   }
 }

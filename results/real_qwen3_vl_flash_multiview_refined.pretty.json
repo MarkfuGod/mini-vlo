@@ -4,13 +4,19 @@
     "motion_quality_score": 0.9871780276298523,
     "semantic_label": "inconsistent",
     "semantic_confidence": 0.95,
-    "decision": "drop",
+    "decision": "keep",
     "reason_codes": [
+      "ego:action_mismatch",
+      "ego:actor_mismatch",
+      "ego:goal_state_mismatch",
+      "ego:object_mismatch",
+      "ego:semantic_mismatch",
       "fixed:action_mismatch",
       "fixed:actor_mismatch",
       "fixed:goal_state_mismatch",
       "fixed:object_mismatch",
       "fixed:semantic_mismatch",
+      "quality_gates_disabled",
       "semantic_mismatch",
       "semantic_not_consistent"
     ],
@@ -58,6 +64,11 @@
         "label": "inconsistent",
         "confidence": 0.95,
         "error_types": [
+          "ego:action_mismatch",
+          "ego:actor_mismatch",
+          "ego:goal_state_mismatch",
+          "ego:object_mismatch",
+          "ego:semantic_mismatch",
           "fixed:action_mismatch",
           "fixed:actor_mismatch",
           "fixed:goal_state_mismatch",
@@ -68,10 +79,15 @@
         "verifier": "independent_multiview",
         "per_view": {
           "ego": {
-            "label": "consistent",
+            "label": "inconsistent",
             "confidence": 0.95,
-            "error_types": [],
-            "suggested_text": "place the black bowl onto the white plate with red rim using the robot arm",
+            "error_types": [
+              "actor_mismatch",
+              "object_mismatch",
+              "action_mismatch",
+              "goal_state_mismatch"
+            ],
+            "suggested_text": "move the metallic bowl toward the white plate with red rim",
             "verifier": "qwen3-vl-flash"
           },
           "fixed": {
@@ -83,12 +99,12 @@
               "action_mismatch",
               "goal_state_mismatch"
             ],
-            "suggested_text": "the robot arm moves a silver object near the wall; no black bowl or white plate with red rim is visible in the clip",
+            "suggested_text": "pick up the metallic object and place it on the white surface with circular pattern",
             "verifier": "qwen3-vl-flash"
           }
         }
       },
-      "text": "place the black bowl onto the white plate with red rim using the robot arm.",
+      "text": "pick up the metallic bowl and place it on the white plate with red rim.",
       "label": null,
       "views": {
         "fixed": "data/libero_goal/processed/put_the_bowl_on_the_plate_demo/demo_0_agentview_rgb.mp4",
@@ -98,7 +114,7 @@
         "dataset": "LIBERO Goal",
         "source_id": "put_the_bowl_on_the_plate_demo_0",
         "generator": "src.semantic_motion.view_bundle",
-        "revision": "fe3cdfd1b0758949153e6369ac16e9320ccd13a9",
+        "revision": "dab95c728b8c861a23f08723d22c4d3a5a97b047",
         "config": {},
         "checksums": {}
       }
@@ -109,7 +125,7 @@
     "motion_quality_score": 0.9999971985816956,
     "semantic_label": "inconsistent",
     "semantic_confidence": 0.95,
-    "decision": "drop",
+    "decision": "keep",
     "reason_codes": [
       "ego:action_mismatch",
       "ego:goal_state_mismatch",
@@ -117,6 +133,7 @@
       "fixed:action_mismatch",
       "fixed:goal_state_mismatch",
       "fixed:semantic_mismatch",
+      "quality_gates_disabled",
       "semantic_mismatch",
       "semantic_not_consistent"
     ],
@@ -206,7 +223,7 @@
         "dataset": "LIBERO Goal",
         "source_id": "put_the_bowl_on_the_plate_demo_0",
         "generator": "src.semantic_motion.view_bundle",
-        "revision": "fe3cdfd1b0758949153e6369ac16e9320ccd13a9",
+        "revision": "dab95c728b8c861a23f08723d22c4d3a5a97b047",
         "config": {},
         "checksums": {}
       }

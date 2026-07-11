@@ -1,0 +1,6 @@
+Generate-filter ready model=qwen3-vl-flash base_url=https://dashscope.aliyuncs.com/compatible-mode/v1
+Generated perception output: results/real_qwen3_vl_flash_multiview_perception.json
+Prepared 2 sample(s), skipped 0: results/real_qwen3_vl_flash_multiview_samples.jsonl
+Refined 2 sample(s): results/real_qwen3_vl_flash_multiview_refined.jsonl
+Pretty refinement output: results/real_qwen3_vl_flash_multiview_refined.pretty.json
+Decisions: keep=2 drop=0

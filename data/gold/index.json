@@ -1,0 +1,123 @@
+{
+  "schema_version": "semantic-motion-gold-index/v1",
+  "formal_gold_count": 0,
+  "candidate_count": 23,
+  "warning": "Only adjudicated, independently double-annotated packets count as formal gold.",
+  "samples": [
+    {
+      "sample_id": "put_the_bowl_on_the_plate_demo_0_clip_000",
+      "path": "data/gold/annotations/put_the_bowl_on_the_plate_demo_0_clip_000.json",
+      "annotation_status": "pending_human"
+    },
+    {
+      "sample_id": "put_the_bowl_on_the_plate_demo_0_clip_001",
+      "path": "data/gold/annotations/put_the_bowl_on_the_plate_demo_0_clip_001.json",
+      "annotation_status": "pending_human"
+    },
+    {
+      "sample_id": "put_the_bowl_on_the_plate_demo_0_clip_002",
+      "path": "data/gold/annotations/put_the_bowl_on_the_plate_demo_0_clip_002.json",
+      "annotation_status": "pending_human"
+    },
+    {
+      "sample_id": "put_the_bowl_on_the_plate_demo_0_clip_003",
+      "path": "data/gold/annotations/put_the_bowl_on_the_plate_demo_0_clip_003.json",
+      "annotation_status": "pending_human"
+    },
+    {
+      "sample_id": "put_the_bowl_on_the_plate_demo_0_clip_004",
+      "path": "data/gold/annotations/put_the_bowl_on_the_plate_demo_0_clip_004.json",
+      "annotation_status": "pending_human"
+    },
+    {
+      "sample_id": "put_the_bowl_on_the_plate_demo_0_clip_005",
+      "path": "data/gold/annotations/put_the_bowl_on_the_plate_demo_0_clip_005.json",
+      "annotation_status": "pending_human"
+    },
+    {
+      "sample_id": "put_the_bowl_on_the_plate_demo_0_clip_006",
+      "path": "data/gold/annotations/put_the_bowl_on_the_plate_demo_0_clip_006.json",
+      "annotation_status": "pending_human"
+    },
+    {
+      "sample_id": "put_the_bowl_on_the_plate_demo_0_clip_007",
+      "path": "data/gold/annotations/put_the_bowl_on_the_plate_demo_0_clip_007.json",
+      "annotation_status": "pending_human"
+    },
+    {
+      "sample_id": "put_the_bowl_on_the_stove_demo_0_clip_000",
+      "path": "data/gold/annotations/put_the_bowl_on_the_stove_demo_0_clip_000.json",
+      "annotation_status": "pending_human"
+    },
+    {
+      "sample_id": "put_the_bowl_on_the_stove_demo_0_clip_001",
+      "path": "data/gold/annotations/put_the_bowl_on_the_stove_demo_0_clip_001.json",
+      "annotation_status": "pending_human"
+    },
+    {
+      "sample_id": "put_the_bowl_on_the_stove_demo_0_clip_002",
+      "path": "data/gold/annotations/put_the_bowl_on_the_stove_demo_0_clip_002.json",
+      "annotation_status": "pending_human"
+    },
+    {
+      "sample_id": "put_the_bowl_on_the_stove_demo_0_clip_003",
+      "path": "data/gold/annotations/put_the_bowl_on_the_stove_demo_0_clip_003.json",
+      "annotation_status": "pending_human"
+    },
+    {
+      "sample_id": "put_the_bowl_on_the_stove_demo_0_clip_004",
+      "path": "data/gold/annotations/put_the_bowl_on_the_stove_demo_0_clip_004.json",
+      "annotation_status": "pending_human"
+    },
+    {
+      "sample_id": "put_the_bowl_on_the_stove_demo_0_clip_005",
+      "path": "data/gold/annotations/put_the_bowl_on_the_stove_demo_0_clip_005.json",
+      "annotation_status": "pending_human"
+    },
+    {
+      "sample_id": "put_the_bowl_on_the_stove_demo_0_clip_006",
+      "path": "data/gold/annotations/put_the_bowl_on_the_stove_demo_0_clip_006.json",
+      "annotation_status": "pending_human"
+    },
+    {
+      "sample_id": "put_the_bowl_on_the_stove_demo_0_clip_007",
+      "path": "data/gold/annotations/put_the_bowl_on_the_stove_demo_0_clip_007.json",
+      "annotation_status": "pending_human"
+    },
+    {
+      "sample_id": "turn_on_the_stove_demo_0_clip_000",
+      "path": "data/gold/annotations/turn_on_the_stove_demo_0_clip_000.json",
+      "annotation_status": "pending_human"
+    },
+    {
+      "sample_id": "turn_on_the_stove_demo_0_clip_001",
+      "path": "data/gold/annotations/turn_on_the_stove_demo_0_clip_001.json",
+      "annotation_status": "pending_human"
+    },
+    {
+      "sample_id": "turn_on_the_stove_demo_0_clip_002",
+      "path": "data/gold/annotations/turn_on_the_stove_demo_0_clip_002.json",
+      "annotation_status": "pending_human"
+    },
+    {
+      "sample_id": "turn_on_the_stove_demo_0_clip_003",
+      "path": "data/gold/annotations/turn_on_the_stove_demo_0_clip_003.json",
+      "annotation_status": "pending_human"
+    },
+    {
+      "sample_id": "turn_on_the_stove_demo_0_clip_004",
+      "path": "data/gold/annotations/turn_on_the_stove_demo_0_clip_004.json",
+      "annotation_status": "pending_human"
+    },
+    {
+      "sample_id": "turn_on_the_stove_demo_0_clip_005",
+      "path": "data/gold/annotations/turn_on_the_stove_demo_0_clip_005.json",
+      "annotation_status": "pending_human"
+    },
+    {
+      "sample_id": "turn_on_the_stove_demo_0_clip_006",
+      "path": "data/gold/annotations/turn_on_the_stove_demo_0_clip_006.json",
+      "annotation_status": "pending_human"
+    }
+  ]
+}

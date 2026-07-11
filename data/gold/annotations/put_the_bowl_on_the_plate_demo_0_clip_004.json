@@ -1,0 +1,20 @@
+{
+  "schema_version": "semantic-motion-gold/v1",
+  "sample_id": "put_the_bowl_on_the_plate_demo_0_clip_004",
+  "annotation_status": "pending_human",
+  "source_sample_id": "put_the_bowl_on_the_plate_demo_0",
+  "source_views": {
+    "fixed": "data/libero_goal/processed/put_the_bowl_on_the_plate_demo/demo_0_agentview_rgb.mp4",
+    "ego": "data/libero_goal/processed/put_the_bowl_on_the_plate_demo/demo_0_eye_in_hand_rgb.mp4"
+  },
+  "clip_start_sec": 2.0,
+  "clip_end_sec": 4.0,
+  "fps": 20.0,
+  "frame_count": 40,
+  "weak_task_title": "put the bowl on the plate",
+  "boundaries_sec": [],
+  "segments": [],
+  "annotators": [],
+  "adjudicator_id": "",
+  "notes": "Candidate annotation packet only. The weak task title must not be copied as boundary, micro-action, contact, or keep/drop truth."
+}
