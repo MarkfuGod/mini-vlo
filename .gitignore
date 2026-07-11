@@ -9,7 +9,6 @@ build/
 .pytest_cache/
 .semantic_motion_work/
 module_d/output_videos/
-data/libero_goal/
 report/*.aux
 report/*.bbl
 report/*.blg

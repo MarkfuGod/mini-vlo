@@ -1,0 +1,6 @@
+data/libero_goal/**/*.hdf5 filter=lfs diff=lfs merge=lfs -text
+data/libero_goal/**/*.HDF5 filter=lfs diff=lfs merge=lfs -text
+data/libero_goal/**/*.mp4 filter=lfs diff=lfs merge=lfs -text
+*.hdf5 filter=lfs diff=lfs merge=lfs -text
+*.HDF5 filter=lfs diff=lfs merge=lfs -text
+*.mp4 filter=lfs diff=lfs merge=lfs -text

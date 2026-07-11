@@ -1,0 +1,55 @@
+{
+  "dataset": "LIBERO Goal",
+  "sample_count": 3,
+  "ground_truth_policy": "Use the official BDDL/file title as weak task-level instruction truth only.",
+  "samples": [
+    {
+      "sample_id": "put_the_bowl_on_the_plate_demo_0",
+      "task_id": "put_the_bowl_on_the_plate",
+      "ground_truth_instruction": "put the bowl on the plate",
+      "ground_truth_source": "official LIBERO BDDL filename",
+      "ground_truth_scope": "weak task-level label only",
+      "fps": 20,
+      "frame_count": 90,
+      "views": {
+        "fixed": "data/libero_goal/processed/put_the_bowl_on_the_plate_demo/demo_0_agentview_rgb.mp4",
+        "ego": "data/libero_goal/processed/put_the_bowl_on_the_plate_demo/demo_0_eye_in_hand_rgb.mp4"
+      },
+      "trajectory": "data/libero_goal/processed/put_the_bowl_on_the_plate_demo/demo_0_traj.json",
+      "truth": "data/libero_goal/processed/put_the_bowl_on_the_plate_demo/demo_0_ground_truth.json",
+      "source_hdf5": "data/libero_goal/raw/put_the_bowl_on_the_plate_demo.hdf5"
+    },
+    {
+      "sample_id": "put_the_bowl_on_the_stove_demo_0",
+      "task_id": "put_the_bowl_on_the_stove",
+      "ground_truth_instruction": "put the bowl on the stove",
+      "ground_truth_source": "official LIBERO BDDL filename",
+      "ground_truth_scope": "weak task-level label only",
+      "fps": 20,
+      "frame_count": 94,
+      "views": {
+        "fixed": "data/libero_goal/processed/put_the_bowl_on_the_stove_demo/demo_0_agentview_rgb.mp4",
+        "ego": "data/libero_goal/processed/put_the_bowl_on_the_stove_demo/demo_0_eye_in_hand_rgb.mp4"
+      },
+      "trajectory": "data/libero_goal/processed/put_the_bowl_on_the_stove_demo/demo_0_traj.json",
+      "truth": "data/libero_goal/processed/put_the_bowl_on_the_stove_demo/demo_0_ground_truth.json",
+      "source_hdf5": "data/libero_goal/raw/put_the_bowl_on_the_stove_demo.hdf5"
+    },
+    {
+      "sample_id": "turn_on_the_stove_demo_0",
+      "task_id": "turn_on_the_stove",
+      "ground_truth_instruction": "turn on the stove",
+      "ground_truth_source": "official LIBERO BDDL filename",
+      "ground_truth_scope": "weak task-level label only",
+      "fps": 20,
+      "frame_count": 80,
+      "views": {
+        "fixed": "data/libero_goal/processed/turn_on_the_stove_demo/demo_0_agentview_rgb.mp4",
+        "ego": "data/libero_goal/processed/turn_on_the_stove_demo/demo_0_eye_in_hand_rgb.mp4"
+      },
+      "trajectory": "data/libero_goal/processed/turn_on_the_stove_demo/demo_0_traj.json",
+      "truth": "data/libero_goal/processed/turn_on_the_stove_demo/demo_0_ground_truth.json",
+      "source_hdf5": "data/libero_goal/raw/turn_on_the_stove_demo.hdf5"
+    }
+  ]
+}

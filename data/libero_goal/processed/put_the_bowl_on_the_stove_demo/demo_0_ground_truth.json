@@ -1,0 +1,7 @@
+{
+  "task_id": "put_the_bowl_on_the_stove",
+  "instruction": "put the bowl on the stove",
+  "source": "official LIBERO BDDL filename",
+  "scope": "weak task-level label only",
+  "limitations": "This title is not frame-level boundary, micro-action, contact-state, or keep/drop ground truth."
+}
