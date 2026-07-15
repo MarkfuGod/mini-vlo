@@ -1,0 +1,1360 @@
+{
+  "schema_version": "semantic-motion-video2tasks-ablation/v3",
+  "comparison_mode": "prompt-ablation-pinned-aggregation",
+  "formal": false,
+  "claim_scope": "prompt ablation only; does not evaluate the full Semantic-Motion VideoTaskPipeline or multi-view fusion",
+  "generated_at": "2026-07-15T14:49:58.785981+00:00",
+  "code_revision": "8f3096114a56caeb9d83d0e2a2def7ab32587754",
+  "model": "qwen3-vl-flash",
+  "judge_model": "qwen3-vl-flash",
+  "base_url": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+  "request_timeout_s": 300.0,
+  "max_retries": 2,
+  "upstream_revision": "8d405a120a37df4e5a4869b61ba3d9edb7b4dfe3",
+  "filename_or_task_list_prior": false,
+  "prompt_hashes": {
+    "semantic_motion": "d9778f608d8f250d5f10c26b9912e6034bfae938f7a39655a8a4004c769b1f24",
+    "semantic_judge": "8ae6b4f4162d36d7c428942d70d41b392048e491a9ab3bcbaf2cd625153b611c"
+  },
+  "pricing": {
+    "input_usd_per_million_tokens": 0.05,
+    "output_usd_per_million_tokens": 0.4
+  },
+  "input": {
+    "sample_manifest": "data/wgo_bench/subset/manifest.json",
+    "sample_manifest_sha256": "3153cf1cb6770e31fc7fe947c3a488448876915f8cfa329a86751bed5d09daf8",
+    "sample_source": "external_manifest",
+    "num_samples": 1,
+    "repeats": 3,
+    "requested_sample_count": 3,
+    "evaluated_sample_ids": [
+      "robointer_droid_000001"
+    ],
+    "run_scope": "one WGO robot episode x three repeated inferences"
+  },
+  "windowing": {
+    "window_sec": 16.0,
+    "step_sec": 8.0,
+    "frames_per_window": 16
+  },
+  "summary": {
+    "num_runs": 3,
+    "valid_runs": 3,
+    "errored_runs": 0,
+    "baseline": {
+      "instruction_token_f1": 0.20000000000000004,
+      "target_mention_f1": null,
+      "action_coverage_f1": 0.08333333333333333,
+      "action_edit": 0.0,
+      "boundary_f1_0.5s": 0.0,
+      "boundary_f1_1.0s": 0.0,
+      "segment_f1_iou_0.5": 0.6666666666666666,
+      "segment_f1_iou_0.75": 0.0,
+      "semantic_label_accuracy": 0.0,
+      "semantic_label_temporal_coverage": 0.5,
+      "slot_macro_f1": 0.3333333333333333,
+      "labeled_e2e_f1_iou_0.5": 0.0,
+      "labeled_e2e_f1_iou_0.75": 0.0,
+      "semantic_action_edit": 0.0,
+      "mean_latency_s": 96.4794321253333,
+      "mean_estimated_cost_usd": 0.00016555
+    },
+    "semantic_motion": {
+      "instruction_token_f1": 0.11604938271604938,
+      "target_mention_f1": null,
+      "action_coverage_f1": 0.1205164992826399,
+      "action_edit": 0.0,
+      "boundary_f1_0.5s": 0.0,
+      "boundary_f1_1.0s": 0.0,
+      "segment_f1_iou_0.5": 0.6666666666666666,
+      "segment_f1_iou_0.75": 0.0,
+      "semantic_label_accuracy": 0.0,
+      "semantic_label_temporal_coverage": 0.5,
+      "slot_macro_f1": 0.0,
+      "labeled_e2e_f1_iou_0.5": 0.0,
+      "labeled_e2e_f1_iou_0.75": 0.0,
+      "semantic_action_edit": 0.0,
+      "mean_latency_s": 102.68896581933313,
+      "mean_estimated_cost_usd": 0.0001654666666666667
+    },
+    "temporal_gold_run_count": 3,
+    "paired_bootstrap_95ci": {
+      "instruction_token_f1": {
+        "mean_delta": -0.08395061728395063,
+        "lower": -0.10000000000000002,
+        "upper": -0.05185185185185187,
+        "confidence": 0.95,
+        "draws": 4000.0,
+        "n": 3.0
+      },
+      "target_mention_f1": null,
+      "action_coverage_f1": {
+        "mean_delta": 0.03718316594930654,
+        "lower": -0.024509803921568638,
+        "upper": 0.1605691056910569,
+        "confidence": 0.95,
+        "draws": 4000.0,
+        "n": 3.0
+      },
+      "action_edit": {
+        "mean_delta": 0.0,
+        "lower": 0.0,
+        "upper": 0.0,
+        "confidence": 0.95,
+        "draws": 4000.0,
+        "n": 3.0
+      },
+      "boundary_f1_0.5s": {
+        "mean_delta": 0.0,
+        "lower": 0.0,
+        "upper": 0.0,
+        "confidence": 0.95,
+        "draws": 4000.0,
+        "n": 3.0
+      },
+      "boundary_f1_1.0s": {
+        "mean_delta": 0.0,
+        "lower": 0.0,
+        "upper": 0.0,
+        "confidence": 0.95,
+        "draws": 4000.0,
+        "n": 3.0
+      },
+      "segment_f1_iou_0.5": {
+        "mean_delta": 0.0,
+        "lower": 0.0,
+        "upper": 0.0,
+        "confidence": 0.95,
+        "draws": 4000.0,
+        "n": 3.0
+      },
+      "segment_f1_iou_0.75": {
+        "mean_delta": 0.0,
+        "lower": 0.0,
+        "upper": 0.0,
+        "confidence": 0.95,
+        "draws": 4000.0,
+        "n": 3.0
+      },
+      "semantic_label_accuracy": {
+        "mean_delta": 0.0,
+        "lower": 0.0,
+        "upper": 0.0,
+        "confidence": 0.95,
+        "draws": 4000.0,
+        "n": 3.0
+      },
+      "slot_macro_f1": {
+        "mean_delta": -0.3333333333333333,
+        "lower": -0.3333333333333333,
+        "upper": -0.3333333333333333,
+        "confidence": 0.95,
+        "draws": 4000.0,
+        "n": 3.0
+      },
+      "labeled_e2e_f1_iou_0.5": {
+        "mean_delta": 0.0,
+        "lower": 0.0,
+        "upper": 0.0,
+        "confidence": 0.95,
+        "draws": 4000.0,
+        "n": 3.0
+      },
+      "labeled_e2e_f1_iou_0.75": {
+        "mean_delta": 0.0,
+        "lower": 0.0,
+        "upper": 0.0,
+        "confidence": 0.95,
+        "draws": 4000.0,
+        "n": 3.0
+      },
+      "semantic_action_edit": {
+        "mean_delta": 0.0,
+        "lower": 0.0,
+        "upper": 0.0,
+        "confidence": 0.95,
+        "draws": 4000.0,
+        "n": 3.0
+      }
+    },
+    "wins": 0,
+    "ties": 0,
+    "losses": 3
+  },
+  "results": [
+    {
+      "sample": {
+        "id": "robointer_droid_000001",
+        "video": "/Users/gaiyi/Downloads/mini-vlo/data/wgo_bench/subset/videos/robointer_droid_000001.mp4",
+        "instruction": "Move the bowl to the right",
+        "target_object": "",
+        "actions": [
+          "grasp the bowl on the table with the robot gripper",
+          "push the bowl to the right side of the table"
+        ],
+        "boundaries_sec": [
+          5.895
+        ],
+        "segments": [
+          {
+            "start_sec": 0.0,
+            "end_sec": 5.895,
+            "label": "grasp the bowl on the table with the robot gripper"
+          },
+          {
+            "start_sec": 5.895,
+            "end_sec": 9.049,
+            "label": "push the bowl to the right side of the table"
+          }
+        ],
+        "annotation_status": "benchmark_gold",
+        "gold_source": "macrodata/WGO-Bench",
+        "source_row_index": 25,
+        "source_metadata": {
+          "bench_id": "robointer_droid_000001",
+          "duration_sec": 10.4,
+          "episode_index": 1,
+          "fps": 10.0,
+          "notes": "",
+          "num_frames": 104,
+          "num_segments": 2,
+          "original_instruction": "Move the bowl to the right",
+          "saved_at_unix": 1781988774.983278,
+          "source_camera_view": "exterior_image_2_left",
+          "source_dataset": "InternRobotics/RoboInter-Data",
+          "source_episode_id": "10010_exterior_image_2_left",
+          "source_family": "droid",
+          "source_subset": "Annotation_with_action_lerobotv21/lerobot_droid_anno",
+          "source_video_member": "chunk-000/observation.images.primary/episode_000001.mp4",
+          "source_video_tar": "Annotation_with_action_lerobotv21/lerobot_droid_anno/videos/chunk-000.tar"
+        },
+        "video_sha256": "71f33e48afb2fdff45d3472ce55b10ba5ef00ed4cdf0aab5569ab94ab4669528"
+      },
+      "repeat": 0,
+      "method_order": [
+        "baseline",
+        "semantic_motion"
+      ],
+      "input_budget": {
+        "window_sec": 16.0,
+        "step_sec": 8.0,
+        "frames_per_window": 16,
+        "max_tokens_per_call": 1024,
+        "same_model": true,
+        "temperature": 0.0
+      },
+      "baseline": {
+        "method": "pinned Video2Tasks prompt + aggregation",
+        "prediction": {
+          "sample_id": "robointer_droid_000001",
+          "nframes": 104,
+          "segments": [
+            {
+              "seg_id": 0,
+              "start_frame": 0,
+              "end_frame": 104,
+              "instruction": "Hold position over bowl",
+              "confidence": 1.0
+            }
+          ],
+          "fps": 10.0,
+          "upstream_repository": "https://github.com/ly-geming/video2tasks",
+          "upstream_revision": "8d405a120a37df4e5a4869b61ba3d9edb7b4dfe3",
+          "window_sec": 16.0,
+          "step_sec": 8.0,
+          "frames_per_window": 16,
+          "window_count": 1
+        },
+        "latency_s": 46.95548816700011,
+        "api_calls": 1,
+        "usage": {
+          "requests": 1,
+          "input_tokens": 1591,
+          "output_tokens": 127,
+          "estimated_cost_usd": 0.00013035000000000002
+        },
+        "window_outputs": [
+          {
+            "window_id": 0,
+            "frame_indices": [
+              0,
+              6,
+              13,
+              20,
+              27,
+              34,
+              41,
+              48,
+              54,
+              61,
+              68,
+              75,
+              82,
+              89,
+              96,
+              103
+            ],
+            "parsed": {
+              "thought": "In frames 0-15, the robot arm is positioned over a bowl containing a red utensil (likely a spoon or chopstick). The arm remains in a static position, hovering above the bowl without any visible grasping, lifting, or releasing motion. There is no change in the object being interacted with—the red utensil remains in the bowl throughout. Since the robot does not complete an interaction with one object and begin interacting with a different object, there are no atomic task boundaries or switches detected.",
+              "transitions": [],
+              "instructions": [
+                "Hold position over bowl"
+              ]
+            }
+          }
+        ],
+        "scores": {
+          "instruction_token_f1": 0.2,
+          "target_mention_f1": null,
+          "action_coverage_f1": 0.08333333333333334,
+          "action_edit": 0.0
+        },
+        "boundary": {
+          "0.5s": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 1.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 0.5
+          },
+          "1.0s": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 1.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 1.0
+          }
+        },
+        "segmental": {
+          "0.5": {
+            "precision": 1.0,
+            "recall": 0.5,
+            "f1": 0.6666666666666666,
+            "mean_iou": 0.5668269230769231,
+            "threshold": 0.5,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 1.0
+          },
+          "0.75": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "mean_iou": 0.0,
+            "threshold": 0.75,
+            "tp": 0.0,
+            "fp": 1.0,
+            "fn": 2.0
+          }
+        },
+        "semantic_evaluation": {
+          "semantic_label_accuracy": 0.0,
+          "semantic_label_temporal_coverage": 0.5,
+          "slot_f1": {
+            "per_slot": {
+              "action": 0.0,
+              "object": 1.0,
+              "destination": 0.0
+            },
+            "macro_f1": 0.3333333333333333,
+            "pair_count": 1
+          },
+          "labeled_end_to_end_segment_f1": {
+            "0.5": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0.0,
+              "fp": 1.0,
+              "fn": 2.0,
+              "mean_iou": 0.0,
+              "threshold": 0.5
+            },
+            "0.75": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0.0,
+              "fp": 1.0,
+              "fn": 2.0,
+              "mean_iou": 0.0,
+              "threshold": 0.75
+            }
+          },
+          "semantic_action_edit": 0.0,
+          "judge_pair_count": 1
+        },
+        "semantic_evaluation_error": "",
+        "judge_usage": {
+          "requests": 1,
+          "input_tokens": 200,
+          "output_tokens": 53,
+          "estimated_cost_usd": 3.1200000000000006e-05
+        },
+        "error": ""
+      },
+      "semantic_motion": {
+        "method": "blind Semantic-Motion prompt + Video2Tasks aggregation",
+        "prediction": {
+          "sample_id": "robointer_droid_000001",
+          "nframes": 104,
+          "segments": [
+            {
+              "seg_id": 0,
+              "start_frame": 0,
+              "end_frame": 104,
+              "instruction": "A robotic arm moves a red utensil from a bowl onto a wooden surface",
+              "confidence": 1.0
+            }
+          ],
+          "fps": 10.0,
+          "upstream_repository": "https://github.com/ly-geming/video2tasks",
+          "upstream_revision": "8d405a120a37df4e5a4869b61ba3d9edb7b4dfe3",
+          "window_sec": 16.0,
+          "step_sec": 8.0,
+          "frames_per_window": 16,
+          "window_count": 1
+        },
+        "latency_s": 75.57939141599945,
+        "api_calls": 1,
+        "usage": {
+          "requests": 1,
+          "input_tokens": 1362,
+          "output_tokens": 165,
+          "estimated_cost_usd": 0.00013410000000000003
+        },
+        "window_outputs": [
+          {
+            "window_id": 0,
+            "frame_indices": [
+              0,
+              6,
+              13,
+              20,
+              27,
+              34,
+              41,
+              48,
+              54,
+              61,
+              68,
+              75,
+              82,
+              89,
+              96,
+              103
+            ],
+            "parsed": {
+              "transitions": [],
+              "instructions": [
+                "A robotic arm moves a red utensil from a bowl onto a wooden surface"
+              ],
+              "instruction": "Move red utensil from bowl to table",
+              "task_type": "Object Transfer",
+              "objects": [
+                "robotic arm",
+                "red utensil",
+                "bowl",
+                "wooden surface"
+              ],
+              "target_object": "red utensil",
+              "destination": "wooden surface",
+              "action_sequence": [
+                "The robotic arm lifts the red utensil from the bowl",
+                "The arm moves the utensil horizontally over the wooden surface",
+                "The arm places the utensil on the wooden surface"
+              ],
+              "confidence": 0.95
+            }
+          }
+        ],
+        "scores": {
+          "instruction_token_f1": 0.1,
+          "target_mention_f1": null,
+          "action_coverage_f1": 0.058823529411764705,
+          "action_edit": 0.0
+        },
+        "boundary": {
+          "0.5s": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 1.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 0.5
+          },
+          "1.0s": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 1.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 1.0
+          }
+        },
+        "segmental": {
+          "0.5": {
+            "precision": 1.0,
+            "recall": 0.5,
+            "f1": 0.6666666666666666,
+            "mean_iou": 0.5668269230769231,
+            "threshold": 0.5,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 1.0
+          },
+          "0.75": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "mean_iou": 0.0,
+            "threshold": 0.75,
+            "tp": 0.0,
+            "fp": 1.0,
+            "fn": 2.0
+          }
+        },
+        "semantic_evaluation": {
+          "semantic_label_accuracy": 0.0,
+          "semantic_label_temporal_coverage": 0.5,
+          "slot_f1": {
+            "per_slot": {
+              "action": 0.0,
+              "object": 0.0,
+              "destination": 0.0
+            },
+            "macro_f1": 0.0,
+            "pair_count": 1
+          },
+          "labeled_end_to_end_segment_f1": {
+            "0.5": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0.0,
+              "fp": 1.0,
+              "fn": 2.0,
+              "mean_iou": 0.0,
+              "threshold": 0.5
+            },
+            "0.75": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0.0,
+              "fp": 1.0,
+              "fn": 2.0,
+              "mean_iou": 0.0,
+              "threshold": 0.75
+            }
+          },
+          "semantic_action_edit": 0.0,
+          "judge_pair_count": 1
+        },
+        "semantic_evaluation_error": "",
+        "judge_usage": {
+          "requests": 1,
+          "input_tokens": 211,
+          "output_tokens": 55,
+          "estimated_cost_usd": 3.255e-05
+        },
+        "error": ""
+      },
+      "delta_instruction_token_f1": -0.1
+    },
+    {
+      "sample": {
+        "id": "robointer_droid_000001",
+        "video": "/Users/gaiyi/Downloads/mini-vlo/data/wgo_bench/subset/videos/robointer_droid_000001.mp4",
+        "instruction": "Move the bowl to the right",
+        "target_object": "",
+        "actions": [
+          "grasp the bowl on the table with the robot gripper",
+          "push the bowl to the right side of the table"
+        ],
+        "boundaries_sec": [
+          5.895
+        ],
+        "segments": [
+          {
+            "start_sec": 0.0,
+            "end_sec": 5.895,
+            "label": "grasp the bowl on the table with the robot gripper"
+          },
+          {
+            "start_sec": 5.895,
+            "end_sec": 9.049,
+            "label": "push the bowl to the right side of the table"
+          }
+        ],
+        "annotation_status": "benchmark_gold",
+        "gold_source": "macrodata/WGO-Bench",
+        "source_row_index": 25,
+        "source_metadata": {
+          "bench_id": "robointer_droid_000001",
+          "duration_sec": 10.4,
+          "episode_index": 1,
+          "fps": 10.0,
+          "notes": "",
+          "num_frames": 104,
+          "num_segments": 2,
+          "original_instruction": "Move the bowl to the right",
+          "saved_at_unix": 1781988774.983278,
+          "source_camera_view": "exterior_image_2_left",
+          "source_dataset": "InternRobotics/RoboInter-Data",
+          "source_episode_id": "10010_exterior_image_2_left",
+          "source_family": "droid",
+          "source_subset": "Annotation_with_action_lerobotv21/lerobot_droid_anno",
+          "source_video_member": "chunk-000/observation.images.primary/episode_000001.mp4",
+          "source_video_tar": "Annotation_with_action_lerobotv21/lerobot_droid_anno/videos/chunk-000.tar"
+        },
+        "video_sha256": "71f33e48afb2fdff45d3472ce55b10ba5ef00ed4cdf0aab5569ab94ab4669528"
+      },
+      "repeat": 1,
+      "method_order": [
+        "semantic_motion",
+        "baseline"
+      ],
+      "input_budget": {
+        "window_sec": 16.0,
+        "step_sec": 8.0,
+        "frames_per_window": 16,
+        "max_tokens_per_call": 1024,
+        "same_model": true,
+        "temperature": 0.0
+      },
+      "baseline": {
+        "method": "pinned Video2Tasks prompt + aggregation",
+        "prediction": {
+          "sample_id": "robointer_droid_000001",
+          "nframes": 104,
+          "segments": [
+            {
+              "seg_id": 0,
+              "start_frame": 0,
+              "end_frame": 104,
+              "instruction": "Hold position over bowl",
+              "confidence": 1.0
+            }
+          ],
+          "fps": 10.0,
+          "upstream_repository": "https://github.com/ly-geming/video2tasks",
+          "upstream_revision": "8d405a120a37df4e5a4869b61ba3d9edb7b4dfe3",
+          "window_sec": 16.0,
+          "step_sec": 8.0,
+          "frames_per_window": 16,
+          "window_count": 1
+        },
+        "latency_s": 115.08052150000003,
+        "api_calls": 1,
+        "usage": {
+          "requests": 1,
+          "input_tokens": 1591,
+          "output_tokens": 140,
+          "estimated_cost_usd": 0.00013555000000000002
+        },
+        "window_outputs": [
+          {
+            "window_id": 0,
+            "frame_indices": [
+              0,
+              6,
+              13,
+              20,
+              27,
+              34,
+              41,
+              48,
+              54,
+              61,
+              68,
+              75,
+              82,
+              89,
+              96,
+              103
+            ],
+            "parsed": {
+              "thought": "In frames 0-15, the robot arm is positioned over a bowl containing a red utensil (likely a spoon or chopstick). The arm remains in a static position, hovering above the bowl, with no visible motion of grasping, releasing, or moving to interact with any other object. There is no change in the object being manipulated—the red utensil remains in the same location and is never picked up or put down. Since the robot does not complete interaction with one object and start interacting with a different object, there are no atomic task boundaries or switches detected.",
+              "transitions": [],
+              "instructions": [
+                "Hold position over bowl"
+              ]
+            }
+          }
+        ],
+        "scores": {
+          "instruction_token_f1": 0.2,
+          "target_mention_f1": null,
+          "action_coverage_f1": 0.08333333333333334,
+          "action_edit": 0.0
+        },
+        "boundary": {
+          "0.5s": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 1.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 0.5
+          },
+          "1.0s": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 1.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 1.0
+          }
+        },
+        "segmental": {
+          "0.5": {
+            "precision": 1.0,
+            "recall": 0.5,
+            "f1": 0.6666666666666666,
+            "mean_iou": 0.5668269230769231,
+            "threshold": 0.5,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 1.0
+          },
+          "0.75": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "mean_iou": 0.0,
+            "threshold": 0.75,
+            "tp": 0.0,
+            "fp": 1.0,
+            "fn": 2.0
+          }
+        },
+        "semantic_evaluation": {
+          "semantic_label_accuracy": 0.0,
+          "semantic_label_temporal_coverage": 0.5,
+          "slot_f1": {
+            "per_slot": {
+              "action": 0.0,
+              "object": 1.0,
+              "destination": 0.0
+            },
+            "macro_f1": 0.3333333333333333,
+            "pair_count": 1
+          },
+          "labeled_end_to_end_segment_f1": {
+            "0.5": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0.0,
+              "fp": 1.0,
+              "fn": 2.0,
+              "mean_iou": 0.0,
+              "threshold": 0.5
+            },
+            "0.75": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0.0,
+              "fp": 1.0,
+              "fn": 2.0,
+              "mean_iou": 0.0,
+              "threshold": 0.75
+            }
+          },
+          "semantic_action_edit": 0.0,
+          "judge_pair_count": 1
+        },
+        "semantic_evaluation_error": "",
+        "judge_usage": {
+          "requests": 1,
+          "input_tokens": 200,
+          "output_tokens": 55,
+          "estimated_cost_usd": 3.2e-05
+        },
+        "error": ""
+      },
+      "semantic_motion": {
+        "method": "blind Semantic-Motion prompt + Video2Tasks aggregation",
+        "prediction": {
+          "sample_id": "robointer_droid_000001",
+          "nframes": 104,
+          "segments": [
+            {
+              "seg_id": 0,
+              "start_frame": 0,
+              "end_frame": 104,
+              "instruction": "A robotic arm lowers a red utensil into a bowl on a table, with a whiteboard and window in the background.",
+              "confidence": 1.0
+            }
+          ],
+          "fps": 10.0,
+          "upstream_repository": "https://github.com/ly-geming/video2tasks",
+          "upstream_revision": "8d405a120a37df4e5a4869b61ba3d9edb7b4dfe3",
+          "window_sec": 16.0,
+          "step_sec": 8.0,
+          "frames_per_window": 16,
+          "window_count": 1
+        },
+        "latency_s": 91.3494734169999,
+        "api_calls": 1,
+        "usage": {
+          "requests": 1,
+          "input_tokens": 1362,
+          "output_tokens": 156,
+          "estimated_cost_usd": 0.0001305
+        },
+        "window_outputs": [
+          {
+            "window_id": 0,
+            "frame_indices": [
+              0,
+              6,
+              13,
+              20,
+              27,
+              34,
+              41,
+              48,
+              54,
+              61,
+              68,
+              75,
+              82,
+              89,
+              96,
+              103
+            ],
+            "parsed": {
+              "transitions": [],
+              "instructions": [
+                "A robotic arm lowers a red utensil into a bowl on a table, with a whiteboard and window in the background."
+              ],
+              "instruction": "Lower red utensil into bowl",
+              "task_type": "Insertion",
+              "objects": [
+                "robotic arm",
+                "red utensil",
+                "bowl",
+                "whiteboard",
+                "table"
+              ],
+              "target_object": "red utensil",
+              "destination": "bowl",
+              "action_sequence": [
+                "The robotic arm moves downward, bringing the red utensil from above the table to rest inside the bowl."
+              ],
+              "confidence": 0.95
+            }
+          }
+        ],
+        "scores": {
+          "instruction_token_f1": 0.14814814814814814,
+          "target_mention_f1": null,
+          "action_coverage_f1": 0.24390243902439024,
+          "action_edit": 0.0
+        },
+        "boundary": {
+          "0.5s": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 1.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 0.5
+          },
+          "1.0s": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 1.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 1.0
+          }
+        },
+        "segmental": {
+          "0.5": {
+            "precision": 1.0,
+            "recall": 0.5,
+            "f1": 0.6666666666666666,
+            "mean_iou": 0.5668269230769231,
+            "threshold": 0.5,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 1.0
+          },
+          "0.75": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "mean_iou": 0.0,
+            "threshold": 0.75,
+            "tp": 0.0,
+            "fp": 1.0,
+            "fn": 2.0
+          }
+        },
+        "semantic_evaluation": {
+          "semantic_label_accuracy": 0.0,
+          "semantic_label_temporal_coverage": 0.5,
+          "slot_f1": {
+            "per_slot": {
+              "action": 0.0,
+              "object": 0.0,
+              "destination": 0.0
+            },
+            "macro_f1": 0.0,
+            "pair_count": 1
+          },
+          "labeled_end_to_end_segment_f1": {
+            "0.5": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0.0,
+              "fp": 1.0,
+              "fn": 2.0,
+              "mean_iou": 0.0,
+              "threshold": 0.5
+            },
+            "0.75": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0.0,
+              "fp": 1.0,
+              "fn": 2.0,
+              "mean_iou": 0.0,
+              "threshold": 0.75
+            }
+          },
+          "semantic_action_edit": 0.0,
+          "judge_pair_count": 1
+        },
+        "semantic_evaluation_error": "",
+        "judge_usage": {
+          "requests": 1,
+          "input_tokens": 220,
+          "output_tokens": 55,
+          "estimated_cost_usd": 3.3e-05
+        },
+        "error": ""
+      },
+      "delta_instruction_token_f1": -0.05185185185185187
+    },
+    {
+      "sample": {
+        "id": "robointer_droid_000001",
+        "video": "/Users/gaiyi/Downloads/mini-vlo/data/wgo_bench/subset/videos/robointer_droid_000001.mp4",
+        "instruction": "Move the bowl to the right",
+        "target_object": "",
+        "actions": [
+          "grasp the bowl on the table with the robot gripper",
+          "push the bowl to the right side of the table"
+        ],
+        "boundaries_sec": [
+          5.895
+        ],
+        "segments": [
+          {
+            "start_sec": 0.0,
+            "end_sec": 5.895,
+            "label": "grasp the bowl on the table with the robot gripper"
+          },
+          {
+            "start_sec": 5.895,
+            "end_sec": 9.049,
+            "label": "push the bowl to the right side of the table"
+          }
+        ],
+        "annotation_status": "benchmark_gold",
+        "gold_source": "macrodata/WGO-Bench",
+        "source_row_index": 25,
+        "source_metadata": {
+          "bench_id": "robointer_droid_000001",
+          "duration_sec": 10.4,
+          "episode_index": 1,
+          "fps": 10.0,
+          "notes": "",
+          "num_frames": 104,
+          "num_segments": 2,
+          "original_instruction": "Move the bowl to the right",
+          "saved_at_unix": 1781988774.983278,
+          "source_camera_view": "exterior_image_2_left",
+          "source_dataset": "InternRobotics/RoboInter-Data",
+          "source_episode_id": "10010_exterior_image_2_left",
+          "source_family": "droid",
+          "source_subset": "Annotation_with_action_lerobotv21/lerobot_droid_anno",
+          "source_video_member": "chunk-000/observation.images.primary/episode_000001.mp4",
+          "source_video_tar": "Annotation_with_action_lerobotv21/lerobot_droid_anno/videos/chunk-000.tar"
+        },
+        "video_sha256": "71f33e48afb2fdff45d3472ce55b10ba5ef00ed4cdf0aab5569ab94ab4669528"
+      },
+      "repeat": 2,
+      "method_order": [
+        "baseline",
+        "semantic_motion"
+      ],
+      "input_budget": {
+        "window_sec": 16.0,
+        "step_sec": 8.0,
+        "frames_per_window": 16,
+        "max_tokens_per_call": 1024,
+        "same_model": true,
+        "temperature": 0.0
+      },
+      "baseline": {
+        "method": "pinned Video2Tasks prompt + aggregation",
+        "prediction": {
+          "sample_id": "robointer_droid_000001",
+          "nframes": 104,
+          "segments": [
+            {
+              "seg_id": 0,
+              "start_frame": 0,
+              "end_frame": 104,
+              "instruction": "Hold position over bowl",
+              "confidence": 1.0
+            }
+          ],
+          "fps": 10.0,
+          "upstream_repository": "https://github.com/ly-geming/video2tasks",
+          "upstream_revision": "8d405a120a37df4e5a4869b61ba3d9edb7b4dfe3",
+          "window_sec": 16.0,
+          "step_sec": 8.0,
+          "frames_per_window": 16,
+          "window_count": 1
+        },
+        "latency_s": 127.40228670899978,
+        "api_calls": 1,
+        "usage": {
+          "requests": 1,
+          "input_tokens": 1591,
+          "output_tokens": 140,
+          "estimated_cost_usd": 0.00013555000000000002
+        },
+        "window_outputs": [
+          {
+            "window_id": 0,
+            "frame_indices": [
+              0,
+              6,
+              13,
+              20,
+              27,
+              34,
+              41,
+              48,
+              54,
+              61,
+              68,
+              75,
+              82,
+              89,
+              96,
+              103
+            ],
+            "parsed": {
+              "thought": "In frames 0-15, the robot arm is positioned over a bowl containing a red utensil (likely a spoon or chopstick). The arm remains in a static position, hovering above the bowl, with no visible motion of grasping, releasing, or moving to interact with any other object. There is no change in the object being manipulated—the red utensil remains in the same location and is never picked up or put down. Since the robot does not complete interaction with one object and start interacting with a different object, there are no atomic task boundaries or switches detected.",
+              "transitions": [],
+              "instructions": [
+                "Hold position over bowl"
+              ]
+            }
+          }
+        ],
+        "scores": {
+          "instruction_token_f1": 0.2,
+          "target_mention_f1": null,
+          "action_coverage_f1": 0.08333333333333334,
+          "action_edit": 0.0
+        },
+        "boundary": {
+          "0.5s": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 1.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 0.5
+          },
+          "1.0s": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 1.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 1.0
+          }
+        },
+        "segmental": {
+          "0.5": {
+            "precision": 1.0,
+            "recall": 0.5,
+            "f1": 0.6666666666666666,
+            "mean_iou": 0.5668269230769231,
+            "threshold": 0.5,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 1.0
+          },
+          "0.75": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "mean_iou": 0.0,
+            "threshold": 0.75,
+            "tp": 0.0,
+            "fp": 1.0,
+            "fn": 2.0
+          }
+        },
+        "semantic_evaluation": {
+          "semantic_label_accuracy": 0.0,
+          "semantic_label_temporal_coverage": 0.5,
+          "slot_f1": {
+            "per_slot": {
+              "action": 0.0,
+              "object": 1.0,
+              "destination": 0.0
+            },
+            "macro_f1": 0.3333333333333333,
+            "pair_count": 1
+          },
+          "labeled_end_to_end_segment_f1": {
+            "0.5": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0.0,
+              "fp": 1.0,
+              "fn": 2.0,
+              "mean_iou": 0.0,
+              "threshold": 0.5
+            },
+            "0.75": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0.0,
+              "fp": 1.0,
+              "fn": 2.0,
+              "mean_iou": 0.0,
+              "threshold": 0.75
+            }
+          },
+          "semantic_action_edit": 0.0,
+          "judge_pair_count": 1
+        },
+        "semantic_evaluation_error": "",
+        "judge_usage": {
+          "requests": 1,
+          "input_tokens": 200,
+          "output_tokens": 55,
+          "estimated_cost_usd": 3.2e-05
+        },
+        "error": ""
+      },
+      "semantic_motion": {
+        "method": "blind Semantic-Motion prompt + Video2Tasks aggregation",
+        "prediction": {
+          "sample_id": "robointer_droid_000001",
+          "nframes": 104,
+          "segments": [
+            {
+              "seg_id": 0,
+              "start_frame": 0,
+              "end_frame": 104,
+              "instruction": "A robotic arm moves a red utensil from a bowl onto a wooden surface",
+              "confidence": 1.0
+            }
+          ],
+          "fps": 10.0,
+          "upstream_repository": "https://github.com/ly-geming/video2tasks",
+          "upstream_revision": "8d405a120a37df4e5a4869b61ba3d9edb7b4dfe3",
+          "window_sec": 16.0,
+          "step_sec": 8.0,
+          "frames_per_window": 16,
+          "window_count": 1
+        },
+        "latency_s": 141.13803262500005,
+        "api_calls": 1,
+        "usage": {
+          "requests": 1,
+          "input_tokens": 1362,
+          "output_tokens": 164,
+          "estimated_cost_usd": 0.00013370000000000002
+        },
+        "window_outputs": [
+          {
+            "window_id": 0,
+            "frame_indices": [
+              0,
+              6,
+              13,
+              20,
+              27,
+              34,
+              41,
+              48,
+              54,
+              61,
+              68,
+              75,
+              82,
+              89,
+              96,
+              103
+            ],
+            "parsed": {
+              "transitions": [],
+              "instructions": [
+                "A robotic arm moves a red utensil from a bowl onto a wooden surface"
+              ],
+              "instruction": "Move red utensil from bowl to table",
+              "task_type": "Object Transfer",
+              "objects": [
+                "robotic arm",
+                "red utensil",
+                "bowl",
+                "wooden surface"
+              ],
+              "target_object": "red utensil",
+              "destination": "wooden surface",
+              "action_sequence": [
+                "The robotic arm lifts the red utensil from the bowl",
+                "The arm moves the utensil horizontally over the table",
+                "The arm places the utensil on the wooden surface"
+              ],
+              "confidence": 0.95
+            }
+          }
+        ],
+        "scores": {
+          "instruction_token_f1": 0.1,
+          "target_mention_f1": null,
+          "action_coverage_f1": 0.058823529411764705,
+          "action_edit": 0.0
+        },
+        "boundary": {
+          "0.5s": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 1.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 0.5
+          },
+          "1.0s": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 1.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 1.0
+          }
+        },
+        "segmental": {
+          "0.5": {
+            "precision": 1.0,
+            "recall": 0.5,
+            "f1": 0.6666666666666666,
+            "mean_iou": 0.5668269230769231,
+            "threshold": 0.5,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 1.0
+          },
+          "0.75": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "mean_iou": 0.0,
+            "threshold": 0.75,
+            "tp": 0.0,
+            "fp": 1.0,
+            "fn": 2.0
+          }
+        },
+        "semantic_evaluation": {
+          "semantic_label_accuracy": 0.0,
+          "semantic_label_temporal_coverage": 0.5,
+          "slot_f1": {
+            "per_slot": {
+              "action": 0.0,
+              "object": 0.0,
+              "destination": 0.0
+            },
+            "macro_f1": 0.0,
+            "pair_count": 1
+          },
+          "labeled_end_to_end_segment_f1": {
+            "0.5": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0.0,
+              "fp": 1.0,
+              "fn": 2.0,
+              "mean_iou": 0.0,
+              "threshold": 0.5
+            },
+            "0.75": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0.0,
+              "fp": 1.0,
+              "fn": 2.0,
+              "mean_iou": 0.0,
+              "threshold": 0.75
+            }
+          },
+          "semantic_action_edit": 0.0,
+          "judge_pair_count": 1
+        },
+        "semantic_evaluation_error": "",
+        "judge_usage": {
+          "requests": 1,
+          "input_tokens": 211,
+          "output_tokens": 55,
+          "estimated_cost_usd": 3.255e-05
+        },
+        "error": ""
+      },
+      "delta_instruction_token_f1": -0.1
+    }
+  ],
+  "run_stopped_after_required_repeats": true,
+  "formal_temporal_metrics": true,
+  "formal_semantic_metrics": false,
+  "semantic_judge_independent": false,
+  "rescored_at": "2026-07-15T14:53:27.341178+00:00"
+}

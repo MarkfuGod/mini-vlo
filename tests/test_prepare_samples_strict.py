@@ -42,14 +42,15 @@ def perception() -> dict:
     }
 
 
-class PrepareSamplesStrictTest(unittest.TestCase):
-    def test_missing_motion_is_not_silently_replaced(self):
+class PrepareSamplesPolicyTest(unittest.TestCase):
+    def test_missing_motion_is_retained_without_synthetic_replacement(self):
         result = convert_perception_objects(
             [perception()],
             PrepareSamplesOptions(),
         )
-        self.assertEqual(result.written, 0)
-        self.assertEqual(result.skipped, 1)
+        self.assertEqual(result.written, 1)
+        self.assertEqual(result.skipped, 0)
+        self.assertNotIn("motion", result.samples[0])
 
     def test_real_motion_preserves_bundle_metadata(self):
         with tempfile.TemporaryDirectory() as tmp:

@@ -8,7 +8,10 @@ from src.evaluation.metrics import (
     binary_classification_metrics,
     boundary_metrics,
     calibration_metrics,
+    labeled_segment_metrics,
+    paired_bootstrap_ci,
     segmental_metrics,
+    slot_f1,
 )
 from src.module_c.motion_quality import MotionQualityConfig, score_motion_quality
 
@@ -28,6 +31,39 @@ class EvaluationMetricsTest(unittest.TestCase):
         )
         self.assertEqual(result["f1"], 1.0)
         self.assertAlmostEqual(result["mean_iou"], 0.8)
+
+    def test_labeled_segment_f1_requires_semantic_match(self):
+        predicted = [
+            {"start_sec": 0.0, "end_sec": 2.0},
+            {"start_sec": 2.0, "end_sec": 4.0},
+        ]
+        gold = [
+            {"start_sec": 0.0, "end_sec": 2.0},
+            {"start_sec": 2.0, "end_sec": 4.0},
+        ]
+        result = labeled_segment_metrics(
+            predicted,
+            gold,
+            lambda pred_index, gold_index: pred_index == gold_index == 0,
+            iou_threshold=0.5,
+        )
+        self.assertEqual(result["tp"], 1.0)
+        self.assertEqual(result["f1"], 0.5)
+
+    def test_slot_f1_and_paired_bootstrap(self):
+        empty_slots = slot_f1([], [])
+        self.assertEqual(empty_slots["macro_f1"], 0.0)
+        self.assertEqual(empty_slots["pair_count"], 0)
+        slots = slot_f1(
+            [{"action": "place", "object": "red mug", "destination": "shelf"}],
+            [{"action": "place", "object": "mug", "destination": "shelf"}],
+        )
+        self.assertGreater(slots["macro_f1"], 0.0)
+        interval = paired_bootstrap_ci([0.1, 0.2, 0.3], draws=500)
+        self.assertIsNotNone(interval)
+        assert interval is not None
+        self.assertLessEqual(interval["lower"], interval["mean_delta"])
+        self.assertGreaterEqual(interval["upper"], interval["mean_delta"])
 
     def test_refinement_metrics_include_false_keep_and_auroc(self):
         result = binary_classification_metrics(

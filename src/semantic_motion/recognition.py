@@ -34,12 +34,20 @@ class VLMRecognitionModel:
         api_key: str | None = None,
         base_url: str | None = None,
         model: str | None = None,
+        timeout: float | None = None,
+        max_retries: int = 2,
     ):
         # Lazy import keeps tests and offline framework code independent from
         # the OpenAI client unless this adapter is actually used.
         from src.vlm_engine import VLMEngine
 
-        self.engine = VLMEngine(api_key=api_key, base_url=base_url, model=model)
+        self.engine = VLMEngine(
+            api_key=api_key,
+            base_url=base_url,
+            model=model,
+            timeout=timeout,
+            max_retries=max_retries,
+        )
 
     @property
     def model(self) -> str:
@@ -48,6 +56,10 @@ class VLMRecognitionModel:
     @property
     def base_url(self) -> str:
         return self.engine.base_url
+
+    @property
+    def timeout(self) -> float:
+        return self.engine.timeout
 
     def analyze(self, image_path: str | Path, instruction: str) -> Prediction:
         return self.engine.analyze(image_path, instruction)

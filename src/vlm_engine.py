@@ -61,6 +61,8 @@ class VLMEngine:
         api_key: str | None = None,
         base_url: str | None = None,
         model: str | None = None,
+        timeout: float | None = None,
+        max_retries: int = 2,
     ):
         self.api_key = api_key or os.getenv(
             "DASHSCOPE_API_KEY", os.getenv("OPENAI_API_KEY", "")
@@ -72,8 +74,16 @@ class VLMEngine:
                 "https://dashscope.aliyuncs.com/compatible-mode/v1",
             ),
         )
-        self.timeout = float(os.getenv("VLM_TIMEOUT", "300"))
-        self.model = model or os.getenv("VLM_MODEL", "qwen-vl-plus")
+        self.timeout = (
+            float(timeout)
+            if timeout is not None
+            else float(os.getenv("VLM_TIMEOUT", "300"))
+        )
+        self.max_retries = max(0, int(max_retries))
+        self.model = model or os.getenv("VLM_MODEL", "qwen3-vl-flash")
+        self.request_count = 0
+        self.input_tokens = 0
+        self.output_tokens = 0
 
         if not self.api_key:
             raise RuntimeError(
@@ -85,6 +95,7 @@ class VLMEngine:
             api_key=self.api_key,
             base_url=self.base_url,
             timeout=self.timeout,
+            max_retries=self.max_retries,
         )
 
     def generate_json(
@@ -117,9 +128,30 @@ class VLMEngine:
             temperature=temperature,
             max_tokens=max_tokens,
         )
+        self.request_count += 1
+        usage = getattr(response, "usage", None)
+        if usage is not None:
+            self.input_tokens += int(
+                getattr(usage, "prompt_tokens", 0)
+                or getattr(usage, "input_tokens", 0)
+                or 0
+            )
+            self.output_tokens += int(
+                getattr(usage, "completion_tokens", 0)
+                or getattr(usage, "output_tokens", 0)
+                or 0
+            )
 
         raw = response.choices[0].message.content or ""
         return _parse_json_response(raw), raw
+
+    def usage_snapshot(self) -> dict[str, int]:
+        """Return cumulative request/token counters for experiment accounting."""
+        return {
+            "requests": self.request_count,
+            "input_tokens": self.input_tokens,
+            "output_tokens": self.output_tokens,
+        }
 
     @staticmethod
     def _prediction(parsed: dict[str, Any], raw: str) -> Prediction:

@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import importlib.util
 import tempfile
 import unittest
 from pathlib import Path
@@ -11,6 +12,10 @@ from src.baselines import UPSTREAM_REVISION, run_upstream_video2tasks
 
 
 class Video2TasksAdapterTest(unittest.TestCase):
+    @unittest.skipUnless(
+        importlib.util.find_spec("video2tasks") is not None,
+        "optional requirements-video2tasks.txt is not installed",
+    )
     def test_calls_pinned_upstream_windowing_and_aggregation(self):
         with tempfile.TemporaryDirectory() as tmp:
             video = Path(tmp) / "sample.mp4"

@@ -1,22 +1,23 @@
 #!/usr/bin/env python3
-"""Generate the synthetic robot-task benchmark (30 scenarios + images)."""
+"""Generate the diagnostic static-image robot-task benchmark."""
 
 from __future__ import annotations
 
-import json
-import math
+import argparse
+from collections import Counter
 from pathlib import Path
 
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
-import numpy as np
 
-from src.scenario import GroundTruth, Scenario
+from src.runtime_utils import git_revision, utc_now_iso, write_json
+from src.scenario import TASK_TYPES, GroundTruth, Scenario
 
 OUT_DIR = Path(__file__).parent / "benchmark"
 IMG_DIR = OUT_DIR / "images"
+IMAGE_DPI = 100
 
 # ── colour palette ────────────────────────────────────────────────────────
 COLORS = {
@@ -141,9 +142,17 @@ def _draw_door(ax, x, y, w, h, label="door"):
 
 def _save(fig, name: str):
     path = IMG_DIR / f"{name}.png"
-    fig.savefig(path, dpi=100, bbox_inches="tight", facecolor=fig.get_facecolor())
+    fig.savefig(
+        path,
+        dpi=IMAGE_DPI,
+        bbox_inches="tight",
+        facecolor=fig.get_facecolor(),
+    )
     plt.close(fig)
-    return str(path.relative_to(Path(__file__).parent))
+    try:
+        return str(path.relative_to(Path(__file__).parent))
+    except ValueError:
+        return str(path)
 
 
 # ── scenario definitions ──────────────────────────────────────────────────
@@ -550,24 +559,92 @@ def _make_scenarios() -> list[Scenario]:
 
 # ── entry point ───────────────────────────────────────────────────────────
 
-def main():
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(
+        description=(
+            "Generate the 30-case static schematic benchmark. This is a "
+            "diagnostic perception benchmark, not temporal or multi-view gold."
+        )
+    )
+    parser.add_argument(
+        "--output-dir",
+        default=str(OUT_DIR),
+        help="Directory for scenarios.json, manifest, and images/.",
+    )
+    parser.add_argument("--image-dpi", type=int, default=100)
+    return parser.parse_args()
+
+
+def _validate_scenarios(scenarios: list[Scenario]) -> None:
+    ids = [scenario.id for scenario in scenarios]
+    duplicates = sorted(
+        scenario_id
+        for scenario_id, count in Counter(ids).items()
+        if count > 1
+    )
+    if duplicates:
+        raise ValueError(f"Duplicate scenario ids: {duplicates}")
+    unsupported = sorted(
+        {
+            scenario.ground_truth.task_type
+            for scenario in scenarios
+            if scenario.ground_truth.task_type not in TASK_TYPES
+        }
+    )
+    if unsupported:
+        raise ValueError(f"Unsupported task types: {unsupported}")
+    missing = [
+        scenario.image_path
+        for scenario in scenarios
+        if not (Path(__file__).parent / scenario.image_path).exists()
+    ]
+    if missing:
+        raise ValueError(f"Generated image paths are missing: {missing}")
+
+
+def main() -> None:
+    args = parse_args()
+    global OUT_DIR, IMG_DIR, IMAGE_DPI
+    OUT_DIR = Path(args.output_dir).resolve()
+    IMG_DIR = OUT_DIR / "images"
+    IMAGE_DPI = max(72, int(args.image_dpi))
     IMG_DIR.mkdir(parents=True, exist_ok=True)
 
     print("Generating 30 benchmark scenarios ...")
     scenarios = _make_scenarios()
 
-    out_path = OUT_DIR / "scenarios.json"
-    with open(out_path, "w") as f:
-        json.dump([s.model_dump() for s in scenarios], f, indent=2, ensure_ascii=False)
+    _validate_scenarios(scenarios)
+    out_path = write_json(
+        OUT_DIR / "scenarios.json",
+        [scenario.model_dump() for scenario in scenarios],
+    )
+    categories = Counter(scenario.category for scenario in scenarios)
+    manifest_path = write_json(
+        OUT_DIR / "manifest.json",
+        {
+            "schema_version": "mini-vlo-static-benchmark/v2",
+            "benchmark_kind": "diagnostic_static_schematic",
+            "formal_temporal_gold": False,
+            "generated_at": utc_now_iso(),
+            "code_revision": git_revision(Path(__file__).parent),
+            "scenario_file": out_path.name,
+            "image_dir": IMG_DIR.name,
+            "image_dpi": IMAGE_DPI,
+            "num_scenarios": len(scenarios),
+            "categories": dict(sorted(categories.items())),
+            "limitations": [
+                "single synthetic image per scenario",
+                "no temporal boundaries",
+                "no paired camera views",
+                "no observed motion or policy execution",
+            ],
+        },
+    )
 
     print(f"  -> {len(scenarios)} scenarios written to {out_path}")
     print(f"  -> Images saved to {IMG_DIR}/")
-
-    # quick sanity print
-    cats = {}
-    for s in scenarios:
-        cats[s.category] = cats.get(s.category, 0) + 1
-    print(f"  -> Categories: {cats}")
+    print(f"  -> Provenance manifest written to {manifest_path}")
+    print(f"  -> Categories: {dict(sorted(categories.items()))}")
 
 
 if __name__ == "__main__":

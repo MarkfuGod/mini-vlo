@@ -1,2 +1,3 @@
+# Optional prompt-ablation dependency. The adapter verifies upstream source hashes.
 -r requirements.txt
 video2tasks @ git+https://github.com/ly-geming/video2tasks.git@8d405a120a37df4e5a4869b61ba3d9edb7b4dfe3

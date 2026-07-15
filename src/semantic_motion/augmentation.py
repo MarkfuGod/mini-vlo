@@ -129,13 +129,21 @@ class LLMInstructionRewriter:
         api_key: str | None = None,
         base_url: str | None = None,
         model: str | None = None,
+        timeout: float | None = None,
+        max_retries: int = 2,
         engine: Any | None = None,
         prompt_file: str | Path | None = None,
     ):
         if engine is None:
             from src.vlm_engine import VLMEngine
 
-            engine = VLMEngine(api_key=api_key, base_url=base_url, model=model)
+            engine = VLMEngine(
+                api_key=api_key,
+                base_url=base_url,
+                model=model,
+                timeout=timeout,
+                max_retries=max_retries,
+            )
         self.engine = engine
         configured_prompt = prompt_file or os.getenv(
             "AUGMENTATION_PROMPT_FILE",

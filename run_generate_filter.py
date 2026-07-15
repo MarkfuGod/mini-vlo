@@ -1,14 +1,12 @@
 #!/usr/bin/env python3
-"""Run Mini-VLO generation followed by Module C refinement."""
+"""Run generation followed by ungated Module C diagnostic refinement."""
 
 from __future__ import annotations
 
 import argparse
 import importlib
-import json
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any
 
 from src.module_c.prepare_samples import (
     PrepareSamplesOptions,
@@ -22,14 +20,14 @@ from src.module_c.refinement import (
     save_results,
     save_results_pretty,
 )
+from src.runtime_utils import git_revision, utc_now_iso, write_json
 from src.semantic_motion import (
-    LLMInstructionRewriter,
-    SourceInstructionRewriter,
-    TemplateInstructionRewriter,
     VLMRecognitionModel,
     VideoTaskPipeline,
+    build_view_bundle,
     load_view_bundle,
 )
+from src.semantic_motion.cli import add_rewriter_arguments, build_rewriter
 
 
 ROOT = Path(__file__).parent
@@ -54,9 +52,12 @@ def _parse_motion_tracks(value: str):
     return tracks or None
 
 
-def parse_args():
+def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Generate video task labels and filter them with Module C."
+        description=(
+            "Generate video task labels and attach Module C diagnostics. "
+            "Quality gates are disabled, so prepared samples are retained."
+        )
     )
     source = parser.add_mutually_exclusive_group(required=True)
     source.add_argument("--video", help="Path to an input video")
@@ -97,12 +98,7 @@ def parse_args():
         default=3,
         help="Augmented instruction variants per detected segment",
     )
-    parser.add_argument(
-        "--rewriter",
-        choices=["llm", "template", "none"],
-        default="llm",
-    )
-    parser.add_argument("--rewrite-model", default=None)
+    add_rewriter_arguments(parser)
     parser.add_argument("--api-key", default=None, help="VLM API key")
     parser.add_argument(
         "--base-url",
@@ -114,6 +110,18 @@ def parse_args():
         default=None,
         help="Generation model name, e.g. qwen3-vl-flash, qwen3-vl-plus",
     )
+    parser.add_argument("--timeout", type=float, default=300.0)
+    parser.add_argument("--max-retries", type=int, default=2)
+    parser.add_argument("--macro-window-sec", type=float, default=16.0)
+    parser.add_argument("--macro-step-sec", type=float, default=8.0)
+    parser.add_argument("--micro-window-sec", type=float, default=2.0)
+    parser.add_argument("--micro-step-sec", type=float, default=1.0)
+    parser.add_argument("--micro-frames", type=int, default=4)
+    parser.add_argument(
+        "--work-dir",
+        default=str(WORK_DIR),
+        help="Directory for extracted frame evidence.",
+    )
     parser.add_argument(
         "--refine-config",
         default=str(DEFAULT_CONFIG),
@@ -122,7 +130,6 @@ def parse_args():
     parser.add_argument(
         "--semantic-verifier",
         default=None,
-        choices=["mock", "qwen3-vl-flash", "qwen3-vl-plus"],
         help="Optional override for semantic.verifier in the refinement config",
     )
     parser.add_argument(
@@ -184,23 +191,23 @@ def parse_args():
         dest="allow_dummy_motion",
         action="store_true",
         default=False,
-        help="Explicit debug-only placeholder; formal refinement always drops it.",
+        help="Generate an explicit placeholder trajectory marked is_dummy=true.",
     )
     parser.add_argument(
         "--allow-missing-motion",
         action="store_true",
         default=True,
-        help="Write samples without motion (quality gates are disabled).",
+        help="Deprecated no-op: missing motion is retained as a diagnostic.",
     )
     parser.add_argument(
         "--allow-single-view-debug",
         action="store_true",
-        help="Disable the production paired-view sync requirement.",
+        help="Disable the paired-view diagnostic requirement.",
     )
     parser.add_argument(
         "--allow-mock-debug",
         action="store_true",
-        help="Permit mock semantic results to keep samples (debug only).",
+        help="Set the legacy allow_mock_keep diagnostic config flag.",
     )
     parser.add_argument(
         "--motion-plugin",
@@ -235,15 +242,9 @@ def parse_args():
     return parser.parse_args()
 
 
-def _write_json(path: Path, obj: dict[str, Any]) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    with path.open("w", encoding="utf-8") as f:
-        json.dump(obj, f, indent=2, ensure_ascii=False)
-        f.write("\n")
-
-
 def main() -> None:
     args = parse_args()
+    work_root = Path(args.work_dir)
     RESULTS_DIR.mkdir(parents=True, exist_ok=True)
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
 
@@ -251,17 +252,10 @@ def main() -> None:
         api_key=args.api_key,
         base_url=args.base_url,
         model=args.vlm_model,
+        timeout=args.timeout,
+        max_retries=args.max_retries,
     )
-    if args.rewriter == "llm":
-        rewriter = LLMInstructionRewriter(
-            api_key=args.api_key,
-            base_url=args.base_url,
-            model=args.rewrite_model or args.vlm_model,
-        )
-    elif args.rewriter == "template":
-        rewriter = TemplateInstructionRewriter()
-    else:
-        rewriter = SourceInstructionRewriter()
+    rewriter = build_rewriter(args, perception_model=recognizer.model)
     pipeline = VideoTaskPipeline(recognizer=recognizer, rewriter=rewriter)
     print(
         "Generate-filter ready "
@@ -274,20 +268,35 @@ def main() -> None:
         source_path = Path(args.manifest)
         record = pipeline.run_view_bundle(
             bundle,
-            work_dir=WORK_DIR / bundle.sample_id / args.view_mode,
+            work_dir=work_root / bundle.sample_id / args.view_mode,
             source_instruction=args.instruction,
             view_mode=args.view_mode,
             num_variants=args.variants,
+            macro_window_sec=args.macro_window_sec,
+            macro_step_sec=args.macro_step_sec,
             macro_frames=args.max_frames,
+            micro_window_sec=args.micro_window_sec,
+            micro_step_sec=args.micro_step_sec,
+            micro_frames=args.micro_frames,
         )
     elif args.video:
         source_path = Path(args.video)
-        record = pipeline.run_video(
-            source_path,
-            work_dir=WORK_DIR / source_path.stem,
+        bundle = build_view_bundle(
+            sample_id=source_path.stem,
+            views={"fixed": source_path},
+        )
+        record = pipeline.run_view_bundle(
+            bundle,
+            work_dir=work_root / source_path.stem / "fixed",
             source_instruction=args.instruction,
-            max_frames=args.max_frames,
+            view_mode="fixed",
             num_variants=args.variants,
+            macro_window_sec=args.macro_window_sec,
+            macro_step_sec=args.macro_step_sec,
+            macro_frames=args.max_frames,
+            micro_window_sec=args.micro_window_sec,
+            micro_step_sec=args.micro_step_sec,
+            micro_frames=args.micro_frames,
         )
     else:
         source_path = Path(args.frame_dir)
@@ -303,8 +312,20 @@ def main() -> None:
         if args.perception_output
         else RESULTS_DIR / f"video_task_{timestamp}.json"
     )
+    record.metadata.update(
+        {
+            "entry_point": "run_generate_filter.py",
+            "generated_at": utc_now_iso(),
+            "code_revision": git_revision(ROOT),
+            "base_url": recognizer.base_url,
+            "request_timeout_s": recognizer.timeout,
+            "max_retries": args.max_retries,
+            "code_level_augmentation_validation": "disabled",
+            "refinement_policy": "diagnostic_only_quality_gates_disabled",
+        }
+    )
     record_dict = record.model_dump()
-    _write_json(perception_path, record_dict)
+    write_json(perception_path, record_dict)
     print(f"Generated perception output: {perception_path}")
 
     samples_path = (
@@ -351,6 +372,7 @@ def main() -> None:
     )
 
     cfg = load_config(args.refine_config)
+    cfg.semantic_cfg.request_timeout_s = args.timeout
     if args.semantic_verifier:
         cfg.semantic_cfg.verifier = args.semantic_verifier
     if args.judge_model:

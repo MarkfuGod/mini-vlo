@@ -1,0 +1,10 @@
+{
+  "schema_version": "mini-vlo-chart-manifest/v1",
+  "generated_at": "2026-07-15T14:28:12.884447+00:00",
+  "source": "results/libero_goal_title_as_single_segment.json",
+  "source_kind": "libero-title",
+  "charts": [
+    "assets/experiments/libero_goal_title_as_single_segment_libero_title_metrics.png",
+    "assets/experiments/libero_goal_title_as_single_segment_libero_title_runtime.png"
+  ]
+}

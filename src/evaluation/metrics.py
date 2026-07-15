@@ -3,9 +3,10 @@
 from __future__ import annotations
 
 import math
+import random
 import re
 from collections import Counter
-from typing import Any, Iterable
+from typing import Any, Callable, Iterable
 
 
 def _tokens(value: str | Iterable[str] | None) -> list[str]:
@@ -119,6 +120,150 @@ def segmental_metrics(
         "tp": float(tp),
         "fp": float(len(predicted) - tp),
         "fn": float(len(gold) - tp),
+    }
+
+
+def match_temporal_segments(
+    predicted: list[dict[str, Any]],
+    gold: list[dict[str, Any]],
+    *,
+    iou_threshold: float = 0.0,
+) -> list[tuple[int, int, float]]:
+    """Greedily match segment pairs by descending temporal IoU."""
+    candidates: list[tuple[float, int, int]] = []
+    for pred_index, pred in enumerate(predicted):
+        pred_interval = (float(pred["start_sec"]), float(pred["end_sec"]))
+        for gold_index, truth in enumerate(gold):
+            iou = temporal_iou(
+                pred_interval,
+                (float(truth["start_sec"]), float(truth["end_sec"])),
+            )
+            if iou >= iou_threshold:
+                candidates.append((iou, pred_index, gold_index))
+    matched_predicted: set[int] = set()
+    matched_gold: set[int] = set()
+    matches: list[tuple[int, int, float]] = []
+    for iou, pred_index, gold_index in sorted(candidates, reverse=True):
+        if pred_index in matched_predicted or gold_index in matched_gold:
+            continue
+        matched_predicted.add(pred_index)
+        matched_gold.add(gold_index)
+        matches.append((pred_index, gold_index, iou))
+    return sorted(matches, key=lambda item: item[1])
+
+
+def labeled_segment_metrics(
+    predicted: list[dict[str, Any]],
+    gold: list[dict[str, Any]],
+    label_match: Callable[[int, int], bool],
+    *,
+    iou_threshold: float = 0.5,
+) -> dict[str, float]:
+    """Compute end-to-end segment F1 requiring temporal and semantic matches."""
+    candidates: list[tuple[float, int, int]] = []
+    for pred_index, pred in enumerate(predicted):
+        pred_interval = (float(pred["start_sec"]), float(pred["end_sec"]))
+        for gold_index, truth in enumerate(gold):
+            if not label_match(pred_index, gold_index):
+                continue
+            iou = temporal_iou(
+                pred_interval,
+                (float(truth["start_sec"]), float(truth["end_sec"])),
+            )
+            if iou >= iou_threshold:
+                candidates.append((iou, pred_index, gold_index))
+    matched_predicted: set[int] = set()
+    matched_gold: set[int] = set()
+    matches: list[tuple[int, int, float]] = []
+    for iou, pred_index, gold_index in sorted(candidates, reverse=True):
+        if pred_index in matched_predicted or gold_index in matched_gold:
+            continue
+        matched_predicted.add(pred_index)
+        matched_gold.add(gold_index)
+        matches.append((pred_index, gold_index, iou))
+    tp = len(matches)
+    precision = tp / len(predicted) if predicted else float(not gold)
+    recall = tp / len(gold) if gold else float(not predicted)
+    f1 = (
+        2 * precision * recall / (precision + recall)
+        if precision + recall
+        else 0.0
+    )
+    return {
+        "precision": precision,
+        "recall": recall,
+        "f1": f1,
+        "tp": float(tp),
+        "fp": float(len(predicted) - tp),
+        "fn": float(len(gold) - tp),
+        "mean_iou": (
+            sum(match[2] for match in matches) / tp if matches else 0.0
+        ),
+        "threshold": iou_threshold,
+    }
+
+
+def slot_f1(
+    predicted: list[dict[str, str]],
+    gold: list[dict[str, str]],
+    *,
+    slots: Iterable[str] = ("action", "object", "destination"),
+) -> dict[str, Any]:
+    """Compute token F1 per semantic slot for aligned label pairs."""
+    slot_names = list(slots)
+    pair_count = min(len(predicted), len(gold))
+    if pair_count == 0:
+        return {
+            "per_slot": {slot: 0.0 for slot in slot_names},
+            "macro_f1": 0.0,
+            "pair_count": 0,
+        }
+    predicted = predicted[:pair_count]
+    gold = gold[:pair_count]
+    per_slot = {
+        slot: token_f1(
+            [row.get(slot, "") for row in predicted],
+            [row.get(slot, "") for row in gold],
+        )
+        for slot in slot_names
+    }
+    return {
+        "per_slot": per_slot,
+        "macro_f1": (
+            sum(per_slot.values()) / len(per_slot) if per_slot else 0.0
+        ),
+        "pair_count": pair_count,
+    }
+
+
+def paired_bootstrap_ci(
+    paired_deltas: list[float],
+    *,
+    confidence: float = 0.95,
+    draws: int = 4000,
+    seed: int = 20260715,
+) -> dict[str, float] | None:
+    """Bootstrap a confidence interval for the mean paired difference."""
+    if len(paired_deltas) < 2:
+        return None
+    generator = random.Random(seed)
+    estimates = []
+    for _ in range(max(100, draws)):
+        values = [
+            generator.choice(paired_deltas) for _ in range(len(paired_deltas))
+        ]
+        estimates.append(sum(values) / len(values))
+    estimates.sort()
+    alpha = (1.0 - confidence) / 2.0
+    lower_index = int(alpha * (len(estimates) - 1))
+    upper_index = int((1.0 - alpha) * (len(estimates) - 1))
+    return {
+        "mean_delta": sum(paired_deltas) / len(paired_deltas),
+        "lower": estimates[lower_index],
+        "upper": estimates[upper_index],
+        "confidence": confidence,
+        "draws": float(len(estimates)),
+        "n": float(len(paired_deltas)),
     }
 
 

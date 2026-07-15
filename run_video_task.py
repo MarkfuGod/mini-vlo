@@ -9,18 +9,17 @@ macro intents, micro instructions, and rewritten task variants.
 from __future__ import annotations
 
 import argparse
-import json
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 
+from src.runtime_utils import git_revision, utc_now_iso, write_json
 from src.semantic_motion import (
-    LLMInstructionRewriter,
-    SourceInstructionRewriter,
-    TemplateInstructionRewriter,
     VLMRecognitionModel,
     VideoTaskPipeline,
+    build_view_bundle,
     load_view_bundle,
 )
+from src.semantic_motion.cli import add_rewriter_arguments, build_rewriter
 
 
 ROOT = Path(__file__).parent
@@ -28,7 +27,7 @@ RESULTS_DIR = ROOT / "results"
 WORK_DIR = ROOT / ".semantic_motion_work"
 
 
-def parse_args():
+def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description="Infer manipulation task segments from a video"
     )
@@ -72,17 +71,7 @@ def parse_args():
         default=3,
         help="Augmented instruction variants per detected segment",
     )
-    parser.add_argument(
-        "--rewriter",
-        choices=["llm", "template", "none"],
-        default="llm",
-        help="LLM is production mode; template is deterministic debug-only mode",
-    )
-    parser.add_argument(
-        "--rewrite-model",
-        default=None,
-        help="Optional independent text-rewrite model (defaults to --model)",
-    )
+    add_rewriter_arguments(parser)
     parser.add_argument("--macro-window-sec", type=float, default=16.0)
     parser.add_argument("--macro-step-sec", type=float, default=8.0)
     parser.add_argument("--micro-window-sec", type=float, default=2.0)
@@ -101,7 +90,14 @@ def parse_args():
     parser.add_argument(
         "--model",
         default=None,
-        help="Recognition model name, e.g. qwen-vl-plus, qwen-vl-max",
+        help="Recognition model name, e.g. qwen3-vl-flash",
+    )
+    parser.add_argument("--timeout", type=float, default=300.0)
+    parser.add_argument("--max-retries", type=int, default=2)
+    parser.add_argument(
+        "--work-dir",
+        default=str(WORK_DIR),
+        help="Directory for extracted frame evidence.",
     )
     parser.add_argument(
         "--output",
@@ -111,23 +107,17 @@ def parse_args():
     return parser.parse_args()
 
 
-def main():
+def main() -> None:
     args = parse_args()
+    work_root = Path(args.work_dir)
     recognizer = VLMRecognitionModel(
         api_key=args.api_key,
         base_url=args.base_url,
         model=args.model,
+        timeout=args.timeout,
+        max_retries=args.max_retries,
     )
-    if args.rewriter == "llm":
-        rewriter = LLMInstructionRewriter(
-            api_key=args.api_key,
-            base_url=args.base_url,
-            model=args.rewrite_model or args.model,
-        )
-    elif args.rewriter == "template":
-        rewriter = TemplateInstructionRewriter()
-    else:
-        rewriter = SourceInstructionRewriter()
+    rewriter = build_rewriter(args, perception_model=recognizer.model)
     pipeline = VideoTaskPipeline(recognizer=recognizer, rewriter=rewriter)
     print(
         "Video-to-task ready "
@@ -139,7 +129,7 @@ def main():
         source_path = Path(args.manifest)
         record = pipeline.run_view_bundle(
             bundle,
-            work_dir=WORK_DIR / bundle.sample_id / args.view_mode,
+            work_dir=work_root / bundle.sample_id / args.view_mode,
             source_instruction=args.instruction,
             view_mode=args.view_mode,
             num_variants=args.variants,
@@ -152,12 +142,22 @@ def main():
         )
     elif args.video:
         source_path = Path(args.video)
-        record = pipeline.run_video(
-            source_path,
-            work_dir=WORK_DIR / source_path.stem,
+        bundle = build_view_bundle(
+            sample_id=source_path.stem,
+            views={"fixed": source_path},
+        )
+        record = pipeline.run_view_bundle(
+            bundle,
+            work_dir=work_root / source_path.stem / "fixed",
             source_instruction=args.instruction,
-            max_frames=args.max_frames,
+            view_mode="fixed",
             num_variants=args.variants,
+            macro_window_sec=args.macro_window_sec,
+            macro_step_sec=args.macro_step_sec,
+            macro_frames=args.max_frames,
+            micro_window_sec=args.micro_window_sec,
+            micro_step_sec=args.micro_step_sec,
+            micro_frames=args.micro_frames,
         )
     else:
         source_path = Path(args.frame_dir)
@@ -169,15 +169,24 @@ def main():
         )
 
     RESULTS_DIR.mkdir(parents=True, exist_ok=True)
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    timestamp = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S")
     output_path = (
         Path(args.output)
         if args.output
         else RESULTS_DIR / f"video_task_{timestamp}.json"
     )
-    output_path.parent.mkdir(parents=True, exist_ok=True)
-    with open(output_path, "w") as f:
-        json.dump(record.model_dump(), f, indent=2, ensure_ascii=False)
+    record.metadata.update(
+        {
+            "entry_point": "run_video_task.py",
+            "generated_at": utc_now_iso(),
+            "code_revision": git_revision(ROOT),
+            "base_url": recognizer.base_url,
+            "request_timeout_s": recognizer.timeout,
+            "max_retries": args.max_retries,
+            "code_level_augmentation_validation": "disabled",
+        }
+    )
+    write_json(output_path, record.model_dump())
 
     print(
         f"Processed {len(record.frames) + len(record.multi_view_frames)} evidence frames into "

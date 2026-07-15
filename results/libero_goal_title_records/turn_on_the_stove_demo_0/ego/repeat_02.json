@@ -1,0 +1,755 @@
+{
+  "schema_version": "semantic-motion-video-task/v2",
+  "video_path": "data/libero_goal/processed/turn_on_the_stove_demo/demo_0_eye_in_hand_rgb.mp4",
+  "view_bundle": {
+    "schema_version": "semantic-motion-view-bundle/v1",
+    "sample_id": "turn_on_the_stove_demo_0",
+    "timebase": {
+      "fps": 20.0,
+      "frame_count": 80,
+      "frame_start": 0,
+      "duration_sec": 4.0,
+      "time_unit": "seconds",
+      "frame_map": {
+        "video_frame_start": 0,
+        "source_frame_start": 0,
+        "frame_count": 80,
+        "step": 1,
+        "explicit_source_frames": []
+      }
+    },
+    "views": {
+      "fixed": {
+        "view_id": "fixed",
+        "video_path": "data/libero_goal/processed/turn_on_the_stove_demo/demo_0_agentview_rgb.mp4",
+        "camera_name": "",
+        "camera_type": "fixed",
+        "fps": 20.0,
+        "frame_count": 80,
+        "duration_sec": 4.0,
+        "metadata": {}
+      },
+      "ego": {
+        "view_id": "ego",
+        "video_path": "data/libero_goal/processed/turn_on_the_stove_demo/demo_0_eye_in_hand_rgb.mp4",
+        "camera_name": "",
+        "camera_type": "egocentric",
+        "fps": 20.0,
+        "frame_count": 80,
+        "duration_sec": 4.0,
+        "metadata": {}
+      }
+    },
+    "trajectory": {
+      "path": "data/libero_goal/processed/turn_on_the_stove_demo/demo_0_traj.json",
+      "source": "LIBERO Goal",
+      "spatial_unit": "meters",
+      "coordinate_frame": "world",
+      "track_names": [
+        "eef"
+      ],
+      "metadata": {}
+    },
+    "provenance": {
+      "dataset": "LIBERO Goal",
+      "source_id": "turn_on_the_stove_demo_0",
+      "generator": "src.semantic_motion.view_bundle",
+      "revision": "8f3096114a56caeb9d83d0e2a2def7ab32587754",
+      "config": {},
+      "checksums": {}
+    },
+    "metadata": {}
+  },
+  "source_instruction": "",
+  "frames": [],
+  "multi_view_frames": [
+    {
+      "frame_id": 0,
+      "timestamp_sec": 0.0,
+      "view_frames": {
+        "ego": {
+          "frame_id": 0,
+          "frame_index": 0,
+          "timestamp_sec": 0.0,
+          "image_path": ".semantic_motion_work/libero_goal_title_eval/turn_on_the_stove_demo_0/ego/repeat_02/macro/window_000/ego/frame_00000000.jpg",
+          "view_id": "ego"
+        }
+      },
+      "view_annotations": {},
+      "fused_annotation": {
+        "scenario_id": "turn_on_the_stove_demo_0_macro_000",
+        "image_path": ".semantic_motion_work/libero_goal_title_eval/turn_on_the_stove_demo_0/ego/repeat_02/macro/window_000/fixed/frame_00000000.jpg",
+        "source_instruction": "",
+        "objects": [
+          "stove",
+          "stove burner",
+          "black circular object (possibly a pot base or stand)",
+          "white circular object (possibly a plate or lid)",
+          "blue rectangular object (possibly a phone or remote)",
+          "wooden surface (counter or floor)"
+        ],
+        "spatial_relations": [
+          "black circular object ON stove burner",
+          "white circular object ON counter",
+          "blue rectangular object ON counter",
+          "stove ON left side of frame",
+          "wooden surface UNDER stove and objects"
+        ],
+        "macro_intent": {
+          "task_type": "place",
+          "target_object": "black circular object",
+          "destination": "stove burner",
+          "confidence": 0.9,
+          "domain": "manipulation"
+        },
+        "micro_instructions": [
+          {
+            "step_id": 1,
+            "text": "approach stove area",
+            "verb": "approach",
+            "object": "stove",
+            "confidence": 0.9,
+            "body_part": "unknown",
+            "contact_state": "approach",
+            "posture": "unknown",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              0,
+              1
+            ]
+          },
+          {
+            "step_id": 2,
+            "text": "position black circular object over stove burner",
+            "verb": "position",
+            "object": "black circular object",
+            "confidence": 0.9,
+            "body_part": "unknown",
+            "contact_state": "approach",
+            "posture": "unknown",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              1,
+              2
+            ]
+          },
+          {
+            "step_id": 3,
+            "text": "lower black circular object onto stove burner",
+            "verb": "lower",
+            "object": "black circular object",
+            "confidence": 0.9,
+            "body_part": "unknown",
+            "contact_state": "contact",
+            "posture": "unknown",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              2,
+              3
+            ]
+          },
+          {
+            "step_id": 4,
+            "text": "adjust black circular object on burner",
+            "verb": "adjust",
+            "object": "black circular object",
+            "confidence": 0.9,
+            "body_part": "unknown",
+            "contact_state": "contact",
+            "posture": "unknown",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              3,
+              4
+            ]
+          }
+        ],
+        "raw_recognition": "{\n  \"objects\": [\n    \"stove\",\n    \"stove burner\",\n    \"black circular object (possibly a pot base or stand)\",\n    \"white circular object (possibly a plate or lid)\",\n    \"blue rectangular object (possibly a phone or remote)\",\n    \"wooden surface (counter or floor)\"\n  ],\n  \"spatial_relations\": [\n    \"black circular object ON stove burner\",\n    \"white circular object ON counter\",\n    \"blue rectangular object ON counter\",\n    \"stove ON left side of frame\",\n    \"wooden surface UNDER stove and objects\"\n  ],\n  \"task_type\": \"place\",\n  \"domain\": \"manipulation\",\n  \"action_sequence\": [\n    \"approach stove area\",\n    \"position black circular object over stove burner\",\n    \"lower black circular object onto stove burner\",\n    \"adjust black circular object on burner\"\n  ],\n  \"action_details\": [\n    {\n      \"text\": \"approach stove area\",\n      \"verb\": \"approach\",\n      \"object\": \"stove\",\n      \"body_part\": \"unknown\",\n      \"contact_state\": \"approach\",\n      \"posture\": \"unknown\",\n      \"start_image_index\": 0,\n      \"end_image_index\": 1\n    },\n    {\n      \"text\": \"position black circular object over stove burner\",\n      \"verb\": \"position\",\n      \"object\": \"black circular object\",\n      \"body_part\": \"unknown\",\n      \"contact_state\": \"approach\",\n      \"posture\": \"unknown\",\n      \"start_image_index\": 1,\n      \"end_image_index\": 2\n    },\n    {\n      \"text\": \"lower black circular object onto stove burner\",\n      \"verb\": \"lower\",\n      \"object\": \"black circular object\",\n      \"body_part\": \"unknown\",\n      \"contact_state\": \"contact\",\n      \"posture\": \"unknown\",\n      \"start_image_index\": 2,\n      \"end_image_index\": 3\n    },\n    {\n      \"text\": \"adjust black circular object on burner\",\n      \"verb\": \"adjust\",\n      \"object\": \"black circular object\",\n      \"body_part\": \"unknown\",\n      \"contact_state\": \"contact\",\n      \"posture\": \"unknown\",\n      \"start_image_index\": 3,\n      \"end_image_index\": 4\n    }\n  ],\n  \"target_object\": \"black circular object\",\n  \"destination\": \"stove burner\",\n  \"instruction\": \"Place the black circular object onto the stove burner.\",\n  \"transitions\": [1, 2, 3],\n  \"confidence\": 0.9\n}",
+        "view_id": "ego",
+        "metadata": {
+          "category": "video",
+          "recognition_confidence": 0.9,
+          "prediction_instruction": "Place the black circular object onto the stove burner.",
+          "transitions": [
+            1,
+            2,
+            3
+          ],
+          "view_mode": "ego",
+          "evidence_paths": [
+            ".semantic_motion_work/libero_goal_title_eval/turn_on_the_stove_demo_0/ego/repeat_02/macro/window_000/fixed/frame_00000000.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/turn_on_the_stove_demo_0/ego/repeat_02/macro/window_000/fixed/frame_00000026.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/turn_on_the_stove_demo_0/ego/repeat_02/macro/window_000/fixed/frame_00000052.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/turn_on_the_stove_demo_0/ego/repeat_02/macro/window_000/fixed/frame_00000079.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/turn_on_the_stove_demo_0/ego/repeat_02/macro/window_000/ego/frame_00000000.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/turn_on_the_stove_demo_0/ego/repeat_02/macro/window_000/ego/frame_00000026.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/turn_on_the_stove_demo_0/ego/repeat_02/macro/window_000/ego/frame_00000052.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/turn_on_the_stove_demo_0/ego/repeat_02/macro/window_000/ego/frame_00000079.jpg"
+          ]
+        }
+      }
+    },
+    {
+      "frame_id": 1,
+      "timestamp_sec": 1.3,
+      "view_frames": {
+        "ego": {
+          "frame_id": 1,
+          "frame_index": 26,
+          "timestamp_sec": 1.3,
+          "image_path": ".semantic_motion_work/libero_goal_title_eval/turn_on_the_stove_demo_0/ego/repeat_02/macro/window_000/ego/frame_00000026.jpg",
+          "view_id": "ego"
+        }
+      },
+      "view_annotations": {},
+      "fused_annotation": {
+        "scenario_id": "turn_on_the_stove_demo_0_macro_000",
+        "image_path": ".semantic_motion_work/libero_goal_title_eval/turn_on_the_stove_demo_0/ego/repeat_02/macro/window_000/fixed/frame_00000000.jpg",
+        "source_instruction": "",
+        "objects": [
+          "stove",
+          "stove burner",
+          "black circular object (possibly a pot base or stand)",
+          "white circular object (possibly a plate or lid)",
+          "blue rectangular object (possibly a phone or remote)",
+          "wooden surface (counter or floor)"
+        ],
+        "spatial_relations": [
+          "black circular object ON stove burner",
+          "white circular object ON counter",
+          "blue rectangular object ON counter",
+          "stove ON left side of frame",
+          "wooden surface UNDER stove and objects"
+        ],
+        "macro_intent": {
+          "task_type": "place",
+          "target_object": "black circular object",
+          "destination": "stove burner",
+          "confidence": 0.9,
+          "domain": "manipulation"
+        },
+        "micro_instructions": [
+          {
+            "step_id": 1,
+            "text": "approach stove area",
+            "verb": "approach",
+            "object": "stove",
+            "confidence": 0.9,
+            "body_part": "unknown",
+            "contact_state": "approach",
+            "posture": "unknown",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              0,
+              1
+            ]
+          },
+          {
+            "step_id": 2,
+            "text": "position black circular object over stove burner",
+            "verb": "position",
+            "object": "black circular object",
+            "confidence": 0.9,
+            "body_part": "unknown",
+            "contact_state": "approach",
+            "posture": "unknown",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              1,
+              2
+            ]
+          },
+          {
+            "step_id": 3,
+            "text": "lower black circular object onto stove burner",
+            "verb": "lower",
+            "object": "black circular object",
+            "confidence": 0.9,
+            "body_part": "unknown",
+            "contact_state": "contact",
+            "posture": "unknown",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              2,
+              3
+            ]
+          },
+          {
+            "step_id": 4,
+            "text": "adjust black circular object on burner",
+            "verb": "adjust",
+            "object": "black circular object",
+            "confidence": 0.9,
+            "body_part": "unknown",
+            "contact_state": "contact",
+            "posture": "unknown",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              3,
+              4
+            ]
+          }
+        ],
+        "raw_recognition": "{\n  \"objects\": [\n    \"stove\",\n    \"stove burner\",\n    \"black circular object (possibly a pot base or stand)\",\n    \"white circular object (possibly a plate or lid)\",\n    \"blue rectangular object (possibly a phone or remote)\",\n    \"wooden surface (counter or floor)\"\n  ],\n  \"spatial_relations\": [\n    \"black circular object ON stove burner\",\n    \"white circular object ON counter\",\n    \"blue rectangular object ON counter\",\n    \"stove ON left side of frame\",\n    \"wooden surface UNDER stove and objects\"\n  ],\n  \"task_type\": \"place\",\n  \"domain\": \"manipulation\",\n  \"action_sequence\": [\n    \"approach stove area\",\n    \"position black circular object over stove burner\",\n    \"lower black circular object onto stove burner\",\n    \"adjust black circular object on burner\"\n  ],\n  \"action_details\": [\n    {\n      \"text\": \"approach stove area\",\n      \"verb\": \"approach\",\n      \"object\": \"stove\",\n      \"body_part\": \"unknown\",\n      \"contact_state\": \"approach\",\n      \"posture\": \"unknown\",\n      \"start_image_index\": 0,\n      \"end_image_index\": 1\n    },\n    {\n      \"text\": \"position black circular object over stove burner\",\n      \"verb\": \"position\",\n      \"object\": \"black circular object\",\n      \"body_part\": \"unknown\",\n      \"contact_state\": \"approach\",\n      \"posture\": \"unknown\",\n      \"start_image_index\": 1,\n      \"end_image_index\": 2\n    },\n    {\n      \"text\": \"lower black circular object onto stove burner\",\n      \"verb\": \"lower\",\n      \"object\": \"black circular object\",\n      \"body_part\": \"unknown\",\n      \"contact_state\": \"contact\",\n      \"posture\": \"unknown\",\n      \"start_image_index\": 2,\n      \"end_image_index\": 3\n    },\n    {\n      \"text\": \"adjust black circular object on burner\",\n      \"verb\": \"adjust\",\n      \"object\": \"black circular object\",\n      \"body_part\": \"unknown\",\n      \"contact_state\": \"contact\",\n      \"posture\": \"unknown\",\n      \"start_image_index\": 3,\n      \"end_image_index\": 4\n    }\n  ],\n  \"target_object\": \"black circular object\",\n  \"destination\": \"stove burner\",\n  \"instruction\": \"Place the black circular object onto the stove burner.\",\n  \"transitions\": [1, 2, 3],\n  \"confidence\": 0.9\n}",
+        "view_id": "ego",
+        "metadata": {
+          "category": "video",
+          "recognition_confidence": 0.9,
+          "prediction_instruction": "Place the black circular object onto the stove burner.",
+          "transitions": [
+            1,
+            2,
+            3
+          ],
+          "view_mode": "ego",
+          "evidence_paths": [
+            ".semantic_motion_work/libero_goal_title_eval/turn_on_the_stove_demo_0/ego/repeat_02/macro/window_000/fixed/frame_00000000.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/turn_on_the_stove_demo_0/ego/repeat_02/macro/window_000/fixed/frame_00000026.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/turn_on_the_stove_demo_0/ego/repeat_02/macro/window_000/fixed/frame_00000052.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/turn_on_the_stove_demo_0/ego/repeat_02/macro/window_000/fixed/frame_00000079.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/turn_on_the_stove_demo_0/ego/repeat_02/macro/window_000/ego/frame_00000000.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/turn_on_the_stove_demo_0/ego/repeat_02/macro/window_000/ego/frame_00000026.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/turn_on_the_stove_demo_0/ego/repeat_02/macro/window_000/ego/frame_00000052.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/turn_on_the_stove_demo_0/ego/repeat_02/macro/window_000/ego/frame_00000079.jpg"
+          ]
+        }
+      }
+    },
+    {
+      "frame_id": 2,
+      "timestamp_sec": 2.6,
+      "view_frames": {
+        "ego": {
+          "frame_id": 2,
+          "frame_index": 52,
+          "timestamp_sec": 2.6,
+          "image_path": ".semantic_motion_work/libero_goal_title_eval/turn_on_the_stove_demo_0/ego/repeat_02/macro/window_000/ego/frame_00000052.jpg",
+          "view_id": "ego"
+        }
+      },
+      "view_annotations": {},
+      "fused_annotation": {
+        "scenario_id": "turn_on_the_stove_demo_0_macro_000",
+        "image_path": ".semantic_motion_work/libero_goal_title_eval/turn_on_the_stove_demo_0/ego/repeat_02/macro/window_000/fixed/frame_00000000.jpg",
+        "source_instruction": "",
+        "objects": [
+          "stove",
+          "stove burner",
+          "black circular object (possibly a pot base or stand)",
+          "white circular object (possibly a plate or lid)",
+          "blue rectangular object (possibly a phone or remote)",
+          "wooden surface (counter or floor)"
+        ],
+        "spatial_relations": [
+          "black circular object ON stove burner",
+          "white circular object ON counter",
+          "blue rectangular object ON counter",
+          "stove ON left side of frame",
+          "wooden surface UNDER stove and objects"
+        ],
+        "macro_intent": {
+          "task_type": "place",
+          "target_object": "black circular object",
+          "destination": "stove burner",
+          "confidence": 0.9,
+          "domain": "manipulation"
+        },
+        "micro_instructions": [
+          {
+            "step_id": 1,
+            "text": "approach stove area",
+            "verb": "approach",
+            "object": "stove",
+            "confidence": 0.9,
+            "body_part": "unknown",
+            "contact_state": "approach",
+            "posture": "unknown",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              0,
+              1
+            ]
+          },
+          {
+            "step_id": 2,
+            "text": "position black circular object over stove burner",
+            "verb": "position",
+            "object": "black circular object",
+            "confidence": 0.9,
+            "body_part": "unknown",
+            "contact_state": "approach",
+            "posture": "unknown",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              1,
+              2
+            ]
+          },
+          {
+            "step_id": 3,
+            "text": "lower black circular object onto stove burner",
+            "verb": "lower",
+            "object": "black circular object",
+            "confidence": 0.9,
+            "body_part": "unknown",
+            "contact_state": "contact",
+            "posture": "unknown",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              2,
+              3
+            ]
+          },
+          {
+            "step_id": 4,
+            "text": "adjust black circular object on burner",
+            "verb": "adjust",
+            "object": "black circular object",
+            "confidence": 0.9,
+            "body_part": "unknown",
+            "contact_state": "contact",
+            "posture": "unknown",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              3,
+              4
+            ]
+          }
+        ],
+        "raw_recognition": "{\n  \"objects\": [\n    \"stove\",\n    \"stove burner\",\n    \"black circular object (possibly a pot base or stand)\",\n    \"white circular object (possibly a plate or lid)\",\n    \"blue rectangular object (possibly a phone or remote)\",\n    \"wooden surface (counter or floor)\"\n  ],\n  \"spatial_relations\": [\n    \"black circular object ON stove burner\",\n    \"white circular object ON counter\",\n    \"blue rectangular object ON counter\",\n    \"stove ON left side of frame\",\n    \"wooden surface UNDER stove and objects\"\n  ],\n  \"task_type\": \"place\",\n  \"domain\": \"manipulation\",\n  \"action_sequence\": [\n    \"approach stove area\",\n    \"position black circular object over stove burner\",\n    \"lower black circular object onto stove burner\",\n    \"adjust black circular object on burner\"\n  ],\n  \"action_details\": [\n    {\n      \"text\": \"approach stove area\",\n      \"verb\": \"approach\",\n      \"object\": \"stove\",\n      \"body_part\": \"unknown\",\n      \"contact_state\": \"approach\",\n      \"posture\": \"unknown\",\n      \"start_image_index\": 0,\n      \"end_image_index\": 1\n    },\n    {\n      \"text\": \"position black circular object over stove burner\",\n      \"verb\": \"position\",\n      \"object\": \"black circular object\",\n      \"body_part\": \"unknown\",\n      \"contact_state\": \"approach\",\n      \"posture\": \"unknown\",\n      \"start_image_index\": 1,\n      \"end_image_index\": 2\n    },\n    {\n      \"text\": \"lower black circular object onto stove burner\",\n      \"verb\": \"lower\",\n      \"object\": \"black circular object\",\n      \"body_part\": \"unknown\",\n      \"contact_state\": \"contact\",\n      \"posture\": \"unknown\",\n      \"start_image_index\": 2,\n      \"end_image_index\": 3\n    },\n    {\n      \"text\": \"adjust black circular object on burner\",\n      \"verb\": \"adjust\",\n      \"object\": \"black circular object\",\n      \"body_part\": \"unknown\",\n      \"contact_state\": \"contact\",\n      \"posture\": \"unknown\",\n      \"start_image_index\": 3,\n      \"end_image_index\": 4\n    }\n  ],\n  \"target_object\": \"black circular object\",\n  \"destination\": \"stove burner\",\n  \"instruction\": \"Place the black circular object onto the stove burner.\",\n  \"transitions\": [1, 2, 3],\n  \"confidence\": 0.9\n}",
+        "view_id": "ego",
+        "metadata": {
+          "category": "video",
+          "recognition_confidence": 0.9,
+          "prediction_instruction": "Place the black circular object onto the stove burner.",
+          "transitions": [
+            1,
+            2,
+            3
+          ],
+          "view_mode": "ego",
+          "evidence_paths": [
+            ".semantic_motion_work/libero_goal_title_eval/turn_on_the_stove_demo_0/ego/repeat_02/macro/window_000/fixed/frame_00000000.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/turn_on_the_stove_demo_0/ego/repeat_02/macro/window_000/fixed/frame_00000026.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/turn_on_the_stove_demo_0/ego/repeat_02/macro/window_000/fixed/frame_00000052.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/turn_on_the_stove_demo_0/ego/repeat_02/macro/window_000/fixed/frame_00000079.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/turn_on_the_stove_demo_0/ego/repeat_02/macro/window_000/ego/frame_00000000.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/turn_on_the_stove_demo_0/ego/repeat_02/macro/window_000/ego/frame_00000026.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/turn_on_the_stove_demo_0/ego/repeat_02/macro/window_000/ego/frame_00000052.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/turn_on_the_stove_demo_0/ego/repeat_02/macro/window_000/ego/frame_00000079.jpg"
+          ]
+        }
+      }
+    },
+    {
+      "frame_id": 3,
+      "timestamp_sec": 3.95,
+      "view_frames": {
+        "ego": {
+          "frame_id": 3,
+          "frame_index": 79,
+          "timestamp_sec": 3.95,
+          "image_path": ".semantic_motion_work/libero_goal_title_eval/turn_on_the_stove_demo_0/ego/repeat_02/macro/window_000/ego/frame_00000079.jpg",
+          "view_id": "ego"
+        }
+      },
+      "view_annotations": {},
+      "fused_annotation": {
+        "scenario_id": "turn_on_the_stove_demo_0_macro_000",
+        "image_path": ".semantic_motion_work/libero_goal_title_eval/turn_on_the_stove_demo_0/ego/repeat_02/macro/window_000/fixed/frame_00000000.jpg",
+        "source_instruction": "",
+        "objects": [
+          "stove",
+          "stove burner",
+          "black circular object (possibly a pot base or stand)",
+          "white circular object (possibly a plate or lid)",
+          "blue rectangular object (possibly a phone or remote)",
+          "wooden surface (counter or floor)"
+        ],
+        "spatial_relations": [
+          "black circular object ON stove burner",
+          "white circular object ON counter",
+          "blue rectangular object ON counter",
+          "stove ON left side of frame",
+          "wooden surface UNDER stove and objects"
+        ],
+        "macro_intent": {
+          "task_type": "place",
+          "target_object": "black circular object",
+          "destination": "stove burner",
+          "confidence": 0.9,
+          "domain": "manipulation"
+        },
+        "micro_instructions": [
+          {
+            "step_id": 1,
+            "text": "approach stove area",
+            "verb": "approach",
+            "object": "stove",
+            "confidence": 0.9,
+            "body_part": "unknown",
+            "contact_state": "approach",
+            "posture": "unknown",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              0,
+              1
+            ]
+          },
+          {
+            "step_id": 2,
+            "text": "position black circular object over stove burner",
+            "verb": "position",
+            "object": "black circular object",
+            "confidence": 0.9,
+            "body_part": "unknown",
+            "contact_state": "approach",
+            "posture": "unknown",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              1,
+              2
+            ]
+          },
+          {
+            "step_id": 3,
+            "text": "lower black circular object onto stove burner",
+            "verb": "lower",
+            "object": "black circular object",
+            "confidence": 0.9,
+            "body_part": "unknown",
+            "contact_state": "contact",
+            "posture": "unknown",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              2,
+              3
+            ]
+          },
+          {
+            "step_id": 4,
+            "text": "adjust black circular object on burner",
+            "verb": "adjust",
+            "object": "black circular object",
+            "confidence": 0.9,
+            "body_part": "unknown",
+            "contact_state": "contact",
+            "posture": "unknown",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              3,
+              4
+            ]
+          }
+        ],
+        "raw_recognition": "{\n  \"objects\": [\n    \"stove\",\n    \"stove burner\",\n    \"black circular object (possibly a pot base or stand)\",\n    \"white circular object (possibly a plate or lid)\",\n    \"blue rectangular object (possibly a phone or remote)\",\n    \"wooden surface (counter or floor)\"\n  ],\n  \"spatial_relations\": [\n    \"black circular object ON stove burner\",\n    \"white circular object ON counter\",\n    \"blue rectangular object ON counter\",\n    \"stove ON left side of frame\",\n    \"wooden surface UNDER stove and objects\"\n  ],\n  \"task_type\": \"place\",\n  \"domain\": \"manipulation\",\n  \"action_sequence\": [\n    \"approach stove area\",\n    \"position black circular object over stove burner\",\n    \"lower black circular object onto stove burner\",\n    \"adjust black circular object on burner\"\n  ],\n  \"action_details\": [\n    {\n      \"text\": \"approach stove area\",\n      \"verb\": \"approach\",\n      \"object\": \"stove\",\n      \"body_part\": \"unknown\",\n      \"contact_state\": \"approach\",\n      \"posture\": \"unknown\",\n      \"start_image_index\": 0,\n      \"end_image_index\": 1\n    },\n    {\n      \"text\": \"position black circular object over stove burner\",\n      \"verb\": \"position\",\n      \"object\": \"black circular object\",\n      \"body_part\": \"unknown\",\n      \"contact_state\": \"approach\",\n      \"posture\": \"unknown\",\n      \"start_image_index\": 1,\n      \"end_image_index\": 2\n    },\n    {\n      \"text\": \"lower black circular object onto stove burner\",\n      \"verb\": \"lower\",\n      \"object\": \"black circular object\",\n      \"body_part\": \"unknown\",\n      \"contact_state\": \"contact\",\n      \"posture\": \"unknown\",\n      \"start_image_index\": 2,\n      \"end_image_index\": 3\n    },\n    {\n      \"text\": \"adjust black circular object on burner\",\n      \"verb\": \"adjust\",\n      \"object\": \"black circular object\",\n      \"body_part\": \"unknown\",\n      \"contact_state\": \"contact\",\n      \"posture\": \"unknown\",\n      \"start_image_index\": 3,\n      \"end_image_index\": 4\n    }\n  ],\n  \"target_object\": \"black circular object\",\n  \"destination\": \"stove burner\",\n  \"instruction\": \"Place the black circular object onto the stove burner.\",\n  \"transitions\": [1, 2, 3],\n  \"confidence\": 0.9\n}",
+        "view_id": "ego",
+        "metadata": {
+          "category": "video",
+          "recognition_confidence": 0.9,
+          "prediction_instruction": "Place the black circular object onto the stove burner.",
+          "transitions": [
+            1,
+            2,
+            3
+          ],
+          "view_mode": "ego",
+          "evidence_paths": [
+            ".semantic_motion_work/libero_goal_title_eval/turn_on_the_stove_demo_0/ego/repeat_02/macro/window_000/fixed/frame_00000000.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/turn_on_the_stove_demo_0/ego/repeat_02/macro/window_000/fixed/frame_00000026.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/turn_on_the_stove_demo_0/ego/repeat_02/macro/window_000/fixed/frame_00000052.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/turn_on_the_stove_demo_0/ego/repeat_02/macro/window_000/fixed/frame_00000079.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/turn_on_the_stove_demo_0/ego/repeat_02/macro/window_000/ego/frame_00000000.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/turn_on_the_stove_demo_0/ego/repeat_02/macro/window_000/ego/frame_00000026.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/turn_on_the_stove_demo_0/ego/repeat_02/macro/window_000/ego/frame_00000052.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/turn_on_the_stove_demo_0/ego/repeat_02/macro/window_000/ego/frame_00000079.jpg"
+          ]
+        }
+      }
+    }
+  ],
+  "task_segments": [
+    {
+      "segment_id": "segment_000",
+      "start_time_sec": 0.0,
+      "end_time_sec": 2.25,
+      "frame_ids": [
+        0,
+        20,
+        39,
+        44
+      ],
+      "task_instruction": "push the black circular object downward toward the lower edge of the frame",
+      "objects": [
+        "black circular object",
+        "gray surface",
+        "wooden floor",
+        "stove top",
+        "round metallic object",
+        "white circular object",
+        "square mat with concentric circles",
+        "wooden surface",
+        "black cylindrical object"
+      ],
+      "spatial_relations": [
+        "black circular object ON gray surface",
+        "round metallic object BELOW black circular object",
+        "white circular object BELOW round metallic object",
+        "stove top ON left side of scene",
+        "wooden floor ON right side of scene",
+        "black circular object ABOVE wooden surface",
+        "square mat ON wooden surface",
+        "black cylindrical object ON right side of wooden surface"
+      ],
+      "macro_intent": {
+        "task_type": "push",
+        "target_object": "black circular object",
+        "destination": "below the gray surface (out of frame)",
+        "confidence": 0.9,
+        "domain": "manipulation"
+      },
+      "micro_instructions": [
+        {
+          "step_id": 1,
+          "text": "push black circular object downward",
+          "verb": "push",
+          "object": "black circular object",
+          "confidence": 0.9,
+          "body_part": "unknown",
+          "contact_state": "contact",
+          "posture": "unknown",
+          "observed_trajectory": {
+            "track_names": [
+              "eef"
+            ],
+            "start_time_sec": 0.0,
+            "end_time_sec": 2.0,
+            "coordinate_frame": "world"
+          },
+          "evidence_frame_ids": [
+            0,
+            39
+          ]
+        }
+      ],
+      "augmented_instructions": [],
+      "confidence": 0.9,
+      "start_frame": 0,
+      "end_frame": 45,
+      "evidence_by_view": {
+        "ego": [
+          0,
+          20,
+          39,
+          44
+        ]
+      },
+      "metadata": {
+        "micro_window_count": 2,
+        "view_mode": "ego",
+        "trajectory_linked": true,
+        "augmentation_audit": [],
+        "alternative_micro_observations": [
+          [
+            "approach black circular object",
+            "grasp black circular object"
+          ]
+        ]
+      }
+    },
+    {
+      "segment_id": "segment_001",
+      "start_time_sec": 2.25,
+      "end_time_sec": 4.0,
+      "frame_ids": [
+        45,
+        79
+      ],
+      "task_instruction": "move the black circular object across the light-colored surface toward the right.",
+      "objects": [
+        "black circular object",
+        "light-colored surface",
+        "dark surface"
+      ],
+      "spatial_relations": [
+        "black circular object ON light-colored surface",
+        "light-colored surface adjacent to dark surface"
+      ],
+      "macro_intent": {
+        "task_type": "move",
+        "target_object": "black circular object",
+        "destination": "right side of light-colored surface",
+        "confidence": 0.85,
+        "domain": "manipulation"
+      },
+      "micro_instructions": [
+        {
+          "step_id": 1,
+          "text": "black circular object moves across light-colored surface",
+          "verb": "move",
+          "object": "black circular object",
+          "confidence": 0.85,
+          "body_part": "unknown",
+          "contact_state": "contact",
+          "posture": "unknown",
+          "observed_trajectory": {
+            "track_names": [
+              "eef"
+            ],
+            "start_time_sec": 2.25,
+            "end_time_sec": 4.0,
+            "coordinate_frame": "world"
+          },
+          "evidence_frame_ids": [
+            45,
+            79
+          ]
+        }
+      ],
+      "augmented_instructions": [],
+      "confidence": 0.85,
+      "start_frame": 45,
+      "end_frame": 80,
+      "evidence_by_view": {
+        "ego": [
+          45,
+          79
+        ]
+      },
+      "metadata": {
+        "micro_window_count": 1,
+        "view_mode": "ego",
+        "trajectory_linked": true,
+        "augmentation_audit": [],
+        "alternative_micro_observations": []
+      }
+    }
+  ],
+  "metadata": {
+    "method": "paired_overlapping_macro_dense_micro_v1",
+    "view_mode": "ego",
+    "macro_window_sec": 16.0,
+    "macro_step_sec": 8.0,
+    "macro_frames": 4,
+    "micro_window_sec": 2.0,
+    "micro_step_sec": 1.0,
+    "micro_frames": 2,
+    "cut_frames": [
+      45
+    ],
+    "macro_window_count": 1,
+    "provenance": {
+      "dataset": "LIBERO Goal",
+      "source_id": "turn_on_the_stove_demo_0",
+      "generator": "src.semantic_motion.view_bundle",
+      "revision": "8f3096114a56caeb9d83d0e2a2def7ab32587754",
+      "config": {},
+      "checksums": {}
+    },
+    "validation_diagnostics": [],
+    "validation_enforced": false,
+    "generation_model": "qwen3-vl-flash",
+    "rewriter": "SourceInstructionRewriter",
+    "rewrite_prompt_version": ""
+  }
+}

@@ -60,7 +60,7 @@ def config(*, allow_mock: bool) -> RefinementConfig:
     )
 
 
-class StrictRefinementTest(unittest.TestCase):
+class UngatedRefinementTest(unittest.TestCase):
     def test_failed_verifier_is_forced_uncertain(self):
         result, reasons = verify_semantic_consistency(
             "missing.mp4",
@@ -70,16 +70,17 @@ class StrictRefinementTest(unittest.TestCase):
         self.assertEqual(result["label"], "uncertain")
         self.assertIn("semantic_verifier_failed", reasons)
 
-    def test_missing_motion_and_mock_are_fail_closed(self):
+    def test_missing_motion_and_mock_are_retained_with_diagnostics(self):
         sample = Sample(
             sample_id="missing",
             video_path="missing.mp4",
             text="Approach, grasp, move, place and close the drawer handle.",
         )
         result = refine_samples([sample], config(allow_mock=False))[0]
-        self.assertEqual(result.decision, "drop")
+        self.assertEqual(result.decision, "keep")
         self.assertIn("motion_missing", result.reason_codes)
         self.assertIn("mock_verifier_forbidden", result.reason_codes)
+        self.assertIn("quality_gates_disabled", result.reason_codes)
 
     def test_valid_paired_real_motion_can_keep_in_explicit_mock_debug(self):
         with tempfile.TemporaryDirectory() as tmp:

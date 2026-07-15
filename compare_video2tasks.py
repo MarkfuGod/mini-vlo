@@ -1,11 +1,10 @@
 #!/usr/bin/env python3
-"""Compare Semantic-Motion against a Video2Tasks-style baseline on 10 videos.
+"""Run an honest prompt ablation inside pinned Video2Tasks aggregation.
 
-The baseline prompt mirrors ly-geming/video2tasks' switch-detection prompt:
-it predicts transitions and instruction labels. Semantic-Motion uses the same
-sampled frames and model, but asks for structured task semantics plus micro
-instructions. The evaluation rewards task label, target object, and action-plan
-coverage against a small, reproducible real-video set.
+This script intentionally does not call the full Semantic-Motion
+``VideoTaskPipeline``. It compares the upstream Video2Tasks prompt with a blind
+Semantic-Motion prompt while holding the model, frame windows, and aggregation
+constant. The output labels that limitation explicitly.
 """
 
 from __future__ import annotations
@@ -15,14 +14,13 @@ import base64
 import json
 import mimetypes
 import os
-import re
 import tempfile
 import time
+import warnings
 from pathlib import Path
-from typing import Any
+from typing import Any, Callable
 
 import cv2
-import numpy as np
 from openai import OpenAI
 
 from src.baselines import (
@@ -30,40 +28,36 @@ from src.baselines import (
     run_upstream_video2tasks,
     upstream_prompt,
 )
-from src.evaluation.metrics import boundary_metrics
+from src.evaluation.metrics import (
+    boundary_metrics,
+    labeled_segment_metrics,
+    match_temporal_segments,
+    normalized_edit_score,
+    paired_bootstrap_ci,
+    segmental_metrics,
+    slot_f1,
+    temporal_iou,
+    token_f1,
+)
+from src.runtime_utils import (
+    file_sha256,
+    git_revision,
+    text_sha256,
+    utc_now_iso,
+    write_json,
+)
 from src.vlm_engine import _parse_json_response
 
 
-BASELINE_PROMPT = """You are a robotic vision analyzer watching a {n_images}-frame video clip of household manipulation tasks.
-**Mapping:** Image indices range from 0 to {last_idx}.
-
-### Goal
-Detect **Atomic Task Boundaries** (Switch Points).
-A 'Switch' occurs strictly when the robot **completes** interaction with one object and **starts** interacting with a DIFFERENT object.
-
-### Core Logic (The 'Distinct Object' Rule)
-1. **True Switch:** Robot releases Object A (e.g., a cup) and moves to grasp Object B (e.g., a spoon). -> MARK SWITCH.
-2. **False Switch (IMPORTANT):** If the robot is manipulating different parts of the **SAME** object (e.g., folding sleeves then folding the body of the same shirt), this is **NOT** a switch. Treat it as one continuous task.
-3. **Visual Similarity:** Be careful with objects of the same color. Only mark a switch if you clearly see the robot **physically separate** from the first item before touching the second.
-
-### Output Format: Strict JSON
-Your response must be a valid JSON object including a 'thought' field for step-by-step analysis, 'transitions' for the switch indices, and 'instructions' for the task labels.
-
-### Representative Examples
-{{
-  "thought": "Frames 0-5: Robot places a fork. Frame 6: Hand releases fork and moves to the spoon. Frame 7: Hand grasps spoon. Switch detected at 6.",
-  "transitions": [6],
-  "instructions": ["Place the fork", "Place the spoon"]
-}}
-"""
-
+ROOT = Path(__file__).parent
+DEFAULT_OUTPUT = ROOT / "results" / "video2tasks_prompt_ablation.json"
 
 SEMANTIC_MOTION_PROMPT = """You are a video-to-task semantic engine for robot manipulation demonstrations.
-Analyze the sampled video frames without using filenames or a closed task list.
+Analyze the ordered video frames without using filenames or a closed task list.
 
-Return ONLY valid JSON with these fields:
+Return ONLY valid JSON:
 {
-  "transitions": [0],
+  "transitions": [],
   "instructions": ["one evidence-grounded label per temporal segment"],
   "instruction": "one concise whole-window task label",
   "task_type": "concise open-vocabulary task type",
@@ -75,228 +69,313 @@ Return ONLY valid JSON with these fields:
 }
 
 Prefer concrete objects over generic labels. Use the full temporal sequence:
-what changes from early frames to late frames matters more than any single frame.
+what changes from early frames to late frames matters more than one frame.
+
+Temporal output rules:
+- `transitions` MUST contain integer image indices only, never text.
+- If there are K transitions, `instructions` MUST contain exactly K+1 labels.
+- If the window contains one continuous task, return `transitions: []` and
+  exactly one instruction in `instructions`.
+- Do not split approach, minor pose adjustment, or retreat unless a completed
+  manipulation event changes the object/world state.
+"""
+
+SEMANTIC_JUDGE_PROMPT = """You evaluate robot subtask labels.
+For each indexed pair, decide whether the predicted label describes the same
+completed manipulation event as the gold label. Synonyms are valid. Reject
+wrong action, object, source/destination/direction, or hallucinated events.
+Also extract concise action, object, and destination slots from each label.
+
+Return ONLY JSON:
+{"judgments":[{"index":0,"semantic_match":true,
+"predicted_slots":{"action":"","object":"","destination":""},
+"gold_slots":{"action":"","object":"","destination":""}}]}
 """
 
 
-def build_semantic_motion_prompt(sample: dict[str, Any]) -> str:
-    """Return a blind prompt; sample metadata is deliberately not exposed."""
-    del sample
-    return SEMANTIC_MOTION_PROMPT
-
-
-SAMPLES = [
+# Backward-compatible diagnostic sample set. It is author-authored rather than
+# independently adjudicated and has no temporal gold; outputs using it are
+# always marked non-formal.
+DIAGNOSTIC_SAMPLES: list[dict[str, Any]] = [
     {
         "id": "close_drawer",
         "video": "demos/video2tasks_compare/close_drawer.mp4",
         "instruction": "Close the drawer.",
-        "task_type": "close",
         "target_object": "drawer",
-        "destination": "closed position",
         "actions": ["reach drawer handle", "push drawer inward", "close drawer"],
     },
     {
         "id": "get_napkin",
         "video": "demos/video2tasks_compare/get_napkin.mp4",
         "instruction": "Get the napkin.",
-        "task_type": "pick_and_place",
         "target_object": "napkin",
-        "destination": "hand",
         "actions": ["reach napkin", "grasp napkin", "lift napkin"],
     },
     {
         "id": "hang_towel",
         "video": "demos/video2tasks_compare/hang_towel.mp4",
         "instruction": "Hang the towel.",
-        "task_type": "hang",
         "target_object": "towel",
-        "destination": "rack",
         "actions": ["grasp towel", "move towel to rack", "hang towel"],
     },
     {
         "id": "measure_apple",
         "video": "demos/video2tasks_compare/measure_apple.mp4",
         "instruction": "Measure the apple.",
-        "task_type": "measure",
         "target_object": "apple",
-        "destination": "measuring tool",
-        "actions": ["bring measuring tool to apple", "align tool with apple", "measure apple"],
+        "actions": [
+            "bring measuring tool to apple",
+            "align tool with apple",
+            "measure apple",
+        ],
     },
     {
         "id": "open_bottle",
         "video": "demos/video2tasks_compare/open_bottle.mp4",
         "instruction": "Open the bottle.",
-        "task_type": "open",
         "target_object": "bottle",
-        "destination": "open state",
         "actions": ["grasp bottle", "twist cap", "open bottle"],
     },
     {
         "id": "sweep_trash",
         "video": "demos/video2tasks_compare/sweep_trash.mp4",
         "instruction": "Sweep the trash into the dustpan.",
-        "task_type": "sweep",
         "target_object": "trash",
-        "destination": "dustpan",
-        "actions": ["move broom to trash", "sweep trash", "collect trash in dustpan"],
+        "actions": [
+            "move broom to trash",
+            "sweep trash",
+            "collect trash in dustpan",
+        ],
     },
     {
         "id": "take_out_toaster",
         "video": "demos/video2tasks_compare/take_out_toaster.mp4",
         "instruction": "Take out the toaster and put it on the wooden plate.",
-        "task_type": "pick_and_place",
         "target_object": "toaster",
-        "destination": "wooden plate",
-        "actions": ["grasp toaster", "lift toaster", "move toaster to wooden plate", "place toaster"],
+        "actions": [
+            "grasp toaster",
+            "lift toaster",
+            "move toaster to wooden plate",
+            "place toaster",
+        ],
     },
     {
         "id": "turn_on_lamp",
         "video": "demos/video2tasks_compare/turn_on_lamp.mp4",
         "instruction": "Turn on the lamp.",
-        "task_type": "turn_on",
         "target_object": "lamp",
-        "destination": "on state",
         "actions": ["reach lamp switch", "press switch", "turn on lamp"],
     },
     {
         "id": "unplug_charger",
         "video": "demos/video2tasks_compare/unplug_charger.mp4",
         "instruction": "Unplug the charger.",
-        "task_type": "unplug",
         "target_object": "charger",
-        "destination": "unplugged state",
-        "actions": ["grasp charger", "pull charger from outlet", "unplug charger"],
+        "actions": [
+            "grasp charger",
+            "pull charger from outlet",
+            "unplug charger",
+        ],
     },
     {
         "id": "sort_trash_to_tray",
         "video": "demos/video2tasks_compare/sort_trash_to_tray.mp4",
         "instruction": "Sort the trash to the tray.",
-        "task_type": "sort",
         "target_object": "trash",
-        "destination": "tray",
-        "actions": ["pick up trash", "move trash to tray", "place trash in tray"],
+        "actions": [
+            "pick up trash",
+            "move trash to tray",
+            "place trash in tray",
+        ],
     },
 ]
 
 
-def sample_frames(video_path: str | Path, out_dir: str | Path, n_frames: int) -> list[Path]:
-    video_path = Path(video_path)
-    out_dir = Path(out_dir)
-    out_dir.mkdir(parents=True, exist_ok=True)
+def build_semantic_motion_prompt(
+    sample: dict[str, Any] | None = None,
+    *,
+    n_images: int | None = None,
+) -> str:
+    """Return a blind prompt; sample metadata is deliberately ignored."""
+    del sample
+    if n_images is None:
+        return SEMANTIC_MOTION_PROMPT
+    return (
+        SEMANTIC_MOTION_PROMPT
+        + f"\nThe input contains {n_images} images indexed 0 through "
+        f"{max(0, n_images - 1)}."
+    )
 
-    cap = cv2.VideoCapture(str(video_path))
-    if not cap.isOpened():
-        raise RuntimeError(f"Cannot open video: {video_path}")
-    total = int(cap.get(cv2.CAP_PROP_FRAME_COUNT) or 0)
-    if total <= 0:
-        cap.release()
-        raise RuntimeError(f"Cannot read frame count: {video_path}")
 
-    n_frames = max(1, min(n_frames, total))
-    indices = [
-        round(i * (total - 1) / (n_frames - 1)) if n_frames > 1 else total // 2
-        for i in range(n_frames)
-    ]
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(
+        description=(
+            "Compare upstream and Semantic-Motion prompts under pinned "
+            "Video2Tasks windowing/aggregation. This is not a full-system test."
+        )
+    )
+    parser.add_argument(
+        "--mode",
+        choices=["prompt-ablation", "full-upstream"],
+        default="prompt-ablation",
+        help="'full-upstream' is a deprecated alias for prompt-ablation.",
+    )
+    parser.add_argument(
+        "--samples",
+        default="",
+        help=(
+            "JSON list or {'samples': [...]} manifest. Without it, the legacy "
+            "10-case author-authored diagnostic set is used."
+        ),
+    )
+    parser.add_argument("--model", default=os.getenv("VLM_MODEL", "qwen3-vl-flash"))
+    parser.add_argument(
+        "--base-url",
+        default=os.getenv(
+            "DASHSCOPE_BASE_URL",
+            "https://dashscope.aliyuncs.com/compatible-mode/v1",
+        ),
+    )
+    parser.add_argument(
+        "--api-key",
+        default=os.getenv("DASHSCOPE_API_KEY", os.getenv("OPENAI_API_KEY", "")),
+    )
+    parser.add_argument(
+        "--timeout",
+        type=float,
+        default=float(os.getenv("VLM_TIMEOUT", "300")),
+    )
+    parser.add_argument("--max-retries", type=int, default=2)
+    parser.add_argument("--max-tokens", type=int, default=1024)
+    parser.add_argument(
+        "--judge-model",
+        default=None,
+        help="Optional text judge for semantic label, slot, and labeled e2e metrics.",
+    )
+    parser.add_argument(
+        "--input-cost-per-million",
+        type=float,
+        default=(
+            float(os.environ["VLM_INPUT_COST_PER_MILLION"])
+            if os.getenv("VLM_INPUT_COST_PER_MILLION")
+            else None
+        ),
+    )
+    parser.add_argument(
+        "--output-cost-per-million",
+        type=float,
+        default=(
+            float(os.environ["VLM_OUTPUT_COST_PER_MILLION"])
+            if os.getenv("VLM_OUTPUT_COST_PER_MILLION")
+            else None
+        ),
+    )
+    parser.add_argument("--window-sec", type=float, default=16.0)
+    parser.add_argument("--step-sec", type=float, default=8.0)
+    parser.add_argument("--frames-per-window", type=int, default=16)
+    parser.add_argument(
+        "--frames",
+        type=int,
+        default=None,
+        help="Deprecated alias for --frames-per-window.",
+    )
+    parser.add_argument("--repeats", type=int, default=1)
+    parser.add_argument("--resume", action="store_true")
+    parser.add_argument(
+        "--rescore-only",
+        action="store_true",
+        help="Refresh derived metrics in an existing --output without API calls.",
+    )
+    parser.add_argument("--fail-fast", action="store_true")
+    parser.add_argument("--output", default=str(DEFAULT_OUTPUT))
+    return parser.parse_args()
 
-    paths: list[Path] = []
-    for i, frame_idx in enumerate(indices):
-        cap.set(cv2.CAP_PROP_POS_FRAMES, frame_idx)
-        ok, frame = cap.read()
-        if not ok:
-            continue
-        path = out_dir / f"{video_path.stem}_{i:02d}_{frame_idx:06d}.jpg"
-        cv2.imwrite(str(path), frame)
-        paths.append(path)
-    cap.release()
-    return paths
+
+def _resolve_path(value: str, manifest_path: Path | None) -> Path:
+    path = Path(value)
+    if path.is_absolute():
+        return path
+    if manifest_path is not None:
+        candidate = manifest_path.parent / path
+        if candidate.exists():
+            return candidate
+    return ROOT / path
+
+
+def load_samples(path_value: str) -> tuple[list[dict[str, Any]], Path | None]:
+    if not path_value:
+        return (
+            [
+                {
+                    **sample,
+                    "annotation_status": "author_diagnostic",
+                }
+                for sample in DIAGNOSTIC_SAMPLES
+            ],
+            None,
+        )
+    path = Path(path_value)
+    raw = json.loads(path.read_text(encoding="utf-8"))
+    rows = raw.get("samples", []) if isinstance(raw, dict) else raw
+    if not isinstance(rows, list):
+        raise ValueError("--samples must contain a JSON list or a 'samples' list")
+    samples = [dict(row) for row in rows if isinstance(row, dict)]
+    required = {"id", "video", "instruction"}
+    for index, sample in enumerate(samples):
+        missing = sorted(required - set(sample))
+        if missing:
+            raise ValueError(f"Sample {index} is missing fields: {missing}")
+        sample["video"] = str(_resolve_path(str(sample["video"]), path))
+    return samples, path
 
 
 def extract_frame_indices(
     video_path: str | Path,
-    out_dir: str | Path,
+    output_root: str | Path,
     frame_indices: list[int],
     window_id: int,
 ) -> list[Path]:
-    """Extract the exact frame ids selected by the pinned upstream windowing."""
-    out_dir = Path(out_dir) / f"window_{window_id:04d}"
-    out_dir.mkdir(parents=True, exist_ok=True)
-    cap = cv2.VideoCapture(str(video_path))
-    if not cap.isOpened():
+    output_dir = Path(output_root) / f"window_{window_id:04d}"
+    output_dir.mkdir(parents=True, exist_ok=True)
+    capture = cv2.VideoCapture(str(video_path))
+    if not capture.isOpened():
         raise RuntimeError(f"Cannot open video: {video_path}")
-    paths = []
+    paths: list[Path] = []
     try:
         for local_index, frame_index in enumerate(frame_indices):
-            cap.set(cv2.CAP_PROP_POS_FRAMES, int(frame_index))
-            ok, frame = cap.read()
+            capture.set(cv2.CAP_PROP_POS_FRAMES, int(frame_index))
+            ok, frame = capture.read()
             if not ok or frame is None:
-                continue
-            path = out_dir / f"{local_index:02d}_{frame_index:08d}.jpg"
-            cv2.imwrite(str(path), frame)
+                raise RuntimeError(
+                    f"Cannot decode frame {frame_index} from {video_path}"
+                )
+            path = output_dir / f"{local_index:02d}_{frame_index:08d}.jpg"
+            if not cv2.imwrite(str(path), frame):
+                raise RuntimeError(f"Cannot write extracted frame: {path}")
             paths.append(path)
     finally:
-        cap.release()
+        capture.release()
     return paths
 
 
-def image_content(path: Path) -> dict[str, Any]:
+def _image_content(path: Path) -> dict[str, Any]:
     mime = mimetypes.guess_type(str(path))[0] or "image/jpeg"
-    data = base64.b64encode(path.read_bytes()).decode("utf-8")
-    return {"type": "image_url", "image_url": {"url": f"data:{mime};base64,{data}"}}
-
-
-def make_contact_sheet(frame_paths: list[Path], out_path: Path) -> Path:
-    """Combine sampled frames into one labeled image for faster VLM calls."""
-    images = []
-    for idx, path in enumerate(frame_paths):
-        img = cv2.imread(str(path))
-        if img is None:
-            continue
-        img = cv2.resize(img, (360, 240), interpolation=cv2.INTER_AREA)
-        cv2.rectangle(img, (0, 0), (95, 28), (0, 0, 0), thickness=-1)
-        cv2.putText(
-            img,
-            f"Frame {idx}",
-            (8, 20),
-            cv2.FONT_HERSHEY_SIMPLEX,
-            0.6,
-            (255, 255, 255),
-            2,
-            cv2.LINE_AA,
-        )
-        images.append(img)
-    if not images:
-        raise RuntimeError("No frames available for contact sheet")
-
-    columns = min(2, len(images))
-    rows = int(np.ceil(len(images) / columns))
-    blank = np.full_like(images[0], 255)
-    cells = images + [blank] * (rows * columns - len(images))
-    row_imgs = [
-        np.hstack(cells[r * columns : (r + 1) * columns])
-        for r in range(rows)
-    ]
-    sheet = np.vstack(row_imgs)
-    out_path.parent.mkdir(parents=True, exist_ok=True)
-    cv2.imwrite(str(out_path), sheet)
-    return out_path
+    encoded = base64.b64encode(path.read_bytes()).decode("utf-8")
+    return {
+        "type": "image_url",
+        "image_url": {"url": f"data:{mime};base64,{encoded}"},
+    }
 
 
 def call_vlm(
-    api_key: str,
-    base_url: str,
+    client: OpenAI,
+    *,
     model: str,
     prompt: str,
     frame_paths: list[Path],
     max_tokens: int,
-    timeout: float,
-) -> dict[str, Any]:
-    client = OpenAI(
-        api_key=api_key,
-        base_url=base_url,
-        timeout=timeout,
-        max_retries=1,
-    )
-    content = [image_content(path) for path in frame_paths]
+) -> tuple[dict[str, Any], dict[str, int]]:
+    content = [_image_content(path) for path in frame_paths]
     content.append({"type": "text", "text": prompt})
     response = client.chat.completions.create(
         model=model,
@@ -305,490 +384,926 @@ def call_vlm(
         max_tokens=max_tokens,
     )
     raw = response.choices[0].message.content or ""
-    return {"raw": raw, "json": _parse_json_response(raw)}
-
-
-STOPWORDS = {
-    "the",
-    "a",
-    "an",
-    "to",
-    "and",
-    "in",
-    "on",
-    "of",
-    "with",
-    "into",
-    "it",
-    "state",
-    "position",
-    "object",
-    "target",
-}
-
-
-def tokens(text: str | list[str] | None) -> set[str]:
-    if isinstance(text, list):
-        text = " ".join(str(item) for item in text)
-    text = text or ""
-    return {
-        tok
-        for tok in re.findall(r"[a-z0-9]+", text.lower())
-        if tok not in STOPWORDS
+    parsed = _parse_json_response(raw)
+    if not parsed:
+        raise ValueError("VLM response did not contain a valid JSON object")
+    usage = getattr(response, "usage", None)
+    return parsed, {
+        "requests": 1,
+        "input_tokens": int(
+            getattr(usage, "prompt_tokens", 0)
+            or getattr(usage, "input_tokens", 0)
+            or 0
+        ),
+        "output_tokens": int(
+            getattr(usage, "completion_tokens", 0)
+            or getattr(usage, "output_tokens", 0)
+            or 0
+        ),
     }
 
 
-def token_f1(pred: str | list[str] | None, gt: str | list[str] | None) -> float:
-    pred_tokens = tokens(pred)
-    gt_tokens = tokens(gt)
-    if not pred_tokens and not gt_tokens:
-        return 1.0
-    if not pred_tokens or not gt_tokens:
-        return 0.0
-    overlap = len(pred_tokens & gt_tokens)
-    if overlap == 0:
-        return 0.0
-    precision = overlap / len(pred_tokens)
-    recall = overlap / len(gt_tokens)
-    return 2 * precision * recall / (precision + recall)
+def _run_method(
+    *,
+    method: str,
+    sample: dict[str, Any],
+    client: OpenAI,
+    model: str,
+    frame_root: Path,
+    window_sec: float,
+    step_sec: float,
+    frames_per_window: int,
+    max_tokens: int,
+) -> dict[str, Any]:
+    call_count = 0
+    input_tokens = 0
+    output_tokens = 0
+    window_outputs: list[dict[str, Any]] = []
+
+    def infer(frame_indices: list[int], window_id: int) -> dict[str, Any]:
+        nonlocal call_count, input_tokens, output_tokens
+        frame_paths = extract_frame_indices(
+            sample["video"],
+            frame_root / str(sample["id"]) / method,
+            frame_indices,
+            window_id,
+        )
+        prompt = (
+            upstream_prompt(len(frame_paths))
+            if method == "baseline"
+            else build_semantic_motion_prompt(n_images=len(frame_paths))
+        )
+        call_count += 1
+        parsed, usage = call_vlm(
+            client,
+            model=model,
+            prompt=prompt,
+            frame_paths=frame_paths,
+            max_tokens=max_tokens,
+        )
+        input_tokens += usage["input_tokens"]
+        output_tokens += usage["output_tokens"]
+        if method == "semantic_motion":
+            if not parsed.get("instructions") and parsed.get("instruction"):
+                parsed["instructions"] = [parsed["instruction"]]
+            parsed.setdefault("transitions", [])
+        transitions = parsed.get("transitions", [])
+        instructions = parsed.get("instructions", [])
+        if not isinstance(transitions, list) or any(
+            not isinstance(value, int) for value in transitions
+        ):
+            raise ValueError(
+                f"{method} returned non-integer transition indices"
+            )
+        if not isinstance(instructions, list) or any(
+            not isinstance(value, str) for value in instructions
+        ):
+            raise ValueError(f"{method} returned invalid instructions")
+        if instructions and len(instructions) != len(transitions) + 1:
+            raise ValueError(
+                f"{method} returned {len(transitions)} transitions but "
+                f"{len(instructions)} instructions"
+            )
+        window_outputs.append(
+            {
+                "window_id": window_id,
+                "frame_indices": frame_indices,
+                "parsed": parsed,
+            }
+        )
+        return parsed
+
+    started = time.monotonic()
+    output = run_upstream_video2tasks(
+        sample["video"],
+        infer,
+        sample_id=str(sample["id"]),
+        window_sec=window_sec,
+        step_sec=step_sec,
+        frames_per_window=frames_per_window,
+    )
+    return {
+        "method": (
+            "pinned Video2Tasks prompt + aggregation"
+            if method == "baseline"
+            else "blind Semantic-Motion prompt + Video2Tasks aggregation"
+        ),
+        "prediction": output,
+        "latency_s": time.monotonic() - started,
+        "api_calls": call_count,
+        "usage": {
+            "requests": call_count,
+            "input_tokens": input_tokens,
+            "output_tokens": output_tokens,
+        },
+        "window_outputs": window_outputs,
+    }
 
 
-def score_prediction(sample: dict[str, Any], pred: dict[str, Any], mode: str) -> dict[str, float]:
-    if mode == "baseline":
-        instructions = pred.get("instructions", [])
-        pred_instruction = " ; ".join(str(item) for item in instructions)
-        pred_target = pred_instruction
-        pred_actions = instructions
+def _prediction_text(output: dict[str, Any]) -> str:
+    return " ; ".join(
+        str(segment.get("instruction", "")).strip()
+        for segment in output.get("segments", [])
+        if str(segment.get("instruction", "")).strip()
+    )
+
+
+def score_output(
+    sample: dict[str, Any],
+    output: dict[str, Any],
+) -> dict[str, float | None]:
+    prediction = _prediction_text(output)
+    predicted_actions = [
+        str(segment.get("instruction", ""))
+        for segment in output.get("segments", [])
+    ]
+    gold_actions = [str(value) for value in sample.get("actions", [])]
+    return {
+        "instruction_token_f1": token_f1(
+            prediction,
+            str(sample.get("instruction", "")),
+        ),
+        "target_mention_f1": (
+            token_f1(
+                prediction,
+                str(sample.get("target_object", "")),
+            )
+            if str(sample.get("target_object", "")).strip()
+            else None
+        ),
+        "action_coverage_f1": token_f1(
+            prediction,
+            gold_actions,
+        ),
+        "action_edit": normalized_edit_score(predicted_actions, gold_actions),
+    }
+
+
+def _boundary_scores(
+    sample: dict[str, Any],
+    output: dict[str, Any],
+) -> dict[str, dict[str, float]] | None:
+    if "boundaries_sec" not in sample:
+        return None
+    fps = float(output.get("fps", 0.0) or 0.0)
+    if fps <= 0:
+        raise ValueError("Prediction has no valid FPS for boundary scoring")
+    predicted = [
+        float(segment["start_frame"]) / fps
+        for segment in output.get("segments", [])[1:]
+    ]
+    gold = [float(value) for value in sample.get("boundaries_sec", [])]
+    return {
+        "0.5s": boundary_metrics(predicted, gold, tolerance_sec=0.5),
+        "1.0s": boundary_metrics(predicted, gold, tolerance_sec=1.0),
+    }
+
+
+def _segmental_scores(
+    sample: dict[str, Any],
+    output: dict[str, Any],
+) -> dict[str, dict[str, float]] | None:
+    gold = sample.get("segments")
+    if not isinstance(gold, list):
+        return None
+    fps = float(output.get("fps", 0.0) or 0.0)
+    if fps <= 0:
+        raise ValueError("Prediction has no valid FPS for segment scoring")
+    predicted = [
+        {
+            "start_sec": float(segment["start_frame"]) / fps,
+            "end_sec": float(segment["end_frame"]) / fps,
+            "label": "",
+        }
+        for segment in output.get("segments", [])
+    ]
+    temporal_gold = [
+        {
+            "start_sec": float(item["start_sec"]),
+            "end_sec": float(item["end_sec"]),
+            "label": "",
+        }
+        for item in gold
+    ]
+    return {
+        str(threshold): segmental_metrics(
+            predicted,
+            temporal_gold,
+            iou_threshold=threshold,
+        )
+        for threshold in (0.5, 0.75)
+    }
+
+
+def _temporal_segments(output: dict[str, Any]) -> list[dict[str, Any]]:
+    fps = float(output.get("fps", 0.0) or 0.0)
+    if fps <= 0:
+        return []
+    return [
+        {
+            "start_sec": float(segment["start_frame"]) / fps,
+            "end_sec": float(segment["end_frame"]) / fps,
+            "label": str(segment.get("instruction", "")),
+        }
+        for segment in output.get("segments", [])
+    ]
+
+
+def _gold_segments(sample: dict[str, Any]) -> list[dict[str, Any]]:
+    return [
+        {
+            "start_sec": float(segment["start_sec"]),
+            "end_sec": float(segment["end_sec"]),
+            "label": str(
+                segment.get("label", segment.get("subtask", ""))
+            ),
+        }
+        for segment in sample.get("segments", [])
+    ]
+
+
+def _usage_with_cost(
+    usage: dict[str, int],
+    *,
+    input_price: float | None,
+    output_price: float | None,
+) -> dict[str, Any]:
+    result: dict[str, Any] = dict(usage)
+    if input_price is None or output_price is None:
+        result["estimated_cost_usd"] = None
     else:
-        pred_instruction = str(pred.get("instruction", ""))
-        pred_target = str(pred.get("target_object", ""))
-        pred_actions = pred.get("action_sequence", [])
+        result["estimated_cost_usd"] = (
+            usage["input_tokens"] * input_price
+            + usage["output_tokens"] * output_price
+        ) / 1_000_000
+    return result
 
-    label_f1 = token_f1(pred_instruction, sample["instruction"])
-    target_f1 = token_f1(pred_target, sample["target_object"])
-    action_f1 = token_f1(pred_actions, sample["actions"])
-    composite = 0.40 * label_f1 + 0.25 * target_f1 + 0.35 * action_f1
-    return {
-        "label_f1": label_f1,
-        "target_f1": target_f1,
-        "action_f1": action_f1,
-        "composite": composite,
+
+def _judge_label_pairs(
+    client: OpenAI,
+    *,
+    model: str,
+    pairs: list[dict[str, Any]],
+    max_tokens: int,
+) -> tuple[dict[tuple[int, int], dict[str, Any]], dict[str, int]]:
+    if not pairs:
+        return {}, {"requests": 0, "input_tokens": 0, "output_tokens": 0}
+    response = client.chat.completions.create(
+        model=model,
+        messages=[
+            {"role": "system", "content": SEMANTIC_JUDGE_PROMPT},
+            {
+                "role": "user",
+                "content": (
+                    "Judge these indexed label pairs:\n"
+                    + json.dumps(pairs, ensure_ascii=False)
+                ),
+            },
+        ],
+        temperature=0.0,
+        max_tokens=max_tokens,
+    )
+    raw = response.choices[0].message.content or ""
+    parsed = _parse_json_response(raw)
+    judgments = parsed.get("judgments", [])
+    by_pair: dict[tuple[int, int], dict[str, Any]] = {}
+    for item in judgments if isinstance(judgments, list) else []:
+        if not isinstance(item, dict):
+            continue
+        index = item.get("index")
+        if not isinstance(index, int) or not (0 <= index < len(pairs)):
+            continue
+        pair = pairs[index]
+        by_pair[(pair["pred_index"], pair["gold_index"])] = item
+    usage = getattr(response, "usage", None)
+    return by_pair, {
+        "requests": 1,
+        "input_tokens": int(
+            getattr(usage, "prompt_tokens", 0)
+            or getattr(usage, "input_tokens", 0)
+            or 0
+        ),
+        "output_tokens": int(
+            getattr(usage, "completion_tokens", 0)
+            or getattr(usage, "output_tokens", 0)
+            or 0
+        ),
     }
+
+
+def _semantic_segment_scores(
+    sample: dict[str, Any],
+    output: dict[str, Any],
+    *,
+    client: OpenAI,
+    judge_model: str | None,
+    max_tokens: int,
+) -> tuple[dict[str, Any] | None, dict[str, int]]:
+    if not judge_model or not isinstance(sample.get("segments"), list):
+        return None, {"requests": 0, "input_tokens": 0, "output_tokens": 0}
+    predicted = _temporal_segments(output)
+    gold = _gold_segments(sample)
+    pairs = []
+    for pred_index, pred in enumerate(predicted):
+        for gold_index, truth in enumerate(gold):
+            iou = temporal_iou(
+                (pred["start_sec"], pred["end_sec"]),
+                (truth["start_sec"], truth["end_sec"]),
+            )
+            if iou >= 0.5:
+                pairs.append(
+                    {
+                        "index": len(pairs),
+                        "pred_index": pred_index,
+                        "gold_index": gold_index,
+                        "predicted_label": pred["label"],
+                        "gold_label": truth["label"],
+                        "temporal_iou": iou,
+                    }
+                )
+    judgments, usage = _judge_label_pairs(
+        client,
+        model=judge_model,
+        pairs=pairs,
+        max_tokens=max_tokens,
+    )
+
+    def label_match(pred_index: int, gold_index: int) -> bool:
+        return bool(
+            judgments.get((pred_index, gold_index), {}).get(
+                "semantic_match",
+                False,
+            )
+        )
+
+    aligned = match_temporal_segments(predicted, gold, iou_threshold=0.5)
+    aligned_judgments = [
+        judgments.get((pred_index, gold_index), {})
+        for pred_index, gold_index, _ in aligned
+    ]
+    correct = sum(bool(item.get("semantic_match")) for item in aligned_judgments)
+    predicted_slots = [
+        dict(item.get("predicted_slots", {}))
+        for item in aligned_judgments
+        if isinstance(item.get("predicted_slots"), dict)
+    ]
+    gold_slots = [
+        dict(item.get("gold_slots", {}))
+        for item in aligned_judgments
+        if isinstance(item.get("gold_slots"), dict)
+    ]
+    mapped_actions = []
+    for pred_index, pred in enumerate(predicted):
+        candidates = [
+            (gold_index, temporal_iou(
+                (pred["start_sec"], pred["end_sec"]),
+                (truth["start_sec"], truth["end_sec"]),
+            ))
+            for gold_index, truth in enumerate(gold)
+            if label_match(pred_index, gold_index)
+        ]
+        if candidates:
+            gold_index, _ = max(candidates, key=lambda item: item[1])
+            mapped_actions.append(gold[gold_index]["label"])
+        else:
+            mapped_actions.append(pred["label"])
+    return {
+        "semantic_label_accuracy": (
+            correct / len(aligned_judgments) if aligned_judgments else 0.0
+        ),
+        "semantic_label_temporal_coverage": (
+            len(aligned_judgments) / len(gold) if gold else 1.0
+        ),
+        "slot_f1": slot_f1(predicted_slots, gold_slots),
+        "labeled_end_to_end_segment_f1": {
+            str(threshold): labeled_segment_metrics(
+                predicted,
+                gold,
+                label_match,
+                iou_threshold=threshold,
+            )
+            for threshold in (0.5, 0.75)
+        },
+        "semantic_action_edit": normalized_edit_score(
+            mapped_actions,
+            [truth["label"] for truth in gold],
+        ),
+        "judge_pair_count": len(pairs),
+    }, usage
 
 
 def run_sample(
+    *,
     sample: dict[str, Any],
-    api_key: str,
-    base_url: str,
-    model: str,
+    repeat: int,
+    client: OpenAI,
+    args: argparse.Namespace,
     frame_root: Path,
-    n_frames: int,
-    timeout: float,
-    attempts: int = 1,
+    baseline_first: bool,
 ) -> dict[str, Any]:
-    frame_paths = sample_frames(
-        sample["video"],
-        frame_root / sample["id"],
-        n_frames=n_frames,
-    )
-    contact_sheet = make_contact_sheet(
-        frame_paths,
-        frame_root / sample["id"] / "contact_sheet.jpg",
-    )
-    model_inputs = [contact_sheet]
-    baseline_prompt = BASELINE_PROMPT.format(
-        n_images=len(frame_paths),
-        last_idx=len(frame_paths) - 1,
-    )
-    t0 = time.time()
-    baseline_error = ""
-    baseline = {"raw": "", "json": {}}
-    for attempt in range(max(1, attempts)):
+    methods = ["baseline", "semantic_motion"]
+    if not baseline_first:
+        methods.reverse()
+    completed: dict[str, dict[str, Any]] = {}
+    errors: dict[str, str] = {}
+    for method in methods:
         try:
-            baseline = call_vlm(
-                api_key,
-                base_url,
-                model,
-                baseline_prompt,
-                model_inputs,
-                max_tokens=512,
-                timeout=timeout,
+            completed[method] = _run_method(
+                method=method,
+                sample=sample,
+                client=client,
+                model=args.model,
+                frame_root=frame_root / f"repeat_{repeat:02d}",
+                window_sec=args.window_sec,
+                step_sec=args.step_sec,
+                frames_per_window=args.frames_per_window,
+                max_tokens=args.max_tokens,
             )
-            baseline_error = ""
-            break
+            errors[method] = ""
         except Exception as exc:
-            baseline_error = f"{type(exc).__name__}: {exc}"
-    baseline_latency = time.time() - t0
+            if args.fail_fast:
+                raise
+            completed[method] = {
+                "method": method,
+                "prediction": {},
+                "latency_s": 0.0,
+                "api_calls": 0,
+                "usage": {
+                    "requests": 0,
+                    "input_tokens": 0,
+                    "output_tokens": 0,
+                },
+            }
+            errors[method] = f"{type(exc).__name__}: {exc}"
 
-    t1 = time.time()
-    semantic_error = ""
-    semantic = {"raw": "", "json": {}}
-    for attempt in range(max(1, attempts)):
-        try:
-            semantic = call_vlm(
-                api_key,
-                base_url,
-                model,
-                build_semantic_motion_prompt(sample),
-                model_inputs,
-                max_tokens=512,
-                timeout=timeout,
-            )
-            semantic_error = ""
-            break
-        except Exception as exc:
-            semantic_error = f"{type(exc).__name__}: {exc}"
-    semantic_latency = time.time() - t1
-
-    baseline_scores = score_prediction(sample, baseline["json"], mode="baseline")
-    semantic_scores = score_prediction(sample, semantic["json"], mode="semantic")
-
-    return {
+    result: dict[str, Any] = {
         "sample": sample,
-        "frames": [str(path) for path in frame_paths],
-        "contact_sheet": str(contact_sheet),
-        "baseline": {
-            "method": "Video2Tasks-style switch/instruction prompt",
-            "latency_s": baseline_latency,
-            "prediction": baseline["json"],
-            "raw": baseline["raw"],
-            "scores": baseline_scores,
-            "error": baseline_error,
-        },
-        "semantic_motion": {
-            "method": "Semantic-Motion structured video-to-task prompt",
-            "latency_s": semantic_latency,
-            "prediction": semantic["json"],
-            "raw": semantic["raw"],
-            "scores": semantic_scores,
-            "error": semantic_error,
-        },
-        "delta_composite": semantic_scores["composite"] - baseline_scores["composite"],
-    }
-
-
-def run_full_upstream_sample(
-    sample: dict[str, Any],
-    api_key: str,
-    base_url: str,
-    model: str,
-    frame_root: Path,
-    timeout: float,
-) -> dict[str, Any]:
-    """Run both prompts over identical upstream windows and aggregation."""
-
-    def run_method(method: str) -> tuple[dict[str, Any], float, str]:
-        started = time.time()
-
-        def infer(frame_indices: list[int], window_id: int) -> dict[str, Any]:
-            frame_paths = extract_frame_indices(
-                sample["video"],
-                frame_root / sample["id"] / method,
-                frame_indices,
-                window_id,
-            )
-            prompt = (
-                upstream_prompt(len(frame_paths))
-                if method == "baseline"
-                else build_semantic_motion_prompt({})
-            )
-            response = call_vlm(
-                api_key,
-                base_url,
-                model,
-                prompt,
-                frame_paths,
-                max_tokens=512,
-                timeout=timeout,
-            )
-            parsed = dict(response["json"])
-            if method == "semantic_motion":
-                if not parsed.get("instructions") and parsed.get("instruction"):
-                    parsed["instructions"] = [parsed["instruction"]]
-                parsed.setdefault("transitions", [])
-            return parsed
-
-        try:
-            output = run_upstream_video2tasks(
-                sample["video"],
-                infer,
-                sample_id=sample["id"],
-                window_sec=16.0,
-                step_sec=8.0,
-                frames_per_window=16,
-            )
-            return output, time.time() - started, ""
-        except Exception as exc:
-            return {}, time.time() - started, f"{type(exc).__name__}: {exc}"
-
-    baseline, baseline_latency, baseline_error = run_method("baseline")
-    semantic, semantic_latency, semantic_error = run_method("semantic_motion")
-
-    def final_scores(output: dict[str, Any]) -> dict[str, float]:
-        instructions = [
-            str(segment.get("instruction", ""))
-            for segment in output.get("segments", [])
-        ]
-        return score_prediction(
-            sample,
-            {"instructions": instructions},
-            mode="baseline",
-        )
-
-    def final_boundaries(output: dict[str, Any]) -> dict[str, float]:
-        fps = float(output.get("fps", 1.0) or 1.0)
-        predicted = [
-            float(segment["start_frame"]) / fps
-            for segment in output.get("segments", [])[1:]
-        ]
-        return boundary_metrics(
-            predicted,
-            [float(value) for value in sample.get("boundaries_sec", [])],
-            tolerance_sec=0.5,
-        )
-
-    baseline_scores = final_scores(baseline)
-    semantic_scores = final_scores(semantic)
-    return {
-        "sample": sample,
-        "comparison_mode": "full_upstream_windowing_and_aggregation",
+        "repeat": repeat,
+        "method_order": methods,
         "input_budget": {
-            "window_sec": 16.0,
-            "step_sec": 8.0,
-            "frames_per_window": 16,
-            "max_tokens_per_call": 512,
+            "window_sec": args.window_sec,
+            "step_sec": args.step_sec,
+            "frames_per_window": args.frames_per_window,
+            "max_tokens_per_call": args.max_tokens,
             "same_model": True,
+            "temperature": 0.0,
         },
-        "baseline": {
-            "method": "Video2Tasks upstream prompt and upstream aggregation",
-            "latency_s": baseline_latency,
-            "prediction": baseline,
-            "scores": baseline_scores,
-            "boundary": final_boundaries(baseline),
-            "error": baseline_error,
-        },
-        "semantic_motion": {
-            "method": "Blind Semantic-Motion prompt and upstream aggregation",
-            "latency_s": semantic_latency,
-            "prediction": semantic,
-            "scores": semantic_scores,
-            "boundary": final_boundaries(semantic),
-            "error": semantic_error,
-        },
-        "delta_composite": semantic_scores["composite"]
-        - baseline_scores["composite"],
     }
-
-
-def summarize(results: list[dict[str, Any]]) -> dict[str, Any]:
-    metrics = ["label_f1", "target_f1", "action_f1", "composite"]
-    valid_results = [
-        r
-        for r in results
-        if not r["baseline"].get("error")
-        and not r["semantic_motion"].get("error")
-    ]
-    summary: dict[str, Any] = {
-        "num_samples": len(results),
-        "valid_samples": len(valid_results),
-        "errored_samples": len(results) - len(valid_results),
-    }
-    for method in ["baseline", "semantic_motion"]:
-        summary[method] = {}
-        for metric in metrics:
-            vals = [r[method]["scores"][metric] for r in valid_results]
-            summary[method][metric] = sum(vals) / len(vals) if vals else 0.0
-    summary["delta_composite"] = (
-        summary["semantic_motion"]["composite"]
-        - summary["baseline"]["composite"]
-    )
-    summary["wins"] = sum(1 for r in valid_results if r["delta_composite"] > 0)
-    summary["ties"] = sum(1 for r in valid_results if abs(r["delta_composite"]) < 1e-9)
-    summary["losses"] = sum(1 for r in valid_results if r["delta_composite"] < 0)
-    return summary
-
-
-def is_fatal_provider_error(error: str) -> bool:
-    """Billing/auth errors make the benchmark invalid, not merely a bad score."""
-    lowered = error.lower()
-    return (
-        "arrearage" in lowered
-        or "access denied" in lowered
-        or "overdue-payment" in lowered
-    )
-
-
-def merge_method_result(
-    old_result: dict[str, Any] | None,
-    new_result: dict[str, Any],
-    method: str,
-) -> dict[str, Any]:
-    """Keep a previous successful method result if a retry times out."""
-    if not old_result:
-        return new_result[method]
-    old_method = old_result.get(method, {})
-    new_method = new_result.get(method, {})
-    if old_method and not old_method.get("error") and new_method.get("error"):
-        return old_method
-    return new_method
-
-
-def refresh_scores(result: dict[str, Any]) -> dict[str, Any]:
-    sample = result["sample"]
-    baseline_scores = score_prediction(
-        sample,
-        result["baseline"]["prediction"],
-        mode="baseline",
-    )
-    semantic_scores = score_prediction(
-        sample,
-        result["semantic_motion"]["prediction"],
-        mode="semantic",
-    )
-    result["baseline"]["scores"] = baseline_scores
-    result["semantic_motion"]["scores"] = semantic_scores
-    result["delta_composite"] = (
-        semantic_scores["composite"] - baseline_scores["composite"]
+    for method in ("baseline", "semantic_motion"):
+        method_result = completed[method]
+        output = method_result["prediction"]
+        method_result["scores"] = score_output(sample, output)
+        method_result["boundary"] = (
+            _boundary_scores(sample, output) if output else None
+        )
+        method_result["segmental"] = (
+            _segmental_scores(sample, output) if output else None
+        )
+        semantic_evaluation_error = ""
+        try:
+            semantic_evaluation, judge_usage = (
+                _semantic_segment_scores(
+                    sample,
+                    output,
+                    client=client,
+                    judge_model=args.judge_model,
+                    max_tokens=args.max_tokens,
+                )
+                if output
+                else (
+                    None,
+                    {"requests": 0, "input_tokens": 0, "output_tokens": 0},
+                )
+            )
+        except Exception as exc:
+            if args.fail_fast:
+                raise
+            semantic_evaluation = None
+            judge_usage = {
+                "requests": 0,
+                "input_tokens": 0,
+                "output_tokens": 0,
+            }
+            semantic_evaluation_error = f"{type(exc).__name__}: {exc}"
+        method_result["semantic_evaluation"] = semantic_evaluation
+        method_result["semantic_evaluation_error"] = semantic_evaluation_error
+        method_result["usage"] = _usage_with_cost(
+            method_result["usage"],
+            input_price=args.input_cost_per_million,
+            output_price=args.output_cost_per_million,
+        )
+        method_result["judge_usage"] = _usage_with_cost(
+            judge_usage,
+            input_price=args.input_cost_per_million,
+            output_price=args.output_cost_per_million,
+        )
+        method_result["error"] = errors[method]
+        result[method] = method_result
+    result["delta_instruction_token_f1"] = (
+        result["semantic_motion"]["scores"]["instruction_token_f1"]
+        - result["baseline"]["scores"]["instruction_token_f1"]
     )
     return result
 
 
-def main():
-    parser = argparse.ArgumentParser(description="Compare against Video2Tasks baseline")
-    parser.add_argument(
-        "--mode",
-        choices=["full-upstream", "prompt-only-legacy"],
-        default="full-upstream",
-    )
-    parser.add_argument("--model", default="qwen3.6-plus")
-    parser.add_argument("--base-url", default=os.getenv("DASHSCOPE_BASE_URL"))
-    parser.add_argument("--api-key", default=os.getenv("DASHSCOPE_API_KEY"))
-    parser.add_argument("--frames", type=int, default=2)
-    parser.add_argument("--timeout", type=float, default=float(os.getenv("VLM_TIMEOUT", "90")))
-    parser.add_argument("--attempts", type=int, default=1)
-    parser.add_argument("--resume", action="store_true")
-    parser.add_argument(
-        "--output",
-        default="results/video2tasks_comparison_fair.json",
-    )
-    args = parser.parse_args()
-
-    if not args.api_key:
-        raise RuntimeError("Set DASHSCOPE_API_KEY or pass --api-key")
-    if not args.base_url:
-        raise RuntimeError("Set DASHSCOPE_BASE_URL or pass --base-url")
-
-    output = Path(args.output)
-    output.parent.mkdir(parents=True, exist_ok=True)
-    completed: dict[str, dict[str, Any]] = {}
-    if args.resume and output.exists():
-        try:
-            old_payload = json.loads(output.read_text())
-            completed = {
-                item["sample"]["id"]: item
-                for item in old_payload.get("results", [])
-            }
-        except json.JSONDecodeError:
-            completed = {}
-
-    def write_payload(results: list[dict[str, Any]]) -> None:
-        results.sort(key=lambda item: item["sample"]["id"])
-        payload = {
-            "model": args.model,
-            "base_url": args.base_url,
-            "comparison_mode": args.mode,
-            "upstream_revision": (
-                UPSTREAM_REVISION if args.mode == "full-upstream" else None
+def summarize(results: list[dict[str, Any]]) -> dict[str, Any]:
+    valid = [
+        row
+        for row in results
+        if not row["baseline"]["error"] and not row["semantic_motion"]["error"]
+    ]
+    metric_keys = [
+        "instruction_token_f1",
+        "target_mention_f1",
+        "action_coverage_f1",
+        "action_edit",
+    ]
+    summary: dict[str, Any] = {
+        "num_runs": len(results),
+        "valid_runs": len(valid),
+        "errored_runs": len(results) - len(valid),
+    }
+    for method in ("baseline", "semantic_motion"):
+        summary[method] = {}
+        for key in metric_keys:
+            values = [
+                float(row[method]["scores"][key])
+                for row in valid
+                if row[method]["scores"].get(key) is not None
+            ]
+            summary[method][key] = (
+                sum(values) / len(values) if values else None
+            )
+    temporal_run_count = 0
+    for method in ("baseline", "semantic_motion"):
+        boundary_rows = [
+            row[method]["boundary"]
+            for row in valid
+            if isinstance(row[method].get("boundary"), dict)
+        ]
+        temporal_run_count = max(temporal_run_count, len(boundary_rows))
+        for tolerance in ("0.5s", "1.0s"):
+            rows_at_tolerance = [
+                row[tolerance]
+                for row in boundary_rows
+                if tolerance in row
+            ]
+            summary[method][f"boundary_f1_{tolerance}"] = (
+                sum(float(row["f1"]) for row in rows_at_tolerance)
+                / len(rows_at_tolerance)
+                if rows_at_tolerance
+                else None
+            )
+        for threshold in ("0.5", "0.75"):
+            segment_rows = [
+                row[method]["segmental"][threshold]
+                for row in valid
+                if isinstance(row[method].get("segmental"), dict)
+                and threshold in row[method]["segmental"]
+            ]
+            summary[method][f"segment_f1_iou_{threshold}"] = (
+                sum(float(row["f1"]) for row in segment_rows) / len(segment_rows)
+                if segment_rows
+                else None
+            )
+        semantic_rows = [
+            row[method]["semantic_evaluation"]
+            for row in valid
+            if isinstance(row[method].get("semantic_evaluation"), dict)
+        ]
+        semantic_scalars = {
+            "semantic_label_accuracy": ("semantic_label_accuracy",),
+            "semantic_label_temporal_coverage": (
+                "semantic_label_temporal_coverage",
             ),
-            "filename_or_task_list_prior": False,
-            "frames_per_sample": (
-                16 if args.mode == "full-upstream" else args.frames
+            "slot_macro_f1": ("slot_f1", "macro_f1"),
+            "labeled_e2e_f1_iou_0.5": (
+                "labeled_end_to_end_segment_f1",
+                "0.5",
+                "f1",
             ),
-            "samples": SAMPLES,
-            "summary": summarize(results),
-            "results": results,
+            "labeled_e2e_f1_iou_0.75": (
+                "labeled_end_to_end_segment_f1",
+                "0.75",
+                "f1",
+            ),
+            "semantic_action_edit": ("semantic_action_edit",),
         }
-        output.write_text(json.dumps(payload, indent=2, ensure_ascii=False))
-
-    with tempfile.TemporaryDirectory(prefix="video2tasks_compare_") as tmp:
-        frame_root = Path(tmp)
-        results = list(completed.values())
-        for sample in SAMPLES:
-            previous = completed.get(sample["id"])
-            previous_complete = (
-                previous is not None
-                and not previous["baseline"].get("error")
-                and not previous["semantic_motion"].get("error")
+        for name, path in semantic_scalars.items():
+            values = []
+            for row in semantic_rows:
+                value: Any = row
+                for key in path:
+                    value = value[key]
+                values.append(float(value))
+            summary[method][name] = (
+                sum(values) / len(values) if values else None
             )
-            if previous_complete:
-                print(f"{sample['id']} already done, skipping", flush=True)
-                continue
-            if args.mode == "full-upstream":
-                result = run_full_upstream_sample(
-                    sample,
-                    args.api_key,
-                    args.base_url,
-                    args.model,
-                    frame_root,
-                    args.timeout,
-                )
+        summary[method]["mean_latency_s"] = (
+            sum(float(row[method]["latency_s"]) for row in valid) / len(valid)
+            if valid
+            else None
+        )
+        costs = [
+            float(row[method]["usage"]["estimated_cost_usd"])
+            + float(row[method]["judge_usage"]["estimated_cost_usd"])
+            for row in valid
+            if row[method]["usage"].get("estimated_cost_usd") is not None
+            and row[method]["judge_usage"].get("estimated_cost_usd") is not None
+        ]
+        summary[method]["mean_estimated_cost_usd"] = (
+            sum(costs) / len(costs) if costs else None
+        )
+    summary["temporal_gold_run_count"] = temporal_run_count
+
+    paired_metrics = [
+        *metric_keys,
+        "boundary_f1_0.5s",
+        "boundary_f1_1.0s",
+        "segment_f1_iou_0.5",
+        "segment_f1_iou_0.75",
+        "semantic_label_accuracy",
+        "slot_macro_f1",
+        "labeled_e2e_f1_iou_0.5",
+        "labeled_e2e_f1_iou_0.75",
+        "semantic_action_edit",
+    ]
+    summary["paired_bootstrap_95ci"] = {}
+    for name in paired_metrics:
+        deltas = []
+        for row in valid:
+            if name in row["baseline"]["scores"]:
+                baseline_value = row["baseline"]["scores"][name]
+                semantic_value = row["semantic_motion"]["scores"][name]
             else:
-                result = run_sample(
-                    sample,
-                    args.api_key,
-                    args.base_url,
-                    args.model,
-                    frame_root,
-                    args.frames,
-                    args.timeout,
-                    args.attempts,
-                )
-                previous = completed.get(sample["id"])
-                result["baseline"] = merge_method_result(
-                    previous,
-                    result,
-                    "baseline",
-                )
-                result["semantic_motion"] = merge_method_result(
-                    previous,
-                    result,
-                    "semantic_motion",
-                )
-                result = refresh_scores(result)
-            results = [
-                item
-                for item in results
-                if item["sample"]["id"] != sample["id"]
-            ]
-            results.append(result)
-            write_payload(results)
-            fatal_errors = [
-                result["baseline"].get("error", ""),
-                result["semantic_motion"].get("error", ""),
-            ]
-            print(
-                sample["id"],
-                "baseline=",
-                f"{result['baseline']['scores']['composite']:.3f}",
-                "semantic=",
-                f"{result['semantic_motion']['scores']['composite']:.3f}",
-                "delta=",
-                f"{result['delta_composite']:.3f}",
-                "baseline_err=",
-                bool(result["baseline"]["error"]),
-                "semantic_err=",
-                bool(result["semantic_motion"]["error"]),
-                flush=True,
-            )
-            if any(is_fatal_provider_error(err) for err in fatal_errors):
-                raise RuntimeError(
-                    "Provider returned a billing/access error. "
-                    f"Partial invalid results were saved to {output}."
-                )
+                baseline_value = summary["baseline"].get(name)
+                semantic_value = summary["semantic_motion"].get(name)
+                if name.startswith("boundary_f1_"):
+                    tolerance = name.removeprefix("boundary_f1_")
+                    baseline_row = row["baseline"].get("boundary") or {}
+                    semantic_row = row["semantic_motion"].get("boundary") or {}
+                    baseline_value = (
+                        baseline_row.get(tolerance, {}).get("f1")
+                    )
+                    semantic_value = (
+                        semantic_row.get(tolerance, {}).get("f1")
+                    )
+                elif name.startswith("segment_f1_iou_"):
+                    threshold = name.removeprefix("segment_f1_iou_")
+                    baseline_row = row["baseline"].get("segmental") or {}
+                    semantic_row = row["semantic_motion"].get("segmental") or {}
+                    baseline_value = baseline_row.get(threshold, {}).get("f1")
+                    semantic_value = semantic_row.get(threshold, {}).get("f1")
+                else:
+                    semantic_paths = {
+                        "semantic_label_accuracy": (
+                            "semantic_label_accuracy",
+                        ),
+                        "slot_macro_f1": ("slot_f1", "macro_f1"),
+                        "labeled_e2e_f1_iou_0.5": (
+                            "labeled_end_to_end_segment_f1",
+                            "0.5",
+                            "f1",
+                        ),
+                        "labeled_e2e_f1_iou_0.75": (
+                            "labeled_end_to_end_segment_f1",
+                            "0.75",
+                            "f1",
+                        ),
+                        "semantic_action_edit": ("semantic_action_edit",),
+                    }
+                    path = semantic_paths.get(name)
+                    baseline_eval = row["baseline"].get(
+                        "semantic_evaluation"
+                    )
+                    semantic_eval = row["semantic_motion"].get(
+                        "semantic_evaluation"
+                    )
+                    if path and baseline_eval and semantic_eval:
+                        baseline_value = baseline_eval
+                        semantic_value = semantic_eval
+                        for key in path:
+                            baseline_value = baseline_value[key]
+                            semantic_value = semantic_value[key]
+                    else:
+                        baseline_value = semantic_value = None
+            if baseline_value is not None and semantic_value is not None:
+                deltas.append(float(semantic_value) - float(baseline_value))
+        summary["paired_bootstrap_95ci"][name] = paired_bootstrap_ci(deltas)
 
-    payload = json.loads(output.read_text())
-    print(json.dumps(payload["summary"], indent=2))
-    print(f"Saved comparison to {output}")
+    instruction_deltas = [
+        float(row["delta_instruction_token_f1"]) for row in valid
+    ]
+    summary["wins"] = sum(value > 0 for value in instruction_deltas)
+    summary["ties"] = sum(abs(value) < 1e-12 for value in instruction_deltas)
+    summary["losses"] = sum(value < 0 for value in instruction_deltas)
+    return summary
+
+
+def _result_key(row: dict[str, Any]) -> tuple[str, int]:
+    return str(row["sample"]["id"]), int(row.get("repeat", 0))
+
+
+def rescore_output(path: Path) -> None:
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    results = payload.get("results", [])
+    for row in results:
+        for method in ("baseline", "semantic_motion"):
+            evaluation = row.get(method, {}).get("semantic_evaluation")
+            if not isinstance(evaluation, dict):
+                continue
+            slots = evaluation.get("slot_f1")
+            if isinstance(slots, dict) and int(slots.get("pair_count", 0)) == 0:
+                slots["per_slot"] = {
+                    "action": 0.0,
+                    "object": 0.0,
+                    "destination": 0.0,
+                }
+                slots["macro_f1"] = 0.0
+    payload["summary"] = summarize(results)
+    samples = [row.get("sample", {}) for row in results]
+    temporal_gold = (
+        int(payload.get("input", {}).get("repeats", 0)) >= 3
+        and bool(samples)
+        and all(
+            sample.get("annotation_status")
+            in {"adjudicated", "benchmark_gold"}
+            and "boundaries_sec" in sample
+            and isinstance(sample.get("segments"), list)
+            for sample in samples
+        )
+    )
+    independent_judge = bool(payload.get("judge_model")) and (
+        payload.get("judge_model") != payload.get("model")
+    )
+    payload["formal_temporal_metrics"] = temporal_gold
+    payload["formal_semantic_metrics"] = temporal_gold and independent_judge
+    payload["semantic_judge_independent"] = independent_judge
+    payload["formal"] = temporal_gold and independent_judge
+    payload["rescored_at"] = utc_now_iso()
+    write_json(path, payload)
+    print(f"Rescored comparison output: {path}")
+
+
+def main() -> None:
+    args = parse_args()
+    if args.rescore_only:
+        rescore_output(Path(args.output))
+        return
+    if args.mode == "full-upstream":
+        warnings.warn(
+            "--mode full-upstream is now named prompt-ablation because the "
+            "Semantic-Motion arm is a prompt, not the full Module A pipeline.",
+            DeprecationWarning,
+            stacklevel=2,
+        )
+    if args.frames is not None:
+        warnings.warn(
+            "--frames is deprecated; use --frames-per-window.",
+            DeprecationWarning,
+            stacklevel=2,
+        )
+        args.frames_per_window = args.frames
+    if not args.api_key:
+        raise RuntimeError("Set DASHSCOPE_API_KEY/OPENAI_API_KEY or pass --api-key")
+    if args.repeats < 1:
+        raise ValueError("--repeats must be >= 1")
+    if args.frames_per_window < 1:
+        raise ValueError("--frames-per-window must be >= 1")
+
+    samples, sample_manifest = load_samples(args.samples)
+    output = Path(args.output)
+    previous: dict[tuple[str, int], dict[str, Any]] = {}
+    if args.resume and output.exists():
+        old = json.loads(output.read_text(encoding="utf-8"))
+        previous = {
+            _result_key(row): row
+            for row in old.get("results", [])
+            if isinstance(row, dict) and row.get("sample")
+        }
+
+    client = OpenAI(
+        api_key=args.api_key,
+        base_url=args.base_url,
+        timeout=args.timeout,
+        max_retries=max(0, args.max_retries),
+    )
+    results = list(previous.values())
+
+    def save() -> None:
+        results.sort(key=_result_key)
+        temporal_gold = bool(samples) and args.repeats >= 3 and all(
+            sample.get("annotation_status")
+            in {"adjudicated", "benchmark_gold"}
+            and "boundaries_sec" in sample
+            and isinstance(sample.get("segments"), list)
+            for sample in samples
+        )
+        independent_judge = bool(args.judge_model) and (
+            args.judge_model != args.model
+        )
+        write_json(
+            output,
+            {
+                "schema_version": "semantic-motion-video2tasks-ablation/v3",
+                "comparison_mode": "prompt-ablation-pinned-aggregation",
+                "formal": temporal_gold and independent_judge,
+                "formal_temporal_metrics": temporal_gold,
+                "formal_semantic_metrics": (
+                    temporal_gold and independent_judge
+                ),
+                "semantic_judge_independent": independent_judge,
+                "claim_scope": (
+                    "prompt ablation only; does not evaluate the full "
+                    "Semantic-Motion VideoTaskPipeline or multi-view fusion"
+                ),
+                "generated_at": utc_now_iso(),
+                "code_revision": git_revision(ROOT),
+                "model": args.model,
+                "judge_model": args.judge_model,
+                "base_url": args.base_url,
+                "request_timeout_s": args.timeout,
+                "max_retries": args.max_retries,
+                "upstream_revision": UPSTREAM_REVISION,
+                "filename_or_task_list_prior": False,
+                "prompt_hashes": {
+                    "semantic_motion": text_sha256(SEMANTIC_MOTION_PROMPT),
+                    "semantic_judge": text_sha256(SEMANTIC_JUDGE_PROMPT),
+                },
+                "pricing": {
+                    "input_usd_per_million_tokens": (
+                        args.input_cost_per_million
+                    ),
+                    "output_usd_per_million_tokens": (
+                        args.output_cost_per_million
+                    ),
+                },
+                "input": {
+                    "sample_manifest": (
+                        str(sample_manifest) if sample_manifest is not None else None
+                    ),
+                    "sample_manifest_sha256": (
+                        file_sha256(sample_manifest)
+                        if sample_manifest is not None
+                        else None
+                    ),
+                    "sample_source": (
+                        "external_manifest"
+                        if sample_manifest is not None
+                        else "author_diagnostic_inline"
+                    ),
+                    "num_samples": len(samples),
+                    "repeats": args.repeats,
+                },
+                "windowing": {
+                    "window_sec": args.window_sec,
+                    "step_sec": args.step_sec,
+                    "frames_per_window": args.frames_per_window,
+                },
+                "summary": summarize(results),
+                "results": results,
+            },
+        )
+
+    with tempfile.TemporaryDirectory(prefix="video2tasks_ablation_") as temporary:
+        frame_root = Path(temporary)
+        for sample_index, sample in enumerate(samples):
+            video_path = _resolve_path(str(sample["video"]), sample_manifest)
+            sample["video"] = str(video_path)
+            for repeat in range(args.repeats):
+                key = str(sample["id"]), repeat
+                previous_row = previous.get(key)
+                if (
+                    previous_row
+                    and not previous_row["baseline"].get("error")
+                    and not previous_row["semantic_motion"].get("error")
+                ):
+                    print(f"{sample['id']} repeat={repeat} already complete")
+                    continue
+                row = run_sample(
+                    sample=sample,
+                    repeat=repeat,
+                    client=client,
+                    args=args,
+                    frame_root=frame_root,
+                    baseline_first=(sample_index + repeat) % 2 == 0,
+                )
+                results = [
+                    existing for existing in results if _result_key(existing) != key
+                ]
+                results.append(row)
+                save()
+                print(
+                    f"{sample['id']} repeat={repeat} "
+                    f"baseline={row['baseline']['scores']['instruction_token_f1']:.3f} "
+                    f"semantic={row['semantic_motion']['scores']['instruction_token_f1']:.3f} "
+                    f"delta={row['delta_instruction_token_f1']:+.3f} "
+                    f"errors={bool(row['baseline']['error'] or row['semantic_motion']['error'])}",
+                    flush=True,
+                )
+    save()
+    print(json.dumps(summarize(results), indent=2))
+    print(f"Saved prompt ablation to {output}")
 
 
 if __name__ == "__main__":

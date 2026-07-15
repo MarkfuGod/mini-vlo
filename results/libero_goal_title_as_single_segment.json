@@ -1,0 +1,3267 @@
+{
+  "schema_version": "semantic-motion-libero-title-eval/v2",
+  "formal": false,
+  "evaluation": "title_as_single_segment",
+  "warning": "Official LIBERO titles are intentionally used as weak full-video single-segment ground truth. Temporal scores measure over-segmentation against that experimental proxy, not human atomic-subtask boundaries.",
+  "generated_at": "2026-07-15T14:22:29.809023+00:00",
+  "code_revision": "8f3096114a56caeb9d83d0e2a2def7ab32587754",
+  "model": "qwen3-vl-flash",
+  "base_url": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+  "request_timeout_s": 300.0,
+  "input": {
+    "manifest": "data/libero_goal/processed/manifest.json",
+    "manifest_sha256": "bfc210b7134802027334e427fe9facecac5737960e54a5f8836a71a6ecd725f3",
+    "sample_count": 3,
+    "views": [
+      "fixed",
+      "ego",
+      "fused"
+    ],
+    "repeats": 3
+  },
+  "pricing": {
+    "input_usd_per_million_tokens": 0.05,
+    "output_usd_per_million_tokens": 0.4
+  },
+  "summary": {
+    "run_count": 27,
+    "valid_run_count": 27,
+    "error_run_count": 0,
+    "by_view": {
+      "ego": {
+        "title_instruction_token_f1": 0.28835997157253196,
+        "semantic_label_accuracy": 0.0,
+        "slot_macro_f1": 0.1654320987654321,
+        "boundary_f1_0.5s": 0.0,
+        "boundary_f1_1.0s": 0.0,
+        "segment_f1_iou_0.5": 0.6666666666666666,
+        "segment_f1_iou_0.75": 0.0,
+        "labeled_e2e_f1_iou_0.5": 0.0,
+        "labeled_e2e_f1_iou_0.75": 0.0,
+        "action_edit": 0.0,
+        "mean_latency_s": 37.68030661122212,
+        "mean_estimated_cost_usd": 0.0007147055555555555
+      },
+      "fixed": {
+        "title_instruction_token_f1": 0.1675419468904605,
+        "semantic_label_accuracy": 0.0,
+        "slot_macro_f1": 0.0,
+        "boundary_f1_0.5s": 0.0,
+        "boundary_f1_1.0s": 0.0,
+        "segment_f1_iou_0.5": 0.6666666666666666,
+        "segment_f1_iou_0.75": 0.0,
+        "labeled_e2e_f1_iou_0.5": 0.0,
+        "labeled_e2e_f1_iou_0.75": 0.0,
+        "action_edit": 0.0,
+        "mean_latency_s": 40.13399898600002,
+        "mean_estimated_cost_usd": 0.0007965833333333334
+      },
+      "fused": {
+        "title_instruction_token_f1": 0.2228973862091087,
+        "semantic_label_accuracy": 0.3333333333333333,
+        "slot_macro_f1": 0.2548821548821549,
+        "boundary_f1_0.5s": 0.0,
+        "boundary_f1_1.0s": 0.0,
+        "segment_f1_iou_0.5": 0.6666666666666666,
+        "segment_f1_iou_0.75": 0.07407407407407407,
+        "labeled_e2e_f1_iou_0.5": 0.2222222222222222,
+        "labeled_e2e_f1_iou_0.75": 0.0,
+        "action_edit": 0.0,
+        "mean_latency_s": 75.53833205088898,
+        "mean_estimated_cost_usd": 0.0011588833333333335
+      }
+    },
+    "paired_view_deltas": {
+      "fused_minus_fixed": {
+        "title_instruction_token_f1": {
+          "mean_delta": 0.055355439318648246,
+          "lower": 0.01974527530083085,
+          "upper": 0.08919078184838253,
+          "confidence": 0.95,
+          "draws": 4000.0,
+          "n": 9.0
+        },
+        "semantic_label_accuracy": {
+          "mean_delta": 0.3333333333333333,
+          "lower": 0.0,
+          "upper": 0.6666666666666666,
+          "confidence": 0.95,
+          "draws": 4000.0,
+          "n": 9.0
+        },
+        "slot_macro_f1": {
+          "mean_delta": 0.2548821548821549,
+          "lower": 0.07037037037037036,
+          "upper": 0.44983164983164986,
+          "confidence": 0.95,
+          "draws": 4000.0,
+          "n": 9.0
+        },
+        "boundary_f1_0.5s": {
+          "mean_delta": 0.0,
+          "lower": 0.0,
+          "upper": 0.0,
+          "confidence": 0.95,
+          "draws": 4000.0,
+          "n": 9.0
+        },
+        "boundary_f1_1.0s": {
+          "mean_delta": 0.0,
+          "lower": 0.0,
+          "upper": 0.0,
+          "confidence": 0.95,
+          "draws": 4000.0,
+          "n": 9.0
+        },
+        "segment_f1_iou_0.5": {
+          "mean_delta": 0.0,
+          "lower": 0.0,
+          "upper": 0.0,
+          "confidence": 0.95,
+          "draws": 4000.0,
+          "n": 9.0
+        },
+        "segment_f1_iou_0.75": {
+          "mean_delta": 0.07407407407407407,
+          "lower": 0.0,
+          "upper": 0.2222222222222222,
+          "confidence": 0.95,
+          "draws": 4000.0,
+          "n": 9.0
+        },
+        "labeled_e2e_f1_iou_0.5": {
+          "mean_delta": 0.2222222222222222,
+          "lower": 0.0,
+          "upper": 0.4444444444444444,
+          "confidence": 0.95,
+          "draws": 4000.0,
+          "n": 9.0
+        },
+        "labeled_e2e_f1_iou_0.75": {
+          "mean_delta": 0.0,
+          "lower": 0.0,
+          "upper": 0.0,
+          "confidence": 0.95,
+          "draws": 4000.0,
+          "n": 9.0
+        },
+        "action_edit": {
+          "mean_delta": 0.0,
+          "lower": 0.0,
+          "upper": 0.0,
+          "confidence": 0.95,
+          "draws": 4000.0,
+          "n": 9.0
+        }
+      },
+      "fused_minus_ego": {
+        "title_instruction_token_f1": {
+          "mean_delta": -0.06546258536342324,
+          "lower": -0.11942232983023073,
+          "upper": -0.002708971789722391,
+          "confidence": 0.95,
+          "draws": 4000.0,
+          "n": 9.0
+        },
+        "semantic_label_accuracy": {
+          "mean_delta": 0.3333333333333333,
+          "lower": 0.0,
+          "upper": 0.6666666666666666,
+          "confidence": 0.95,
+          "draws": 4000.0,
+          "n": 9.0
+        },
+        "slot_macro_f1": {
+          "mean_delta": 0.08945005611672278,
+          "lower": -0.007407407407407414,
+          "upper": 0.19865319865319866,
+          "confidence": 0.95,
+          "draws": 4000.0,
+          "n": 9.0
+        },
+        "boundary_f1_0.5s": {
+          "mean_delta": 0.0,
+          "lower": 0.0,
+          "upper": 0.0,
+          "confidence": 0.95,
+          "draws": 4000.0,
+          "n": 9.0
+        },
+        "boundary_f1_1.0s": {
+          "mean_delta": 0.0,
+          "lower": 0.0,
+          "upper": 0.0,
+          "confidence": 0.95,
+          "draws": 4000.0,
+          "n": 9.0
+        },
+        "segment_f1_iou_0.5": {
+          "mean_delta": 0.0,
+          "lower": 0.0,
+          "upper": 0.0,
+          "confidence": 0.95,
+          "draws": 4000.0,
+          "n": 9.0
+        },
+        "segment_f1_iou_0.75": {
+          "mean_delta": 0.07407407407407407,
+          "lower": 0.0,
+          "upper": 0.2222222222222222,
+          "confidence": 0.95,
+          "draws": 4000.0,
+          "n": 9.0
+        },
+        "labeled_e2e_f1_iou_0.5": {
+          "mean_delta": 0.2222222222222222,
+          "lower": 0.0,
+          "upper": 0.4444444444444444,
+          "confidence": 0.95,
+          "draws": 4000.0,
+          "n": 9.0
+        },
+        "labeled_e2e_f1_iou_0.75": {
+          "mean_delta": 0.0,
+          "lower": 0.0,
+          "upper": 0.0,
+          "confidence": 0.95,
+          "draws": 4000.0,
+          "n": 9.0
+        },
+        "action_edit": {
+          "mean_delta": 0.0,
+          "lower": 0.0,
+          "upper": 0.0,
+          "confidence": 0.95,
+          "draws": 4000.0,
+          "n": 9.0
+        }
+      }
+    }
+  },
+  "results": [
+    {
+      "sample_id": "put_the_bowl_on_the_plate_demo_0",
+      "view": "ego",
+      "repeat": 0,
+      "status": "ok",
+      "ground_truth_title": "put the bowl on the plate",
+      "ground_truth_source": "official LIBERO BDDL filename",
+      "ground_truth_scope": "experimental weak title-as-single-segment",
+      "duration_sec": 4.5,
+      "latency_s": 30.025020332999702,
+      "usage": {
+        "requests": 5,
+        "input_tokens": 2968,
+        "output_tokens": 1537,
+        "estimated_cost_usd": 0.0007632
+      },
+      "metrics": {
+        "ground_truth_policy": "official_title_as_one_full_video_segment",
+        "ground_truth_slots": {
+          "action": "pick_and_place",
+          "object": "bowl",
+          "destination": "plate"
+        },
+        "predicted_slots": {
+          "action": "reach",
+          "object": "black bowl ; bowl",
+          "destination": "unknown ; on plate"
+        },
+        "title_instruction_token_f1": 0.3846153846153846,
+        "semantic_label_accuracy": 0.0,
+        "slot_f1": {
+          "per_slot": {
+            "action": 0.0,
+            "object": 0.5,
+            "destination": 0.5
+          },
+          "macro_f1": 0.3333333333333333,
+          "pair_count": 1
+        },
+        "boundary_f1": {
+          "0.5s": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 1.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 0.5
+          },
+          "1.0s": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 1.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 1.0
+          }
+        },
+        "segment_f1_at_iou": {
+          "0.5": {
+            "precision": 0.5,
+            "recall": 1.0,
+            "f1": 0.6666666666666666,
+            "mean_iou": 0.5111111111111111,
+            "threshold": 0.5,
+            "tp": 1.0,
+            "fp": 1.0,
+            "fn": 0.0
+          },
+          "0.75": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "mean_iou": 0.0,
+            "threshold": 0.75,
+            "tp": 0.0,
+            "fp": 2.0,
+            "fn": 1.0
+          }
+        },
+        "labeled_end_to_end_segment_f1": {
+          "0.5": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 2.0,
+            "fn": 1.0,
+            "mean_iou": 0.0,
+            "threshold": 0.5
+          },
+          "0.75": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 2.0,
+            "fn": 1.0,
+            "mean_iou": 0.0,
+            "threshold": 0.75
+          }
+        },
+        "action_edit": 0.0,
+        "predicted_segment_count": 2,
+        "gold_segment_count": 1
+      },
+      "prediction": "reach and grasp the black bowl on the wooden surface ; move the bowl from the table surface onto the plate.",
+      "record_path": "results/libero_goal_title_records/put_the_bowl_on_the_plate_demo_0/ego/repeat_00.json"
+    },
+    {
+      "sample_id": "put_the_bowl_on_the_plate_demo_0",
+      "view": "ego",
+      "repeat": 1,
+      "status": "ok",
+      "ground_truth_title": "put the bowl on the plate",
+      "ground_truth_source": "official LIBERO BDDL filename",
+      "ground_truth_scope": "experimental weak title-as-single-segment",
+      "duration_sec": 4.5,
+      "latency_s": 26.157710709000185,
+      "usage": {
+        "requests": 4,
+        "input_tokens": 2401,
+        "output_tokens": 1345,
+        "estimated_cost_usd": 0.00065805
+      },
+      "metrics": {
+        "ground_truth_policy": "official_title_as_one_full_video_segment",
+        "ground_truth_slots": {
+          "action": "pick_and_place",
+          "object": "bowl",
+          "destination": "plate"
+        },
+        "predicted_slots": {
+          "action": "reach",
+          "object": "black bowl ; bowl",
+          "destination": "unknown ; next to plate"
+        },
+        "title_instruction_token_f1": 0.45454545454545453,
+        "semantic_label_accuracy": 0.0,
+        "slot_f1": {
+          "per_slot": {
+            "action": 0.0,
+            "object": 0.5,
+            "destination": 0.4
+          },
+          "macro_f1": 0.3,
+          "pair_count": 1
+        },
+        "boundary_f1": {
+          "0.5s": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 1.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 0.5
+          },
+          "1.0s": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 1.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 1.0
+          }
+        },
+        "segment_f1_at_iou": {
+          "0.5": {
+            "precision": 0.5,
+            "recall": 1.0,
+            "f1": 0.6666666666666666,
+            "mean_iou": 0.5666666666666667,
+            "threshold": 0.5,
+            "tp": 1.0,
+            "fp": 1.0,
+            "fn": 0.0
+          },
+          "0.75": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "mean_iou": 0.0,
+            "threshold": 0.75,
+            "tp": 0.0,
+            "fp": 2.0,
+            "fn": 1.0
+          }
+        },
+        "labeled_end_to_end_segment_f1": {
+          "0.5": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 2.0,
+            "fn": 1.0,
+            "mean_iou": 0.0,
+            "threshold": 0.5
+          },
+          "0.75": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 2.0,
+            "fn": 1.0,
+            "mean_iou": 0.0,
+            "threshold": 0.75
+          }
+        },
+        "action_edit": 0.0,
+        "predicted_segment_count": 2,
+        "gold_segment_count": 1
+      },
+      "prediction": "reach and grasp the black bowl on the floor ; move the bowl closer to the plate.",
+      "record_path": "results/libero_goal_title_records/put_the_bowl_on_the_plate_demo_0/ego/repeat_01.json"
+    },
+    {
+      "sample_id": "put_the_bowl_on_the_plate_demo_0",
+      "view": "ego",
+      "repeat": 2,
+      "status": "ok",
+      "ground_truth_title": "put the bowl on the plate",
+      "ground_truth_source": "official LIBERO BDDL filename",
+      "ground_truth_scope": "experimental weak title-as-single-segment",
+      "duration_sec": 4.5,
+      "latency_s": 35.93539749999991,
+      "usage": {
+        "requests": 5,
+        "input_tokens": 2968,
+        "output_tokens": 1600,
+        "estimated_cost_usd": 0.0007884
+      },
+      "metrics": {
+        "ground_truth_policy": "official_title_as_one_full_video_segment",
+        "ground_truth_slots": {
+          "action": "pick_and_place",
+          "object": "bowl",
+          "destination": "plate"
+        },
+        "predicted_slots": {
+          "action": "reach",
+          "object": "black bowl ; bowl",
+          "destination": "held in hand ; plate"
+        },
+        "title_instruction_token_f1": 0.4347826086956522,
+        "semantic_label_accuracy": 0.0,
+        "slot_f1": {
+          "per_slot": {
+            "action": 0.0,
+            "object": 0.5,
+            "destination": 0.4
+          },
+          "macro_f1": 0.3,
+          "pair_count": 1
+        },
+        "boundary_f1": {
+          "0.5s": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 1.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 0.5
+          },
+          "1.0s": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 1.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 1.0
+          }
+        },
+        "segment_f1_at_iou": {
+          "0.5": {
+            "precision": 0.5,
+            "recall": 1.0,
+            "f1": 0.6666666666666666,
+            "mean_iou": 0.5111111111111111,
+            "threshold": 0.5,
+            "tp": 1.0,
+            "fp": 1.0,
+            "fn": 0.0
+          },
+          "0.75": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "mean_iou": 0.0,
+            "threshold": 0.75,
+            "tp": 0.0,
+            "fp": 2.0,
+            "fn": 1.0
+          }
+        },
+        "labeled_end_to_end_segment_f1": {
+          "0.5": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 2.0,
+            "fn": 1.0,
+            "mean_iou": 0.0,
+            "threshold": 0.5
+          },
+          "0.75": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 2.0,
+            "fn": 1.0,
+            "mean_iou": 0.0,
+            "threshold": 0.75
+          }
+        },
+        "action_edit": 0.0,
+        "predicted_segment_count": 2,
+        "gold_segment_count": 1
+      },
+      "prediction": "reach for and grasp the black bowl on the floor. ; move the bowl down onto the plate.",
+      "record_path": "results/libero_goal_title_records/put_the_bowl_on_the_plate_demo_0/ego/repeat_02.json"
+    },
+    {
+      "sample_id": "put_the_bowl_on_the_plate_demo_0",
+      "view": "fixed",
+      "repeat": 0,
+      "status": "ok",
+      "ground_truth_title": "put the bowl on the plate",
+      "ground_truth_source": "official LIBERO BDDL filename",
+      "ground_truth_scope": "experimental weak title-as-single-segment",
+      "duration_sec": 4.5,
+      "latency_s": 29.195202083999902,
+      "usage": {
+        "requests": 4,
+        "input_tokens": 2401,
+        "output_tokens": 1489,
+        "estimated_cost_usd": 0.0007156500000000001
+      },
+      "metrics": {
+        "ground_truth_policy": "official_title_as_one_full_video_segment",
+        "ground_truth_slots": {
+          "action": "pick_and_place",
+          "object": "bowl",
+          "destination": "plate"
+        },
+        "predicted_slots": {
+          "action": "reach",
+          "object": "circular object ; robot arm",
+          "destination": "robot arm ; None"
+        },
+        "title_instruction_token_f1": 0.21428571428571427,
+        "semantic_label_accuracy": 0.0,
+        "slot_f1": {
+          "per_slot": {
+            "action": 0.0,
+            "object": 0.0,
+            "destination": 0.0
+          },
+          "macro_f1": 0.0,
+          "pair_count": 1
+        },
+        "boundary_f1": {
+          "0.5s": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 1.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 0.5
+          },
+          "1.0s": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 1.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 1.0
+          }
+        },
+        "segment_f1_at_iou": {
+          "0.5": {
+            "precision": 0.5,
+            "recall": 1.0,
+            "f1": 0.6666666666666666,
+            "mean_iou": 0.5666666666666667,
+            "threshold": 0.5,
+            "tp": 1.0,
+            "fp": 1.0,
+            "fn": 0.0
+          },
+          "0.75": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "mean_iou": 0.0,
+            "threshold": 0.75,
+            "tp": 0.0,
+            "fp": 2.0,
+            "fn": 1.0
+          }
+        },
+        "labeled_end_to_end_segment_f1": {
+          "0.5": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 2.0,
+            "fn": 1.0,
+            "mean_iou": 0.0,
+            "threshold": 0.5
+          },
+          "0.75": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 2.0,
+            "fn": 1.0,
+            "mean_iou": 0.0,
+            "threshold": 0.75
+          }
+        },
+        "action_edit": 0.0,
+        "predicted_segment_count": 2,
+        "gold_segment_count": 1
+      },
+      "prediction": "reach for and grasp the circular object above the robot arm. ; adjust robot arm position to align with circular object on wall",
+      "record_path": "results/libero_goal_title_records/put_the_bowl_on_the_plate_demo_0/fixed/repeat_00.json"
+    },
+    {
+      "sample_id": "put_the_bowl_on_the_plate_demo_0",
+      "view": "fixed",
+      "repeat": 1,
+      "status": "ok",
+      "ground_truth_title": "put the bowl on the plate",
+      "ground_truth_source": "official LIBERO BDDL filename",
+      "ground_truth_scope": "experimental weak title-as-single-segment",
+      "duration_sec": 4.5,
+      "latency_s": 31.788102208000055,
+      "usage": {
+        "requests": 4,
+        "input_tokens": 2401,
+        "output_tokens": 1684,
+        "estimated_cost_usd": 0.0007936500000000001
+      },
+      "metrics": {
+        "ground_truth_policy": "official_title_as_one_full_video_segment",
+        "ground_truth_slots": {
+          "action": "pick_and_place",
+          "object": "bowl",
+          "destination": "plate"
+        },
+        "predicted_slots": {
+          "action": "reach",
+          "object": "circular object ; robot arm",
+          "destination": "robot arm ; near circular object"
+        },
+        "title_instruction_token_f1": 0.2,
+        "semantic_label_accuracy": 0.0,
+        "slot_f1": {
+          "per_slot": {
+            "action": 0.0,
+            "object": 0.0,
+            "destination": 0.0
+          },
+          "macro_f1": 0.0,
+          "pair_count": 1
+        },
+        "boundary_f1": {
+          "0.5s": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 1.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 0.5
+          },
+          "1.0s": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 1.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 1.0
+          }
+        },
+        "segment_f1_at_iou": {
+          "0.5": {
+            "precision": 0.5,
+            "recall": 1.0,
+            "f1": 0.6666666666666666,
+            "mean_iou": 0.5666666666666667,
+            "threshold": 0.5,
+            "tp": 1.0,
+            "fp": 1.0,
+            "fn": 0.0
+          },
+          "0.75": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "mean_iou": 0.0,
+            "threshold": 0.75,
+            "tp": 0.0,
+            "fp": 2.0,
+            "fn": 1.0
+          }
+        },
+        "labeled_end_to_end_segment_f1": {
+          "0.5": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 2.0,
+            "fn": 1.0,
+            "mean_iou": 0.0,
+            "threshold": 0.5
+          },
+          "0.75": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 2.0,
+            "fn": 1.0,
+            "mean_iou": 0.0,
+            "threshold": 0.75
+          }
+        },
+        "action_edit": 0.0,
+        "predicted_segment_count": 2,
+        "gold_segment_count": 1
+      },
+      "prediction": "reach for and grasp the circular object using the robot arm. ; adjust and move the robot arm toward the circular object on the wall.",
+      "record_path": "results/libero_goal_title_records/put_the_bowl_on_the_plate_demo_0/fixed/repeat_01.json"
+    },
+    {
+      "sample_id": "put_the_bowl_on_the_plate_demo_0",
+      "view": "fixed",
+      "repeat": 2,
+      "status": "ok",
+      "ground_truth_title": "put the bowl on the plate",
+      "ground_truth_source": "official LIBERO BDDL filename",
+      "ground_truth_scope": "experimental weak title-as-single-segment",
+      "duration_sec": 4.5,
+      "latency_s": 31.875996290999865,
+      "usage": {
+        "requests": 4,
+        "input_tokens": 2401,
+        "output_tokens": 1668,
+        "estimated_cost_usd": 0.00078725
+      },
+      "metrics": {
+        "ground_truth_policy": "official_title_as_one_full_video_segment",
+        "ground_truth_slots": {
+          "action": "pick_and_place",
+          "object": "bowl",
+          "destination": "plate"
+        },
+        "predicted_slots": {
+          "action": "manipulation",
+          "object": "metal object ; robot arm",
+          "destination": "near metal object ; near circular object"
+        },
+        "title_instruction_token_f1": 0.2,
+        "semantic_label_accuracy": 0.0,
+        "slot_f1": {
+          "per_slot": {
+            "action": 0.0,
+            "object": 0.0,
+            "destination": 0.0
+          },
+          "macro_f1": 0.0,
+          "pair_count": 1
+        },
+        "boundary_f1": {
+          "0.5s": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 1.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 0.5
+          },
+          "1.0s": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 1.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 1.0
+          }
+        },
+        "segment_f1_at_iou": {
+          "0.5": {
+            "precision": 0.5,
+            "recall": 1.0,
+            "f1": 0.6666666666666666,
+            "mean_iou": 0.5666666666666667,
+            "threshold": 0.5,
+            "tp": 1.0,
+            "fp": 1.0,
+            "fn": 0.0
+          },
+          "0.75": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "mean_iou": 0.0,
+            "threshold": 0.75,
+            "tp": 0.0,
+            "fp": 2.0,
+            "fn": 1.0
+          }
+        },
+        "labeled_end_to_end_segment_f1": {
+          "0.5": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 2.0,
+            "fn": 1.0,
+            "mean_iou": 0.0,
+            "threshold": 0.5
+          },
+          "0.75": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 2.0,
+            "fn": 1.0,
+            "mean_iou": 0.0,
+            "threshold": 0.75
+          }
+        },
+        "action_edit": 0.0,
+        "predicted_segment_count": 2,
+        "gold_segment_count": 1
+      },
+      "prediction": "position the robot arm near the metal object on the wall. ; adjust and move the robot arm toward the circular object on the wall.",
+      "record_path": "results/libero_goal_title_records/put_the_bowl_on_the_plate_demo_0/fixed/repeat_02.json"
+    },
+    {
+      "sample_id": "put_the_bowl_on_the_plate_demo_0",
+      "view": "fused",
+      "repeat": 0,
+      "status": "ok",
+      "ground_truth_title": "put the bowl on the plate",
+      "ground_truth_source": "official LIBERO BDDL filename",
+      "ground_truth_scope": "experimental weak title-as-single-segment",
+      "duration_sec": 4.5,
+      "latency_s": 64.86929633299997,
+      "usage": {
+        "requests": 5,
+        "input_tokens": 3820,
+        "output_tokens": 2479,
+        "estimated_cost_usd": 0.0011826
+      },
+      "metrics": {
+        "ground_truth_policy": "official_title_as_one_full_video_segment",
+        "ground_truth_slots": {
+          "action": "pick_and_place",
+          "object": "bowl",
+          "destination": "plate"
+        },
+        "predicted_slots": {
+          "action": "pick and place",
+          "object": "black bowl ; bowl",
+          "destination": "above table ; above plate or off-frame (not fully visible)"
+        },
+        "title_instruction_token_f1": 0.3225806451612903,
+        "semantic_label_accuracy": 1.0,
+        "slot_f1": {
+          "per_slot": {
+            "action": 1.0,
+            "object": 0.5,
+            "destination": 0.18181818181818182
+          },
+          "macro_f1": 0.5606060606060607,
+          "pair_count": 1
+        },
+        "boundary_f1": {
+          "0.5s": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 1.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 0.5
+          },
+          "1.0s": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 1.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 1.0
+          }
+        },
+        "segment_f1_at_iou": {
+          "0.5": {
+            "precision": 0.5,
+            "recall": 1.0,
+            "f1": 0.6666666666666666,
+            "mean_iou": 0.7444444444444445,
+            "threshold": 0.5,
+            "tp": 1.0,
+            "fp": 1.0,
+            "fn": 0.0
+          },
+          "0.75": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "mean_iou": 0.0,
+            "threshold": 0.75,
+            "tp": 0.0,
+            "fp": 2.0,
+            "fn": 1.0
+          }
+        },
+        "labeled_end_to_end_segment_f1": {
+          "0.5": {
+            "precision": 0.5,
+            "recall": 1.0,
+            "f1": 0.6666666666666666,
+            "tp": 1.0,
+            "fp": 1.0,
+            "fn": 0.0,
+            "mean_iou": 0.7444444444444445,
+            "threshold": 0.5
+          },
+          "0.75": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 2.0,
+            "fn": 1.0,
+            "mean_iou": 0.0,
+            "threshold": 0.75
+          }
+        },
+        "action_edit": 0.0,
+        "predicted_segment_count": 2,
+        "gold_segment_count": 1
+      },
+      "prediction": "reach for and lift the black bowl using the robot arm. ; lift the bowl using the robot arm while it is resting on the plate.",
+      "record_path": "results/libero_goal_title_records/put_the_bowl_on_the_plate_demo_0/fused/repeat_00.json"
+    },
+    {
+      "sample_id": "put_the_bowl_on_the_plate_demo_0",
+      "view": "fused",
+      "repeat": 1,
+      "status": "ok",
+      "ground_truth_title": "put the bowl on the plate",
+      "ground_truth_source": "official LIBERO BDDL filename",
+      "ground_truth_scope": "experimental weak title-as-single-segment",
+      "duration_sec": 4.5,
+      "latency_s": 63.00794895900026,
+      "usage": {
+        "requests": 5,
+        "input_tokens": 3820,
+        "output_tokens": 2630,
+        "estimated_cost_usd": 0.001243
+      },
+      "metrics": {
+        "ground_truth_policy": "official_title_as_one_full_video_segment",
+        "ground_truth_slots": {
+          "action": "pick_and_place",
+          "object": "bowl",
+          "destination": "plate"
+        },
+        "predicted_slots": {
+          "action": "pick and place",
+          "object": "black bowl ; bowl",
+          "destination": "above table ; above plate"
+        },
+        "title_instruction_token_f1": 0.2962962962962963,
+        "semantic_label_accuracy": 1.0,
+        "slot_f1": {
+          "per_slot": {
+            "action": 1.0,
+            "object": 0.5,
+            "destination": 0.4
+          },
+          "macro_f1": 0.6333333333333333,
+          "pair_count": 1
+        },
+        "boundary_f1": {
+          "0.5s": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 1.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 0.5
+          },
+          "1.0s": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 1.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 1.0
+          }
+        },
+        "segment_f1_at_iou": {
+          "0.5": {
+            "precision": 0.5,
+            "recall": 1.0,
+            "f1": 0.6666666666666666,
+            "mean_iou": 0.7444444444444445,
+            "threshold": 0.5,
+            "tp": 1.0,
+            "fp": 1.0,
+            "fn": 0.0
+          },
+          "0.75": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "mean_iou": 0.0,
+            "threshold": 0.75,
+            "tp": 0.0,
+            "fp": 2.0,
+            "fn": 1.0
+          }
+        },
+        "labeled_end_to_end_segment_f1": {
+          "0.5": {
+            "precision": 0.5,
+            "recall": 1.0,
+            "f1": 0.6666666666666666,
+            "tp": 1.0,
+            "fp": 1.0,
+            "fn": 0.0,
+            "mean_iou": 0.7444444444444445,
+            "threshold": 0.5
+          },
+          "0.75": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 2.0,
+            "fn": 1.0,
+            "mean_iou": 0.0,
+            "threshold": 0.75
+          }
+        },
+        "action_edit": 0.0,
+        "predicted_segment_count": 2,
+        "gold_segment_count": 1
+      },
+      "prediction": "reach for and lift the black bowl using the robot arm. ; lift the bowl from the plate using the robot arm.",
+      "record_path": "results/libero_goal_title_records/put_the_bowl_on_the_plate_demo_0/fused/repeat_01.json"
+    },
+    {
+      "sample_id": "put_the_bowl_on_the_plate_demo_0",
+      "view": "fused",
+      "repeat": 2,
+      "status": "ok",
+      "ground_truth_title": "put the bowl on the plate",
+      "ground_truth_source": "official LIBERO BDDL filename",
+      "ground_truth_scope": "experimental weak title-as-single-segment",
+      "duration_sec": 4.5,
+      "latency_s": 73.41975741700026,
+      "usage": {
+        "requests": 5,
+        "input_tokens": 3820,
+        "output_tokens": 2510,
+        "estimated_cost_usd": 0.001195
+      },
+      "metrics": {
+        "ground_truth_policy": "official_title_as_one_full_video_segment",
+        "ground_truth_slots": {
+          "action": "pick_and_place",
+          "object": "bowl",
+          "destination": "plate"
+        },
+        "predicted_slots": {
+          "action": "pick and place",
+          "object": "black bowl ; bowl",
+          "destination": "above table ; above plate"
+        },
+        "title_instruction_token_f1": 0.2962962962962963,
+        "semantic_label_accuracy": 1.0,
+        "slot_f1": {
+          "per_slot": {
+            "action": 1.0,
+            "object": 0.5,
+            "destination": 0.4
+          },
+          "macro_f1": 0.6333333333333333,
+          "pair_count": 1
+        },
+        "boundary_f1": {
+          "0.5s": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 1.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 0.5
+          },
+          "1.0s": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 1.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 1.0
+          }
+        },
+        "segment_f1_at_iou": {
+          "0.5": {
+            "precision": 0.5,
+            "recall": 1.0,
+            "f1": 0.6666666666666666,
+            "mean_iou": 0.7444444444444445,
+            "threshold": 0.5,
+            "tp": 1.0,
+            "fp": 1.0,
+            "fn": 0.0
+          },
+          "0.75": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "mean_iou": 0.0,
+            "threshold": 0.75,
+            "tp": 0.0,
+            "fp": 2.0,
+            "fn": 1.0
+          }
+        },
+        "labeled_end_to_end_segment_f1": {
+          "0.5": {
+            "precision": 0.5,
+            "recall": 1.0,
+            "f1": 0.6666666666666666,
+            "tp": 1.0,
+            "fp": 1.0,
+            "fn": 0.0,
+            "mean_iou": 0.7444444444444445,
+            "threshold": 0.5
+          },
+          "0.75": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 2.0,
+            "fn": 1.0,
+            "mean_iou": 0.0,
+            "threshold": 0.75
+          }
+        },
+        "action_edit": 0.0,
+        "predicted_segment_count": 2,
+        "gold_segment_count": 1
+      },
+      "prediction": "reach for and lift the black bowl using the robot arm. ; lift the bowl from the plate using the robot arm.",
+      "record_path": "results/libero_goal_title_records/put_the_bowl_on_the_plate_demo_0/fused/repeat_02.json"
+    },
+    {
+      "sample_id": "put_the_bowl_on_the_stove_demo_0",
+      "view": "ego",
+      "repeat": 0,
+      "status": "ok",
+      "ground_truth_title": "put the bowl on the stove",
+      "ground_truth_source": "official LIBERO BDDL filename",
+      "ground_truth_scope": "experimental weak title-as-single-segment",
+      "duration_sec": 4.7,
+      "latency_s": 41.46453583399989,
+      "usage": {
+        "requests": 4,
+        "input_tokens": 2401,
+        "output_tokens": 1514,
+        "estimated_cost_usd": 0.0007256500000000001
+      },
+      "metrics": {
+        "ground_truth_policy": "official_title_as_one_full_video_segment",
+        "ground_truth_slots": {
+          "action": "pick_and_place",
+          "object": "bowl",
+          "destination": "stove"
+        },
+        "predicted_slots": {
+          "action": "move",
+          "object": "pan ; bowl",
+          "destination": "stove ; None"
+        },
+        "title_instruction_token_f1": 0.3125,
+        "semantic_label_accuracy": 0.0,
+        "slot_f1": {
+          "per_slot": {
+            "action": 0.0,
+            "object": 0.6666666666666666,
+            "destination": 0.6666666666666666
+          },
+          "macro_f1": 0.4444444444444444,
+          "pair_count": 1
+        },
+        "boundary_f1": {
+          "0.5s": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 1.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 0.5
+          },
+          "1.0s": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 1.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 1.0
+          }
+        },
+        "segment_f1_at_iou": {
+          "0.5": {
+            "precision": 0.5,
+            "recall": 1.0,
+            "f1": 0.6666666666666666,
+            "mean_iou": 0.574468085106383,
+            "threshold": 0.5,
+            "tp": 1.0,
+            "fp": 1.0,
+            "fn": 0.0
+          },
+          "0.75": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "mean_iou": 0.0,
+            "threshold": 0.75,
+            "tp": 0.0,
+            "fp": 2.0,
+            "fn": 1.0
+          }
+        },
+        "labeled_end_to_end_segment_f1": {
+          "0.5": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 2.0,
+            "fn": 1.0,
+            "mean_iou": 0.0,
+            "threshold": 0.5
+          },
+          "0.75": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 2.0,
+            "fn": 1.0,
+            "mean_iou": 0.0,
+            "threshold": 0.75
+          }
+        },
+        "action_edit": 0.0,
+        "predicted_segment_count": 2,
+        "gold_segment_count": 1
+      },
+      "prediction": "move the pan and place it on the stove. ; analyze the micro-action window showing approach to a mat with a bowl and visible liquid spill.",
+      "record_path": "results/libero_goal_title_records/put_the_bowl_on_the_stove_demo_0/ego/repeat_00.json"
+    },
+    {
+      "sample_id": "put_the_bowl_on_the_stove_demo_0",
+      "view": "ego",
+      "repeat": 1,
+      "status": "ok",
+      "ground_truth_title": "put the bowl on the stove",
+      "ground_truth_source": "official LIBERO BDDL filename",
+      "ground_truth_scope": "experimental weak title-as-single-segment",
+      "duration_sec": 4.7,
+      "latency_s": 45.011650624999675,
+      "usage": {
+        "requests": 4,
+        "input_tokens": 2401,
+        "output_tokens": 1501,
+        "estimated_cost_usd": 0.0007204500000000001
+      },
+      "metrics": {
+        "ground_truth_policy": "official_title_as_one_full_video_segment",
+        "ground_truth_slots": {
+          "action": "pick_and_place",
+          "object": "bowl",
+          "destination": "stove"
+        },
+        "predicted_slots": {
+          "action": "move",
+          "object": "pan ; black rectangular object",
+          "destination": "stove ; left side of table"
+        },
+        "title_instruction_token_f1": 0.33333333333333337,
+        "semantic_label_accuracy": 0.0,
+        "slot_f1": {
+          "per_slot": {
+            "action": 0.0,
+            "object": 0.0,
+            "destination": 0.33333333333333337
+          },
+          "macro_f1": 0.11111111111111112,
+          "pair_count": 1
+        },
+        "boundary_f1": {
+          "0.5s": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 1.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 0.5
+          },
+          "1.0s": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 1.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 1.0
+          }
+        },
+        "segment_f1_at_iou": {
+          "0.5": {
+            "precision": 0.5,
+            "recall": 1.0,
+            "f1": 0.6666666666666666,
+            "mean_iou": 0.574468085106383,
+            "threshold": 0.5,
+            "tp": 1.0,
+            "fp": 1.0,
+            "fn": 0.0
+          },
+          "0.75": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "mean_iou": 0.0,
+            "threshold": 0.75,
+            "tp": 0.0,
+            "fp": 2.0,
+            "fn": 1.0
+          }
+        },
+        "labeled_end_to_end_segment_f1": {
+          "0.5": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 2.0,
+            "fn": 1.0,
+            "mean_iou": 0.0,
+            "threshold": 0.5
+          },
+          "0.75": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 2.0,
+            "fn": 1.0,
+            "mean_iou": 0.0,
+            "threshold": 0.75
+          }
+        },
+        "action_edit": 0.0,
+        "predicted_segment_count": 2,
+        "gold_segment_count": 1
+      },
+      "prediction": "move the pan and place it on the stove. ; move the black rectangular object left and adjust the bowl's position on the mat.",
+      "record_path": "results/libero_goal_title_records/put_the_bowl_on_the_stove_demo_0/ego/repeat_01.json"
+    },
+    {
+      "sample_id": "put_the_bowl_on_the_stove_demo_0",
+      "view": "ego",
+      "repeat": 2,
+      "status": "ok",
+      "ground_truth_title": "put the bowl on the stove",
+      "ground_truth_source": "official LIBERO BDDL filename",
+      "ground_truth_scope": "experimental weak title-as-single-segment",
+      "duration_sec": 4.7,
+      "latency_s": 38.13882737499989,
+      "usage": {
+        "requests": 4,
+        "input_tokens": 2401,
+        "output_tokens": 1564,
+        "estimated_cost_usd": 0.00074565
+      },
+      "metrics": {
+        "ground_truth_policy": "official_title_as_one_full_video_segment",
+        "ground_truth_slots": {
+          "action": "pick_and_place",
+          "object": "bowl",
+          "destination": "stove"
+        },
+        "predicted_slots": {
+          "action": "move",
+          "object": "pan ; black rectangular object",
+          "destination": "floor ; near bowl"
+        },
+        "title_instruction_token_f1": 0.3125,
+        "semantic_label_accuracy": 0.0,
+        "slot_f1": {
+          "per_slot": {
+            "action": 0.0,
+            "object": 0.0,
+            "destination": 0.0
+          },
+          "macro_f1": 0.0,
+          "pair_count": 1
+        },
+        "boundary_f1": {
+          "0.5s": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 1.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 0.5
+          },
+          "1.0s": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 1.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 1.0
+          }
+        },
+        "segment_f1_at_iou": {
+          "0.5": {
+            "precision": 0.5,
+            "recall": 1.0,
+            "f1": 0.6666666666666666,
+            "mean_iou": 0.574468085106383,
+            "threshold": 0.5,
+            "tp": 1.0,
+            "fp": 1.0,
+            "fn": 0.0
+          },
+          "0.75": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "mean_iou": 0.0,
+            "threshold": 0.75,
+            "tp": 0.0,
+            "fp": 2.0,
+            "fn": 1.0
+          }
+        },
+        "labeled_end_to_end_segment_f1": {
+          "0.5": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 2.0,
+            "fn": 1.0,
+            "mean_iou": 0.0,
+            "threshold": 0.5
+          },
+          "0.75": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 2.0,
+            "fn": 1.0,
+            "mean_iou": 0.0,
+            "threshold": 0.75
+          }
+        },
+        "action_edit": 0.0,
+        "predicted_segment_count": 2,
+        "gold_segment_count": 1
+      },
+      "prediction": "lift the pan from the stove and move it toward the floor. ; move the black rectangular object closer to the bowl placed on the gray mat.",
+      "record_path": "results/libero_goal_title_records/put_the_bowl_on_the_stove_demo_0/ego/repeat_02.json"
+    },
+    {
+      "sample_id": "put_the_bowl_on_the_stove_demo_0",
+      "view": "fixed",
+      "repeat": 0,
+      "status": "ok",
+      "ground_truth_title": "put the bowl on the stove",
+      "ground_truth_source": "official LIBERO BDDL filename",
+      "ground_truth_scope": "experimental weak title-as-single-segment",
+      "duration_sec": 4.7,
+      "latency_s": 34.91579920799995,
+      "usage": {
+        "requests": 4,
+        "input_tokens": 2401,
+        "output_tokens": 1692,
+        "estimated_cost_usd": 0.0007968500000000001
+      },
+      "metrics": {
+        "ground_truth_policy": "official_title_as_one_full_video_segment",
+        "ground_truth_slots": {
+          "action": "pick_and_place",
+          "object": "bowl",
+          "destination": "stove"
+        },
+        "predicted_slots": {
+          "action": "manipulation",
+          "object": "white circular device ; white device",
+          "destination": "null ; held by robot arm"
+        },
+        "title_instruction_token_f1": 0.25,
+        "semantic_label_accuracy": 0.0,
+        "slot_f1": {
+          "per_slot": {
+            "action": 0.0,
+            "object": 0.0,
+            "destination": 0.0
+          },
+          "macro_f1": 0.0,
+          "pair_count": 1
+        },
+        "boundary_f1": {
+          "0.5s": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 1.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 0.5
+          },
+          "1.0s": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 1.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 1.0
+          }
+        },
+        "segment_f1_at_iou": {
+          "0.5": {
+            "precision": 0.5,
+            "recall": 1.0,
+            "f1": 0.6666666666666666,
+            "mean_iou": 0.574468085106383,
+            "threshold": 0.5,
+            "tp": 1.0,
+            "fp": 1.0,
+            "fn": 0.0
+          },
+          "0.75": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "mean_iou": 0.0,
+            "threshold": 0.75,
+            "tp": 0.0,
+            "fp": 2.0,
+            "fn": 1.0
+          }
+        },
+        "labeled_end_to_end_segment_f1": {
+          "0.5": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 2.0,
+            "fn": 1.0,
+            "mean_iou": 0.0,
+            "threshold": 0.5
+          },
+          "0.75": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 2.0,
+            "fn": 1.0,
+            "mean_iou": 0.0,
+            "threshold": 0.75
+          }
+        },
+        "action_edit": 0.0,
+        "predicted_segment_count": 2,
+        "gold_segment_count": 1
+      },
+      "prediction": "position robot arm near white circular device mounted on wall ; grasp the white device mounted on the wall.",
+      "record_path": "results/libero_goal_title_records/put_the_bowl_on_the_stove_demo_0/fixed/repeat_00.json"
+    },
+    {
+      "sample_id": "put_the_bowl_on_the_stove_demo_0",
+      "view": "fixed",
+      "repeat": 1,
+      "status": "ok",
+      "ground_truth_title": "put the bowl on the stove",
+      "ground_truth_source": "official LIBERO BDDL filename",
+      "ground_truth_scope": "experimental weak title-as-single-segment",
+      "duration_sec": 4.7,
+      "latency_s": 48.09693879099996,
+      "usage": {
+        "requests": 4,
+        "input_tokens": 2401,
+        "output_tokens": 1894,
+        "estimated_cost_usd": 0.0008776500000000001
+      },
+      "metrics": {
+        "ground_truth_policy": "official_title_as_one_full_video_segment",
+        "ground_truth_slots": {
+          "action": "pick_and_place",
+          "object": "bowl",
+          "destination": "stove"
+        },
+        "predicted_slots": {
+          "action": "manipulation",
+          "object": "metal object ; white device with port",
+          "destination": "above floor, near white circular device ; port of white device"
+        },
+        "title_instruction_token_f1": 0.1818181818181818,
+        "semantic_label_accuracy": 0.0,
+        "slot_f1": {
+          "per_slot": {
+            "action": 0.0,
+            "object": 0.0,
+            "destination": 0.0
+          },
+          "macro_f1": 0.0,
+          "pair_count": 1
+        },
+        "boundary_f1": {
+          "0.5s": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 1.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 0.5
+          },
+          "1.0s": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 1.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 1.0
+          }
+        },
+        "segment_f1_at_iou": {
+          "0.5": {
+            "precision": 0.5,
+            "recall": 1.0,
+            "f1": 0.6666666666666666,
+            "mean_iou": 0.574468085106383,
+            "threshold": 0.5,
+            "tp": 1.0,
+            "fp": 1.0,
+            "fn": 0.0
+          },
+          "0.75": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "mean_iou": 0.0,
+            "threshold": 0.75,
+            "tp": 0.0,
+            "fp": 2.0,
+            "fn": 1.0
+          }
+        },
+        "labeled_end_to_end_segment_f1": {
+          "0.5": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 2.0,
+            "fn": 1.0,
+            "mean_iou": 0.0,
+            "threshold": 0.5
+          },
+          "0.75": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 2.0,
+            "fn": 1.0,
+            "mean_iou": 0.0,
+            "threshold": 0.75
+          }
+        },
+        "action_edit": 0.0,
+        "predicted_segment_count": 2,
+        "gold_segment_count": 1
+      },
+      "prediction": "lift the metal object from the floor using the robot arm. ; position robot arm end-effector near the port of the white device mounted on the wall.",
+      "record_path": "results/libero_goal_title_records/put_the_bowl_on_the_stove_demo_0/fixed/repeat_01.json"
+    },
+    {
+      "sample_id": "put_the_bowl_on_the_stove_demo_0",
+      "view": "fixed",
+      "repeat": 2,
+      "status": "ok",
+      "ground_truth_title": "put the bowl on the stove",
+      "ground_truth_source": "official LIBERO BDDL filename",
+      "ground_truth_scope": "experimental weak title-as-single-segment",
+      "duration_sec": 4.7,
+      "latency_s": 55.38525233400014,
+      "usage": {
+        "requests": 4,
+        "input_tokens": 2401,
+        "output_tokens": 1825,
+        "estimated_cost_usd": 0.00085005
+      },
+      "metrics": {
+        "ground_truth_policy": "official_title_as_one_full_video_segment",
+        "ground_truth_slots": {
+          "action": "pick_and_place",
+          "object": "bowl",
+          "destination": "stove"
+        },
+        "predicted_slots": {
+          "action": "manipulation",
+          "object": "white circular device ; white device with port",
+          "destination": "null ; port of white device"
+        },
+        "title_instruction_token_f1": 0.1935483870967742,
+        "semantic_label_accuracy": 0.0,
+        "slot_f1": {
+          "per_slot": {
+            "action": 0.0,
+            "object": 0.0,
+            "destination": 0.0
+          },
+          "macro_f1": 0.0,
+          "pair_count": 1
+        },
+        "boundary_f1": {
+          "0.5s": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 1.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 0.5
+          },
+          "1.0s": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 1.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 1.0
+          }
+        },
+        "segment_f1_at_iou": {
+          "0.5": {
+            "precision": 0.5,
+            "recall": 1.0,
+            "f1": 0.6666666666666666,
+            "mean_iou": 0.574468085106383,
+            "threshold": 0.5,
+            "tp": 1.0,
+            "fp": 1.0,
+            "fn": 0.0
+          },
+          "0.75": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "mean_iou": 0.0,
+            "threshold": 0.75,
+            "tp": 0.0,
+            "fp": 2.0,
+            "fn": 1.0
+          }
+        },
+        "labeled_end_to_end_segment_f1": {
+          "0.5": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 2.0,
+            "fn": 1.0,
+            "mean_iou": 0.0,
+            "threshold": 0.5
+          },
+          "0.75": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 2.0,
+            "fn": 1.0,
+            "mean_iou": 0.0,
+            "threshold": 0.75
+          }
+        },
+        "action_edit": 0.0,
+        "predicted_segment_count": 2,
+        "gold_segment_count": 1
+      },
+      "prediction": "position robot arm near white circular device on wall ; position robot arm end-effector near the port of the white device mounted on the wall.",
+      "record_path": "results/libero_goal_title_records/put_the_bowl_on_the_stove_demo_0/fixed/repeat_02.json"
+    },
+    {
+      "sample_id": "put_the_bowl_on_the_stove_demo_0",
+      "view": "fused",
+      "repeat": 0,
+      "status": "ok",
+      "ground_truth_title": "put the bowl on the stove",
+      "ground_truth_source": "official LIBERO BDDL filename",
+      "ground_truth_scope": "experimental weak title-as-single-segment",
+      "duration_sec": 4.7,
+      "latency_s": 89.36047908299997,
+      "usage": {
+        "requests": 5,
+        "input_tokens": 3820,
+        "output_tokens": 2689,
+        "estimated_cost_usd": 0.0012666
+      },
+      "metrics": {
+        "ground_truth_policy": "official_title_as_one_full_video_segment",
+        "ground_truth_slots": {
+          "action": "pick_and_place",
+          "object": "bowl",
+          "destination": "stove"
+        },
+        "predicted_slots": {
+          "action": "pick and place",
+          "object": "spoon ; yellow-rimmed bowl",
+          "destination": "bowl ; gray mat"
+        },
+        "title_instruction_token_f1": 0.2285714285714286,
+        "semantic_label_accuracy": 0.0,
+        "slot_f1": {
+          "per_slot": {
+            "action": 1.0,
+            "object": 0.4,
+            "destination": 0.0
+          },
+          "macro_f1": 0.4666666666666666,
+          "pair_count": 1
+        },
+        "boundary_f1": {
+          "0.5s": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 1.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 0.5
+          },
+          "1.0s": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 1.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 1.0
+          }
+        },
+        "segment_f1_at_iou": {
+          "0.5": {
+            "precision": 0.5,
+            "recall": 1.0,
+            "f1": 0.6666666666666666,
+            "mean_iou": 0.7553191489361701,
+            "threshold": 0.5,
+            "tp": 1.0,
+            "fp": 1.0,
+            "fn": 0.0
+          },
+          "0.75": {
+            "precision": 0.5,
+            "recall": 1.0,
+            "f1": 0.6666666666666666,
+            "mean_iou": 0.7553191489361701,
+            "threshold": 0.75,
+            "tp": 1.0,
+            "fp": 1.0,
+            "fn": 0.0
+          }
+        },
+        "labeled_end_to_end_segment_f1": {
+          "0.5": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 2.0,
+            "fn": 1.0,
+            "mean_iou": 0.0,
+            "threshold": 0.5
+          },
+          "0.75": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 2.0,
+            "fn": 1.0,
+            "mean_iou": 0.0,
+            "threshold": 0.75
+          }
+        },
+        "action_edit": 0.0,
+        "predicted_segment_count": 2,
+        "gold_segment_count": 1
+      },
+      "prediction": "pick up the spoon from the counter and place it into the bowl. ; move the yellow-rimmed bowl slightly upward and then place it back on the gray mat.",
+      "record_path": "results/libero_goal_title_records/put_the_bowl_on_the_stove_demo_0/fused/repeat_00.json"
+    },
+    {
+      "sample_id": "put_the_bowl_on_the_stove_demo_0",
+      "view": "fused",
+      "repeat": 1,
+      "status": "ok",
+      "ground_truth_title": "put the bowl on the stove",
+      "ground_truth_source": "official LIBERO BDDL filename",
+      "ground_truth_scope": "experimental weak title-as-single-segment",
+      "duration_sec": 4.7,
+      "latency_s": 89.88987412499955,
+      "usage": {
+        "requests": 5,
+        "input_tokens": 3820,
+        "output_tokens": 2884,
+        "estimated_cost_usd": 0.0013446
+      },
+      "metrics": {
+        "ground_truth_policy": "official_title_as_one_full_video_segment",
+        "ground_truth_slots": {
+          "action": "pick_and_place",
+          "object": "bowl",
+          "destination": "stove"
+        },
+        "predicted_slots": {
+          "action": "reach",
+          "object": "plate ; black cylindrical object",
+          "destination": "air ; near metal bowl"
+        },
+        "title_instruction_token_f1": 0.1818181818181818,
+        "semantic_label_accuracy": 0.0,
+        "slot_f1": {
+          "per_slot": {
+            "action": 0.0,
+            "object": 0.0,
+            "destination": 0.0
+          },
+          "macro_f1": 0.0,
+          "pair_count": 1
+        },
+        "boundary_f1": {
+          "0.5s": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 1.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 0.5
+          },
+          "1.0s": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 1.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 1.0
+          }
+        },
+        "segment_f1_at_iou": {
+          "0.5": {
+            "precision": 0.5,
+            "recall": 1.0,
+            "f1": 0.6666666666666666,
+            "mean_iou": 0.6702127659574468,
+            "threshold": 0.5,
+            "tp": 1.0,
+            "fp": 1.0,
+            "fn": 0.0
+          },
+          "0.75": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "mean_iou": 0.0,
+            "threshold": 0.75,
+            "tp": 0.0,
+            "fp": 2.0,
+            "fn": 1.0
+          }
+        },
+        "labeled_end_to_end_segment_f1": {
+          "0.5": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 2.0,
+            "fn": 1.0,
+            "mean_iou": 0.0,
+            "threshold": 0.5
+          },
+          "0.75": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 2.0,
+            "fn": 1.0,
+            "mean_iou": 0.0,
+            "threshold": 0.75
+          }
+        },
+        "action_edit": 0.0,
+        "predicted_segment_count": 2,
+        "gold_segment_count": 1
+      },
+      "prediction": "reach for and lift the plate from the floor. ; move the black cylindrical object from its initial position to near the metal bowl using the robot arm.",
+      "record_path": "results/libero_goal_title_records/put_the_bowl_on_the_stove_demo_0/fused/repeat_01.json"
+    },
+    {
+      "sample_id": "put_the_bowl_on_the_stove_demo_0",
+      "view": "fused",
+      "repeat": 2,
+      "status": "ok",
+      "ground_truth_title": "put the bowl on the stove",
+      "ground_truth_source": "official LIBERO BDDL filename",
+      "ground_truth_scope": "experimental weak title-as-single-segment",
+      "duration_sec": 4.7,
+      "latency_s": 94.04779179100024,
+      "usage": {
+        "requests": 5,
+        "input_tokens": 3820,
+        "output_tokens": 2901,
+        "estimated_cost_usd": 0.0013514
+      },
+      "metrics": {
+        "ground_truth_policy": "official_title_as_one_full_video_segment",
+        "ground_truth_slots": {
+          "action": "pick_and_place",
+          "object": "bowl",
+          "destination": "stove"
+        },
+        "predicted_slots": {
+          "action": "reach",
+          "object": "plate ; black rectangular object",
+          "destination": "above floor ; near bowl"
+        },
+        "title_instruction_token_f1": 0.1818181818181818,
+        "semantic_label_accuracy": 0.0,
+        "slot_f1": {
+          "per_slot": {
+            "action": 0.0,
+            "object": 0.0,
+            "destination": 0.0
+          },
+          "macro_f1": 0.0,
+          "pair_count": 1
+        },
+        "boundary_f1": {
+          "0.5s": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 1.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 0.5
+          },
+          "1.0s": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 1.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 1.0
+          }
+        },
+        "segment_f1_at_iou": {
+          "0.5": {
+            "precision": 0.5,
+            "recall": 1.0,
+            "f1": 0.6666666666666666,
+            "mean_iou": 0.6702127659574468,
+            "threshold": 0.5,
+            "tp": 1.0,
+            "fp": 1.0,
+            "fn": 0.0
+          },
+          "0.75": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "mean_iou": 0.0,
+            "threshold": 0.75,
+            "tp": 0.0,
+            "fp": 2.0,
+            "fn": 1.0
+          }
+        },
+        "labeled_end_to_end_segment_f1": {
+          "0.5": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 2.0,
+            "fn": 1.0,
+            "mean_iou": 0.0,
+            "threshold": 0.5
+          },
+          "0.75": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 2.0,
+            "fn": 1.0,
+            "mean_iou": 0.0,
+            "threshold": 0.75
+          }
+        },
+        "action_edit": 0.0,
+        "predicted_segment_count": 2,
+        "gold_segment_count": 1
+      },
+      "prediction": "reach for and lift the plate using the robot arm. ; move the black rectangular object from its initial position to near the bowl using the robot arm.",
+      "record_path": "results/libero_goal_title_records/put_the_bowl_on_the_stove_demo_0/fused/repeat_02.json"
+    },
+    {
+      "sample_id": "turn_on_the_stove_demo_0",
+      "view": "ego",
+      "repeat": 0,
+      "status": "ok",
+      "ground_truth_title": "turn on the stove",
+      "ground_truth_source": "official LIBERO BDDL filename",
+      "ground_truth_scope": "experimental weak title-as-single-segment",
+      "duration_sec": 4.0,
+      "latency_s": 32.915289833000315,
+      "usage": {
+        "requests": 4,
+        "input_tokens": 2401,
+        "output_tokens": 1398,
+        "estimated_cost_usd": 0.00067925
+      },
+      "metrics": {
+        "ground_truth_policy": "official_title_as_one_full_video_segment",
+        "ground_truth_slots": {
+          "action": "turn_on",
+          "object": "stove",
+          "destination": "on state"
+        },
+        "predicted_slots": {
+          "action": "reach",
+          "object": "black circular object",
+          "destination": "below wooden surface (partially visible in second image) ; right side of light-colored surface"
+        },
+        "title_instruction_token_f1": 0.14814814814814817,
+        "semantic_label_accuracy": 0.0,
+        "slot_f1": {
+          "per_slot": {
+            "action": 0.0,
+            "object": 0.0,
+            "destination": 0.0
+          },
+          "macro_f1": 0.0,
+          "pair_count": 1
+        },
+        "boundary_f1": {
+          "0.5s": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 1.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 0.5
+          },
+          "1.0s": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 1.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 1.0
+          }
+        },
+        "segment_f1_at_iou": {
+          "0.5": {
+            "precision": 0.5,
+            "recall": 1.0,
+            "f1": 0.6666666666666666,
+            "mean_iou": 0.5625,
+            "threshold": 0.5,
+            "tp": 1.0,
+            "fp": 1.0,
+            "fn": 0.0
+          },
+          "0.75": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "mean_iou": 0.0,
+            "threshold": 0.75,
+            "tp": 0.0,
+            "fp": 2.0,
+            "fn": 1.0
+          }
+        },
+        "labeled_end_to_end_segment_f1": {
+          "0.5": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 2.0,
+            "fn": 1.0,
+            "mean_iou": 0.0,
+            "threshold": 0.5
+          },
+          "0.75": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 2.0,
+            "fn": 1.0,
+            "mean_iou": 0.0,
+            "threshold": 0.75
+          }
+        },
+        "action_edit": 0.0,
+        "predicted_segment_count": 2,
+        "gold_segment_count": 1
+      },
+      "prediction": "reach and grasp the black circular object on the floor ; move the black circular object across the light-colored surface toward the right.",
+      "record_path": "results/libero_goal_title_records/turn_on_the_stove_demo_0/ego/repeat_00.json"
+    },
+    {
+      "sample_id": "turn_on_the_stove_demo_0",
+      "view": "ego",
+      "repeat": 1,
+      "status": "ok",
+      "ground_truth_title": "turn on the stove",
+      "ground_truth_source": "official LIBERO BDDL filename",
+      "ground_truth_scope": "experimental weak title-as-single-segment",
+      "duration_sec": 4.0,
+      "latency_s": 47.81902666699989,
+      "usage": {
+        "requests": 4,
+        "input_tokens": 2401,
+        "output_tokens": 1431,
+        "estimated_cost_usd": 0.00069245
+      },
+      "metrics": {
+        "ground_truth_policy": "official_title_as_one_full_video_segment",
+        "ground_truth_slots": {
+          "action": "turn_on",
+          "object": "stove",
+          "destination": "on state"
+        },
+        "predicted_slots": {
+          "action": "reach",
+          "object": "black circular object",
+          "destination": "unknown ; right side of light-colored surface"
+        },
+        "title_instruction_token_f1": 0.14814814814814817,
+        "semantic_label_accuracy": 0.0,
+        "slot_f1": {
+          "per_slot": {
+            "action": 0.0,
+            "object": 0.0,
+            "destination": 0.0
+          },
+          "macro_f1": 0.0,
+          "pair_count": 1
+        },
+        "boundary_f1": {
+          "0.5s": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 1.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 0.5
+          },
+          "1.0s": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 1.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 1.0
+          }
+        },
+        "segment_f1_at_iou": {
+          "0.5": {
+            "precision": 0.5,
+            "recall": 1.0,
+            "f1": 0.6666666666666666,
+            "mean_iou": 0.5625,
+            "threshold": 0.5,
+            "tp": 1.0,
+            "fp": 1.0,
+            "fn": 0.0
+          },
+          "0.75": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "mean_iou": 0.0,
+            "threshold": 0.75,
+            "tp": 0.0,
+            "fp": 2.0,
+            "fn": 1.0
+          }
+        },
+        "labeled_end_to_end_segment_f1": {
+          "0.5": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 2.0,
+            "fn": 1.0,
+            "mean_iou": 0.0,
+            "threshold": 0.5
+          },
+          "0.75": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 2.0,
+            "fn": 1.0,
+            "mean_iou": 0.0,
+            "threshold": 0.75
+          }
+        },
+        "action_edit": 0.0,
+        "predicted_segment_count": 2,
+        "gold_segment_count": 1
+      },
+      "prediction": "reach and grasp the black circular object on the floor ; move the black circular object across the light-colored surface toward the right.",
+      "record_path": "results/libero_goal_title_records/turn_on_the_stove_demo_0/ego/repeat_01.json"
+    },
+    {
+      "sample_id": "turn_on_the_stove_demo_0",
+      "view": "ego",
+      "repeat": 2,
+      "status": "ok",
+      "ground_truth_title": "turn on the stove",
+      "ground_truth_source": "official LIBERO BDDL filename",
+      "ground_truth_scope": "experimental weak title-as-single-segment",
+      "duration_sec": 4.0,
+      "latency_s": 41.655300624999654,
+      "usage": {
+        "requests": 4,
+        "input_tokens": 2401,
+        "output_tokens": 1348,
+        "estimated_cost_usd": 0.00065925
+      },
+      "metrics": {
+        "ground_truth_policy": "official_title_as_one_full_video_segment",
+        "ground_truth_slots": {
+          "action": "turn_on",
+          "object": "stove",
+          "destination": "on state"
+        },
+        "predicted_slots": {
+          "action": "push",
+          "object": "black circular object",
+          "destination": "below the gray surface (out of frame) ; right side of light-colored surface"
+        },
+        "title_instruction_token_f1": 0.06666666666666668,
+        "semantic_label_accuracy": 0.0,
+        "slot_f1": {
+          "per_slot": {
+            "action": 0.0,
+            "object": 0.0,
+            "destination": 0.0
+          },
+          "macro_f1": 0.0,
+          "pair_count": 1
+        },
+        "boundary_f1": {
+          "0.5s": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 1.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 0.5
+          },
+          "1.0s": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 1.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 1.0
+          }
+        },
+        "segment_f1_at_iou": {
+          "0.5": {
+            "precision": 0.5,
+            "recall": 1.0,
+            "f1": 0.6666666666666666,
+            "mean_iou": 0.5625,
+            "threshold": 0.5,
+            "tp": 1.0,
+            "fp": 1.0,
+            "fn": 0.0
+          },
+          "0.75": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "mean_iou": 0.0,
+            "threshold": 0.75,
+            "tp": 0.0,
+            "fp": 2.0,
+            "fn": 1.0
+          }
+        },
+        "labeled_end_to_end_segment_f1": {
+          "0.5": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 2.0,
+            "fn": 1.0,
+            "mean_iou": 0.0,
+            "threshold": 0.5
+          },
+          "0.75": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 2.0,
+            "fn": 1.0,
+            "mean_iou": 0.0,
+            "threshold": 0.75
+          }
+        },
+        "action_edit": 0.0,
+        "predicted_segment_count": 2,
+        "gold_segment_count": 1
+      },
+      "prediction": "push the black circular object downward toward the lower edge of the frame ; move the black circular object across the light-colored surface toward the right.",
+      "record_path": "results/libero_goal_title_records/turn_on_the_stove_demo_0/ego/repeat_02.json"
+    },
+    {
+      "sample_id": "turn_on_the_stove_demo_0",
+      "view": "fixed",
+      "repeat": 0,
+      "status": "ok",
+      "ground_truth_title": "turn on the stove",
+      "ground_truth_source": "official LIBERO BDDL filename",
+      "ground_truth_scope": "experimental weak title-as-single-segment",
+      "duration_sec": 4.0,
+      "latency_s": 42.76841225000044,
+      "usage": {
+        "requests": 4,
+        "input_tokens": 2401,
+        "output_tokens": 1661,
+        "estimated_cost_usd": 0.00078445
+      },
+      "metrics": {
+        "ground_truth_policy": "official_title_as_one_full_video_segment",
+        "ground_truth_slots": {
+          "action": "turn_on",
+          "object": "stove",
+          "destination": "on state"
+        },
+        "predicted_slots": {
+          "action": "manipulation",
+          "object": "robot arm ; wall-mounted device",
+          "destination": "None"
+        },
+        "title_instruction_token_f1": 0.05555555555555555,
+        "semantic_label_accuracy": 0.0,
+        "slot_f1": {
+          "per_slot": {
+            "action": 0.0,
+            "object": 0.0,
+            "destination": 0.0
+          },
+          "macro_f1": 0.0,
+          "pair_count": 1
+        },
+        "boundary_f1": {
+          "0.5s": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 1.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 0.5
+          },
+          "1.0s": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 1.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 1.0
+          }
+        },
+        "segment_f1_at_iou": {
+          "0.5": {
+            "precision": 0.5,
+            "recall": 1.0,
+            "f1": 0.6666666666666666,
+            "mean_iou": 0.5125,
+            "threshold": 0.5,
+            "tp": 1.0,
+            "fp": 1.0,
+            "fn": 0.0
+          },
+          "0.75": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "mean_iou": 0.0,
+            "threshold": 0.75,
+            "tp": 0.0,
+            "fp": 2.0,
+            "fn": 1.0
+          }
+        },
+        "labeled_end_to_end_segment_f1": {
+          "0.5": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 2.0,
+            "fn": 1.0,
+            "mean_iou": 0.0,
+            "threshold": 0.5
+          },
+          "0.75": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 2.0,
+            "fn": 1.0,
+            "mean_iou": 0.0,
+            "threshold": 0.75
+          }
+        },
+        "action_edit": 0.0,
+        "predicted_segment_count": 2,
+        "gold_segment_count": 1
+      },
+      "prediction": "analyze micro-action: robot arm performs small positional adjustment while standing in front of wall-mounted and floor objects. ; reach and make contact with the wall-mounted device using the robot arm.",
+      "record_path": "results/libero_goal_title_records/turn_on_the_stove_demo_0/fixed/repeat_00.json"
+    },
+    {
+      "sample_id": "turn_on_the_stove_demo_0",
+      "view": "fixed",
+      "repeat": 1,
+      "status": "ok",
+      "ground_truth_title": "turn on the stove",
+      "ground_truth_source": "official LIBERO BDDL filename",
+      "ground_truth_scope": "experimental weak title-as-single-segment",
+      "duration_sec": 4.0,
+      "latency_s": 49.75461212499977,
+      "usage": {
+        "requests": 4,
+        "input_tokens": 2401,
+        "output_tokens": 1653,
+        "estimated_cost_usd": 0.00078125
+      },
+      "metrics": {
+        "ground_truth_policy": "official_title_as_one_full_video_segment",
+        "ground_truth_slots": {
+          "action": "turn_on",
+          "object": "stove",
+          "destination": "on state"
+        },
+        "predicted_slots": {
+          "action": "manipulation",
+          "object": "black object ; white square object",
+          "destination": "held by robot arm ; None"
+        },
+        "title_instruction_token_f1": 0.15384615384615385,
+        "semantic_label_accuracy": 0.0,
+        "slot_f1": {
+          "per_slot": {
+            "action": 0.0,
+            "object": 0.0,
+            "destination": 0.0
+          },
+          "macro_f1": 0.0,
+          "pair_count": 1
+        },
+        "boundary_f1": {
+          "0.5s": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 1.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 0.5
+          },
+          "1.0s": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 1.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 1.0
+          }
+        },
+        "segment_f1_at_iou": {
+          "0.5": {
+            "precision": 0.5,
+            "recall": 1.0,
+            "f1": 0.6666666666666666,
+            "mean_iou": 0.675,
+            "threshold": 0.5,
+            "tp": 1.0,
+            "fp": 1.0,
+            "fn": 0.0
+          },
+          "0.75": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "mean_iou": 0.0,
+            "threshold": 0.75,
+            "tp": 0.0,
+            "fp": 2.0,
+            "fn": 1.0
+          }
+        },
+        "labeled_end_to_end_segment_f1": {
+          "0.5": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 2.0,
+            "fn": 1.0,
+            "mean_iou": 0.0,
+            "threshold": 0.5
+          },
+          "0.75": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 2.0,
+            "fn": 1.0,
+            "mean_iou": 0.0,
+            "threshold": 0.75
+          }
+        },
+        "action_edit": 0.0,
+        "predicted_segment_count": 2,
+        "gold_segment_count": 1
+      },
+      "prediction": "grasp the black object using the robot arm. ; reach toward the white square object mounted on the wall using the robot arm.",
+      "record_path": "results/libero_goal_title_records/turn_on_the_stove_demo_0/fixed/repeat_01.json"
+    },
+    {
+      "sample_id": "turn_on_the_stove_demo_0",
+      "view": "fixed",
+      "repeat": 2,
+      "status": "ok",
+      "ground_truth_title": "turn on the stove",
+      "ground_truth_source": "official LIBERO BDDL filename",
+      "ground_truth_scope": "experimental weak title-as-single-segment",
+      "duration_sec": 4.0,
+      "latency_s": 37.42567558300016,
+      "usage": {
+        "requests": 4,
+        "input_tokens": 2401,
+        "output_tokens": 1656,
+        "estimated_cost_usd": 0.0007824500000000001
+      },
+      "metrics": {
+        "ground_truth_policy": "official_title_as_one_full_video_segment",
+        "ground_truth_slots": {
+          "action": "turn_on",
+          "object": "stove",
+          "destination": "on state"
+        },
+        "predicted_slots": {
+          "action": "manipulation",
+          "object": "robot arm ; wall-mounted device",
+          "destination": "None"
+        },
+        "title_instruction_token_f1": 0.058823529411764705,
+        "semantic_label_accuracy": 0.0,
+        "slot_f1": {
+          "per_slot": {
+            "action": 0.0,
+            "object": 0.0,
+            "destination": 0.0
+          },
+          "macro_f1": 0.0,
+          "pair_count": 1
+        },
+        "boundary_f1": {
+          "0.5s": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 1.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 0.5
+          },
+          "1.0s": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 1.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 1.0
+          }
+        },
+        "segment_f1_at_iou": {
+          "0.5": {
+            "precision": 0.5,
+            "recall": 1.0,
+            "f1": 0.6666666666666666,
+            "mean_iou": 0.5125,
+            "threshold": 0.5,
+            "tp": 1.0,
+            "fp": 1.0,
+            "fn": 0.0
+          },
+          "0.75": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "mean_iou": 0.0,
+            "threshold": 0.75,
+            "tp": 0.0,
+            "fp": 2.0,
+            "fn": 1.0
+          }
+        },
+        "labeled_end_to_end_segment_f1": {
+          "0.5": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 2.0,
+            "fn": 1.0,
+            "mean_iou": 0.0,
+            "threshold": 0.5
+          },
+          "0.75": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 2.0,
+            "fn": 1.0,
+            "mean_iou": 0.0,
+            "threshold": 0.75
+          }
+        },
+        "action_edit": 0.0,
+        "predicted_segment_count": 2,
+        "gold_segment_count": 1
+      },
+      "prediction": "analyze micro-action: robot arm performs small positional adjustment while standing near wall-mounted and floor objects. ; reach and make contact with the wall-mounted device using the robot arm.",
+      "record_path": "results/libero_goal_title_records/turn_on_the_stove_demo_0/fixed/repeat_02.json"
+    },
+    {
+      "sample_id": "turn_on_the_stove_demo_0",
+      "view": "fused",
+      "repeat": 0,
+      "status": "ok",
+      "ground_truth_title": "turn on the stove",
+      "ground_truth_source": "official LIBERO BDDL filename",
+      "ground_truth_scope": "experimental weak title-as-single-segment",
+      "duration_sec": 4.0,
+      "latency_s": 70.76231516700045,
+      "usage": {
+        "requests": 4,
+        "input_tokens": 3109,
+        "output_tokens": 1943,
+        "estimated_cost_usd": 0.00093265
+      },
+      "metrics": {
+        "ground_truth_policy": "official_title_as_one_full_video_segment",
+        "ground_truth_slots": {
+          "action": "turn_on",
+          "object": "stove",
+          "destination": "on state"
+        },
+        "predicted_slots": {
+          "action": "pick and place",
+          "object": "black circular object",
+          "destination": "above countertop ; right side of wall-mounted device"
+        },
+        "title_instruction_token_f1": 0.11764705882352941,
+        "semantic_label_accuracy": 0.0,
+        "slot_f1": {
+          "per_slot": {
+            "action": 0.0,
+            "object": 0.0,
+            "destination": 0.0
+          },
+          "macro_f1": 0.0,
+          "pair_count": 1
+        },
+        "boundary_f1": {
+          "0.5s": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 1.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 0.5
+          },
+          "1.0s": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 1.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 1.0
+          }
+        },
+        "segment_f1_at_iou": {
+          "0.5": {
+            "precision": 0.5,
+            "recall": 1.0,
+            "f1": 0.6666666666666666,
+            "mean_iou": 0.5125,
+            "threshold": 0.5,
+            "tp": 1.0,
+            "fp": 1.0,
+            "fn": 0.0
+          },
+          "0.75": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "mean_iou": 0.0,
+            "threshold": 0.75,
+            "tp": 0.0,
+            "fp": 2.0,
+            "fn": 1.0
+          }
+        },
+        "labeled_end_to_end_segment_f1": {
+          "0.5": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 2.0,
+            "fn": 1.0,
+            "mean_iou": 0.0,
+            "threshold": 0.5
+          },
+          "0.75": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 2.0,
+            "fn": 1.0,
+            "mean_iou": 0.0,
+            "threshold": 0.75
+          }
+        },
+        "action_edit": 0.0,
+        "predicted_segment_count": 2,
+        "gold_segment_count": 1
+      },
+      "prediction": "pick up the black circular object from the countertop using the robot arm and lift it upward. ; push the black circular object on the wall-mounted device to the right.",
+      "record_path": "results/libero_goal_title_records/turn_on_the_stove_demo_0/fused/repeat_00.json"
+    },
+    {
+      "sample_id": "turn_on_the_stove_demo_0",
+      "view": "fused",
+      "repeat": 1,
+      "status": "ok",
+      "ground_truth_title": "turn on the stove",
+      "ground_truth_source": "official LIBERO BDDL filename",
+      "ground_truth_scope": "experimental weak title-as-single-segment",
+      "duration_sec": 4.0,
+      "latency_s": 64.28053679200002,
+      "usage": {
+        "requests": 4,
+        "input_tokens": 3109,
+        "output_tokens": 1995,
+        "estimated_cost_usd": 0.00095345
+      },
+      "metrics": {
+        "ground_truth_policy": "official_title_as_one_full_video_segment",
+        "ground_truth_slots": {
+          "action": "turn_on",
+          "object": "stove",
+          "destination": "on state"
+        },
+        "predicted_slots": {
+          "action": "pick and place",
+          "object": "black circular object",
+          "destination": "stove top ; held by robot arm"
+        },
+        "title_instruction_token_f1": 0.19354838709677416,
+        "semantic_label_accuracy": 0.0,
+        "slot_f1": {
+          "per_slot": {
+            "action": 0.0,
+            "object": 0.0,
+            "destination": 0.0
+          },
+          "macro_f1": 0.0,
+          "pair_count": 1
+        },
+        "boundary_f1": {
+          "0.5s": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 1.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 0.5
+          },
+          "1.0s": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 1.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 1.0
+          }
+        },
+        "segment_f1_at_iou": {
+          "0.5": {
+            "precision": 0.5,
+            "recall": 1.0,
+            "f1": 0.6666666666666666,
+            "mean_iou": 0.5125,
+            "threshold": 0.5,
+            "tp": 1.0,
+            "fp": 1.0,
+            "fn": 0.0
+          },
+          "0.75": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "mean_iou": 0.0,
+            "threshold": 0.75,
+            "tp": 0.0,
+            "fp": 2.0,
+            "fn": 1.0
+          }
+        },
+        "labeled_end_to_end_segment_f1": {
+          "0.5": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 2.0,
+            "fn": 1.0,
+            "mean_iou": 0.0,
+            "threshold": 0.5
+          },
+          "0.75": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 2.0,
+            "fn": 1.0,
+            "mean_iou": 0.0,
+            "threshold": 0.75
+          }
+        },
+        "action_edit": 0.0,
+        "predicted_segment_count": 2,
+        "gold_segment_count": 1
+      },
+      "prediction": "pick up the black circular object from the floor and place it on the stove top. ; reach and grasp the black circular object mounted on the wall",
+      "record_path": "results/libero_goal_title_records/turn_on_the_stove_demo_0/fused/repeat_01.json"
+    },
+    {
+      "sample_id": "turn_on_the_stove_demo_0",
+      "view": "fused",
+      "repeat": 2,
+      "status": "ok",
+      "ground_truth_title": "turn on the stove",
+      "ground_truth_source": "official LIBERO BDDL filename",
+      "ground_truth_scope": "experimental weak title-as-single-segment",
+      "duration_sec": 4.0,
+      "latency_s": 70.20698879100019,
+      "usage": {
+        "requests": 4,
+        "input_tokens": 3109,
+        "output_tokens": 2013,
+        "estimated_cost_usd": 0.0009606500000000001
+      },
+      "metrics": {
+        "ground_truth_policy": "official_title_as_one_full_video_segment",
+        "ground_truth_slots": {
+          "action": "turn_on",
+          "object": "stove",
+          "destination": "on state"
+        },
+        "predicted_slots": {
+          "action": "pick and place",
+          "object": "black circular object",
+          "destination": "stove top ; held by robot arm"
+        },
+        "title_instruction_token_f1": 0.1875,
+        "semantic_label_accuracy": 0.0,
+        "slot_f1": {
+          "per_slot": {
+            "action": 0.0,
+            "object": 0.0,
+            "destination": 0.0
+          },
+          "macro_f1": 0.0,
+          "pair_count": 1
+        },
+        "boundary_f1": {
+          "0.5s": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 1.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 0.5
+          },
+          "1.0s": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 1.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 1.0
+          }
+        },
+        "segment_f1_at_iou": {
+          "0.5": {
+            "precision": 0.5,
+            "recall": 1.0,
+            "f1": 0.6666666666666666,
+            "mean_iou": 0.5125,
+            "threshold": 0.5,
+            "tp": 1.0,
+            "fp": 1.0,
+            "fn": 0.0
+          },
+          "0.75": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "mean_iou": 0.0,
+            "threshold": 0.75,
+            "tp": 0.0,
+            "fp": 2.0,
+            "fn": 1.0
+          }
+        },
+        "labeled_end_to_end_segment_f1": {
+          "0.5": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 2.0,
+            "fn": 1.0,
+            "mean_iou": 0.0,
+            "threshold": 0.5
+          },
+          "0.75": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 2.0,
+            "fn": 1.0,
+            "mean_iou": 0.0,
+            "threshold": 0.75
+          }
+        },
+        "action_edit": 0.0,
+        "predicted_segment_count": 2,
+        "gold_segment_count": 1
+      },
+      "prediction": "pick up the black circular object from the floor and place it on the stove top. ; reach for and grasp the black circular object mounted on the wall.",
+      "record_path": "results/libero_goal_title_records/turn_on_the_stove_demo_0/fused/repeat_02.json"
+    }
+  ]
+}

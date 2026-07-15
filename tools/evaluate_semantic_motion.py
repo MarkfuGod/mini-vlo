@@ -15,10 +15,13 @@ if str(ROOT) not in sys.path:
 from src.evaluation import (
     boundary_metrics,
     distinct_n,
+    labeled_segment_metrics,
     load_gold,
+    match_temporal_segments,
     normalized_edit_score,
     segmental_metrics,
     self_bleu_overlap,
+    slot_f1,
     token_f1,
 )
 
@@ -78,6 +81,22 @@ def main() -> None:
         }
         for segment in gold.segments
     ]
+    temporal_matches = match_temporal_segments(
+        predicted_intervals,
+        gold_intervals,
+        iou_threshold=0.5,
+    )
+    label_matches = {
+        (pred_index, gold_index): (
+            str(
+                segments[pred_index]
+                .get("macro_intent", {})
+                .get("task_type", "")
+            ).lower()
+            == gold.segments[gold_index].task_type.lower()
+        )
+        for pred_index, gold_index, _ in temporal_matches
+    }
 
     macro_scores = []
     micro_scores = []
@@ -135,22 +154,47 @@ def main() -> None:
     payload = {
         "formal": gold.annotation_status == "adjudicated",
         "sample_id": gold.sample_id,
-        "boundary": boundary_metrics(
-            predicted_boundaries,
-            [
-                boundary
-                for boundary in gold.boundaries_sec
-                if gold.clip_start_sec < boundary < gold.clip_end_sec
-            ],
-            tolerance_sec=0.5,
-        ),
+        "boundary": {
+            str(tolerance): boundary_metrics(
+                predicted_boundaries,
+                [
+                    boundary
+                    for boundary in gold.boundaries_sec
+                    if gold.clip_start_sec < boundary < gold.clip_end_sec
+                ],
+                tolerance_sec=tolerance,
+            )
+            for tolerance in (0.5, 1.0)
+        },
         "segmental_f1_at_iou": {
             str(threshold): segmental_metrics(
                 predicted_intervals,
                 gold_intervals,
                 threshold,
             )
-            for threshold in (0.25, 0.5, 0.75)
+            for threshold in (0.5, 0.75)
+        },
+        "semantic_label_accuracy": (
+            sum(label_matches.values()) / len(label_matches)
+            if label_matches
+            else 0.0
+        ),
+        "semantic_label_temporal_coverage": (
+            len(temporal_matches) / len(gold_intervals)
+            if gold_intervals
+            else 1.0
+        ),
+        "labeled_end_to_end_segment_f1": {
+            str(threshold): labeled_segment_metrics(
+                predicted_intervals,
+                gold_intervals,
+                lambda pred_index, gold_index: label_matches.get(
+                    (pred_index, gold_index),
+                    False,
+                ),
+                iou_threshold=threshold,
+            )
+            for threshold in (0.5, 0.75)
         },
         "macro": {
             "task_accuracy": mean(macro_scores, "task_accuracy"),
@@ -165,6 +209,36 @@ def main() -> None:
                 sum(order_scores) / len(order_scores) if order_scores else 0.0
             ),
         },
+        "slot_f1": slot_f1(
+            [
+                {
+                    "action": str(
+                        segment.get("macro_intent", {}).get("task_type", "")
+                    ),
+                    "object": str(
+                        segment.get("macro_intent", {}).get(
+                            "target_object",
+                            "",
+                        )
+                    ),
+                    "destination": str(
+                        segment.get("macro_intent", {}).get(
+                            "destination",
+                            "",
+                        )
+                    ),
+                }
+                for segment in segments
+            ],
+            [
+                {
+                    "action": segment.task_type,
+                    "object": segment.target_object,
+                    "destination": segment.destination,
+                }
+                for segment in gold.segments
+            ],
+        ),
         "augmentation": {
             "code_level_validation": "disabled",
             "included_variant_count": sum(

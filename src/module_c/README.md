@@ -1,8 +1,9 @@
 # Module C 命令行速查
 
-Module C 用于对 Mini-VLO 生成的视频任务文本做过滤：先把
+Module C 用于对 Mini-VLO 生成的视频任务文本做诊断：先把
 `VideoTaskRecord` 转换成 samples JSONL，再执行语义一致性校验和运动质量评分，
-最后输出 `keep/drop` 决策。
+最后输出诊断 reason codes。当前质量门禁已禁用，所有已写出的 samples 都标为
+`keep`，并附带 `quality_gates_disabled`。
 
 当前版本支持多轨迹 motion：LIBERO 的末端执行器轨迹会映射成 `eef` track，
 Module D 的 `Root`、`Hand_R`、`Hand_L` 等骨骼轨迹可以同时参与质量评分。
@@ -16,12 +17,12 @@ Module C 目前实现了以下功能：
 - 支持从 `task_instruction` 或第一条增强文本中选择过滤文本。
 - 支持统一的 `--motion-path` 运动轨迹入口，自动识别 LIBERO、Module D 和标准 motion JSON。
 - 支持多轨迹运动质量评分，例如同时评估 `Root`、`Hand_R`、`Hand_L`。
-- 默认要求真实 motion 与 Fixed/Ego 两路同步视频；缺失任一正式门禁即 `drop`。
-- 占位轨迹仅通过 `--debug-dummy-motion` 显式启用，并始终从正式评测排除。
+- 真实 motion 与 Fixed/Ego 同步状态会被检查并记录，但不控制最终决策。
+- 占位轨迹仅通过 `--debug-dummy-motion` 显式启用，并标记为诊断数据。
 - 支持语义一致性校验，当前可使用 `qwen3-vl-flash`、`qwen3-vl-plus`
   或 `mock` verifier。
 - 增加 FPS/frame count/duration、motion coverage、单位和跨模态时间范围检查。
-- API/解析失败强制为 `uncertain/drop`，不再按文本长度静默 fallback。
+- API/解析失败强制为 `uncertain` 并记录失败，但门禁禁用时仍保留 sample。
 - 输出机器可读 JSONL 和人工可读 pretty JSON。
 
 ## 工作流程
@@ -47,8 +48,8 @@ Paired ViewBundle（Fixed + Ego + shared timebase + trajectory）
 - `video`：整段视频聚合为一条 sample，适合判断整体任务文本是否可信。
 
 如果提供 `--motion-path`，该阶段会同步解析运动轨迹并写入 sample 的
-`motion.tracks`。如果没有真实轨迹，正式模式会跳过样本或在 refinement
-阶段 `drop`；不会自动生成占位轨迹。
+`motion.tracks`。如果没有真实轨迹，sample 仍会写出并记录缺失诊断；
+不会自动生成占位轨迹。
 
 ### 2. Motion 归一化
 
@@ -96,18 +97,17 @@ Paired ViewBundle（Fixed + Ego + shared timebase + trajectory）
 
 `semantic_consistency.py` 会把视频和 sample 文本交给 verifier，判断文本是否和视频内容一致。
 默认真实运行使用 `qwen3-vl-flash`。设置 `SEMANTIC_JUDGE_MODEL` 或
-`--judge-model` 可与生成模型解耦。离线联调可用 mock，但 mock 默认不能
-产生 `keep`。
+`--judge-model` 可与生成模型解耦。离线联调可用 mock；verifier 类型和结果
+都会写入诊断输出。
 
 ### 5. 决策输出
 
-`refinement.py` 综合动作质量分数和语义一致性标签：
+`refinement.py` 仍计算动作质量、同步和语义一致性：
 
-- 没有 motion、motion 为 dummy、双视角/时间轴不同步时输出 `drop`。
-- 动作质量分数或语义置信度低于阈值时输出 `drop`。
-- 只有 sync、真实 motion 和所有视角语义均通过时输出 `keep`。
-- 语义标签为 `uncertain` 或 `inconsistent` 时输出 `drop`。
-- API/解析失败强制标为 `uncertain` 并输出 `semantic_verifier_failed`。
+- 缺 motion、dummy、不同步和低分都会进入 `reason_codes`。
+- `uncertain`、`inconsistent` 和 API/解析失败仍被完整记录。
+- 当前最终决策固定为 `keep`，并加入 `quality_gates_disabled`。
+- 阈值只影响诊断 reason codes，不影响最终决策。
 
 输出中的 `reason_codes` 会说明过滤原因，例如：
 
@@ -120,7 +120,7 @@ Paired ViewBundle（Fixed + Ego + shared timebase + trajectory）
 
 以下命令都在 `mini-vlo` 项目根目录运行。
 
-## 1. 一键生成并过滤
+## 1. 一键生成并诊断
 
 正式运行使用带真实轨迹的 paired manifest：
 
@@ -240,9 +240,9 @@ python -m src.module_c.prepare_samples `
   --sample-level video
 ```
 
-## 3. 只运行过滤
+## 3. 只运行诊断 refinement
 
-使用默认配置过滤 samples JSONL：
+使用默认配置诊断 samples JSONL：
 
 ```powershell
 python -m src.module_c.run_refinement `
@@ -297,9 +297,9 @@ Module C 内部统一使用 `motion.tracks`：
 - 标准单轨迹：读取 `{positions, timestamps}`，输出为 `default` track。
 - 标准多轨迹：读取 `{tracks: {name: {positions, timestamps}}}`。
 
-如果未提供轨迹或轨迹无法匹配，正式模式不会构造假数据。`--allow-missing-motion`
-只允许写出诊断样本，refinement 仍会 fail-closed。`--debug-dummy-motion` 生成的
-轨迹带有 `is_dummy: true`，始终不能进入正式结果。
+如果未提供轨迹或轨迹无法匹配，系统不会自动构造假数据。缺失情况会写入诊断。
+`--allow-missing-motion` 目前是兼容性 no-op。`--debug-dummy-motion` 生成的轨迹
+带有 `is_dummy: true`，便于从结果中识别。
 
 ## 5. 质量评分输出
 
@@ -325,7 +325,7 @@ motion_quality:
 结果中的 `aux.motion.tracks` 会记录每条 track 的分数、ratio 和原因码，例如
 `Root:high_jerk_spikes`、`Hand_R:high_jitter`。
 
-## 6. 查看过滤结果分布
+## 6. 查看诊断结果分布
 
 ```powershell
 python -m src.module_c.evaluate --input results\refined_xxx.jsonl
@@ -334,15 +334,15 @@ python -m src.module_c.evaluate --input results\refined_xxx.jsonl
 ## 7. 常用参数
 
 - `--sample-level segment|video`：每个 task segment 一条样本，或整段视频聚合成一条样本。
-- `--text-source task_instruction|augmented_first`：选择原始任务文本或第一条增强文本作为过滤文本。
+- `--text-source task_instruction|augmented_first`：选择原始任务文本或第一条增强文本作为诊断文本。
 - `--motion-path`：统一轨迹入口，可以是 LIBERO 文件、Module D 文件、标准 motion 文件或轨迹目录。
 - `--motion-fps`：Module D `frame_N` 轨迹生成时间戳时使用的 FPS，默认 `24`。
 - `--motion-tracks`：保留指定轨迹，例如 `Root,Hand_R,Hand_L`；不传则读取所有合法 track。
 - `--motion-aggregation min|mean`：覆盖多轨迹质量分数聚合方式。
-- `--allow-missing-motion`：允许写出缺 motion 的诊断样本；正式门禁仍 drop。
-- `--debug-dummy-motion`：显式生成调试占位轨迹；永不计入正式评测。
-- `--allow-single-view-debug`：关闭 paired-view requirement，仅用于兼容诊断。
-- `--allow-mock-debug`：允许 mock 走 keep 路径，仅用于单元测试/调试。
+- `--allow-missing-motion`：已弃用兼容参数；缺 motion 默认写出诊断样本。
+- `--debug-dummy-motion`：显式生成带 `is_dummy` 标记的占位轨迹。
+- `--allow-single-view-debug`：关闭 paired-view 诊断 requirement。
+- `--allow-mock-debug`：调整 mock 诊断配置；质量门禁禁用时不改变最终决策。
 - `--motion-dir`：旧参数，等价于轨迹目录，建议改用 `--motion-path`。
 - `--libero-traj-file`：旧参数，等价于 LIBERO 文件，建议改用 `--motion-path`。
 

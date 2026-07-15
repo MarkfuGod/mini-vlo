@@ -1,0 +1,867 @@
+{
+  "schema_version": "semantic-motion-video-task/v2",
+  "video_path": "data/libero_goal/processed/put_the_bowl_on_the_plate_demo/demo_0_agentview_rgb.mp4",
+  "view_bundle": {
+    "schema_version": "semantic-motion-view-bundle/v1",
+    "sample_id": "put_the_bowl_on_the_plate_demo_0",
+    "timebase": {
+      "fps": 20.0,
+      "frame_count": 90,
+      "frame_start": 0,
+      "duration_sec": 4.5,
+      "time_unit": "seconds",
+      "frame_map": {
+        "video_frame_start": 0,
+        "source_frame_start": 0,
+        "frame_count": 90,
+        "step": 1,
+        "explicit_source_frames": []
+      }
+    },
+    "views": {
+      "fixed": {
+        "view_id": "fixed",
+        "video_path": "data/libero_goal/processed/put_the_bowl_on_the_plate_demo/demo_0_agentview_rgb.mp4",
+        "camera_name": "",
+        "camera_type": "fixed",
+        "fps": 20.0,
+        "frame_count": 90,
+        "duration_sec": 4.5,
+        "metadata": {}
+      },
+      "ego": {
+        "view_id": "ego",
+        "video_path": "data/libero_goal/processed/put_the_bowl_on_the_plate_demo/demo_0_eye_in_hand_rgb.mp4",
+        "camera_name": "",
+        "camera_type": "egocentric",
+        "fps": 20.0,
+        "frame_count": 90,
+        "duration_sec": 4.5,
+        "metadata": {}
+      }
+    },
+    "trajectory": {
+      "path": "data/libero_goal/processed/put_the_bowl_on_the_plate_demo/demo_0_traj.json",
+      "source": "LIBERO Goal",
+      "spatial_unit": "meters",
+      "coordinate_frame": "world",
+      "track_names": [
+        "eef"
+      ],
+      "metadata": {}
+    },
+    "provenance": {
+      "dataset": "LIBERO Goal",
+      "source_id": "put_the_bowl_on_the_plate_demo_0",
+      "generator": "src.semantic_motion.view_bundle",
+      "revision": "8f3096114a56caeb9d83d0e2a2def7ab32587754",
+      "config": {},
+      "checksums": {}
+    },
+    "metadata": {}
+  },
+  "source_instruction": "",
+  "frames": [],
+  "multi_view_frames": [
+    {
+      "frame_id": 0,
+      "timestamp_sec": 0.0,
+      "view_frames": {
+        "fixed": {
+          "frame_id": 0,
+          "frame_index": 0,
+          "timestamp_sec": 0.0,
+          "image_path": ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_plate_demo_0/fixed/repeat_02/macro/window_000/fixed/frame_00000000.jpg",
+          "view_id": "fixed"
+        }
+      },
+      "view_annotations": {},
+      "fused_annotation": {
+        "scenario_id": "put_the_bowl_on_the_plate_demo_0_macro_000",
+        "image_path": ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_plate_demo_0/fixed/repeat_02/macro/window_000/fixed/frame_00000000.jpg",
+        "source_instruction": "",
+        "objects": [
+          "robot arm",
+          "black box",
+          "circular object",
+          "blue rectangle",
+          "white square with hole",
+          "wooden planks",
+          "metal tool"
+        ],
+        "spatial_relations": [
+          "black box ON left side of scene",
+          "circular object ON wall",
+          "blue rectangle ON wall",
+          "white square with hole ON wall",
+          "wooden planks ON floor near black box",
+          "metal tool ON floor near robot arm base"
+        ],
+        "macro_intent": {
+          "task_type": "manipulation",
+          "target_object": "metal tool",
+          "destination": "near circular object on wall",
+          "confidence": 0.95,
+          "domain": "manipulation"
+        },
+        "micro_instructions": [
+          {
+            "step_id": 1,
+            "text": "approach metal tool",
+            "verb": "approach",
+            "object": "metal tool",
+            "confidence": 0.95,
+            "body_part": "robot arm",
+            "contact_state": "approach",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              0,
+              1
+            ]
+          },
+          {
+            "step_id": 2,
+            "text": "grasp metal tool",
+            "verb": "grasp",
+            "object": "metal tool",
+            "confidence": 0.95,
+            "body_part": "robot arm",
+            "contact_state": "grasp",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              1,
+              2
+            ]
+          },
+          {
+            "step_id": 3,
+            "text": "lift metal tool",
+            "verb": "lift",
+            "object": "metal tool",
+            "confidence": 0.95,
+            "body_part": "robot arm",
+            "contact_state": "contact",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              2,
+              3
+            ]
+          },
+          {
+            "step_id": 4,
+            "text": "move metal tool toward circular object",
+            "verb": "move",
+            "object": "metal tool",
+            "confidence": 0.95,
+            "body_part": "robot arm",
+            "contact_state": "contact",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              3,
+              4
+            ]
+          },
+          {
+            "step_id": 5,
+            "text": "position metal tool near circular object",
+            "verb": "position",
+            "object": "metal tool near circular object",
+            "confidence": 0.95,
+            "body_part": null,
+            "contact_state": null,
+            "posture": null,
+            "observed_trajectory": null,
+            "evidence_frame_ids": []
+          }
+        ],
+        "raw_recognition": "{\n  \"objects\": [\n    \"robot arm\",\n    \"black box\",\n    \"circular object\",\n    \"blue rectangle\",\n    \"white square with hole\",\n    \"wooden planks\",\n    \"metal tool\"\n  ],\n  \"spatial_relations\": [\n    \"black box ON left side of scene\",\n    \"circular object ON wall\",\n    \"blue rectangle ON wall\",\n    \"white square with hole ON wall\",\n    \"wooden planks ON floor near black box\",\n    \"metal tool ON floor near robot arm base\"\n  ],\n  \"task_type\": \"manipulation\",\n  \"domain\": \"manipulation\",\n  \"action_sequence\": [\n    \"approach metal tool\",\n    \"grasp metal tool\",\n    \"lift metal tool\",\n    \"move metal tool toward circular object\",\n    \"position metal tool near circular object\"\n  ],\n  \"action_details\": [\n    {\n      \"text\": \"approach metal tool\",\n      \"verb\": \"approach\",\n      \"object\": \"metal tool\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"approach\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 0,\n      \"end_image_index\": 1\n    },\n    {\n      \"text\": \"grasp metal tool\",\n      \"verb\": \"grasp\",\n      \"object\": \"metal tool\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 1,\n      \"end_image_index\": 2\n    },\n    {\n      \"text\": \"lift metal tool\",\n      \"verb\": \"lift\",\n      \"object\": \"metal tool\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"contact\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 2,\n      \"end_image_index\": 3\n    },\n    {\n      \"text\": \"move metal tool toward circular object\",\n      \"verb\": \"move\",\n      \"object\": \"metal tool\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"contact\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 3,\n      \"end_image_index\": 4\n    }\n  ],\n  \"target_object\": \"metal tool\",\n  \"destination\": \"near circular object on wall\",\n  \"instruction\": \"Use the robot arm to grasp and position the metal tool near the circular object on the wall.\",\n  \"transitions\": [1, 2, 3],\n  \"confidence\": 0.95\n}",
+        "view_id": "fixed",
+        "metadata": {
+          "category": "video",
+          "recognition_confidence": 0.95,
+          "prediction_instruction": "Use the robot arm to grasp and position the metal tool near the circular object on the wall.",
+          "transitions": [
+            1,
+            2,
+            3
+          ],
+          "view_mode": "fixed",
+          "evidence_paths": [
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_plate_demo_0/fixed/repeat_02/macro/window_000/fixed/frame_00000000.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_plate_demo_0/fixed/repeat_02/macro/window_000/fixed/frame_00000029.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_plate_demo_0/fixed/repeat_02/macro/window_000/fixed/frame_00000059.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_plate_demo_0/fixed/repeat_02/macro/window_000/fixed/frame_00000089.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_plate_demo_0/fixed/repeat_02/macro/window_000/ego/frame_00000000.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_plate_demo_0/fixed/repeat_02/macro/window_000/ego/frame_00000029.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_plate_demo_0/fixed/repeat_02/macro/window_000/ego/frame_00000059.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_plate_demo_0/fixed/repeat_02/macro/window_000/ego/frame_00000089.jpg"
+          ]
+        }
+      }
+    },
+    {
+      "frame_id": 1,
+      "timestamp_sec": 1.45,
+      "view_frames": {
+        "fixed": {
+          "frame_id": 1,
+          "frame_index": 29,
+          "timestamp_sec": 1.45,
+          "image_path": ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_plate_demo_0/fixed/repeat_02/macro/window_000/fixed/frame_00000029.jpg",
+          "view_id": "fixed"
+        }
+      },
+      "view_annotations": {},
+      "fused_annotation": {
+        "scenario_id": "put_the_bowl_on_the_plate_demo_0_macro_000",
+        "image_path": ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_plate_demo_0/fixed/repeat_02/macro/window_000/fixed/frame_00000000.jpg",
+        "source_instruction": "",
+        "objects": [
+          "robot arm",
+          "black box",
+          "circular object",
+          "blue rectangle",
+          "white square with hole",
+          "wooden planks",
+          "metal tool"
+        ],
+        "spatial_relations": [
+          "black box ON left side of scene",
+          "circular object ON wall",
+          "blue rectangle ON wall",
+          "white square with hole ON wall",
+          "wooden planks ON floor near black box",
+          "metal tool ON floor near robot arm base"
+        ],
+        "macro_intent": {
+          "task_type": "manipulation",
+          "target_object": "metal tool",
+          "destination": "near circular object on wall",
+          "confidence": 0.95,
+          "domain": "manipulation"
+        },
+        "micro_instructions": [
+          {
+            "step_id": 1,
+            "text": "approach metal tool",
+            "verb": "approach",
+            "object": "metal tool",
+            "confidence": 0.95,
+            "body_part": "robot arm",
+            "contact_state": "approach",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              0,
+              1
+            ]
+          },
+          {
+            "step_id": 2,
+            "text": "grasp metal tool",
+            "verb": "grasp",
+            "object": "metal tool",
+            "confidence": 0.95,
+            "body_part": "robot arm",
+            "contact_state": "grasp",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              1,
+              2
+            ]
+          },
+          {
+            "step_id": 3,
+            "text": "lift metal tool",
+            "verb": "lift",
+            "object": "metal tool",
+            "confidence": 0.95,
+            "body_part": "robot arm",
+            "contact_state": "contact",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              2,
+              3
+            ]
+          },
+          {
+            "step_id": 4,
+            "text": "move metal tool toward circular object",
+            "verb": "move",
+            "object": "metal tool",
+            "confidence": 0.95,
+            "body_part": "robot arm",
+            "contact_state": "contact",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              3,
+              4
+            ]
+          },
+          {
+            "step_id": 5,
+            "text": "position metal tool near circular object",
+            "verb": "position",
+            "object": "metal tool near circular object",
+            "confidence": 0.95,
+            "body_part": null,
+            "contact_state": null,
+            "posture": null,
+            "observed_trajectory": null,
+            "evidence_frame_ids": []
+          }
+        ],
+        "raw_recognition": "{\n  \"objects\": [\n    \"robot arm\",\n    \"black box\",\n    \"circular object\",\n    \"blue rectangle\",\n    \"white square with hole\",\n    \"wooden planks\",\n    \"metal tool\"\n  ],\n  \"spatial_relations\": [\n    \"black box ON left side of scene\",\n    \"circular object ON wall\",\n    \"blue rectangle ON wall\",\n    \"white square with hole ON wall\",\n    \"wooden planks ON floor near black box\",\n    \"metal tool ON floor near robot arm base\"\n  ],\n  \"task_type\": \"manipulation\",\n  \"domain\": \"manipulation\",\n  \"action_sequence\": [\n    \"approach metal tool\",\n    \"grasp metal tool\",\n    \"lift metal tool\",\n    \"move metal tool toward circular object\",\n    \"position metal tool near circular object\"\n  ],\n  \"action_details\": [\n    {\n      \"text\": \"approach metal tool\",\n      \"verb\": \"approach\",\n      \"object\": \"metal tool\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"approach\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 0,\n      \"end_image_index\": 1\n    },\n    {\n      \"text\": \"grasp metal tool\",\n      \"verb\": \"grasp\",\n      \"object\": \"metal tool\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 1,\n      \"end_image_index\": 2\n    },\n    {\n      \"text\": \"lift metal tool\",\n      \"verb\": \"lift\",\n      \"object\": \"metal tool\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"contact\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 2,\n      \"end_image_index\": 3\n    },\n    {\n      \"text\": \"move metal tool toward circular object\",\n      \"verb\": \"move\",\n      \"object\": \"metal tool\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"contact\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 3,\n      \"end_image_index\": 4\n    }\n  ],\n  \"target_object\": \"metal tool\",\n  \"destination\": \"near circular object on wall\",\n  \"instruction\": \"Use the robot arm to grasp and position the metal tool near the circular object on the wall.\",\n  \"transitions\": [1, 2, 3],\n  \"confidence\": 0.95\n}",
+        "view_id": "fixed",
+        "metadata": {
+          "category": "video",
+          "recognition_confidence": 0.95,
+          "prediction_instruction": "Use the robot arm to grasp and position the metal tool near the circular object on the wall.",
+          "transitions": [
+            1,
+            2,
+            3
+          ],
+          "view_mode": "fixed",
+          "evidence_paths": [
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_plate_demo_0/fixed/repeat_02/macro/window_000/fixed/frame_00000000.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_plate_demo_0/fixed/repeat_02/macro/window_000/fixed/frame_00000029.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_plate_demo_0/fixed/repeat_02/macro/window_000/fixed/frame_00000059.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_plate_demo_0/fixed/repeat_02/macro/window_000/fixed/frame_00000089.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_plate_demo_0/fixed/repeat_02/macro/window_000/ego/frame_00000000.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_plate_demo_0/fixed/repeat_02/macro/window_000/ego/frame_00000029.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_plate_demo_0/fixed/repeat_02/macro/window_000/ego/frame_00000059.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_plate_demo_0/fixed/repeat_02/macro/window_000/ego/frame_00000089.jpg"
+          ]
+        }
+      }
+    },
+    {
+      "frame_id": 2,
+      "timestamp_sec": 2.95,
+      "view_frames": {
+        "fixed": {
+          "frame_id": 2,
+          "frame_index": 59,
+          "timestamp_sec": 2.95,
+          "image_path": ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_plate_demo_0/fixed/repeat_02/macro/window_000/fixed/frame_00000059.jpg",
+          "view_id": "fixed"
+        }
+      },
+      "view_annotations": {},
+      "fused_annotation": {
+        "scenario_id": "put_the_bowl_on_the_plate_demo_0_macro_000",
+        "image_path": ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_plate_demo_0/fixed/repeat_02/macro/window_000/fixed/frame_00000000.jpg",
+        "source_instruction": "",
+        "objects": [
+          "robot arm",
+          "black box",
+          "circular object",
+          "blue rectangle",
+          "white square with hole",
+          "wooden planks",
+          "metal tool"
+        ],
+        "spatial_relations": [
+          "black box ON left side of scene",
+          "circular object ON wall",
+          "blue rectangle ON wall",
+          "white square with hole ON wall",
+          "wooden planks ON floor near black box",
+          "metal tool ON floor near robot arm base"
+        ],
+        "macro_intent": {
+          "task_type": "manipulation",
+          "target_object": "metal tool",
+          "destination": "near circular object on wall",
+          "confidence": 0.95,
+          "domain": "manipulation"
+        },
+        "micro_instructions": [
+          {
+            "step_id": 1,
+            "text": "approach metal tool",
+            "verb": "approach",
+            "object": "metal tool",
+            "confidence": 0.95,
+            "body_part": "robot arm",
+            "contact_state": "approach",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              0,
+              1
+            ]
+          },
+          {
+            "step_id": 2,
+            "text": "grasp metal tool",
+            "verb": "grasp",
+            "object": "metal tool",
+            "confidence": 0.95,
+            "body_part": "robot arm",
+            "contact_state": "grasp",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              1,
+              2
+            ]
+          },
+          {
+            "step_id": 3,
+            "text": "lift metal tool",
+            "verb": "lift",
+            "object": "metal tool",
+            "confidence": 0.95,
+            "body_part": "robot arm",
+            "contact_state": "contact",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              2,
+              3
+            ]
+          },
+          {
+            "step_id": 4,
+            "text": "move metal tool toward circular object",
+            "verb": "move",
+            "object": "metal tool",
+            "confidence": 0.95,
+            "body_part": "robot arm",
+            "contact_state": "contact",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              3,
+              4
+            ]
+          },
+          {
+            "step_id": 5,
+            "text": "position metal tool near circular object",
+            "verb": "position",
+            "object": "metal tool near circular object",
+            "confidence": 0.95,
+            "body_part": null,
+            "contact_state": null,
+            "posture": null,
+            "observed_trajectory": null,
+            "evidence_frame_ids": []
+          }
+        ],
+        "raw_recognition": "{\n  \"objects\": [\n    \"robot arm\",\n    \"black box\",\n    \"circular object\",\n    \"blue rectangle\",\n    \"white square with hole\",\n    \"wooden planks\",\n    \"metal tool\"\n  ],\n  \"spatial_relations\": [\n    \"black box ON left side of scene\",\n    \"circular object ON wall\",\n    \"blue rectangle ON wall\",\n    \"white square with hole ON wall\",\n    \"wooden planks ON floor near black box\",\n    \"metal tool ON floor near robot arm base\"\n  ],\n  \"task_type\": \"manipulation\",\n  \"domain\": \"manipulation\",\n  \"action_sequence\": [\n    \"approach metal tool\",\n    \"grasp metal tool\",\n    \"lift metal tool\",\n    \"move metal tool toward circular object\",\n    \"position metal tool near circular object\"\n  ],\n  \"action_details\": [\n    {\n      \"text\": \"approach metal tool\",\n      \"verb\": \"approach\",\n      \"object\": \"metal tool\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"approach\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 0,\n      \"end_image_index\": 1\n    },\n    {\n      \"text\": \"grasp metal tool\",\n      \"verb\": \"grasp\",\n      \"object\": \"metal tool\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 1,\n      \"end_image_index\": 2\n    },\n    {\n      \"text\": \"lift metal tool\",\n      \"verb\": \"lift\",\n      \"object\": \"metal tool\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"contact\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 2,\n      \"end_image_index\": 3\n    },\n    {\n      \"text\": \"move metal tool toward circular object\",\n      \"verb\": \"move\",\n      \"object\": \"metal tool\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"contact\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 3,\n      \"end_image_index\": 4\n    }\n  ],\n  \"target_object\": \"metal tool\",\n  \"destination\": \"near circular object on wall\",\n  \"instruction\": \"Use the robot arm to grasp and position the metal tool near the circular object on the wall.\",\n  \"transitions\": [1, 2, 3],\n  \"confidence\": 0.95\n}",
+        "view_id": "fixed",
+        "metadata": {
+          "category": "video",
+          "recognition_confidence": 0.95,
+          "prediction_instruction": "Use the robot arm to grasp and position the metal tool near the circular object on the wall.",
+          "transitions": [
+            1,
+            2,
+            3
+          ],
+          "view_mode": "fixed",
+          "evidence_paths": [
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_plate_demo_0/fixed/repeat_02/macro/window_000/fixed/frame_00000000.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_plate_demo_0/fixed/repeat_02/macro/window_000/fixed/frame_00000029.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_plate_demo_0/fixed/repeat_02/macro/window_000/fixed/frame_00000059.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_plate_demo_0/fixed/repeat_02/macro/window_000/fixed/frame_00000089.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_plate_demo_0/fixed/repeat_02/macro/window_000/ego/frame_00000000.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_plate_demo_0/fixed/repeat_02/macro/window_000/ego/frame_00000029.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_plate_demo_0/fixed/repeat_02/macro/window_000/ego/frame_00000059.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_plate_demo_0/fixed/repeat_02/macro/window_000/ego/frame_00000089.jpg"
+          ]
+        }
+      }
+    },
+    {
+      "frame_id": 3,
+      "timestamp_sec": 4.45,
+      "view_frames": {
+        "fixed": {
+          "frame_id": 3,
+          "frame_index": 89,
+          "timestamp_sec": 4.45,
+          "image_path": ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_plate_demo_0/fixed/repeat_02/macro/window_000/fixed/frame_00000089.jpg",
+          "view_id": "fixed"
+        }
+      },
+      "view_annotations": {},
+      "fused_annotation": {
+        "scenario_id": "put_the_bowl_on_the_plate_demo_0_macro_000",
+        "image_path": ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_plate_demo_0/fixed/repeat_02/macro/window_000/fixed/frame_00000000.jpg",
+        "source_instruction": "",
+        "objects": [
+          "robot arm",
+          "black box",
+          "circular object",
+          "blue rectangle",
+          "white square with hole",
+          "wooden planks",
+          "metal tool"
+        ],
+        "spatial_relations": [
+          "black box ON left side of scene",
+          "circular object ON wall",
+          "blue rectangle ON wall",
+          "white square with hole ON wall",
+          "wooden planks ON floor near black box",
+          "metal tool ON floor near robot arm base"
+        ],
+        "macro_intent": {
+          "task_type": "manipulation",
+          "target_object": "metal tool",
+          "destination": "near circular object on wall",
+          "confidence": 0.95,
+          "domain": "manipulation"
+        },
+        "micro_instructions": [
+          {
+            "step_id": 1,
+            "text": "approach metal tool",
+            "verb": "approach",
+            "object": "metal tool",
+            "confidence": 0.95,
+            "body_part": "robot arm",
+            "contact_state": "approach",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              0,
+              1
+            ]
+          },
+          {
+            "step_id": 2,
+            "text": "grasp metal tool",
+            "verb": "grasp",
+            "object": "metal tool",
+            "confidence": 0.95,
+            "body_part": "robot arm",
+            "contact_state": "grasp",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              1,
+              2
+            ]
+          },
+          {
+            "step_id": 3,
+            "text": "lift metal tool",
+            "verb": "lift",
+            "object": "metal tool",
+            "confidence": 0.95,
+            "body_part": "robot arm",
+            "contact_state": "contact",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              2,
+              3
+            ]
+          },
+          {
+            "step_id": 4,
+            "text": "move metal tool toward circular object",
+            "verb": "move",
+            "object": "metal tool",
+            "confidence": 0.95,
+            "body_part": "robot arm",
+            "contact_state": "contact",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              3,
+              4
+            ]
+          },
+          {
+            "step_id": 5,
+            "text": "position metal tool near circular object",
+            "verb": "position",
+            "object": "metal tool near circular object",
+            "confidence": 0.95,
+            "body_part": null,
+            "contact_state": null,
+            "posture": null,
+            "observed_trajectory": null,
+            "evidence_frame_ids": []
+          }
+        ],
+        "raw_recognition": "{\n  \"objects\": [\n    \"robot arm\",\n    \"black box\",\n    \"circular object\",\n    \"blue rectangle\",\n    \"white square with hole\",\n    \"wooden planks\",\n    \"metal tool\"\n  ],\n  \"spatial_relations\": [\n    \"black box ON left side of scene\",\n    \"circular object ON wall\",\n    \"blue rectangle ON wall\",\n    \"white square with hole ON wall\",\n    \"wooden planks ON floor near black box\",\n    \"metal tool ON floor near robot arm base\"\n  ],\n  \"task_type\": \"manipulation\",\n  \"domain\": \"manipulation\",\n  \"action_sequence\": [\n    \"approach metal tool\",\n    \"grasp metal tool\",\n    \"lift metal tool\",\n    \"move metal tool toward circular object\",\n    \"position metal tool near circular object\"\n  ],\n  \"action_details\": [\n    {\n      \"text\": \"approach metal tool\",\n      \"verb\": \"approach\",\n      \"object\": \"metal tool\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"approach\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 0,\n      \"end_image_index\": 1\n    },\n    {\n      \"text\": \"grasp metal tool\",\n      \"verb\": \"grasp\",\n      \"object\": \"metal tool\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 1,\n      \"end_image_index\": 2\n    },\n    {\n      \"text\": \"lift metal tool\",\n      \"verb\": \"lift\",\n      \"object\": \"metal tool\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"contact\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 2,\n      \"end_image_index\": 3\n    },\n    {\n      \"text\": \"move metal tool toward circular object\",\n      \"verb\": \"move\",\n      \"object\": \"metal tool\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"contact\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 3,\n      \"end_image_index\": 4\n    }\n  ],\n  \"target_object\": \"metal tool\",\n  \"destination\": \"near circular object on wall\",\n  \"instruction\": \"Use the robot arm to grasp and position the metal tool near the circular object on the wall.\",\n  \"transitions\": [1, 2, 3],\n  \"confidence\": 0.95\n}",
+        "view_id": "fixed",
+        "metadata": {
+          "category": "video",
+          "recognition_confidence": 0.95,
+          "prediction_instruction": "Use the robot arm to grasp and position the metal tool near the circular object on the wall.",
+          "transitions": [
+            1,
+            2,
+            3
+          ],
+          "view_mode": "fixed",
+          "evidence_paths": [
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_plate_demo_0/fixed/repeat_02/macro/window_000/fixed/frame_00000000.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_plate_demo_0/fixed/repeat_02/macro/window_000/fixed/frame_00000029.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_plate_demo_0/fixed/repeat_02/macro/window_000/fixed/frame_00000059.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_plate_demo_0/fixed/repeat_02/macro/window_000/fixed/frame_00000089.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_plate_demo_0/fixed/repeat_02/macro/window_000/ego/frame_00000000.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_plate_demo_0/fixed/repeat_02/macro/window_000/ego/frame_00000029.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_plate_demo_0/fixed/repeat_02/macro/window_000/ego/frame_00000059.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_plate_demo_0/fixed/repeat_02/macro/window_000/ego/frame_00000089.jpg"
+          ]
+        }
+      }
+    }
+  ],
+  "task_segments": [
+    {
+      "segment_id": "segment_000",
+      "start_time_sec": 0.0,
+      "end_time_sec": 2.55,
+      "frame_ids": [
+        0,
+        20,
+        39,
+        50
+      ],
+      "task_instruction": "position the robot arm near the metal object on the wall.",
+      "objects": [
+        "robot arm",
+        "black box",
+        "wooden planks",
+        "circular object",
+        "metal object",
+        "blue object",
+        "white square object",
+        "gray circular object",
+        "blue button",
+        "white square device"
+      ],
+      "spatial_relations": [
+        "black box ON left",
+        "wooden planks ON floor",
+        "circular object ON wall",
+        "metal object BELOW circular object",
+        "blue object ON wall",
+        "white square object ON wall",
+        "gray circular object ON wall",
+        "robot arm IN foreground",
+        "robot arm IN front of black box",
+        "blue button ON wall",
+        "white square device ON wall"
+      ],
+      "macro_intent": {
+        "task_type": "manipulation",
+        "target_object": "metal object",
+        "destination": "near metal object",
+        "confidence": 0.875,
+        "domain": "manipulation"
+      },
+      "micro_instructions": [
+        {
+          "step_id": 1,
+          "text": "move robot arm upward",
+          "verb": "move",
+          "object": "robot arm",
+          "confidence": 0.9,
+          "body_part": "robot arm",
+          "contact_state": "unknown",
+          "posture": "standing",
+          "observed_trajectory": {
+            "track_names": [
+              "eef"
+            ],
+            "start_time_sec": 0.0,
+            "end_time_sec": 2.0,
+            "coordinate_frame": "world"
+          },
+          "evidence_frame_ids": [
+            0,
+            39
+          ]
+        },
+        {
+          "step_id": 2,
+          "text": "position robot arm near metal object",
+          "verb": "position",
+          "object": "robot arm",
+          "confidence": 0.9,
+          "body_part": "robot arm",
+          "contact_state": "unknown",
+          "posture": "standing",
+          "observed_trajectory": {
+            "track_names": [
+              "eef"
+            ],
+            "start_time_sec": 0.0,
+            "end_time_sec": 2.0,
+            "coordinate_frame": "world"
+          },
+          "evidence_frame_ids": [
+            0,
+            39
+          ]
+        }
+      ],
+      "augmented_instructions": [],
+      "confidence": 0.875,
+      "start_frame": 0,
+      "end_frame": 51,
+      "evidence_by_view": {
+        "fixed": [
+          0,
+          20,
+          39,
+          50
+        ]
+      },
+      "metadata": {
+        "micro_window_count": 2,
+        "view_mode": "fixed",
+        "trajectory_linked": true,
+        "augmentation_audit": [],
+        "alternative_micro_observations": [
+          [
+            "approach white square device",
+            "grasp white square device",
+            "pull white square device"
+          ]
+        ]
+      }
+    },
+    {
+      "segment_id": "segment_001",
+      "start_time_sec": 2.55,
+      "end_time_sec": 4.5,
+      "frame_ids": [
+        51,
+        89
+      ],
+      "task_instruction": "adjust and move the robot arm toward the circular object on the wall.",
+      "objects": [
+        "robot arm",
+        "black box",
+        "wooden planks",
+        "circular object",
+        "blue switch",
+        "white panel"
+      ],
+      "spatial_relations": [
+        "black box ON left",
+        "wooden planks ON floor",
+        "circular object ON wall",
+        "blue switch ON wall",
+        "white panel ON wall",
+        "robot arm IN foreground"
+      ],
+      "macro_intent": {
+        "task_type": "manipulation",
+        "target_object": "robot arm",
+        "destination": "near circular object",
+        "confidence": 0.9,
+        "domain": "manipulation"
+      },
+      "micro_instructions": [
+        {
+          "step_id": 1,
+          "text": "adjust robot arm position",
+          "verb": "adjust",
+          "object": "robot arm",
+          "confidence": 0.9,
+          "body_part": "robot arm",
+          "contact_state": "unknown",
+          "posture": "stationary with slight repositioning",
+          "observed_trajectory": {
+            "track_names": [
+              "eef"
+            ],
+            "start_time_sec": 2.55,
+            "end_time_sec": 4.5,
+            "coordinate_frame": "world"
+          },
+          "evidence_frame_ids": [
+            51,
+            89
+          ]
+        },
+        {
+          "step_id": 2,
+          "text": "move robot arm toward circular object",
+          "verb": "move",
+          "object": "robot arm",
+          "confidence": 0.9,
+          "body_part": "robot arm",
+          "contact_state": "approach",
+          "posture": "forward extension",
+          "observed_trajectory": {
+            "track_names": [
+              "eef"
+            ],
+            "start_time_sec": 2.55,
+            "end_time_sec": 4.5,
+            "coordinate_frame": "world"
+          },
+          "evidence_frame_ids": [
+            51,
+            89
+          ]
+        }
+      ],
+      "augmented_instructions": [],
+      "confidence": 0.9,
+      "start_frame": 51,
+      "end_frame": 90,
+      "evidence_by_view": {
+        "fixed": [
+          51,
+          89
+        ]
+      },
+      "metadata": {
+        "micro_window_count": 1,
+        "view_mode": "fixed",
+        "trajectory_linked": true,
+        "augmentation_audit": [],
+        "alternative_micro_observations": []
+      }
+    }
+  ],
+  "metadata": {
+    "method": "paired_overlapping_macro_dense_micro_v1",
+    "view_mode": "fixed",
+    "macro_window_sec": 16.0,
+    "macro_step_sec": 8.0,
+    "macro_frames": 4,
+    "micro_window_sec": 2.0,
+    "micro_step_sec": 1.0,
+    "micro_frames": 2,
+    "cut_frames": [
+      51
+    ],
+    "macro_window_count": 1,
+    "provenance": {
+      "dataset": "LIBERO Goal",
+      "source_id": "put_the_bowl_on_the_plate_demo_0",
+      "generator": "src.semantic_motion.view_bundle",
+      "revision": "8f3096114a56caeb9d83d0e2a2def7ab32587754",
+      "config": {},
+      "checksums": {}
+    },
+    "validation_diagnostics": [],
+    "validation_enforced": false,
+    "generation_model": "qwen3-vl-flash",
+    "rewriter": "SourceInstructionRewriter",
+    "rewrite_prompt_version": ""
+  }
+}

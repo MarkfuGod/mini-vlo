@@ -1,0 +1,891 @@
+{
+  "schema_version": "semantic-motion-video-task/v2",
+  "video_path": "data/libero_goal/processed/put_the_bowl_on_the_stove_demo/demo_0_agentview_rgb.mp4",
+  "view_bundle": {
+    "schema_version": "semantic-motion-view-bundle/v1",
+    "sample_id": "put_the_bowl_on_the_stove_demo_0",
+    "timebase": {
+      "fps": 20.0,
+      "frame_count": 94,
+      "frame_start": 0,
+      "duration_sec": 4.7,
+      "time_unit": "seconds",
+      "frame_map": {
+        "video_frame_start": 0,
+        "source_frame_start": 0,
+        "frame_count": 94,
+        "step": 1,
+        "explicit_source_frames": []
+      }
+    },
+    "views": {
+      "fixed": {
+        "view_id": "fixed",
+        "video_path": "data/libero_goal/processed/put_the_bowl_on_the_stove_demo/demo_0_agentview_rgb.mp4",
+        "camera_name": "",
+        "camera_type": "fixed",
+        "fps": 20.0,
+        "frame_count": 94,
+        "duration_sec": 4.7,
+        "metadata": {}
+      },
+      "ego": {
+        "view_id": "ego",
+        "video_path": "data/libero_goal/processed/put_the_bowl_on_the_stove_demo/demo_0_eye_in_hand_rgb.mp4",
+        "camera_name": "",
+        "camera_type": "egocentric",
+        "fps": 20.0,
+        "frame_count": 94,
+        "duration_sec": 4.7,
+        "metadata": {}
+      }
+    },
+    "trajectory": {
+      "path": "data/libero_goal/processed/put_the_bowl_on_the_stove_demo/demo_0_traj.json",
+      "source": "LIBERO Goal",
+      "spatial_unit": "meters",
+      "coordinate_frame": "world",
+      "track_names": [
+        "eef"
+      ],
+      "metadata": {}
+    },
+    "provenance": {
+      "dataset": "LIBERO Goal",
+      "source_id": "put_the_bowl_on_the_stove_demo_0",
+      "generator": "src.semantic_motion.view_bundle",
+      "revision": "8f3096114a56caeb9d83d0e2a2def7ab32587754",
+      "config": {},
+      "checksums": {}
+    },
+    "metadata": {}
+  },
+  "source_instruction": "",
+  "frames": [],
+  "multi_view_frames": [
+    {
+      "frame_id": 0,
+      "timestamp_sec": 0.0,
+      "view_frames": {
+        "fixed": {
+          "frame_id": 0,
+          "frame_index": 0,
+          "timestamp_sec": 0.0,
+          "image_path": ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fixed/repeat_02/macro/window_000/fixed/frame_00000000.jpg",
+          "view_id": "fixed"
+        }
+      },
+      "view_annotations": {},
+      "fused_annotation": {
+        "scenario_id": "put_the_bowl_on_the_stove_demo_0_macro_000",
+        "image_path": ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fixed/repeat_02/macro/window_000/fixed/frame_00000000.jpg",
+        "source_instruction": "",
+        "objects": [
+          "robot arm",
+          "black cabinet",
+          "wooden plank",
+          "round white object",
+          "blue rectangular object",
+          "silver circular object",
+          "white square device with black circle",
+          "black cylindrical object"
+        ],
+        "spatial_relations": [
+          "black cabinet ON left side of scene",
+          "wooden plank ON floor near cabinet",
+          "round white object ON wall",
+          "blue rectangular object ON wall near round object",
+          "silver circular object ON wall below blue object",
+          "white square device ON wall right of silver object",
+          "black cylindrical object ON floor near robot arm base"
+        ],
+        "macro_intent": {
+          "task_type": "manipulation",
+          "target_object": "black cylindrical object",
+          "destination": "white square device",
+          "confidence": 0.95,
+          "domain": "manipulation"
+        },
+        "micro_instructions": [
+          {
+            "step_id": 1,
+            "text": "approach black cylindrical object",
+            "verb": "approach",
+            "object": "black cylindrical object",
+            "confidence": 0.95,
+            "body_part": "robot arm",
+            "contact_state": "approach",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              0,
+              1
+            ]
+          },
+          {
+            "step_id": 2,
+            "text": "grasp black cylindrical object",
+            "verb": "grasp",
+            "object": "black cylindrical object",
+            "confidence": 0.95,
+            "body_part": "robot arm",
+            "contact_state": "grasp",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              1,
+              2
+            ]
+          },
+          {
+            "step_id": 3,
+            "text": "lift black cylindrical object",
+            "verb": "lift",
+            "object": "black cylindrical object",
+            "confidence": 0.95,
+            "body_part": "robot arm",
+            "contact_state": "grasp",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              2,
+              3
+            ]
+          },
+          {
+            "step_id": 4,
+            "text": "move black cylindrical object toward white square device",
+            "verb": "move",
+            "object": "black cylindrical object",
+            "confidence": 0.95,
+            "body_part": "robot arm",
+            "contact_state": "grasp",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              3,
+              4
+            ]
+          },
+          {
+            "step_id": 5,
+            "text": "attach black cylindrical object to white square device",
+            "verb": "attach",
+            "object": "black cylindrical object",
+            "confidence": 0.95,
+            "body_part": "robot arm",
+            "contact_state": "contact",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              4,
+              4
+            ]
+          }
+        ],
+        "raw_recognition": "{\n  \"objects\": [\n    \"robot arm\",\n    \"black cabinet\",\n    \"wooden plank\",\n    \"round white object\",\n    \"blue rectangular object\",\n    \"silver circular object\",\n    \"white square device with black circle\",\n    \"black cylindrical object\"\n  ],\n  \"spatial_relations\": [\n    \"black cabinet ON left side of scene\",\n    \"wooden plank ON floor near cabinet\",\n    \"round white object ON wall\",\n    \"blue rectangular object ON wall near round object\",\n    \"silver circular object ON wall below blue object\",\n    \"white square device ON wall right of silver object\",\n    \"black cylindrical object ON floor near robot arm base\"\n  ],\n  \"task_type\": \"manipulation\",\n  \"domain\": \"manipulation\",\n  \"action_sequence\": [\n    \"approach black cylindrical object\",\n    \"grasp black cylindrical object\",\n    \"lift black cylindrical object\",\n    \"move black cylindrical object toward white square device\",\n    \"attach black cylindrical object to white square device\"\n  ],\n  \"action_details\": [\n    {\n      \"text\": \"approach black cylindrical object\",\n      \"verb\": \"approach\",\n      \"object\": \"black cylindrical object\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"approach\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 0,\n      \"end_image_index\": 1\n    },\n    {\n      \"text\": \"grasp black cylindrical object\",\n      \"verb\": \"grasp\",\n      \"object\": \"black cylindrical object\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 1,\n      \"end_image_index\": 2\n    },\n    {\n      \"text\": \"lift black cylindrical object\",\n      \"verb\": \"lift\",\n      \"object\": \"black cylindrical object\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 2,\n      \"end_image_index\": 3\n    },\n    {\n      \"text\": \"move black cylindrical object toward white square device\",\n      \"verb\": \"move\",\n      \"object\": \"black cylindrical object\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 3,\n      \"end_image_index\": 4\n    },\n    {\n      \"text\": \"attach black cylindrical object to white square device\",\n      \"verb\": \"attach\",\n      \"object\": \"black cylindrical object\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"contact\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 4,\n      \"end_image_index\": 4\n    }\n  ],\n  \"target_object\": \"black cylindrical object\",\n  \"destination\": \"white square device\",\n  \"instruction\": \"Attach the black cylindrical object to the white square device on the wall.\",\n  \"transitions\": [1, 2, 3, 4],\n  \"confidence\": 0.95\n}",
+        "view_id": "fixed",
+        "metadata": {
+          "category": "video",
+          "recognition_confidence": 0.95,
+          "prediction_instruction": "Attach the black cylindrical object to the white square device on the wall.",
+          "transitions": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "view_mode": "fixed",
+          "evidence_paths": [
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fixed/repeat_02/macro/window_000/fixed/frame_00000000.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fixed/repeat_02/macro/window_000/fixed/frame_00000031.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fixed/repeat_02/macro/window_000/fixed/frame_00000062.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fixed/repeat_02/macro/window_000/fixed/frame_00000093.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fixed/repeat_02/macro/window_000/ego/frame_00000000.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fixed/repeat_02/macro/window_000/ego/frame_00000031.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fixed/repeat_02/macro/window_000/ego/frame_00000062.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fixed/repeat_02/macro/window_000/ego/frame_00000093.jpg"
+          ]
+        }
+      }
+    },
+    {
+      "frame_id": 1,
+      "timestamp_sec": 1.55,
+      "view_frames": {
+        "fixed": {
+          "frame_id": 1,
+          "frame_index": 31,
+          "timestamp_sec": 1.55,
+          "image_path": ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fixed/repeat_02/macro/window_000/fixed/frame_00000031.jpg",
+          "view_id": "fixed"
+        }
+      },
+      "view_annotations": {},
+      "fused_annotation": {
+        "scenario_id": "put_the_bowl_on_the_stove_demo_0_macro_000",
+        "image_path": ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fixed/repeat_02/macro/window_000/fixed/frame_00000000.jpg",
+        "source_instruction": "",
+        "objects": [
+          "robot arm",
+          "black cabinet",
+          "wooden plank",
+          "round white object",
+          "blue rectangular object",
+          "silver circular object",
+          "white square device with black circle",
+          "black cylindrical object"
+        ],
+        "spatial_relations": [
+          "black cabinet ON left side of scene",
+          "wooden plank ON floor near cabinet",
+          "round white object ON wall",
+          "blue rectangular object ON wall near round object",
+          "silver circular object ON wall below blue object",
+          "white square device ON wall right of silver object",
+          "black cylindrical object ON floor near robot arm base"
+        ],
+        "macro_intent": {
+          "task_type": "manipulation",
+          "target_object": "black cylindrical object",
+          "destination": "white square device",
+          "confidence": 0.95,
+          "domain": "manipulation"
+        },
+        "micro_instructions": [
+          {
+            "step_id": 1,
+            "text": "approach black cylindrical object",
+            "verb": "approach",
+            "object": "black cylindrical object",
+            "confidence": 0.95,
+            "body_part": "robot arm",
+            "contact_state": "approach",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              0,
+              1
+            ]
+          },
+          {
+            "step_id": 2,
+            "text": "grasp black cylindrical object",
+            "verb": "grasp",
+            "object": "black cylindrical object",
+            "confidence": 0.95,
+            "body_part": "robot arm",
+            "contact_state": "grasp",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              1,
+              2
+            ]
+          },
+          {
+            "step_id": 3,
+            "text": "lift black cylindrical object",
+            "verb": "lift",
+            "object": "black cylindrical object",
+            "confidence": 0.95,
+            "body_part": "robot arm",
+            "contact_state": "grasp",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              2,
+              3
+            ]
+          },
+          {
+            "step_id": 4,
+            "text": "move black cylindrical object toward white square device",
+            "verb": "move",
+            "object": "black cylindrical object",
+            "confidence": 0.95,
+            "body_part": "robot arm",
+            "contact_state": "grasp",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              3,
+              4
+            ]
+          },
+          {
+            "step_id": 5,
+            "text": "attach black cylindrical object to white square device",
+            "verb": "attach",
+            "object": "black cylindrical object",
+            "confidence": 0.95,
+            "body_part": "robot arm",
+            "contact_state": "contact",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              4,
+              4
+            ]
+          }
+        ],
+        "raw_recognition": "{\n  \"objects\": [\n    \"robot arm\",\n    \"black cabinet\",\n    \"wooden plank\",\n    \"round white object\",\n    \"blue rectangular object\",\n    \"silver circular object\",\n    \"white square device with black circle\",\n    \"black cylindrical object\"\n  ],\n  \"spatial_relations\": [\n    \"black cabinet ON left side of scene\",\n    \"wooden plank ON floor near cabinet\",\n    \"round white object ON wall\",\n    \"blue rectangular object ON wall near round object\",\n    \"silver circular object ON wall below blue object\",\n    \"white square device ON wall right of silver object\",\n    \"black cylindrical object ON floor near robot arm base\"\n  ],\n  \"task_type\": \"manipulation\",\n  \"domain\": \"manipulation\",\n  \"action_sequence\": [\n    \"approach black cylindrical object\",\n    \"grasp black cylindrical object\",\n    \"lift black cylindrical object\",\n    \"move black cylindrical object toward white square device\",\n    \"attach black cylindrical object to white square device\"\n  ],\n  \"action_details\": [\n    {\n      \"text\": \"approach black cylindrical object\",\n      \"verb\": \"approach\",\n      \"object\": \"black cylindrical object\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"approach\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 0,\n      \"end_image_index\": 1\n    },\n    {\n      \"text\": \"grasp black cylindrical object\",\n      \"verb\": \"grasp\",\n      \"object\": \"black cylindrical object\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 1,\n      \"end_image_index\": 2\n    },\n    {\n      \"text\": \"lift black cylindrical object\",\n      \"verb\": \"lift\",\n      \"object\": \"black cylindrical object\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 2,\n      \"end_image_index\": 3\n    },\n    {\n      \"text\": \"move black cylindrical object toward white square device\",\n      \"verb\": \"move\",\n      \"object\": \"black cylindrical object\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 3,\n      \"end_image_index\": 4\n    },\n    {\n      \"text\": \"attach black cylindrical object to white square device\",\n      \"verb\": \"attach\",\n      \"object\": \"black cylindrical object\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"contact\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 4,\n      \"end_image_index\": 4\n    }\n  ],\n  \"target_object\": \"black cylindrical object\",\n  \"destination\": \"white square device\",\n  \"instruction\": \"Attach the black cylindrical object to the white square device on the wall.\",\n  \"transitions\": [1, 2, 3, 4],\n  \"confidence\": 0.95\n}",
+        "view_id": "fixed",
+        "metadata": {
+          "category": "video",
+          "recognition_confidence": 0.95,
+          "prediction_instruction": "Attach the black cylindrical object to the white square device on the wall.",
+          "transitions": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "view_mode": "fixed",
+          "evidence_paths": [
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fixed/repeat_02/macro/window_000/fixed/frame_00000000.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fixed/repeat_02/macro/window_000/fixed/frame_00000031.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fixed/repeat_02/macro/window_000/fixed/frame_00000062.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fixed/repeat_02/macro/window_000/fixed/frame_00000093.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fixed/repeat_02/macro/window_000/ego/frame_00000000.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fixed/repeat_02/macro/window_000/ego/frame_00000031.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fixed/repeat_02/macro/window_000/ego/frame_00000062.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fixed/repeat_02/macro/window_000/ego/frame_00000093.jpg"
+          ]
+        }
+      }
+    },
+    {
+      "frame_id": 2,
+      "timestamp_sec": 3.1,
+      "view_frames": {
+        "fixed": {
+          "frame_id": 2,
+          "frame_index": 62,
+          "timestamp_sec": 3.1,
+          "image_path": ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fixed/repeat_02/macro/window_000/fixed/frame_00000062.jpg",
+          "view_id": "fixed"
+        }
+      },
+      "view_annotations": {},
+      "fused_annotation": {
+        "scenario_id": "put_the_bowl_on_the_stove_demo_0_macro_000",
+        "image_path": ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fixed/repeat_02/macro/window_000/fixed/frame_00000000.jpg",
+        "source_instruction": "",
+        "objects": [
+          "robot arm",
+          "black cabinet",
+          "wooden plank",
+          "round white object",
+          "blue rectangular object",
+          "silver circular object",
+          "white square device with black circle",
+          "black cylindrical object"
+        ],
+        "spatial_relations": [
+          "black cabinet ON left side of scene",
+          "wooden plank ON floor near cabinet",
+          "round white object ON wall",
+          "blue rectangular object ON wall near round object",
+          "silver circular object ON wall below blue object",
+          "white square device ON wall right of silver object",
+          "black cylindrical object ON floor near robot arm base"
+        ],
+        "macro_intent": {
+          "task_type": "manipulation",
+          "target_object": "black cylindrical object",
+          "destination": "white square device",
+          "confidence": 0.95,
+          "domain": "manipulation"
+        },
+        "micro_instructions": [
+          {
+            "step_id": 1,
+            "text": "approach black cylindrical object",
+            "verb": "approach",
+            "object": "black cylindrical object",
+            "confidence": 0.95,
+            "body_part": "robot arm",
+            "contact_state": "approach",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              0,
+              1
+            ]
+          },
+          {
+            "step_id": 2,
+            "text": "grasp black cylindrical object",
+            "verb": "grasp",
+            "object": "black cylindrical object",
+            "confidence": 0.95,
+            "body_part": "robot arm",
+            "contact_state": "grasp",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              1,
+              2
+            ]
+          },
+          {
+            "step_id": 3,
+            "text": "lift black cylindrical object",
+            "verb": "lift",
+            "object": "black cylindrical object",
+            "confidence": 0.95,
+            "body_part": "robot arm",
+            "contact_state": "grasp",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              2,
+              3
+            ]
+          },
+          {
+            "step_id": 4,
+            "text": "move black cylindrical object toward white square device",
+            "verb": "move",
+            "object": "black cylindrical object",
+            "confidence": 0.95,
+            "body_part": "robot arm",
+            "contact_state": "grasp",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              3,
+              4
+            ]
+          },
+          {
+            "step_id": 5,
+            "text": "attach black cylindrical object to white square device",
+            "verb": "attach",
+            "object": "black cylindrical object",
+            "confidence": 0.95,
+            "body_part": "robot arm",
+            "contact_state": "contact",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              4,
+              4
+            ]
+          }
+        ],
+        "raw_recognition": "{\n  \"objects\": [\n    \"robot arm\",\n    \"black cabinet\",\n    \"wooden plank\",\n    \"round white object\",\n    \"blue rectangular object\",\n    \"silver circular object\",\n    \"white square device with black circle\",\n    \"black cylindrical object\"\n  ],\n  \"spatial_relations\": [\n    \"black cabinet ON left side of scene\",\n    \"wooden plank ON floor near cabinet\",\n    \"round white object ON wall\",\n    \"blue rectangular object ON wall near round object\",\n    \"silver circular object ON wall below blue object\",\n    \"white square device ON wall right of silver object\",\n    \"black cylindrical object ON floor near robot arm base\"\n  ],\n  \"task_type\": \"manipulation\",\n  \"domain\": \"manipulation\",\n  \"action_sequence\": [\n    \"approach black cylindrical object\",\n    \"grasp black cylindrical object\",\n    \"lift black cylindrical object\",\n    \"move black cylindrical object toward white square device\",\n    \"attach black cylindrical object to white square device\"\n  ],\n  \"action_details\": [\n    {\n      \"text\": \"approach black cylindrical object\",\n      \"verb\": \"approach\",\n      \"object\": \"black cylindrical object\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"approach\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 0,\n      \"end_image_index\": 1\n    },\n    {\n      \"text\": \"grasp black cylindrical object\",\n      \"verb\": \"grasp\",\n      \"object\": \"black cylindrical object\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 1,\n      \"end_image_index\": 2\n    },\n    {\n      \"text\": \"lift black cylindrical object\",\n      \"verb\": \"lift\",\n      \"object\": \"black cylindrical object\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 2,\n      \"end_image_index\": 3\n    },\n    {\n      \"text\": \"move black cylindrical object toward white square device\",\n      \"verb\": \"move\",\n      \"object\": \"black cylindrical object\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 3,\n      \"end_image_index\": 4\n    },\n    {\n      \"text\": \"attach black cylindrical object to white square device\",\n      \"verb\": \"attach\",\n      \"object\": \"black cylindrical object\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"contact\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 4,\n      \"end_image_index\": 4\n    }\n  ],\n  \"target_object\": \"black cylindrical object\",\n  \"destination\": \"white square device\",\n  \"instruction\": \"Attach the black cylindrical object to the white square device on the wall.\",\n  \"transitions\": [1, 2, 3, 4],\n  \"confidence\": 0.95\n}",
+        "view_id": "fixed",
+        "metadata": {
+          "category": "video",
+          "recognition_confidence": 0.95,
+          "prediction_instruction": "Attach the black cylindrical object to the white square device on the wall.",
+          "transitions": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "view_mode": "fixed",
+          "evidence_paths": [
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fixed/repeat_02/macro/window_000/fixed/frame_00000000.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fixed/repeat_02/macro/window_000/fixed/frame_00000031.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fixed/repeat_02/macro/window_000/fixed/frame_00000062.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fixed/repeat_02/macro/window_000/fixed/frame_00000093.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fixed/repeat_02/macro/window_000/ego/frame_00000000.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fixed/repeat_02/macro/window_000/ego/frame_00000031.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fixed/repeat_02/macro/window_000/ego/frame_00000062.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fixed/repeat_02/macro/window_000/ego/frame_00000093.jpg"
+          ]
+        }
+      }
+    },
+    {
+      "frame_id": 3,
+      "timestamp_sec": 4.65,
+      "view_frames": {
+        "fixed": {
+          "frame_id": 3,
+          "frame_index": 93,
+          "timestamp_sec": 4.65,
+          "image_path": ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fixed/repeat_02/macro/window_000/fixed/frame_00000093.jpg",
+          "view_id": "fixed"
+        }
+      },
+      "view_annotations": {},
+      "fused_annotation": {
+        "scenario_id": "put_the_bowl_on_the_stove_demo_0_macro_000",
+        "image_path": ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fixed/repeat_02/macro/window_000/fixed/frame_00000000.jpg",
+        "source_instruction": "",
+        "objects": [
+          "robot arm",
+          "black cabinet",
+          "wooden plank",
+          "round white object",
+          "blue rectangular object",
+          "silver circular object",
+          "white square device with black circle",
+          "black cylindrical object"
+        ],
+        "spatial_relations": [
+          "black cabinet ON left side of scene",
+          "wooden plank ON floor near cabinet",
+          "round white object ON wall",
+          "blue rectangular object ON wall near round object",
+          "silver circular object ON wall below blue object",
+          "white square device ON wall right of silver object",
+          "black cylindrical object ON floor near robot arm base"
+        ],
+        "macro_intent": {
+          "task_type": "manipulation",
+          "target_object": "black cylindrical object",
+          "destination": "white square device",
+          "confidence": 0.95,
+          "domain": "manipulation"
+        },
+        "micro_instructions": [
+          {
+            "step_id": 1,
+            "text": "approach black cylindrical object",
+            "verb": "approach",
+            "object": "black cylindrical object",
+            "confidence": 0.95,
+            "body_part": "robot arm",
+            "contact_state": "approach",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              0,
+              1
+            ]
+          },
+          {
+            "step_id": 2,
+            "text": "grasp black cylindrical object",
+            "verb": "grasp",
+            "object": "black cylindrical object",
+            "confidence": 0.95,
+            "body_part": "robot arm",
+            "contact_state": "grasp",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              1,
+              2
+            ]
+          },
+          {
+            "step_id": 3,
+            "text": "lift black cylindrical object",
+            "verb": "lift",
+            "object": "black cylindrical object",
+            "confidence": 0.95,
+            "body_part": "robot arm",
+            "contact_state": "grasp",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              2,
+              3
+            ]
+          },
+          {
+            "step_id": 4,
+            "text": "move black cylindrical object toward white square device",
+            "verb": "move",
+            "object": "black cylindrical object",
+            "confidence": 0.95,
+            "body_part": "robot arm",
+            "contact_state": "grasp",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              3,
+              4
+            ]
+          },
+          {
+            "step_id": 5,
+            "text": "attach black cylindrical object to white square device",
+            "verb": "attach",
+            "object": "black cylindrical object",
+            "confidence": 0.95,
+            "body_part": "robot arm",
+            "contact_state": "contact",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              4,
+              4
+            ]
+          }
+        ],
+        "raw_recognition": "{\n  \"objects\": [\n    \"robot arm\",\n    \"black cabinet\",\n    \"wooden plank\",\n    \"round white object\",\n    \"blue rectangular object\",\n    \"silver circular object\",\n    \"white square device with black circle\",\n    \"black cylindrical object\"\n  ],\n  \"spatial_relations\": [\n    \"black cabinet ON left side of scene\",\n    \"wooden plank ON floor near cabinet\",\n    \"round white object ON wall\",\n    \"blue rectangular object ON wall near round object\",\n    \"silver circular object ON wall below blue object\",\n    \"white square device ON wall right of silver object\",\n    \"black cylindrical object ON floor near robot arm base\"\n  ],\n  \"task_type\": \"manipulation\",\n  \"domain\": \"manipulation\",\n  \"action_sequence\": [\n    \"approach black cylindrical object\",\n    \"grasp black cylindrical object\",\n    \"lift black cylindrical object\",\n    \"move black cylindrical object toward white square device\",\n    \"attach black cylindrical object to white square device\"\n  ],\n  \"action_details\": [\n    {\n      \"text\": \"approach black cylindrical object\",\n      \"verb\": \"approach\",\n      \"object\": \"black cylindrical object\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"approach\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 0,\n      \"end_image_index\": 1\n    },\n    {\n      \"text\": \"grasp black cylindrical object\",\n      \"verb\": \"grasp\",\n      \"object\": \"black cylindrical object\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 1,\n      \"end_image_index\": 2\n    },\n    {\n      \"text\": \"lift black cylindrical object\",\n      \"verb\": \"lift\",\n      \"object\": \"black cylindrical object\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 2,\n      \"end_image_index\": 3\n    },\n    {\n      \"text\": \"move black cylindrical object toward white square device\",\n      \"verb\": \"move\",\n      \"object\": \"black cylindrical object\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 3,\n      \"end_image_index\": 4\n    },\n    {\n      \"text\": \"attach black cylindrical object to white square device\",\n      \"verb\": \"attach\",\n      \"object\": \"black cylindrical object\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"contact\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 4,\n      \"end_image_index\": 4\n    }\n  ],\n  \"target_object\": \"black cylindrical object\",\n  \"destination\": \"white square device\",\n  \"instruction\": \"Attach the black cylindrical object to the white square device on the wall.\",\n  \"transitions\": [1, 2, 3, 4],\n  \"confidence\": 0.95\n}",
+        "view_id": "fixed",
+        "metadata": {
+          "category": "video",
+          "recognition_confidence": 0.95,
+          "prediction_instruction": "Attach the black cylindrical object to the white square device on the wall.",
+          "transitions": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "view_mode": "fixed",
+          "evidence_paths": [
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fixed/repeat_02/macro/window_000/fixed/frame_00000000.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fixed/repeat_02/macro/window_000/fixed/frame_00000031.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fixed/repeat_02/macro/window_000/fixed/frame_00000062.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fixed/repeat_02/macro/window_000/fixed/frame_00000093.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fixed/repeat_02/macro/window_000/ego/frame_00000000.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fixed/repeat_02/macro/window_000/ego/frame_00000031.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fixed/repeat_02/macro/window_000/ego/frame_00000062.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fixed/repeat_02/macro/window_000/ego/frame_00000093.jpg"
+          ]
+        }
+      }
+    }
+  ],
+  "task_segments": [
+    {
+      "segment_id": "segment_000",
+      "start_time_sec": 0.0,
+      "end_time_sec": 2.7,
+      "frame_ids": [
+        0,
+        20,
+        39,
+        53
+      ],
+      "task_instruction": "position robot arm near white circular device on wall",
+      "objects": [
+        "robot arm",
+        "black cabinet",
+        "wooden plank",
+        "circular object",
+        "blue object",
+        "white circular device",
+        "metal object",
+        "small blue object",
+        "white square device",
+        "metal tool"
+      ],
+      "spatial_relations": [
+        "robot arm BELOW wooden plank",
+        "black cabinet ON left side of scene",
+        "wooden plank ON floor near black cabinet",
+        "circular object ON wall",
+        "blue object ON wall near circular object",
+        "white circular device ON wall right of blue object",
+        "metal object ON floor near robot arm base",
+        "wooden plank ON floor near cabinet",
+        "small blue object ON wall near circular object",
+        "white square device ON wall below circular object",
+        "metal tool ON floor near robot arm",
+        "robot arm IN foreground, holding metal tool"
+      ],
+      "macro_intent": {
+        "task_type": "manipulation",
+        "target_object": "white circular device",
+        "destination": "null",
+        "confidence": 0.8999999999999999,
+        "domain": "manipulation"
+      },
+      "micro_instructions": [
+        {
+          "step_id": 1,
+          "text": "robot arm moves upward toward wall-mounted objects",
+          "verb": "move",
+          "object": "robot arm",
+          "confidence": 0.85,
+          "body_part": "robot arm",
+          "contact_state": "unknown",
+          "posture": "standing",
+          "observed_trajectory": {
+            "track_names": [
+              "eef"
+            ],
+            "start_time_sec": 0.0,
+            "end_time_sec": 2.0,
+            "coordinate_frame": "world"
+          },
+          "evidence_frame_ids": [
+            0,
+            39
+          ]
+        },
+        {
+          "step_id": 2,
+          "text": "robot arm positions tool near white circular device",
+          "verb": "position",
+          "object": "robot arm",
+          "confidence": 0.85,
+          "body_part": "robot arm",
+          "contact_state": "unknown",
+          "posture": "standing",
+          "observed_trajectory": {
+            "track_names": [
+              "eef"
+            ],
+            "start_time_sec": 0.0,
+            "end_time_sec": 2.0,
+            "coordinate_frame": "world"
+          },
+          "evidence_frame_ids": [
+            0,
+            39
+          ]
+        }
+      ],
+      "augmented_instructions": [],
+      "confidence": 0.8999999999999999,
+      "start_frame": 0,
+      "end_frame": 54,
+      "evidence_by_view": {
+        "fixed": [
+          0,
+          20,
+          39,
+          53
+        ]
+      },
+      "metadata": {
+        "micro_window_count": 2,
+        "view_mode": "fixed",
+        "trajectory_linked": true,
+        "augmentation_audit": [],
+        "alternative_micro_observations": [
+          [
+            "grasp metal tool",
+            "lift metal tool"
+          ]
+        ]
+      }
+    },
+    {
+      "segment_id": "segment_001",
+      "start_time_sec": 2.7,
+      "end_time_sec": 4.7,
+      "frame_ids": [
+        54,
+        93
+      ],
+      "task_instruction": "position robot arm end-effector near the port of the white device mounted on the wall.",
+      "objects": [
+        "robot arm",
+        "black box",
+        "wooden plank",
+        "circular object",
+        "black tool",
+        "white device with port"
+      ],
+      "spatial_relations": [
+        "black box ON left side of scene",
+        "wooden plank ON floor near black box",
+        "circular object ON wall",
+        "black tool ON floor",
+        "white device ON wall, right of circular object",
+        "robot arm IN foreground, holding no object"
+      ],
+      "macro_intent": {
+        "task_type": "manipulation",
+        "target_object": "white device with port",
+        "destination": "port of white device",
+        "confidence": 0.9,
+        "domain": "manipulation"
+      },
+      "micro_instructions": [
+        {
+          "step_id": 1,
+          "text": "robot arm moves toward white device on wall",
+          "verb": "move",
+          "object": "robot arm",
+          "confidence": 0.9,
+          "body_part": "robot arm",
+          "contact_state": "approach",
+          "posture": "standing",
+          "observed_trajectory": {
+            "track_names": [
+              "eef"
+            ],
+            "start_time_sec": 2.7,
+            "end_time_sec": 4.7,
+            "coordinate_frame": "world"
+          },
+          "evidence_frame_ids": [
+            54,
+            93
+          ]
+        },
+        {
+          "step_id": 2,
+          "text": "robot arm positions end-effector near white device port",
+          "verb": "position",
+          "object": "robot arm",
+          "confidence": 0.9,
+          "body_part": "robot arm",
+          "contact_state": "approach",
+          "posture": "standing",
+          "observed_trajectory": {
+            "track_names": [
+              "eef"
+            ],
+            "start_time_sec": 2.7,
+            "end_time_sec": 4.7,
+            "coordinate_frame": "world"
+          },
+          "evidence_frame_ids": [
+            54,
+            93
+          ]
+        }
+      ],
+      "augmented_instructions": [],
+      "confidence": 0.9,
+      "start_frame": 54,
+      "end_frame": 94,
+      "evidence_by_view": {
+        "fixed": [
+          54,
+          93
+        ]
+      },
+      "metadata": {
+        "micro_window_count": 1,
+        "view_mode": "fixed",
+        "trajectory_linked": true,
+        "augmentation_audit": [],
+        "alternative_micro_observations": []
+      }
+    }
+  ],
+  "metadata": {
+    "method": "paired_overlapping_macro_dense_micro_v1",
+    "view_mode": "fixed",
+    "macro_window_sec": 16.0,
+    "macro_step_sec": 8.0,
+    "macro_frames": 4,
+    "micro_window_sec": 2.0,
+    "micro_step_sec": 1.0,
+    "micro_frames": 2,
+    "cut_frames": [
+      54
+    ],
+    "macro_window_count": 1,
+    "provenance": {
+      "dataset": "LIBERO Goal",
+      "source_id": "put_the_bowl_on_the_stove_demo_0",
+      "generator": "src.semantic_motion.view_bundle",
+      "revision": "8f3096114a56caeb9d83d0e2a2def7ab32587754",
+      "config": {},
+      "checksums": {}
+    },
+    "validation_diagnostics": [],
+    "validation_enforced": false,
+    "generation_model": "qwen3-vl-flash",
+    "rewriter": "SourceInstructionRewriter",
+    "rewrite_prompt_version": ""
+  }
+}

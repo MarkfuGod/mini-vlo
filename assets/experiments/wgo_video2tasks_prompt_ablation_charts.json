@@ -1,0 +1,10 @@
+{
+  "schema_version": "mini-vlo-chart-manifest/v1",
+  "generated_at": "2026-07-15T14:53:39.678381+00:00",
+  "source": "results/wgo_video2tasks_prompt_ablation.json",
+  "source_kind": "comparison",
+  "charts": [
+    "assets/experiments/wgo_video2tasks_prompt_ablation_comparison_metrics.png",
+    "assets/experiments/wgo_video2tasks_prompt_ablation_comparison_deltas.png"
+  ]
+}

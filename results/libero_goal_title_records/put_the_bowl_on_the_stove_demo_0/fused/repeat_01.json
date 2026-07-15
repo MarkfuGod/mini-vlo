@@ -1,0 +1,1328 @@
+{
+  "schema_version": "semantic-motion-video-task/v2",
+  "video_path": "data/libero_goal/processed/put_the_bowl_on_the_stove_demo/demo_0_agentview_rgb.mp4",
+  "view_bundle": {
+    "schema_version": "semantic-motion-view-bundle/v1",
+    "sample_id": "put_the_bowl_on_the_stove_demo_0",
+    "timebase": {
+      "fps": 20.0,
+      "frame_count": 94,
+      "frame_start": 0,
+      "duration_sec": 4.7,
+      "time_unit": "seconds",
+      "frame_map": {
+        "video_frame_start": 0,
+        "source_frame_start": 0,
+        "frame_count": 94,
+        "step": 1,
+        "explicit_source_frames": []
+      }
+    },
+    "views": {
+      "fixed": {
+        "view_id": "fixed",
+        "video_path": "data/libero_goal/processed/put_the_bowl_on_the_stove_demo/demo_0_agentview_rgb.mp4",
+        "camera_name": "",
+        "camera_type": "fixed",
+        "fps": 20.0,
+        "frame_count": 94,
+        "duration_sec": 4.7,
+        "metadata": {}
+      },
+      "ego": {
+        "view_id": "ego",
+        "video_path": "data/libero_goal/processed/put_the_bowl_on_the_stove_demo/demo_0_eye_in_hand_rgb.mp4",
+        "camera_name": "",
+        "camera_type": "egocentric",
+        "fps": 20.0,
+        "frame_count": 94,
+        "duration_sec": 4.7,
+        "metadata": {}
+      }
+    },
+    "trajectory": {
+      "path": "data/libero_goal/processed/put_the_bowl_on_the_stove_demo/demo_0_traj.json",
+      "source": "LIBERO Goal",
+      "spatial_unit": "meters",
+      "coordinate_frame": "world",
+      "track_names": [
+        "eef"
+      ],
+      "metadata": {}
+    },
+    "provenance": {
+      "dataset": "LIBERO Goal",
+      "source_id": "put_the_bowl_on_the_stove_demo_0",
+      "generator": "src.semantic_motion.view_bundle",
+      "revision": "8f3096114a56caeb9d83d0e2a2def7ab32587754",
+      "config": {},
+      "checksums": {}
+    },
+    "metadata": {}
+  },
+  "source_instruction": "",
+  "frames": [],
+  "multi_view_frames": [
+    {
+      "frame_id": 0,
+      "timestamp_sec": 0.0,
+      "view_frames": {
+        "fixed": {
+          "frame_id": 0,
+          "frame_index": 0,
+          "timestamp_sec": 0.0,
+          "image_path": ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_01/macro/window_000/fixed/frame_00000000.jpg",
+          "view_id": "fixed"
+        },
+        "ego": {
+          "frame_id": 0,
+          "frame_index": 0,
+          "timestamp_sec": 0.0,
+          "image_path": ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_01/macro/window_000/ego/frame_00000000.jpg",
+          "view_id": "ego"
+        }
+      },
+      "view_annotations": {},
+      "fused_annotation": {
+        "scenario_id": "put_the_bowl_on_the_stove_demo_0_macro_000",
+        "image_path": ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_01/macro/window_000/fixed/frame_00000000.jpg",
+        "source_instruction": "",
+        "objects": [
+          "robot arm",
+          "black box",
+          "wooden plank",
+          "plate",
+          "bowl",
+          "circular object",
+          "blue card",
+          "stove",
+          "mat"
+        ],
+        "spatial_relations": [
+          "robot arm ON floor",
+          "black box NEAR wooden plank",
+          "plate ON floor",
+          "bowl ON mat",
+          "blue card ON floor",
+          "stove ON floor",
+          "mat UNDER bowl"
+        ],
+        "macro_intent": {
+          "task_type": "manipulation",
+          "target_object": "blue card",
+          "destination": "stove",
+          "confidence": 0.9,
+          "domain": "manipulation"
+        },
+        "micro_instructions": [
+          {
+            "step_id": 1,
+            "text": "approach blue card",
+            "verb": "approach",
+            "object": "blue card",
+            "confidence": 0.9,
+            "body_part": "robot arm",
+            "contact_state": "approach",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              0,
+              1
+            ]
+          },
+          {
+            "step_id": 2,
+            "text": "grasp blue card",
+            "verb": "grasp",
+            "object": "blue card",
+            "confidence": 0.9,
+            "body_part": "robot arm",
+            "contact_state": "grasp",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              1,
+              2
+            ]
+          },
+          {
+            "step_id": 3,
+            "text": "lift blue card",
+            "verb": "lift",
+            "object": "blue card",
+            "confidence": 0.9,
+            "body_part": "robot arm",
+            "contact_state": "grasp",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              2,
+              3
+            ]
+          },
+          {
+            "step_id": 4,
+            "text": "move blue card toward stove",
+            "verb": "move",
+            "object": "blue card",
+            "confidence": 0.9,
+            "body_part": "robot arm",
+            "contact_state": "grasp",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              3,
+              4
+            ]
+          },
+          {
+            "step_id": 5,
+            "text": "place blue card on stove",
+            "verb": "place",
+            "object": "blue card",
+            "confidence": 0.9,
+            "body_part": "robot arm",
+            "contact_state": "release",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              4,
+              5
+            ]
+          },
+          {
+            "step_id": 6,
+            "text": "retract arm",
+            "verb": "retract",
+            "object": "robot arm",
+            "confidence": 0.9,
+            "body_part": "robot arm",
+            "contact_state": "unknown",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              5,
+              6
+            ]
+          },
+          {
+            "step_id": 7,
+            "text": "approach bowl",
+            "verb": "approach",
+            "object": "bowl",
+            "confidence": 0.9,
+            "body_part": "robot arm",
+            "contact_state": "approach",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              6,
+              7
+            ]
+          },
+          {
+            "step_id": 8,
+            "text": "grasp bowl",
+            "verb": "grasp",
+            "object": "bowl",
+            "confidence": 0.9,
+            "body_part": "robot arm",
+            "contact_state": "grasp",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              7,
+              8
+            ]
+          },
+          {
+            "step_id": 9,
+            "text": "lift bowl",
+            "verb": "lift",
+            "object": "bowl",
+            "confidence": 0.9,
+            "body_part": "robot arm",
+            "contact_state": "grasp",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              8,
+              9
+            ]
+          },
+          {
+            "step_id": 10,
+            "text": "move bowl away from mat",
+            "verb": "move",
+            "object": "bowl",
+            "confidence": 0.9,
+            "body_part": "robot arm",
+            "contact_state": "grasp",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              9,
+              10
+            ]
+          }
+        ],
+        "raw_recognition": "{\n  \"objects\": [\n    \"robot arm\",\n    \"black box\",\n    \"wooden plank\",\n    \"plate\",\n    \"bowl\",\n    \"circular object\",\n    \"blue card\",\n    \"stove\",\n    \"mat\"\n  ],\n  \"spatial_relations\": [\n    \"robot arm ON floor\",\n    \"black box NEAR wooden plank\",\n    \"plate ON floor\",\n    \"bowl ON mat\",\n    \"blue card ON floor\",\n    \"stove ON floor\",\n    \"mat UNDER bowl\"\n  ],\n  \"task_type\": \"manipulation\",\n  \"domain\": \"manipulation\",\n  \"action_sequence\": [\n    \"approach blue card\",\n    \"grasp blue card\",\n    \"lift blue card\",\n    \"move blue card toward stove\",\n    \"place blue card on stove\",\n    \"retract arm\",\n    \"approach bowl\",\n    \"grasp bowl\",\n    \"lift bowl\",\n    \"move bowl away from mat\"\n  ],\n  \"action_details\": [\n    {\n      \"text\": \"approach blue card\",\n      \"verb\": \"approach\",\n      \"object\": \"blue card\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"approach\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 0,\n      \"end_image_index\": 1\n    },\n    {\n      \"text\": \"grasp blue card\",\n      \"verb\": \"grasp\",\n      \"object\": \"blue card\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 1,\n      \"end_image_index\": 2\n    },\n    {\n      \"text\": \"lift blue card\",\n      \"verb\": \"lift\",\n      \"object\": \"blue card\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 2,\n      \"end_image_index\": 3\n    },\n    {\n      \"text\": \"move blue card toward stove\",\n      \"verb\": \"move\",\n      \"object\": \"blue card\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 3,\n      \"end_image_index\": 4\n    },\n    {\n      \"text\": \"place blue card on stove\",\n      \"verb\": \"place\",\n      \"object\": \"blue card\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"release\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 4,\n      \"end_image_index\": 5\n    },\n    {\n      \"text\": \"retract arm\",\n      \"verb\": \"retract\",\n      \"object\": \"robot arm\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"unknown\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 5,\n      \"end_image_index\": 6\n    },\n    {\n      \"text\": \"approach bowl\",\n      \"verb\": \"approach\",\n      \"object\": \"bowl\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"approach\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 6,\n      \"end_image_index\": 7\n    },\n    {\n      \"text\": \"grasp bowl\",\n      \"verb\": \"grasp\",\n      \"object\": \"bowl\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 7,\n      \"end_image_index\": 8\n    },\n    {\n      \"text\": \"lift bowl\",\n      \"verb\": \"lift\",\n      \"object\": \"bowl\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 8,\n      \"end_image_index\": 9\n    },\n    {\n      \"text\": \"move bowl away from mat\",\n      \"verb\": \"move\",\n      \"object\": \"bowl\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 9,\n      \"end_image_index\": 10\n    }\n  ],\n  \"target_object\": \"blue card\",\n  \"destination\": \"stove\",\n  \"instruction\": \"Place the blue card on the stove, then lift and move the bowl away from the mat.\",\n  \"transitions\": [1, 4, 6, 9],\n  \"confidence\": 0.9\n}",
+        "view_id": "fused",
+        "metadata": {
+          "category": "video",
+          "recognition_confidence": 0.9,
+          "prediction_instruction": "Place the blue card on the stove, then lift and move the bowl away from the mat.",
+          "transitions": [
+            1,
+            4,
+            6,
+            9
+          ],
+          "view_mode": "fused",
+          "evidence_paths": [
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_01/macro/window_000/fixed/frame_00000000.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_01/macro/window_000/fixed/frame_00000031.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_01/macro/window_000/fixed/frame_00000062.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_01/macro/window_000/fixed/frame_00000093.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_01/macro/window_000/ego/frame_00000000.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_01/macro/window_000/ego/frame_00000031.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_01/macro/window_000/ego/frame_00000062.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_01/macro/window_000/ego/frame_00000093.jpg"
+          ]
+        }
+      }
+    },
+    {
+      "frame_id": 1,
+      "timestamp_sec": 1.55,
+      "view_frames": {
+        "fixed": {
+          "frame_id": 1,
+          "frame_index": 31,
+          "timestamp_sec": 1.55,
+          "image_path": ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_01/macro/window_000/fixed/frame_00000031.jpg",
+          "view_id": "fixed"
+        },
+        "ego": {
+          "frame_id": 1,
+          "frame_index": 31,
+          "timestamp_sec": 1.55,
+          "image_path": ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_01/macro/window_000/ego/frame_00000031.jpg",
+          "view_id": "ego"
+        }
+      },
+      "view_annotations": {},
+      "fused_annotation": {
+        "scenario_id": "put_the_bowl_on_the_stove_demo_0_macro_000",
+        "image_path": ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_01/macro/window_000/fixed/frame_00000000.jpg",
+        "source_instruction": "",
+        "objects": [
+          "robot arm",
+          "black box",
+          "wooden plank",
+          "plate",
+          "bowl",
+          "circular object",
+          "blue card",
+          "stove",
+          "mat"
+        ],
+        "spatial_relations": [
+          "robot arm ON floor",
+          "black box NEAR wooden plank",
+          "plate ON floor",
+          "bowl ON mat",
+          "blue card ON floor",
+          "stove ON floor",
+          "mat UNDER bowl"
+        ],
+        "macro_intent": {
+          "task_type": "manipulation",
+          "target_object": "blue card",
+          "destination": "stove",
+          "confidence": 0.9,
+          "domain": "manipulation"
+        },
+        "micro_instructions": [
+          {
+            "step_id": 1,
+            "text": "approach blue card",
+            "verb": "approach",
+            "object": "blue card",
+            "confidence": 0.9,
+            "body_part": "robot arm",
+            "contact_state": "approach",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              0,
+              1
+            ]
+          },
+          {
+            "step_id": 2,
+            "text": "grasp blue card",
+            "verb": "grasp",
+            "object": "blue card",
+            "confidence": 0.9,
+            "body_part": "robot arm",
+            "contact_state": "grasp",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              1,
+              2
+            ]
+          },
+          {
+            "step_id": 3,
+            "text": "lift blue card",
+            "verb": "lift",
+            "object": "blue card",
+            "confidence": 0.9,
+            "body_part": "robot arm",
+            "contact_state": "grasp",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              2,
+              3
+            ]
+          },
+          {
+            "step_id": 4,
+            "text": "move blue card toward stove",
+            "verb": "move",
+            "object": "blue card",
+            "confidence": 0.9,
+            "body_part": "robot arm",
+            "contact_state": "grasp",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              3,
+              4
+            ]
+          },
+          {
+            "step_id": 5,
+            "text": "place blue card on stove",
+            "verb": "place",
+            "object": "blue card",
+            "confidence": 0.9,
+            "body_part": "robot arm",
+            "contact_state": "release",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              4,
+              5
+            ]
+          },
+          {
+            "step_id": 6,
+            "text": "retract arm",
+            "verb": "retract",
+            "object": "robot arm",
+            "confidence": 0.9,
+            "body_part": "robot arm",
+            "contact_state": "unknown",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              5,
+              6
+            ]
+          },
+          {
+            "step_id": 7,
+            "text": "approach bowl",
+            "verb": "approach",
+            "object": "bowl",
+            "confidence": 0.9,
+            "body_part": "robot arm",
+            "contact_state": "approach",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              6,
+              7
+            ]
+          },
+          {
+            "step_id": 8,
+            "text": "grasp bowl",
+            "verb": "grasp",
+            "object": "bowl",
+            "confidence": 0.9,
+            "body_part": "robot arm",
+            "contact_state": "grasp",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              7,
+              8
+            ]
+          },
+          {
+            "step_id": 9,
+            "text": "lift bowl",
+            "verb": "lift",
+            "object": "bowl",
+            "confidence": 0.9,
+            "body_part": "robot arm",
+            "contact_state": "grasp",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              8,
+              9
+            ]
+          },
+          {
+            "step_id": 10,
+            "text": "move bowl away from mat",
+            "verb": "move",
+            "object": "bowl",
+            "confidence": 0.9,
+            "body_part": "robot arm",
+            "contact_state": "grasp",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              9,
+              10
+            ]
+          }
+        ],
+        "raw_recognition": "{\n  \"objects\": [\n    \"robot arm\",\n    \"black box\",\n    \"wooden plank\",\n    \"plate\",\n    \"bowl\",\n    \"circular object\",\n    \"blue card\",\n    \"stove\",\n    \"mat\"\n  ],\n  \"spatial_relations\": [\n    \"robot arm ON floor\",\n    \"black box NEAR wooden plank\",\n    \"plate ON floor\",\n    \"bowl ON mat\",\n    \"blue card ON floor\",\n    \"stove ON floor\",\n    \"mat UNDER bowl\"\n  ],\n  \"task_type\": \"manipulation\",\n  \"domain\": \"manipulation\",\n  \"action_sequence\": [\n    \"approach blue card\",\n    \"grasp blue card\",\n    \"lift blue card\",\n    \"move blue card toward stove\",\n    \"place blue card on stove\",\n    \"retract arm\",\n    \"approach bowl\",\n    \"grasp bowl\",\n    \"lift bowl\",\n    \"move bowl away from mat\"\n  ],\n  \"action_details\": [\n    {\n      \"text\": \"approach blue card\",\n      \"verb\": \"approach\",\n      \"object\": \"blue card\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"approach\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 0,\n      \"end_image_index\": 1\n    },\n    {\n      \"text\": \"grasp blue card\",\n      \"verb\": \"grasp\",\n      \"object\": \"blue card\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 1,\n      \"end_image_index\": 2\n    },\n    {\n      \"text\": \"lift blue card\",\n      \"verb\": \"lift\",\n      \"object\": \"blue card\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 2,\n      \"end_image_index\": 3\n    },\n    {\n      \"text\": \"move blue card toward stove\",\n      \"verb\": \"move\",\n      \"object\": \"blue card\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 3,\n      \"end_image_index\": 4\n    },\n    {\n      \"text\": \"place blue card on stove\",\n      \"verb\": \"place\",\n      \"object\": \"blue card\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"release\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 4,\n      \"end_image_index\": 5\n    },\n    {\n      \"text\": \"retract arm\",\n      \"verb\": \"retract\",\n      \"object\": \"robot arm\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"unknown\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 5,\n      \"end_image_index\": 6\n    },\n    {\n      \"text\": \"approach bowl\",\n      \"verb\": \"approach\",\n      \"object\": \"bowl\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"approach\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 6,\n      \"end_image_index\": 7\n    },\n    {\n      \"text\": \"grasp bowl\",\n      \"verb\": \"grasp\",\n      \"object\": \"bowl\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 7,\n      \"end_image_index\": 8\n    },\n    {\n      \"text\": \"lift bowl\",\n      \"verb\": \"lift\",\n      \"object\": \"bowl\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 8,\n      \"end_image_index\": 9\n    },\n    {\n      \"text\": \"move bowl away from mat\",\n      \"verb\": \"move\",\n      \"object\": \"bowl\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 9,\n      \"end_image_index\": 10\n    }\n  ],\n  \"target_object\": \"blue card\",\n  \"destination\": \"stove\",\n  \"instruction\": \"Place the blue card on the stove, then lift and move the bowl away from the mat.\",\n  \"transitions\": [1, 4, 6, 9],\n  \"confidence\": 0.9\n}",
+        "view_id": "fused",
+        "metadata": {
+          "category": "video",
+          "recognition_confidence": 0.9,
+          "prediction_instruction": "Place the blue card on the stove, then lift and move the bowl away from the mat.",
+          "transitions": [
+            1,
+            4,
+            6,
+            9
+          ],
+          "view_mode": "fused",
+          "evidence_paths": [
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_01/macro/window_000/fixed/frame_00000000.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_01/macro/window_000/fixed/frame_00000031.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_01/macro/window_000/fixed/frame_00000062.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_01/macro/window_000/fixed/frame_00000093.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_01/macro/window_000/ego/frame_00000000.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_01/macro/window_000/ego/frame_00000031.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_01/macro/window_000/ego/frame_00000062.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_01/macro/window_000/ego/frame_00000093.jpg"
+          ]
+        }
+      }
+    },
+    {
+      "frame_id": 2,
+      "timestamp_sec": 3.1,
+      "view_frames": {
+        "fixed": {
+          "frame_id": 2,
+          "frame_index": 62,
+          "timestamp_sec": 3.1,
+          "image_path": ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_01/macro/window_000/fixed/frame_00000062.jpg",
+          "view_id": "fixed"
+        },
+        "ego": {
+          "frame_id": 2,
+          "frame_index": 62,
+          "timestamp_sec": 3.1,
+          "image_path": ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_01/macro/window_000/ego/frame_00000062.jpg",
+          "view_id": "ego"
+        }
+      },
+      "view_annotations": {},
+      "fused_annotation": {
+        "scenario_id": "put_the_bowl_on_the_stove_demo_0_macro_000",
+        "image_path": ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_01/macro/window_000/fixed/frame_00000000.jpg",
+        "source_instruction": "",
+        "objects": [
+          "robot arm",
+          "black box",
+          "wooden plank",
+          "plate",
+          "bowl",
+          "circular object",
+          "blue card",
+          "stove",
+          "mat"
+        ],
+        "spatial_relations": [
+          "robot arm ON floor",
+          "black box NEAR wooden plank",
+          "plate ON floor",
+          "bowl ON mat",
+          "blue card ON floor",
+          "stove ON floor",
+          "mat UNDER bowl"
+        ],
+        "macro_intent": {
+          "task_type": "manipulation",
+          "target_object": "blue card",
+          "destination": "stove",
+          "confidence": 0.9,
+          "domain": "manipulation"
+        },
+        "micro_instructions": [
+          {
+            "step_id": 1,
+            "text": "approach blue card",
+            "verb": "approach",
+            "object": "blue card",
+            "confidence": 0.9,
+            "body_part": "robot arm",
+            "contact_state": "approach",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              0,
+              1
+            ]
+          },
+          {
+            "step_id": 2,
+            "text": "grasp blue card",
+            "verb": "grasp",
+            "object": "blue card",
+            "confidence": 0.9,
+            "body_part": "robot arm",
+            "contact_state": "grasp",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              1,
+              2
+            ]
+          },
+          {
+            "step_id": 3,
+            "text": "lift blue card",
+            "verb": "lift",
+            "object": "blue card",
+            "confidence": 0.9,
+            "body_part": "robot arm",
+            "contact_state": "grasp",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              2,
+              3
+            ]
+          },
+          {
+            "step_id": 4,
+            "text": "move blue card toward stove",
+            "verb": "move",
+            "object": "blue card",
+            "confidence": 0.9,
+            "body_part": "robot arm",
+            "contact_state": "grasp",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              3,
+              4
+            ]
+          },
+          {
+            "step_id": 5,
+            "text": "place blue card on stove",
+            "verb": "place",
+            "object": "blue card",
+            "confidence": 0.9,
+            "body_part": "robot arm",
+            "contact_state": "release",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              4,
+              5
+            ]
+          },
+          {
+            "step_id": 6,
+            "text": "retract arm",
+            "verb": "retract",
+            "object": "robot arm",
+            "confidence": 0.9,
+            "body_part": "robot arm",
+            "contact_state": "unknown",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              5,
+              6
+            ]
+          },
+          {
+            "step_id": 7,
+            "text": "approach bowl",
+            "verb": "approach",
+            "object": "bowl",
+            "confidence": 0.9,
+            "body_part": "robot arm",
+            "contact_state": "approach",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              6,
+              7
+            ]
+          },
+          {
+            "step_id": 8,
+            "text": "grasp bowl",
+            "verb": "grasp",
+            "object": "bowl",
+            "confidence": 0.9,
+            "body_part": "robot arm",
+            "contact_state": "grasp",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              7,
+              8
+            ]
+          },
+          {
+            "step_id": 9,
+            "text": "lift bowl",
+            "verb": "lift",
+            "object": "bowl",
+            "confidence": 0.9,
+            "body_part": "robot arm",
+            "contact_state": "grasp",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              8,
+              9
+            ]
+          },
+          {
+            "step_id": 10,
+            "text": "move bowl away from mat",
+            "verb": "move",
+            "object": "bowl",
+            "confidence": 0.9,
+            "body_part": "robot arm",
+            "contact_state": "grasp",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              9,
+              10
+            ]
+          }
+        ],
+        "raw_recognition": "{\n  \"objects\": [\n    \"robot arm\",\n    \"black box\",\n    \"wooden plank\",\n    \"plate\",\n    \"bowl\",\n    \"circular object\",\n    \"blue card\",\n    \"stove\",\n    \"mat\"\n  ],\n  \"spatial_relations\": [\n    \"robot arm ON floor\",\n    \"black box NEAR wooden plank\",\n    \"plate ON floor\",\n    \"bowl ON mat\",\n    \"blue card ON floor\",\n    \"stove ON floor\",\n    \"mat UNDER bowl\"\n  ],\n  \"task_type\": \"manipulation\",\n  \"domain\": \"manipulation\",\n  \"action_sequence\": [\n    \"approach blue card\",\n    \"grasp blue card\",\n    \"lift blue card\",\n    \"move blue card toward stove\",\n    \"place blue card on stove\",\n    \"retract arm\",\n    \"approach bowl\",\n    \"grasp bowl\",\n    \"lift bowl\",\n    \"move bowl away from mat\"\n  ],\n  \"action_details\": [\n    {\n      \"text\": \"approach blue card\",\n      \"verb\": \"approach\",\n      \"object\": \"blue card\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"approach\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 0,\n      \"end_image_index\": 1\n    },\n    {\n      \"text\": \"grasp blue card\",\n      \"verb\": \"grasp\",\n      \"object\": \"blue card\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 1,\n      \"end_image_index\": 2\n    },\n    {\n      \"text\": \"lift blue card\",\n      \"verb\": \"lift\",\n      \"object\": \"blue card\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 2,\n      \"end_image_index\": 3\n    },\n    {\n      \"text\": \"move blue card toward stove\",\n      \"verb\": \"move\",\n      \"object\": \"blue card\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 3,\n      \"end_image_index\": 4\n    },\n    {\n      \"text\": \"place blue card on stove\",\n      \"verb\": \"place\",\n      \"object\": \"blue card\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"release\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 4,\n      \"end_image_index\": 5\n    },\n    {\n      \"text\": \"retract arm\",\n      \"verb\": \"retract\",\n      \"object\": \"robot arm\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"unknown\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 5,\n      \"end_image_index\": 6\n    },\n    {\n      \"text\": \"approach bowl\",\n      \"verb\": \"approach\",\n      \"object\": \"bowl\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"approach\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 6,\n      \"end_image_index\": 7\n    },\n    {\n      \"text\": \"grasp bowl\",\n      \"verb\": \"grasp\",\n      \"object\": \"bowl\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 7,\n      \"end_image_index\": 8\n    },\n    {\n      \"text\": \"lift bowl\",\n      \"verb\": \"lift\",\n      \"object\": \"bowl\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 8,\n      \"end_image_index\": 9\n    },\n    {\n      \"text\": \"move bowl away from mat\",\n      \"verb\": \"move\",\n      \"object\": \"bowl\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 9,\n      \"end_image_index\": 10\n    }\n  ],\n  \"target_object\": \"blue card\",\n  \"destination\": \"stove\",\n  \"instruction\": \"Place the blue card on the stove, then lift and move the bowl away from the mat.\",\n  \"transitions\": [1, 4, 6, 9],\n  \"confidence\": 0.9\n}",
+        "view_id": "fused",
+        "metadata": {
+          "category": "video",
+          "recognition_confidence": 0.9,
+          "prediction_instruction": "Place the blue card on the stove, then lift and move the bowl away from the mat.",
+          "transitions": [
+            1,
+            4,
+            6,
+            9
+          ],
+          "view_mode": "fused",
+          "evidence_paths": [
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_01/macro/window_000/fixed/frame_00000000.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_01/macro/window_000/fixed/frame_00000031.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_01/macro/window_000/fixed/frame_00000062.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_01/macro/window_000/fixed/frame_00000093.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_01/macro/window_000/ego/frame_00000000.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_01/macro/window_000/ego/frame_00000031.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_01/macro/window_000/ego/frame_00000062.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_01/macro/window_000/ego/frame_00000093.jpg"
+          ]
+        }
+      }
+    },
+    {
+      "frame_id": 3,
+      "timestamp_sec": 4.65,
+      "view_frames": {
+        "fixed": {
+          "frame_id": 3,
+          "frame_index": 93,
+          "timestamp_sec": 4.65,
+          "image_path": ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_01/macro/window_000/fixed/frame_00000093.jpg",
+          "view_id": "fixed"
+        },
+        "ego": {
+          "frame_id": 3,
+          "frame_index": 93,
+          "timestamp_sec": 4.65,
+          "image_path": ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_01/macro/window_000/ego/frame_00000093.jpg",
+          "view_id": "ego"
+        }
+      },
+      "view_annotations": {},
+      "fused_annotation": {
+        "scenario_id": "put_the_bowl_on_the_stove_demo_0_macro_000",
+        "image_path": ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_01/macro/window_000/fixed/frame_00000000.jpg",
+        "source_instruction": "",
+        "objects": [
+          "robot arm",
+          "black box",
+          "wooden plank",
+          "plate",
+          "bowl",
+          "circular object",
+          "blue card",
+          "stove",
+          "mat"
+        ],
+        "spatial_relations": [
+          "robot arm ON floor",
+          "black box NEAR wooden plank",
+          "plate ON floor",
+          "bowl ON mat",
+          "blue card ON floor",
+          "stove ON floor",
+          "mat UNDER bowl"
+        ],
+        "macro_intent": {
+          "task_type": "manipulation",
+          "target_object": "blue card",
+          "destination": "stove",
+          "confidence": 0.9,
+          "domain": "manipulation"
+        },
+        "micro_instructions": [
+          {
+            "step_id": 1,
+            "text": "approach blue card",
+            "verb": "approach",
+            "object": "blue card",
+            "confidence": 0.9,
+            "body_part": "robot arm",
+            "contact_state": "approach",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              0,
+              1
+            ]
+          },
+          {
+            "step_id": 2,
+            "text": "grasp blue card",
+            "verb": "grasp",
+            "object": "blue card",
+            "confidence": 0.9,
+            "body_part": "robot arm",
+            "contact_state": "grasp",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              1,
+              2
+            ]
+          },
+          {
+            "step_id": 3,
+            "text": "lift blue card",
+            "verb": "lift",
+            "object": "blue card",
+            "confidence": 0.9,
+            "body_part": "robot arm",
+            "contact_state": "grasp",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              2,
+              3
+            ]
+          },
+          {
+            "step_id": 4,
+            "text": "move blue card toward stove",
+            "verb": "move",
+            "object": "blue card",
+            "confidence": 0.9,
+            "body_part": "robot arm",
+            "contact_state": "grasp",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              3,
+              4
+            ]
+          },
+          {
+            "step_id": 5,
+            "text": "place blue card on stove",
+            "verb": "place",
+            "object": "blue card",
+            "confidence": 0.9,
+            "body_part": "robot arm",
+            "contact_state": "release",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              4,
+              5
+            ]
+          },
+          {
+            "step_id": 6,
+            "text": "retract arm",
+            "verb": "retract",
+            "object": "robot arm",
+            "confidence": 0.9,
+            "body_part": "robot arm",
+            "contact_state": "unknown",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              5,
+              6
+            ]
+          },
+          {
+            "step_id": 7,
+            "text": "approach bowl",
+            "verb": "approach",
+            "object": "bowl",
+            "confidence": 0.9,
+            "body_part": "robot arm",
+            "contact_state": "approach",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              6,
+              7
+            ]
+          },
+          {
+            "step_id": 8,
+            "text": "grasp bowl",
+            "verb": "grasp",
+            "object": "bowl",
+            "confidence": 0.9,
+            "body_part": "robot arm",
+            "contact_state": "grasp",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              7,
+              8
+            ]
+          },
+          {
+            "step_id": 9,
+            "text": "lift bowl",
+            "verb": "lift",
+            "object": "bowl",
+            "confidence": 0.9,
+            "body_part": "robot arm",
+            "contact_state": "grasp",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              8,
+              9
+            ]
+          },
+          {
+            "step_id": 10,
+            "text": "move bowl away from mat",
+            "verb": "move",
+            "object": "bowl",
+            "confidence": 0.9,
+            "body_part": "robot arm",
+            "contact_state": "grasp",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              9,
+              10
+            ]
+          }
+        ],
+        "raw_recognition": "{\n  \"objects\": [\n    \"robot arm\",\n    \"black box\",\n    \"wooden plank\",\n    \"plate\",\n    \"bowl\",\n    \"circular object\",\n    \"blue card\",\n    \"stove\",\n    \"mat\"\n  ],\n  \"spatial_relations\": [\n    \"robot arm ON floor\",\n    \"black box NEAR wooden plank\",\n    \"plate ON floor\",\n    \"bowl ON mat\",\n    \"blue card ON floor\",\n    \"stove ON floor\",\n    \"mat UNDER bowl\"\n  ],\n  \"task_type\": \"manipulation\",\n  \"domain\": \"manipulation\",\n  \"action_sequence\": [\n    \"approach blue card\",\n    \"grasp blue card\",\n    \"lift blue card\",\n    \"move blue card toward stove\",\n    \"place blue card on stove\",\n    \"retract arm\",\n    \"approach bowl\",\n    \"grasp bowl\",\n    \"lift bowl\",\n    \"move bowl away from mat\"\n  ],\n  \"action_details\": [\n    {\n      \"text\": \"approach blue card\",\n      \"verb\": \"approach\",\n      \"object\": \"blue card\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"approach\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 0,\n      \"end_image_index\": 1\n    },\n    {\n      \"text\": \"grasp blue card\",\n      \"verb\": \"grasp\",\n      \"object\": \"blue card\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 1,\n      \"end_image_index\": 2\n    },\n    {\n      \"text\": \"lift blue card\",\n      \"verb\": \"lift\",\n      \"object\": \"blue card\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 2,\n      \"end_image_index\": 3\n    },\n    {\n      \"text\": \"move blue card toward stove\",\n      \"verb\": \"move\",\n      \"object\": \"blue card\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 3,\n      \"end_image_index\": 4\n    },\n    {\n      \"text\": \"place blue card on stove\",\n      \"verb\": \"place\",\n      \"object\": \"blue card\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"release\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 4,\n      \"end_image_index\": 5\n    },\n    {\n      \"text\": \"retract arm\",\n      \"verb\": \"retract\",\n      \"object\": \"robot arm\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"unknown\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 5,\n      \"end_image_index\": 6\n    },\n    {\n      \"text\": \"approach bowl\",\n      \"verb\": \"approach\",\n      \"object\": \"bowl\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"approach\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 6,\n      \"end_image_index\": 7\n    },\n    {\n      \"text\": \"grasp bowl\",\n      \"verb\": \"grasp\",\n      \"object\": \"bowl\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 7,\n      \"end_image_index\": 8\n    },\n    {\n      \"text\": \"lift bowl\",\n      \"verb\": \"lift\",\n      \"object\": \"bowl\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 8,\n      \"end_image_index\": 9\n    },\n    {\n      \"text\": \"move bowl away from mat\",\n      \"verb\": \"move\",\n      \"object\": \"bowl\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 9,\n      \"end_image_index\": 10\n    }\n  ],\n  \"target_object\": \"blue card\",\n  \"destination\": \"stove\",\n  \"instruction\": \"Place the blue card on the stove, then lift and move the bowl away from the mat.\",\n  \"transitions\": [1, 4, 6, 9],\n  \"confidence\": 0.9\n}",
+        "view_id": "fused",
+        "metadata": {
+          "category": "video",
+          "recognition_confidence": 0.9,
+          "prediction_instruction": "Place the blue card on the stove, then lift and move the bowl away from the mat.",
+          "transitions": [
+            1,
+            4,
+            6,
+            9
+          ],
+          "view_mode": "fused",
+          "evidence_paths": [
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_01/macro/window_000/fixed/frame_00000000.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_01/macro/window_000/fixed/frame_00000031.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_01/macro/window_000/fixed/frame_00000062.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_01/macro/window_000/fixed/frame_00000093.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_01/macro/window_000/ego/frame_00000000.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_01/macro/window_000/ego/frame_00000031.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_01/macro/window_000/ego/frame_00000062.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_01/macro/window_000/ego/frame_00000093.jpg"
+          ]
+        }
+      }
+    }
+  ],
+  "task_segments": [
+    {
+      "segment_id": "segment_000",
+      "start_time_sec": 0.0,
+      "end_time_sec": 1.55,
+      "frame_ids": [
+        0,
+        30
+      ],
+      "task_instruction": "reach for and lift the plate from the floor.",
+      "objects": [
+        "robot arm",
+        "plate",
+        "bowl",
+        "book",
+        "stove",
+        "wall-mounted device",
+        "wooden block",
+        "black object"
+      ],
+      "spatial_relations": [
+        "robot arm ON floor",
+        "plate ON floor",
+        "bowl ON floor",
+        "book ON floor",
+        "stove ON floor",
+        "wall-mounted device ON wall",
+        "wooden block ON floor",
+        "black object ON floor"
+      ],
+      "macro_intent": {
+        "task_type": "reach",
+        "target_object": "plate",
+        "destination": "air",
+        "confidence": 0.9,
+        "domain": "manipulation"
+      },
+      "micro_instructions": [
+        {
+          "step_id": 1,
+          "text": "approach plate",
+          "verb": "approach",
+          "object": "plate",
+          "confidence": 0.9,
+          "body_part": "robot arm",
+          "contact_state": "approach",
+          "posture": "standing",
+          "observed_trajectory": {
+            "track_names": [
+              "eef"
+            ],
+            "start_time_sec": 0.0,
+            "end_time_sec": 1.55,
+            "coordinate_frame": "world"
+          },
+          "evidence_frame_ids": [
+            0,
+            30
+          ]
+        },
+        {
+          "step_id": 2,
+          "text": "grasp plate",
+          "verb": "grasp",
+          "object": "plate",
+          "confidence": 0.9,
+          "body_part": "robot arm",
+          "contact_state": "grasp",
+          "posture": "standing",
+          "observed_trajectory": {
+            "track_names": [
+              "eef"
+            ],
+            "start_time_sec": 0.0,
+            "end_time_sec": 1.55,
+            "coordinate_frame": "world"
+          },
+          "evidence_frame_ids": [
+            0,
+            30
+          ]
+        },
+        {
+          "step_id": 3,
+          "text": "lift plate",
+          "verb": "lift",
+          "object": "plate",
+          "confidence": 0.9,
+          "body_part": "robot arm",
+          "contact_state": "contact",
+          "posture": "standing",
+          "observed_trajectory": {
+            "track_names": [
+              "eef"
+            ],
+            "start_time_sec": 0.0,
+            "end_time_sec": 1.55,
+            "coordinate_frame": "world"
+          },
+          "evidence_frame_ids": [
+            0,
+            30
+          ]
+        }
+      ],
+      "augmented_instructions": [],
+      "confidence": 0.9,
+      "start_frame": 0,
+      "end_frame": 31,
+      "evidence_by_view": {
+        "fixed": [
+          0,
+          30
+        ],
+        "ego": [
+          0,
+          30
+        ]
+      },
+      "metadata": {
+        "micro_window_count": 1,
+        "view_mode": "fused",
+        "trajectory_linked": true,
+        "augmentation_audit": [],
+        "alternative_micro_observations": []
+      }
+    },
+    {
+      "segment_id": "segment_001",
+      "start_time_sec": 1.55,
+      "end_time_sec": 4.7,
+      "frame_ids": [
+        31,
+        51,
+        70,
+        71,
+        90,
+        93
+      ],
+      "task_instruction": "move the black cylindrical object from its initial position to near the metal bowl using the robot arm.",
+      "objects": [
+        "robot arm",
+        "black box",
+        "wooden plank",
+        "white plate with red rim",
+        "metal bowl",
+        "blue card",
+        "black cylindrical object",
+        "gray circular mat",
+        "bowl",
+        "plate",
+        "circular object",
+        "metal sheet",
+        "black rectangular object",
+        "circular white object",
+        "yellow-rimmed bowl",
+        "gray mat with concentric circles",
+        "wall-mounted device"
+      ],
+      "spatial_relations": [
+        "blue card ON table",
+        "white plate WITH red rim ON table",
+        "metal bowl ON table",
+        "black cylindrical object ON table",
+        "gray circular mat ON table",
+        "robot arm IN front of table",
+        "black box TO left of robot arm",
+        "black box ON left",
+        "bowl ON metal sheet",
+        "plate BELOW bowl",
+        "wooden plank ON floor",
+        "circular object ON wall",
+        "robot arm NEAR bowl",
+        "yellow-rimmed bowl ON gray mat",
+        "gray mat ON floor",
+        "black rectangular object ON floor near robot arm",
+        "circular white object ON wall",
+        "robot arm IN front of wall-mounted device"
+      ],
+      "macro_intent": {
+        "task_type": "move",
+        "target_object": "black cylindrical object",
+        "destination": "near metal bowl",
+        "confidence": 0.9,
+        "domain": "manipulation"
+      },
+      "micro_instructions": [
+        {
+          "step_id": 1,
+          "text": "approach black cylindrical object",
+          "verb": "approach",
+          "object": "black cylindrical object",
+          "confidence": 0.9,
+          "body_part": "robot arm",
+          "contact_state": "approach",
+          "posture": "standing",
+          "observed_trajectory": {
+            "track_names": [
+              "eef"
+            ],
+            "start_time_sec": 1.55,
+            "end_time_sec": 3.55,
+            "coordinate_frame": "world"
+          },
+          "evidence_frame_ids": [
+            31,
+            70
+          ]
+        },
+        {
+          "step_id": 2,
+          "text": "grasp black cylindrical object",
+          "verb": "grasp",
+          "object": "black cylindrical object",
+          "confidence": 0.9,
+          "body_part": "robot arm",
+          "contact_state": "grasp",
+          "posture": "standing",
+          "observed_trajectory": {
+            "track_names": [
+              "eef"
+            ],
+            "start_time_sec": 1.55,
+            "end_time_sec": 3.55,
+            "coordinate_frame": "world"
+          },
+          "evidence_frame_ids": [
+            31,
+            70
+          ]
+        },
+        {
+          "step_id": 3,
+          "text": "lift black cylindrical object",
+          "verb": "lift",
+          "object": "black cylindrical object",
+          "confidence": 0.9,
+          "body_part": "robot arm",
+          "contact_state": "grasp",
+          "posture": "standing",
+          "observed_trajectory": {
+            "track_names": [
+              "eef"
+            ],
+            "start_time_sec": 1.55,
+            "end_time_sec": 3.55,
+            "coordinate_frame": "world"
+          },
+          "evidence_frame_ids": [
+            31,
+            70
+          ]
+        },
+        {
+          "step_id": 4,
+          "text": "move black cylindrical object toward metal bowl",
+          "verb": "move",
+          "object": "black cylindrical object",
+          "confidence": 0.9,
+          "body_part": "robot arm",
+          "contact_state": "grasp",
+          "posture": "standing",
+          "observed_trajectory": {
+            "track_names": [
+              "eef"
+            ],
+            "start_time_sec": 1.55,
+            "end_time_sec": 3.55,
+            "coordinate_frame": "world"
+          },
+          "evidence_frame_ids": [
+            31,
+            70
+          ]
+        }
+      ],
+      "augmented_instructions": [],
+      "confidence": 0.9,
+      "start_frame": 31,
+      "end_frame": 94,
+      "evidence_by_view": {
+        "fixed": [
+          31,
+          51,
+          70,
+          71,
+          90,
+          93
+        ],
+        "ego": [
+          31,
+          51,
+          70,
+          71,
+          90,
+          93
+        ]
+      },
+      "metadata": {
+        "micro_window_count": 3,
+        "view_mode": "fused",
+        "trajectory_linked": true,
+        "augmentation_audit": [],
+        "alternative_micro_observations": [
+          [
+            "robot arm moves toward bowl",
+            "robot arm contacts bowl",
+            "robot arm lifts bowl"
+          ],
+          [
+            "approach yellow-rimmed bowl",
+            "grasp yellow-rimmed bowl",
+            "lift yellow-rimmed bowl"
+          ]
+        ]
+      }
+    }
+  ],
+  "metadata": {
+    "method": "paired_overlapping_macro_dense_micro_v1",
+    "view_mode": "fused",
+    "macro_window_sec": 16.0,
+    "macro_step_sec": 8.0,
+    "macro_frames": 4,
+    "micro_window_sec": 2.0,
+    "micro_step_sec": 1.0,
+    "micro_frames": 2,
+    "cut_frames": [
+      31
+    ],
+    "macro_window_count": 1,
+    "provenance": {
+      "dataset": "LIBERO Goal",
+      "source_id": "put_the_bowl_on_the_stove_demo_0",
+      "generator": "src.semantic_motion.view_bundle",
+      "revision": "8f3096114a56caeb9d83d0e2a2def7ab32587754",
+      "config": {},
+      "checksums": {}
+    },
+    "validation_diagnostics": [],
+    "validation_enforced": false,
+    "generation_model": "qwen3-vl-flash",
+    "rewriter": "SourceInstructionRewriter",
+    "rewrite_prompt_version": ""
+  }
+}

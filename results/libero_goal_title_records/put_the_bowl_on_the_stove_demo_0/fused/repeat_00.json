@@ -1,0 +1,1100 @@
+{
+  "schema_version": "semantic-motion-video-task/v2",
+  "video_path": "data/libero_goal/processed/put_the_bowl_on_the_stove_demo/demo_0_agentview_rgb.mp4",
+  "view_bundle": {
+    "schema_version": "semantic-motion-view-bundle/v1",
+    "sample_id": "put_the_bowl_on_the_stove_demo_0",
+    "timebase": {
+      "fps": 20.0,
+      "frame_count": 94,
+      "frame_start": 0,
+      "duration_sec": 4.7,
+      "time_unit": "seconds",
+      "frame_map": {
+        "video_frame_start": 0,
+        "source_frame_start": 0,
+        "frame_count": 94,
+        "step": 1,
+        "explicit_source_frames": []
+      }
+    },
+    "views": {
+      "fixed": {
+        "view_id": "fixed",
+        "video_path": "data/libero_goal/processed/put_the_bowl_on_the_stove_demo/demo_0_agentview_rgb.mp4",
+        "camera_name": "",
+        "camera_type": "fixed",
+        "fps": 20.0,
+        "frame_count": 94,
+        "duration_sec": 4.7,
+        "metadata": {}
+      },
+      "ego": {
+        "view_id": "ego",
+        "video_path": "data/libero_goal/processed/put_the_bowl_on_the_stove_demo/demo_0_eye_in_hand_rgb.mp4",
+        "camera_name": "",
+        "camera_type": "egocentric",
+        "fps": 20.0,
+        "frame_count": 94,
+        "duration_sec": 4.7,
+        "metadata": {}
+      }
+    },
+    "trajectory": {
+      "path": "data/libero_goal/processed/put_the_bowl_on_the_stove_demo/demo_0_traj.json",
+      "source": "LIBERO Goal",
+      "spatial_unit": "meters",
+      "coordinate_frame": "world",
+      "track_names": [
+        "eef"
+      ],
+      "metadata": {}
+    },
+    "provenance": {
+      "dataset": "LIBERO Goal",
+      "source_id": "put_the_bowl_on_the_stove_demo_0",
+      "generator": "src.semantic_motion.view_bundle",
+      "revision": "8f3096114a56caeb9d83d0e2a2def7ab32587754",
+      "config": {},
+      "checksums": {}
+    },
+    "metadata": {}
+  },
+  "source_instruction": "",
+  "frames": [],
+  "multi_view_frames": [
+    {
+      "frame_id": 0,
+      "timestamp_sec": 0.0,
+      "view_frames": {
+        "fixed": {
+          "frame_id": 0,
+          "frame_index": 0,
+          "timestamp_sec": 0.0,
+          "image_path": ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_00/macro/window_000/fixed/frame_00000000.jpg",
+          "view_id": "fixed"
+        },
+        "ego": {
+          "frame_id": 0,
+          "frame_index": 0,
+          "timestamp_sec": 0.0,
+          "image_path": ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_00/macro/window_000/ego/frame_00000000.jpg",
+          "view_id": "ego"
+        }
+      },
+      "view_annotations": {},
+      "fused_annotation": {
+        "scenario_id": "put_the_bowl_on_the_stove_demo_0_macro_000",
+        "image_path": ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_00/macro/window_000/fixed/frame_00000000.jpg",
+        "source_instruction": "",
+        "objects": [
+          "robot arm",
+          "plate",
+          "bowl",
+          "spoon",
+          "book",
+          "stove",
+          "counter"
+        ],
+        "spatial_relations": [
+          "robot arm ON counter",
+          "plate ON counter",
+          "bowl ON counter",
+          "spoon ON counter",
+          "book ON counter",
+          "stove ON counter"
+        ],
+        "macro_intent": {
+          "task_type": "move",
+          "target_object": "spoon",
+          "destination": "bowl",
+          "confidence": 0.9,
+          "domain": "manipulation"
+        },
+        "micro_instructions": [
+          {
+            "step_id": 1,
+            "text": "approach spoon",
+            "verb": "approach",
+            "object": "spoon",
+            "confidence": 0.9,
+            "body_part": "robot arm",
+            "contact_state": "approach",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              0,
+              2
+            ]
+          },
+          {
+            "step_id": 2,
+            "text": "grasp spoon",
+            "verb": "grasp",
+            "object": "spoon",
+            "confidence": 0.9,
+            "body_part": "robot arm",
+            "contact_state": "grasp",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              2,
+              3
+            ]
+          },
+          {
+            "step_id": 3,
+            "text": "lift spoon",
+            "verb": "lift",
+            "object": "spoon",
+            "confidence": 0.9,
+            "body_part": "robot arm",
+            "contact_state": "grasp",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              3,
+              4
+            ]
+          },
+          {
+            "step_id": 4,
+            "text": "move spoon toward bowl",
+            "verb": "move",
+            "object": "spoon",
+            "confidence": 0.9,
+            "body_part": "robot arm",
+            "contact_state": "grasp",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              4,
+              5
+            ]
+          },
+          {
+            "step_id": 5,
+            "text": "place spoon in bowl",
+            "verb": "place",
+            "object": "spoon",
+            "confidence": 0.9,
+            "body_part": "robot arm",
+            "contact_state": "contact",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              5,
+              6
+            ]
+          },
+          {
+            "step_id": 6,
+            "text": "retract arm",
+            "verb": "retract",
+            "object": "robot arm",
+            "confidence": 0.9,
+            "body_part": "robot arm",
+            "contact_state": "unknown",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              6,
+              7
+            ]
+          }
+        ],
+        "raw_recognition": "{\n  \"objects\": [\n    \"robot arm\",\n    \"plate\",\n    \"bowl\",\n    \"spoon\",\n    \"book\",\n    \"stove\",\n    \"counter\"\n  ],\n  \"spatial_relations\": [\n    \"robot arm ON counter\",\n    \"plate ON counter\",\n    \"bowl ON counter\",\n    \"spoon ON counter\",\n    \"book ON counter\",\n    \"stove ON counter\"\n  ],\n  \"task_type\": \"move\",\n  \"domain\": \"manipulation\",\n  \"action_sequence\": [\n    \"approach spoon\",\n    \"grasp spoon\",\n    \"lift spoon\",\n    \"move spoon toward bowl\",\n    \"place spoon in bowl\",\n    \"retract arm\"\n  ],\n  \"action_details\": [\n    {\n      \"text\": \"approach spoon\",\n      \"verb\": \"approach\",\n      \"object\": \"spoon\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"approach\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 0,\n      \"end_image_index\": 2\n    },\n    {\n      \"text\": \"grasp spoon\",\n      \"verb\": \"grasp\",\n      \"object\": \"spoon\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 2,\n      \"end_image_index\": 3\n    },\n    {\n      \"text\": \"lift spoon\",\n      \"verb\": \"lift\",\n      \"object\": \"spoon\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 3,\n      \"end_image_index\": 4\n    },\n    {\n      \"text\": \"move spoon toward bowl\",\n      \"verb\": \"move\",\n      \"object\": \"spoon\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 4,\n      \"end_image_index\": 5\n    },\n    {\n      \"text\": \"place spoon in bowl\",\n      \"verb\": \"place\",\n      \"object\": \"spoon\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"contact\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 5,\n      \"end_image_index\": 6\n    },\n    {\n      \"text\": \"retract arm\",\n      \"verb\": \"retract\",\n      \"object\": \"robot arm\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"unknown\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 6,\n      \"end_image_index\": 7\n    }\n  ],\n  \"target_object\": \"spoon\",\n  \"destination\": \"bowl\",\n  \"instruction\": \"Move the spoon from the counter into the bowl using the robot arm.\",\n  \"transitions\": [2, 3, 4, 5, 6],\n  \"confidence\": 0.9\n}",
+        "view_id": "fused",
+        "metadata": {
+          "category": "video",
+          "recognition_confidence": 0.9,
+          "prediction_instruction": "Move the spoon from the counter into the bowl using the robot arm.",
+          "transitions": [
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "view_mode": "fused",
+          "evidence_paths": [
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_00/macro/window_000/fixed/frame_00000000.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_00/macro/window_000/fixed/frame_00000031.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_00/macro/window_000/fixed/frame_00000062.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_00/macro/window_000/fixed/frame_00000093.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_00/macro/window_000/ego/frame_00000000.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_00/macro/window_000/ego/frame_00000031.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_00/macro/window_000/ego/frame_00000062.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_00/macro/window_000/ego/frame_00000093.jpg"
+          ]
+        }
+      }
+    },
+    {
+      "frame_id": 1,
+      "timestamp_sec": 1.55,
+      "view_frames": {
+        "fixed": {
+          "frame_id": 1,
+          "frame_index": 31,
+          "timestamp_sec": 1.55,
+          "image_path": ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_00/macro/window_000/fixed/frame_00000031.jpg",
+          "view_id": "fixed"
+        },
+        "ego": {
+          "frame_id": 1,
+          "frame_index": 31,
+          "timestamp_sec": 1.55,
+          "image_path": ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_00/macro/window_000/ego/frame_00000031.jpg",
+          "view_id": "ego"
+        }
+      },
+      "view_annotations": {},
+      "fused_annotation": {
+        "scenario_id": "put_the_bowl_on_the_stove_demo_0_macro_000",
+        "image_path": ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_00/macro/window_000/fixed/frame_00000000.jpg",
+        "source_instruction": "",
+        "objects": [
+          "robot arm",
+          "plate",
+          "bowl",
+          "spoon",
+          "book",
+          "stove",
+          "counter"
+        ],
+        "spatial_relations": [
+          "robot arm ON counter",
+          "plate ON counter",
+          "bowl ON counter",
+          "spoon ON counter",
+          "book ON counter",
+          "stove ON counter"
+        ],
+        "macro_intent": {
+          "task_type": "move",
+          "target_object": "spoon",
+          "destination": "bowl",
+          "confidence": 0.9,
+          "domain": "manipulation"
+        },
+        "micro_instructions": [
+          {
+            "step_id": 1,
+            "text": "approach spoon",
+            "verb": "approach",
+            "object": "spoon",
+            "confidence": 0.9,
+            "body_part": "robot arm",
+            "contact_state": "approach",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              0,
+              2
+            ]
+          },
+          {
+            "step_id": 2,
+            "text": "grasp spoon",
+            "verb": "grasp",
+            "object": "spoon",
+            "confidence": 0.9,
+            "body_part": "robot arm",
+            "contact_state": "grasp",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              2,
+              3
+            ]
+          },
+          {
+            "step_id": 3,
+            "text": "lift spoon",
+            "verb": "lift",
+            "object": "spoon",
+            "confidence": 0.9,
+            "body_part": "robot arm",
+            "contact_state": "grasp",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              3,
+              4
+            ]
+          },
+          {
+            "step_id": 4,
+            "text": "move spoon toward bowl",
+            "verb": "move",
+            "object": "spoon",
+            "confidence": 0.9,
+            "body_part": "robot arm",
+            "contact_state": "grasp",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              4,
+              5
+            ]
+          },
+          {
+            "step_id": 5,
+            "text": "place spoon in bowl",
+            "verb": "place",
+            "object": "spoon",
+            "confidence": 0.9,
+            "body_part": "robot arm",
+            "contact_state": "contact",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              5,
+              6
+            ]
+          },
+          {
+            "step_id": 6,
+            "text": "retract arm",
+            "verb": "retract",
+            "object": "robot arm",
+            "confidence": 0.9,
+            "body_part": "robot arm",
+            "contact_state": "unknown",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              6,
+              7
+            ]
+          }
+        ],
+        "raw_recognition": "{\n  \"objects\": [\n    \"robot arm\",\n    \"plate\",\n    \"bowl\",\n    \"spoon\",\n    \"book\",\n    \"stove\",\n    \"counter\"\n  ],\n  \"spatial_relations\": [\n    \"robot arm ON counter\",\n    \"plate ON counter\",\n    \"bowl ON counter\",\n    \"spoon ON counter\",\n    \"book ON counter\",\n    \"stove ON counter\"\n  ],\n  \"task_type\": \"move\",\n  \"domain\": \"manipulation\",\n  \"action_sequence\": [\n    \"approach spoon\",\n    \"grasp spoon\",\n    \"lift spoon\",\n    \"move spoon toward bowl\",\n    \"place spoon in bowl\",\n    \"retract arm\"\n  ],\n  \"action_details\": [\n    {\n      \"text\": \"approach spoon\",\n      \"verb\": \"approach\",\n      \"object\": \"spoon\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"approach\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 0,\n      \"end_image_index\": 2\n    },\n    {\n      \"text\": \"grasp spoon\",\n      \"verb\": \"grasp\",\n      \"object\": \"spoon\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 2,\n      \"end_image_index\": 3\n    },\n    {\n      \"text\": \"lift spoon\",\n      \"verb\": \"lift\",\n      \"object\": \"spoon\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 3,\n      \"end_image_index\": 4\n    },\n    {\n      \"text\": \"move spoon toward bowl\",\n      \"verb\": \"move\",\n      \"object\": \"spoon\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 4,\n      \"end_image_index\": 5\n    },\n    {\n      \"text\": \"place spoon in bowl\",\n      \"verb\": \"place\",\n      \"object\": \"spoon\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"contact\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 5,\n      \"end_image_index\": 6\n    },\n    {\n      \"text\": \"retract arm\",\n      \"verb\": \"retract\",\n      \"object\": \"robot arm\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"unknown\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 6,\n      \"end_image_index\": 7\n    }\n  ],\n  \"target_object\": \"spoon\",\n  \"destination\": \"bowl\",\n  \"instruction\": \"Move the spoon from the counter into the bowl using the robot arm.\",\n  \"transitions\": [2, 3, 4, 5, 6],\n  \"confidence\": 0.9\n}",
+        "view_id": "fused",
+        "metadata": {
+          "category": "video",
+          "recognition_confidence": 0.9,
+          "prediction_instruction": "Move the spoon from the counter into the bowl using the robot arm.",
+          "transitions": [
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "view_mode": "fused",
+          "evidence_paths": [
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_00/macro/window_000/fixed/frame_00000000.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_00/macro/window_000/fixed/frame_00000031.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_00/macro/window_000/fixed/frame_00000062.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_00/macro/window_000/fixed/frame_00000093.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_00/macro/window_000/ego/frame_00000000.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_00/macro/window_000/ego/frame_00000031.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_00/macro/window_000/ego/frame_00000062.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_00/macro/window_000/ego/frame_00000093.jpg"
+          ]
+        }
+      }
+    },
+    {
+      "frame_id": 2,
+      "timestamp_sec": 3.1,
+      "view_frames": {
+        "fixed": {
+          "frame_id": 2,
+          "frame_index": 62,
+          "timestamp_sec": 3.1,
+          "image_path": ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_00/macro/window_000/fixed/frame_00000062.jpg",
+          "view_id": "fixed"
+        },
+        "ego": {
+          "frame_id": 2,
+          "frame_index": 62,
+          "timestamp_sec": 3.1,
+          "image_path": ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_00/macro/window_000/ego/frame_00000062.jpg",
+          "view_id": "ego"
+        }
+      },
+      "view_annotations": {},
+      "fused_annotation": {
+        "scenario_id": "put_the_bowl_on_the_stove_demo_0_macro_000",
+        "image_path": ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_00/macro/window_000/fixed/frame_00000000.jpg",
+        "source_instruction": "",
+        "objects": [
+          "robot arm",
+          "plate",
+          "bowl",
+          "spoon",
+          "book",
+          "stove",
+          "counter"
+        ],
+        "spatial_relations": [
+          "robot arm ON counter",
+          "plate ON counter",
+          "bowl ON counter",
+          "spoon ON counter",
+          "book ON counter",
+          "stove ON counter"
+        ],
+        "macro_intent": {
+          "task_type": "move",
+          "target_object": "spoon",
+          "destination": "bowl",
+          "confidence": 0.9,
+          "domain": "manipulation"
+        },
+        "micro_instructions": [
+          {
+            "step_id": 1,
+            "text": "approach spoon",
+            "verb": "approach",
+            "object": "spoon",
+            "confidence": 0.9,
+            "body_part": "robot arm",
+            "contact_state": "approach",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              0,
+              2
+            ]
+          },
+          {
+            "step_id": 2,
+            "text": "grasp spoon",
+            "verb": "grasp",
+            "object": "spoon",
+            "confidence": 0.9,
+            "body_part": "robot arm",
+            "contact_state": "grasp",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              2,
+              3
+            ]
+          },
+          {
+            "step_id": 3,
+            "text": "lift spoon",
+            "verb": "lift",
+            "object": "spoon",
+            "confidence": 0.9,
+            "body_part": "robot arm",
+            "contact_state": "grasp",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              3,
+              4
+            ]
+          },
+          {
+            "step_id": 4,
+            "text": "move spoon toward bowl",
+            "verb": "move",
+            "object": "spoon",
+            "confidence": 0.9,
+            "body_part": "robot arm",
+            "contact_state": "grasp",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              4,
+              5
+            ]
+          },
+          {
+            "step_id": 5,
+            "text": "place spoon in bowl",
+            "verb": "place",
+            "object": "spoon",
+            "confidence": 0.9,
+            "body_part": "robot arm",
+            "contact_state": "contact",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              5,
+              6
+            ]
+          },
+          {
+            "step_id": 6,
+            "text": "retract arm",
+            "verb": "retract",
+            "object": "robot arm",
+            "confidence": 0.9,
+            "body_part": "robot arm",
+            "contact_state": "unknown",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              6,
+              7
+            ]
+          }
+        ],
+        "raw_recognition": "{\n  \"objects\": [\n    \"robot arm\",\n    \"plate\",\n    \"bowl\",\n    \"spoon\",\n    \"book\",\n    \"stove\",\n    \"counter\"\n  ],\n  \"spatial_relations\": [\n    \"robot arm ON counter\",\n    \"plate ON counter\",\n    \"bowl ON counter\",\n    \"spoon ON counter\",\n    \"book ON counter\",\n    \"stove ON counter\"\n  ],\n  \"task_type\": \"move\",\n  \"domain\": \"manipulation\",\n  \"action_sequence\": [\n    \"approach spoon\",\n    \"grasp spoon\",\n    \"lift spoon\",\n    \"move spoon toward bowl\",\n    \"place spoon in bowl\",\n    \"retract arm\"\n  ],\n  \"action_details\": [\n    {\n      \"text\": \"approach spoon\",\n      \"verb\": \"approach\",\n      \"object\": \"spoon\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"approach\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 0,\n      \"end_image_index\": 2\n    },\n    {\n      \"text\": \"grasp spoon\",\n      \"verb\": \"grasp\",\n      \"object\": \"spoon\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 2,\n      \"end_image_index\": 3\n    },\n    {\n      \"text\": \"lift spoon\",\n      \"verb\": \"lift\",\n      \"object\": \"spoon\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 3,\n      \"end_image_index\": 4\n    },\n    {\n      \"text\": \"move spoon toward bowl\",\n      \"verb\": \"move\",\n      \"object\": \"spoon\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 4,\n      \"end_image_index\": 5\n    },\n    {\n      \"text\": \"place spoon in bowl\",\n      \"verb\": \"place\",\n      \"object\": \"spoon\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"contact\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 5,\n      \"end_image_index\": 6\n    },\n    {\n      \"text\": \"retract arm\",\n      \"verb\": \"retract\",\n      \"object\": \"robot arm\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"unknown\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 6,\n      \"end_image_index\": 7\n    }\n  ],\n  \"target_object\": \"spoon\",\n  \"destination\": \"bowl\",\n  \"instruction\": \"Move the spoon from the counter into the bowl using the robot arm.\",\n  \"transitions\": [2, 3, 4, 5, 6],\n  \"confidence\": 0.9\n}",
+        "view_id": "fused",
+        "metadata": {
+          "category": "video",
+          "recognition_confidence": 0.9,
+          "prediction_instruction": "Move the spoon from the counter into the bowl using the robot arm.",
+          "transitions": [
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "view_mode": "fused",
+          "evidence_paths": [
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_00/macro/window_000/fixed/frame_00000000.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_00/macro/window_000/fixed/frame_00000031.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_00/macro/window_000/fixed/frame_00000062.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_00/macro/window_000/fixed/frame_00000093.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_00/macro/window_000/ego/frame_00000000.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_00/macro/window_000/ego/frame_00000031.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_00/macro/window_000/ego/frame_00000062.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_00/macro/window_000/ego/frame_00000093.jpg"
+          ]
+        }
+      }
+    },
+    {
+      "frame_id": 3,
+      "timestamp_sec": 4.65,
+      "view_frames": {
+        "fixed": {
+          "frame_id": 3,
+          "frame_index": 93,
+          "timestamp_sec": 4.65,
+          "image_path": ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_00/macro/window_000/fixed/frame_00000093.jpg",
+          "view_id": "fixed"
+        },
+        "ego": {
+          "frame_id": 3,
+          "frame_index": 93,
+          "timestamp_sec": 4.65,
+          "image_path": ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_00/macro/window_000/ego/frame_00000093.jpg",
+          "view_id": "ego"
+        }
+      },
+      "view_annotations": {},
+      "fused_annotation": {
+        "scenario_id": "put_the_bowl_on_the_stove_demo_0_macro_000",
+        "image_path": ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_00/macro/window_000/fixed/frame_00000000.jpg",
+        "source_instruction": "",
+        "objects": [
+          "robot arm",
+          "plate",
+          "bowl",
+          "spoon",
+          "book",
+          "stove",
+          "counter"
+        ],
+        "spatial_relations": [
+          "robot arm ON counter",
+          "plate ON counter",
+          "bowl ON counter",
+          "spoon ON counter",
+          "book ON counter",
+          "stove ON counter"
+        ],
+        "macro_intent": {
+          "task_type": "move",
+          "target_object": "spoon",
+          "destination": "bowl",
+          "confidence": 0.9,
+          "domain": "manipulation"
+        },
+        "micro_instructions": [
+          {
+            "step_id": 1,
+            "text": "approach spoon",
+            "verb": "approach",
+            "object": "spoon",
+            "confidence": 0.9,
+            "body_part": "robot arm",
+            "contact_state": "approach",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              0,
+              2
+            ]
+          },
+          {
+            "step_id": 2,
+            "text": "grasp spoon",
+            "verb": "grasp",
+            "object": "spoon",
+            "confidence": 0.9,
+            "body_part": "robot arm",
+            "contact_state": "grasp",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              2,
+              3
+            ]
+          },
+          {
+            "step_id": 3,
+            "text": "lift spoon",
+            "verb": "lift",
+            "object": "spoon",
+            "confidence": 0.9,
+            "body_part": "robot arm",
+            "contact_state": "grasp",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              3,
+              4
+            ]
+          },
+          {
+            "step_id": 4,
+            "text": "move spoon toward bowl",
+            "verb": "move",
+            "object": "spoon",
+            "confidence": 0.9,
+            "body_part": "robot arm",
+            "contact_state": "grasp",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              4,
+              5
+            ]
+          },
+          {
+            "step_id": 5,
+            "text": "place spoon in bowl",
+            "verb": "place",
+            "object": "spoon",
+            "confidence": 0.9,
+            "body_part": "robot arm",
+            "contact_state": "contact",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              5,
+              6
+            ]
+          },
+          {
+            "step_id": 6,
+            "text": "retract arm",
+            "verb": "retract",
+            "object": "robot arm",
+            "confidence": 0.9,
+            "body_part": "robot arm",
+            "contact_state": "unknown",
+            "posture": "standing",
+            "observed_trajectory": null,
+            "evidence_frame_ids": [
+              6,
+              7
+            ]
+          }
+        ],
+        "raw_recognition": "{\n  \"objects\": [\n    \"robot arm\",\n    \"plate\",\n    \"bowl\",\n    \"spoon\",\n    \"book\",\n    \"stove\",\n    \"counter\"\n  ],\n  \"spatial_relations\": [\n    \"robot arm ON counter\",\n    \"plate ON counter\",\n    \"bowl ON counter\",\n    \"spoon ON counter\",\n    \"book ON counter\",\n    \"stove ON counter\"\n  ],\n  \"task_type\": \"move\",\n  \"domain\": \"manipulation\",\n  \"action_sequence\": [\n    \"approach spoon\",\n    \"grasp spoon\",\n    \"lift spoon\",\n    \"move spoon toward bowl\",\n    \"place spoon in bowl\",\n    \"retract arm\"\n  ],\n  \"action_details\": [\n    {\n      \"text\": \"approach spoon\",\n      \"verb\": \"approach\",\n      \"object\": \"spoon\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"approach\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 0,\n      \"end_image_index\": 2\n    },\n    {\n      \"text\": \"grasp spoon\",\n      \"verb\": \"grasp\",\n      \"object\": \"spoon\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 2,\n      \"end_image_index\": 3\n    },\n    {\n      \"text\": \"lift spoon\",\n      \"verb\": \"lift\",\n      \"object\": \"spoon\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 3,\n      \"end_image_index\": 4\n    },\n    {\n      \"text\": \"move spoon toward bowl\",\n      \"verb\": \"move\",\n      \"object\": \"spoon\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 4,\n      \"end_image_index\": 5\n    },\n    {\n      \"text\": \"place spoon in bowl\",\n      \"verb\": \"place\",\n      \"object\": \"spoon\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"contact\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 5,\n      \"end_image_index\": 6\n    },\n    {\n      \"text\": \"retract arm\",\n      \"verb\": \"retract\",\n      \"object\": \"robot arm\",\n      \"body_part\": \"robot arm\",\n      \"contact_state\": \"unknown\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 6,\n      \"end_image_index\": 7\n    }\n  ],\n  \"target_object\": \"spoon\",\n  \"destination\": \"bowl\",\n  \"instruction\": \"Move the spoon from the counter into the bowl using the robot arm.\",\n  \"transitions\": [2, 3, 4, 5, 6],\n  \"confidence\": 0.9\n}",
+        "view_id": "fused",
+        "metadata": {
+          "category": "video",
+          "recognition_confidence": 0.9,
+          "prediction_instruction": "Move the spoon from the counter into the bowl using the robot arm.",
+          "transitions": [
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "view_mode": "fused",
+          "evidence_paths": [
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_00/macro/window_000/fixed/frame_00000000.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_00/macro/window_000/fixed/frame_00000031.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_00/macro/window_000/fixed/frame_00000062.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_00/macro/window_000/fixed/frame_00000093.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_00/macro/window_000/ego/frame_00000000.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_00/macro/window_000/ego/frame_00000031.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_00/macro/window_000/ego/frame_00000062.jpg",
+            ".semantic_motion_work/libero_goal_title_eval/put_the_bowl_on_the_stove_demo_0/fused/repeat_00/macro/window_000/ego/frame_00000093.jpg"
+          ]
+        }
+      }
+    }
+  ],
+  "task_segments": [
+    {
+      "segment_id": "segment_000",
+      "start_time_sec": 0.0,
+      "end_time_sec": 3.55,
+      "frame_ids": [
+        0,
+        20,
+        39,
+        40,
+        59,
+        70
+      ],
+      "task_instruction": "pick up the spoon from the counter and place it into the bowl.",
+      "objects": [
+        "robot arm",
+        "plate",
+        "bowl",
+        "spoon",
+        "box",
+        "stove",
+        "counter",
+        "remote control",
+        "black box",
+        "wooden plank",
+        "wall-mounted device",
+        "black rectangular object",
+        "circular white object",
+        "yellow-rimmed bowl",
+        "gray textured bowl",
+        "blue box with logo",
+        "small black cylinder"
+      ],
+      "spatial_relations": [
+        "robot arm ON counter",
+        "plate ON counter",
+        "bowl ON counter",
+        "spoon NEAR bowl",
+        "box ON counter",
+        "stove ON counter",
+        "plate ON floor",
+        "bowl ON floor",
+        "remote control ON floor",
+        "black box ON left side of floor",
+        "wooden plank ON floor near black box",
+        "wall-mounted device ON wall",
+        "black rectangular object ON left side of counter",
+        "circular white object ABOVE counter",
+        "yellow-rimmed bowl ON counter",
+        "gray textured bowl ON counter",
+        "blue box ON left side of counter",
+        "wooden plank ON floor near counter",
+        "small black cylinder ON counter near robot arm"
+      ],
+      "macro_intent": {
+        "task_type": "pick_and_place",
+        "target_object": "spoon",
+        "destination": "bowl",
+        "confidence": 0.9,
+        "domain": "manipulation"
+      },
+      "micro_instructions": [
+        {
+          "step_id": 1,
+          "text": "approach spoon",
+          "verb": "approach",
+          "object": "spoon",
+          "confidence": 0.9,
+          "body_part": "robot arm",
+          "contact_state": "approach",
+          "posture": "standing",
+          "observed_trajectory": {
+            "track_names": [
+              "eef"
+            ],
+            "start_time_sec": 0.0,
+            "end_time_sec": 2.0,
+            "coordinate_frame": "world"
+          },
+          "evidence_frame_ids": [
+            0,
+            39
+          ]
+        },
+        {
+          "step_id": 2,
+          "text": "grasp spoon",
+          "verb": "grasp",
+          "object": "spoon",
+          "confidence": 0.9,
+          "body_part": "robot arm",
+          "contact_state": "grasp",
+          "posture": "standing",
+          "observed_trajectory": {
+            "track_names": [
+              "eef"
+            ],
+            "start_time_sec": 0.0,
+            "end_time_sec": 2.0,
+            "coordinate_frame": "world"
+          },
+          "evidence_frame_ids": [
+            0,
+            39
+          ]
+        },
+        {
+          "step_id": 3,
+          "text": "lift spoon",
+          "verb": "lift",
+          "object": "spoon",
+          "confidence": 0.9,
+          "body_part": "robot arm",
+          "contact_state": "grasp",
+          "posture": "standing",
+          "observed_trajectory": {
+            "track_names": [
+              "eef"
+            ],
+            "start_time_sec": 0.0,
+            "end_time_sec": 2.0,
+            "coordinate_frame": "world"
+          },
+          "evidence_frame_ids": [
+            0,
+            39
+          ]
+        },
+        {
+          "step_id": 4,
+          "text": "move spoon toward bowl",
+          "verb": "move",
+          "object": "spoon",
+          "confidence": 0.9,
+          "body_part": "robot arm",
+          "contact_state": "grasp",
+          "posture": "standing",
+          "observed_trajectory": {
+            "track_names": [
+              "eef"
+            ],
+            "start_time_sec": 0.0,
+            "end_time_sec": 2.0,
+            "coordinate_frame": "world"
+          },
+          "evidence_frame_ids": [
+            0,
+            39
+          ]
+        },
+        {
+          "step_id": 5,
+          "text": "release spoon into bowl",
+          "verb": "release",
+          "object": "spoon",
+          "confidence": 0.9,
+          "body_part": "robot arm",
+          "contact_state": "release",
+          "posture": "standing",
+          "observed_trajectory": {
+            "track_names": [
+              "eef"
+            ],
+            "start_time_sec": 0.0,
+            "end_time_sec": 2.0,
+            "coordinate_frame": "world"
+          },
+          "evidence_frame_ids": [
+            0,
+            39
+          ]
+        }
+      ],
+      "augmented_instructions": [],
+      "confidence": 0.9,
+      "start_frame": 0,
+      "end_frame": 71,
+      "evidence_by_view": {
+        "fixed": [
+          0,
+          20,
+          39,
+          40,
+          59,
+          70
+        ],
+        "ego": [
+          0,
+          20,
+          39,
+          40,
+          59,
+          70
+        ]
+      },
+      "metadata": {
+        "micro_window_count": 3,
+        "view_mode": "fused",
+        "trajectory_linked": true,
+        "augmentation_audit": [],
+        "alternative_micro_observations": [
+          [
+            "approach remote control",
+            "grasp remote control"
+          ],
+          [
+            "approach small black cylinder",
+            "grasp small black cylinder",
+            "lift small black cylinder",
+            "move small black cylinder toward yellow-rimmed bowl"
+          ]
+        ]
+      }
+    },
+    {
+      "segment_id": "segment_001",
+      "start_time_sec": 3.55,
+      "end_time_sec": 4.7,
+      "frame_ids": [
+        71,
+        93
+      ],
+      "task_instruction": "move the yellow-rimmed bowl slightly upward and then place it back on the gray mat.",
+      "objects": [
+        "robot arm",
+        "black rectangular object",
+        "circular white object",
+        "yellow-rimmed bowl",
+        "gray mat with concentric circles",
+        "wooden block",
+        "black cylindrical object"
+      ],
+      "spatial_relations": [
+        "yellow-rimmed bowl ON gray mat",
+        "gray mat ON floor",
+        "black rectangular object ON left side of scene",
+        "wooden block ON floor near black object",
+        "black cylindrical object ON floor near mat",
+        "circular white object ON wall or shelf above scene"
+      ],
+      "macro_intent": {
+        "task_type": "move",
+        "target_object": "yellow-rimmed bowl",
+        "destination": "gray mat",
+        "confidence": 0.9,
+        "domain": "manipulation"
+      },
+      "micro_instructions": [
+        {
+          "step_id": 1,
+          "text": "robot arm moves toward yellow-rimmed bowl",
+          "verb": "move",
+          "object": "yellow-rimmed bowl",
+          "confidence": 0.9,
+          "body_part": "robot arm",
+          "contact_state": "approach",
+          "posture": "standing",
+          "observed_trajectory": {
+            "track_names": [
+              "eef"
+            ],
+            "start_time_sec": 3.55,
+            "end_time_sec": 4.7,
+            "coordinate_frame": "world"
+          },
+          "evidence_frame_ids": [
+            71,
+            93
+          ]
+        },
+        {
+          "step_id": 2,
+          "text": "robot arm lifts yellow-rimmed bowl slightly",
+          "verb": "lift",
+          "object": "yellow-rimmed bowl",
+          "confidence": 0.9,
+          "body_part": "robot arm",
+          "contact_state": "contact",
+          "posture": "standing",
+          "observed_trajectory": {
+            "track_names": [
+              "eef"
+            ],
+            "start_time_sec": 3.55,
+            "end_time_sec": 4.7,
+            "coordinate_frame": "world"
+          },
+          "evidence_frame_ids": [
+            71,
+            93
+          ]
+        },
+        {
+          "step_id": 3,
+          "text": "robot arm places yellow-rimmed bowl back on gray mat",
+          "verb": "place",
+          "object": "yellow-rimmed bowl",
+          "confidence": 0.9,
+          "body_part": "robot arm",
+          "contact_state": "release",
+          "posture": "standing",
+          "observed_trajectory": {
+            "track_names": [
+              "eef"
+            ],
+            "start_time_sec": 3.55,
+            "end_time_sec": 4.7,
+            "coordinate_frame": "world"
+          },
+          "evidence_frame_ids": [
+            71,
+            93
+          ]
+        }
+      ],
+      "augmented_instructions": [],
+      "confidence": 0.9,
+      "start_frame": 71,
+      "end_frame": 94,
+      "evidence_by_view": {
+        "fixed": [
+          71,
+          93
+        ],
+        "ego": [
+          71,
+          93
+        ]
+      },
+      "metadata": {
+        "micro_window_count": 1,
+        "view_mode": "fused",
+        "trajectory_linked": true,
+        "augmentation_audit": [],
+        "alternative_micro_observations": []
+      }
+    }
+  ],
+  "metadata": {
+    "method": "paired_overlapping_macro_dense_micro_v1",
+    "view_mode": "fused",
+    "macro_window_sec": 16.0,
+    "macro_step_sec": 8.0,
+    "macro_frames": 4,
+    "micro_window_sec": 2.0,
+    "micro_step_sec": 1.0,
+    "micro_frames": 2,
+    "cut_frames": [
+      71
+    ],
+    "macro_window_count": 1,
+    "provenance": {
+      "dataset": "LIBERO Goal",
+      "source_id": "put_the_bowl_on_the_stove_demo_0",
+      "generator": "src.semantic_motion.view_bundle",
+      "revision": "8f3096114a56caeb9d83d0e2a2def7ab32587754",
+      "config": {},
+      "checksums": {}
+    },
+    "validation_diagnostics": [],
+    "validation_enforced": false,
+    "generation_model": "qwen3-vl-flash",
+    "rewriter": "SourceInstructionRewriter",
+    "rewrite_prompt_version": ""
+  }
+}

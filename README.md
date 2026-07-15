@@ -8,12 +8,15 @@ Semantic-Motion pipeline:
 1. A `ViewBundle` pairs Fixed/Ego videos, a shared timebase, motion and provenance.
 2. Overlapping 16 s / 8 s macro windows and dense 1–3 s micro windows produce
    fused loco-manipulation semantics.
-3. An LLM rewriter generates variants behind a deterministic fact-preservation gate.
-4. Module C applies fail-closed sync, motion and independent semantic checks.
+3. An LLM rewriter generates variants from a configurable prompt. Code-level
+   fact validation is deliberately disabled.
+4. Module C computes sync, motion and independent semantic diagnostics, but its
+   quality gates are deliberately disabled and every prepared sample is retained.
 
-The legacy single-video path remains for compatibility, but formal refinement
-requires paired views and real motion. Module D still needs Blender and was not
-changed as part of the current repair.
+The legacy single-video path remains for compatibility. Diagnostic warnings,
+missing motion, semantic mismatch and missing paired views are preserved in
+output provenance instead of controlling `keep/drop`. Module D still needs
+Blender and was not changed as part of the current repair.
 
 ## What is VLO?
 
@@ -102,9 +105,13 @@ Each scenario includes a **generated schematic image** (top-down robot workspace
 | **Composite Score**              | Weighted average (equal weights, 0.2 each)         | 0 - 1       |
 
 
-## Results
+## Archived Static Diagnostic Result
 
 **Model**: Qwen-VL-Plus via DashScope API | **Scenarios**: 30 | **Date**: 2026-04-01
+
+These scores come from the synthetic single-image benchmark and are retained
+for regression context. They are not comparable to temporal segmentation,
+multi-view reasoning, VLA policy success, or the Video2Tasks prompt ablation.
 
 ### Overall Performance
 
@@ -171,19 +178,35 @@ Set `DASHSCOPE_API_KEY`, `DASHSCOPE_BASE_URL`, and `VLM_MODEL` in the local
 python generate_benchmark.py
 ```
 
-This creates 30 synthetic robot task images and `benchmark/scenarios.json`.
+This creates 30 synthetic robot task images, `benchmark/scenarios.json`, and
+`benchmark/manifest.json`. The manifest records the code revision, category
+counts and the benchmark's non-temporal limitations.
 
 ### 2. Run Evaluation
 
 ```bash
-python run_eval.py --model qwen-vl-plus
+python run_eval.py --model qwen3-vl-flash --timeout 300
 ```
 
 Options:
 
-- `--model qwen-vl-max` for a more capable (but slower) model
+- `--category pick_and_place` to select one category
 - `--limit 5` to test with only the first 5 scenarios
 - `--output results/my_run.json` to specify output path
+- `--fail-fast` to stop instead of recording provider/missing-file errors
+
+The v2 result schema records prompt/input hashes, code revision, provider
+configuration, latency, failures and exclusions. Failed calls are not converted
+into zero-scored predictions.
+
+To run the static perception + augmentation streams on the same scenarios:
+
+```bash
+python run_semantic_motion.py \
+  --model qwen3-vl-flash \
+  --rewriter llm \
+  --timeout 300
+```
 
 ### 3. Run Paired Semantic-Motion Perception
 
@@ -206,33 +229,40 @@ python run_video_task.py \
 
 Use `--view-mode fixed`, `ego`, and `fused` for controlled ablations.
 `--rewriter template` is debug-only; `--rewriter none` performs no augmentation.
-The production default is the fact-checked LLM rewriter.
+The default LLM rewriter uses
+`src/semantic_motion/llm_augmentation_prompt.txt`; generated variants are not
+rejected by hardcoded lexical or fact-preservation rules.
 
 The compatibility single-video entry remains available:
 
 ```bash
-python run_video_task.py --video demos/task.mp4 --model qwen3-vl-flash --rewriter llm
+python run_video_task.py \
+  --video demos/task.mp4 \
+  --model qwen3-vl-flash \
+  --rewriter llm \
+  --timeout 300
 ```
 
 If you already extracted frames, use:
 
 ```bash
-python run_video_task.py --frame-dir demos/task_frames --fps 2 --model qwen-vl-plus
+python run_video_task.py --frame-dir demos/task_frames --fps 2 --model qwen3-vl-flash
 ```
 
 The output is saved to `results/video_task_*.json` as
 `semantic-motion-video-task/v2`. It embeds the `ViewBundle`, synchronized
-evidence, task segments, fact-validation audit and reproducibility metadata.
+evidence, task segments, augmentation metadata and reproducibility metadata.
+The same macro/micro window flags now apply to manifest and single-video input.
 
-### 4. Module C: Filter Generated Task Labels
+### 4. Module C: Generate + Diagnostic Refinement
 
-Module C converts `VideoTaskRecord` outputs into samples and applies three
-independent gates: deterministic synchronization/schema checks, 3D motion
-quality, and per-view semantic verification. Missing motion, API/parse failure,
-low confidence, missing paired views, mock verification, and dummy motion all
-drop by default.
+Module C converts `VideoTaskRecord` outputs into aligned samples and computes
+three diagnostic groups: synchronization/schema checks, 3D motion quality, and
+per-view semantic consistency. **Quality gates are currently disabled.** The
+diagnostics and reason codes are still emitted, but every prepared sample gets
+`decision="keep"` with `quality_gates_disabled`.
 
-One-shot generate + filter:
+One-shot generation + diagnostics:
 
 ```bash
 python run_generate_filter.py \
@@ -242,35 +272,37 @@ python run_generate_filter.py \
   --vlm-model qwen3-vl-flash \
   --rewrite-model qwen3-vl-flash \
   --semantic-verifier qwen3-vl-flash \
-  --judge-model YOUR_INDEPENDENT_JUDGE_MODEL \
+  --judge-model qwen3-vl-flash \
   --refine-config configs/module_c_default.yaml \
-  --sample-level segment
+  --sample-level segment \
+  --timeout 300
 ```
 
-The manifest trajectory is used automatically. For a compatibility single-video
-debug run, pass real motion and explicitly disable only the paired-view gate:
+The manifest trajectory is used automatically when available. Missing motion and
+single-view input are retained with diagnostics:
 
 ```bash
 python run_generate_filter.py \
   --video demos/task.mp4 \
   --vlm-model qwen3-vl-flash \
   --motion-path path/to/trajectory_or_dir \
-  --allow-single-view-debug \
   --sample-level segment
 ```
 
-`--debug-dummy-motion`, `--allow-missing-motion`, `--allow-mock-debug`, and
-`--allow-single-view-debug` exist only for diagnostics. Outputs produced with
-those paths are excluded from formal evaluation.
+`--debug-dummy-motion` explicitly synthesizes placeholder motion.
+`--allow-missing-motion` remains only as a deprecated compatibility no-op.
+`--allow-single-view-debug` and `--allow-mock-debug` change diagnostic settings,
+not the final keep decision.
 
 Outputs land in `results/`:
 
 - `video_task_*.json` — generation result
 - `module_c_samples_*.jsonl` / `.pretty.json` — Module C samples
-- `refined_*.jsonl` / `.pretty.json` — keep/drop decisions
+- `refined_*.jsonl` / `.pretty.json` — diagnostic results and retained decisions
 
 See [`src/module_c/README.md`](src/module_c/README.md) for stepwise commands,
-motion formats, and config details.
+motion formats, configuration, and result fields. Do not report keep/drop
+accuracy while gates are disabled.
 
 ### 5. Module D: Render Motion Capture to Video + Trajectories
 
@@ -303,15 +335,59 @@ python tools/prepare_libero_goal_samples.py --demos-per-task 1
 
 This writes synchronized `agentview_rgb` / `eye_in_hand_rgb` videos, EEF
 trajectories, weak task-title labels, and
-`data/libero_goal/processed/manifest.json`. Run the controlled view ablation:
+`data/libero_goal/processed/manifest.json`. Run the requested
+title-as-single-segment experiment with three repeated inferences:
 
 ```bash
-python tools/evaluate_libero_goal.py --views all --max-frames 16
+python tools/evaluate_libero_goal.py \
+  --views all \
+  --repeats 3 \
+  --max-frames 16 \
+  --model qwen3-vl-flash \
+  --input-cost-per-million 0.05 \
+  --output-cost-per-million 0.40 \
+  --resume
 ```
 
-The official BDDL/file title is only a weak task-level ground truth. It is not
-valid ground truth for temporal boundaries, micro-actions, contact states, or
-`keep/drop` refinement decisions.
+For this experiment, each complete video is deliberately treated as one segment
+whose label is the official BDDL/file title. The output includes Boundary F1 at
+±0.5/1 s, Segment F1@IoU 0.5/0.75, title label accuracy, slot F1, labeled
+end-to-end Segment F1, action Edit, latency, token-estimated cost, and paired
+bootstrap 95% CIs for Fused−Fixed and Fused−Ego. These are explicitly marked
+weak proxy metrics: they measure agreement with the title-as-one-segment
+experimental definition, not human atomic-subtask boundaries.
+
+For human timestamped ground truth, prepare a small WGO-Bench robot subset and
+run the same pinned prompt comparison:
+
+```bash
+python tools/prepare_wgo_bench.py --offset 25 --limit 3
+
+python compare_video2tasks.py \
+  --samples data/wgo_bench/subset/manifest.json \
+  --mode prompt-ablation \
+  --model qwen3-vl-flash \
+  --judge-model qwen3-vl-flash \
+  --repeats 3 \
+  --input-cost-per-million 0.05 \
+  --output-cost-per-million 0.40 \
+  --resume \
+  --output results/wgo_video2tasks_prompt_ablation.json
+```
+
+WGO-Bench provides human timestamped subtask labels. Its subset manifest records
+the source row, license, video checksum, boundaries, and segment labels. The
+three-row command is an integration experiment; increase `--limit` before
+making benchmark-wide claims.
+
+Latest checked artifacts:
+
+- `results/libero_goal_title_as_single_segment.json`: 27/27 valid runs. Fused
+  improves title F1 over Fixed by +0.055 (paired bootstrap 95% CI
+  [+0.020, +0.089]) but trails Ego by −0.065 [−0.119, −0.003].
+- `results/wgo_video2tasks_prompt_ablation.json`: one human-annotated robot
+  episode × three repeats. Video2Tasks instruction F1 is 0.200 versus 0.116 for
+  the Semantic prompt; this integration subset does not show superiority.
 
 ### 7. Gold Evaluation and Motion Corruptions
 
@@ -339,34 +415,47 @@ python tools/evaluate_motion_corruptions.py \
 ```
 
 The metric suite includes Boundary F1 (±0.5 s), segmental F1@IoU, mean IoU,
-macro/micro slot and order scores, keep/drop precision/recall/F1/AUROC and
-false-keep rate, Brier/ECE, coverage–accuracy, and controlled corruption AUROC.
+macro/micro slot and order scores, augmentation diversity, and controlled motion
+corruption AUROC. Module C classification/calibration utilities remain
+available, but keep/drop metrics are diagnostic-only while decisions are forced
+to `keep`.
 
-### 8. Fair Video2Tasks Comparison
+### 8. Video2Tasks Prompt Ablation
 
-Install the exact upstream revision and run its real overlapping-window and
-Hanning aggregation functions:
+Install the exact upstream revision and compare two prompts while holding the
+model, upstream windows and aggregation constant:
 
 ```bash
 pip install -r requirements-video2tasks.txt
 python compare_video2tasks.py \
-  --mode full-upstream \
+  --mode prompt-ablation \
   --model qwen3-vl-flash \
-  --output results/video2tasks_comparison_fair.json
+  --timeout 300 \
+  --output results/video2tasks_prompt_ablation.json
 ```
 
-Both arms receive the same model, windows, 16 frames/window, token budget and
-failure policy. Filename and closed task-list priors are disabled. Historical
-0.655 vs 0.195 files are prompt-only legacy artifacts and are not evidence of
-full-pipeline superiority.
+Both arms receive the same model, windows, frames/window, token budget and
+upstream `build_segments_via_cuts`. Filename and closed task-list priors are
+disabled. The script now reports shared lexical metrics without the old
+arbitrary composite and marks inline author labels as non-formal.
+
+This is **not** a full Module A comparison: the Semantic-Motion arm is a blind
+prompt inside the Video2Tasks harness. Use `--samples` with independently
+adjudicated temporal annotations for formal boundary/segment metrics. Actual
+Fixed/Ego/Fused Module A behavior must be evaluated with
+`tools/evaluate_semantic_motion.py`. Historical 0.655 vs 0.195 files and the
+external 0.135 vs 0.148 run remain diagnostic artifacts, not superiority claims.
 
 ### 9. Generate Charts
 
 ```bash
-python generate_charts.py
+python generate_charts.py --input results/eval_RUN.json
+python generate_charts.py --input results/video2tasks_prompt_ablation.json
 ```
 
-Creates radar, bar, and heatmap charts in `assets/`.
+The script auto-detects static evaluation, prompt comparison, Semantic-Motion
+gold evaluation, and Module C metric schemas. Charts and a provenance manifest
+are written to `assets/` by default.
 
 ## Project Structure
 
@@ -374,13 +463,13 @@ Creates radar, bar, and heatmap charts in `assets/`.
 mini-vlo/
 ├── README.md
 ├── requirements.txt
-├── generate_benchmark.py     # Generate synthetic benchmark images + ground truth
-├── generate_charts.py        # Generate result visualization charts
-├── run_eval.py               # Main evaluation entry point
-├── run_semantic_motion.py    # Perception + augmentation stream runner
+├── generate_benchmark.py     # Generate diagnostic static images + provenance
+├── generate_charts.py        # Multi-schema result visualization
+├── run_eval.py               # Static diagnostic evaluation entry point
+├── run_semantic_motion.py    # Static perception + augmentation runner
 ├── run_video_task.py         # Video-to-task stream runner
 ├── run_generate_filter.py    # Video-to-task + Module C filter (one-shot)
-├── compare_video2tasks.py    # Fair pinned-upstream Video2Tasks comparison
+├── compare_video2tasks.py    # Pinned-upstream prompt ablation
 ├── requirements-video2tasks.txt
 ├── configs/
 │   └── module_c_default.yaml # Module C thresholds + verifier settings
@@ -411,14 +500,16 @@ mini-vlo/
 ## Verification Status
 
 - Automatically verified: Python compilation, paired-view contract/fusion,
-  window aggregation, fact-preservation rejection, strict refinement, temporal
-  and classification metrics, motion corruptions, and the pinned upstream
+  window aggregation, ungated augmentation behavior, diagnostic refinement,
+  temporal/classification metrics, motion corruptions, and the pinned upstream
   adapter.
 - Available but API-dependent: Qwen perception, LLM rewriting and independent
   semantic judging.
 - Pending human work: the generated paired-view packets have not yet been
   independently double-annotated and adjudicated, so no formal boundary or
   keep/drop accuracy is claimed.
+- Disabled by current policy: augmentation fact gates and Module C quality
+  gates. Their thresholds and reason codes are diagnostic only.
 - Pending external environment: Module D rendering still requires Blender and
   a reproducible scene; no new Module D acceptance claim is made here.
 
@@ -427,7 +518,9 @@ mini-vlo/
 - **Add more scenarios**: Edit `generate_benchmark.py` to add new task types or objects.
 - **Swap the VLM**: Change `--model` / `--vlm-model` or `--base-url` to point at any OpenAI-compatible vision API (GPT-4o, Claude, local Ollama, etc.).
 - **Custom metrics**: Add new metric functions in `src/evaluator.py` and update the `WEIGHTS` dict.
-- **Module C thresholds**: Tune `configs/module_c_default.yaml` (motion limits, aggregation, verifier).
+- **Module C diagnostics**: Tune `configs/module_c_default.yaml` to inspect
+  motion/sync/semantic sensitivity; thresholds do not affect `keep` while
+  quality gates are disabled.
 - **Module D motions**: Drop new `.fbx` / `.bvh` files into `module_d/motions/` and re-run the Blender script.
 
 ## References
