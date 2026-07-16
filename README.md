@@ -18,6 +18,57 @@ missing motion, semantic mismatch and missing paired views are preserved in
 output provenance instead of controlling `keep/drop`. Module D still needs
 Blender and was not changed as part of the current repair.
 
+## Recommended Path: Vendored Video2Tasks
+
+The pinned MIT-licensed Video2Tasks source is now included directly under
+`video2tasks/`. It is the recommended primary path in this repository. The
+original Semantic-Motion and Module C code remains available for historical
+experiments, but is no longer required to run the default video segmentation
+workflow.
+
+The new entry point talks directly to the configured DashScope
+OpenAI-compatible endpoint. It does not require the upstream FastAPI server,
+worker process, local 32B model, NVIDIA GPU, or a separately installed
+`video2tasks` package:
+
+```bash
+python run_video2tasks.py \
+  --video demos/video2tasks_compare/hang_towel.mp4 \
+  --model qwen3-vl-flash
+```
+
+The direct API runner defaults to 8 frames at 384×256 per window to avoid
+multi-minute oversized requests. Pass `--frames-per-window 16
+--target-width 720 --target-height 480` to reproduce the upstream input budget.
+
+Paired manifests retain the previous camera ablations:
+
+```bash
+python run_video2tasks.py \
+  --manifest data/libero_goal/processed/manifest.json \
+  --sample-id put_the_bowl_on_the_plate_demo_0 \
+  --view-mode fused \
+  --model qwen3-vl-flash
+```
+
+Use `--view-mode fixed`, `ego`, or `fused`. Fused input interleaves synchronized
+fixed/ego evidence at each timestamp while keeping Video2Tasks transition
+indices on the shared timestamp axis.
+
+Run a dataset manifest with checkpointing:
+
+```bash
+python run_video2tasks.py \
+  --manifest data/wgo_bench/full/manifest.json \
+  --model qwen3-vl-flash \
+  --resume \
+  --output results/video2tasks_wgo.json
+```
+
+This simplifies deployment, but does not turn a generic VLM into a
+robot-domain world model. Video2Tasks still depends on the provider's visual
+grounding and can miss boundaries or hallucinate labels.
+
 ## What is VLO?
 
 In robotics, a **VLA (Vision-Language-Action)** model takes in camera images and language instructions, then outputs motor commands to control a robot. The pipeline looks like:
@@ -422,11 +473,11 @@ to `keep`.
 
 ### 8. Video2Tasks Prompt Ablation
 
-Install the exact upstream revision and compare two prompts while holding the
-model, upstream windows and aggregation constant:
+The exact upstream revision is vendored under `video2tasks/`. To compare its
+prompt with the historical Semantic-Motion prompt while holding model, windows,
+and aggregation constant:
 
 ```bash
-pip install -r requirements-video2tasks.txt
 python compare_video2tasks.py \
   --mode prompt-ablation \
   --model qwen3-vl-flash \
@@ -468,9 +519,11 @@ mini-vlo/
 ├── run_eval.py               # Static diagnostic evaluation entry point
 ├── run_semantic_motion.py    # Static perception + augmentation runner
 ├── run_video_task.py         # Video-to-task stream runner
+├── run_video2tasks.py        # Recommended direct vendored Video2Tasks runner
 ├── run_generate_filter.py    # Video-to-task + Module C filter (one-shot)
 ├── compare_video2tasks.py    # Pinned-upstream prompt ablation
 ├── requirements-video2tasks.txt
+├── video2tasks/              # Vendored pinned upstream source + MIT license
 ├── configs/
 │   └── module_c_default.yaml # Module C thresholds + verifier settings
 ├── module_d/

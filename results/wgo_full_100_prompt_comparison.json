@@ -1,0 +1,643 @@
+{
+  "schema_version": "semantic-motion-video2tasks-ablation/v3",
+  "comparison_mode": "prompt-ablation-pinned-aggregation",
+  "formal": false,
+  "formal_temporal_metrics": false,
+  "formal_semantic_metrics": false,
+  "semantic_judge_independent": false,
+  "claim_scope": "prompt ablation only; does not evaluate the full Semantic-Motion VideoTaskPipeline or multi-view fusion",
+  "generated_at": "2026-07-15T15:47:11.301609+00:00",
+  "code_revision": "2f260ee0874acb8cfe3d72abb500590782215147",
+  "model": "qwen3-vl-flash",
+  "judge_model": null,
+  "base_url": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+  "request_timeout_s": 300.0,
+  "max_retries": 2,
+  "upstream_revision": "8d405a120a37df4e5a4869b61ba3d9edb7b4dfe3",
+  "filename_or_task_list_prior": false,
+  "prompt_hashes": {
+    "semantic_motion": "d9778f608d8f250d5f10c26b9912e6034bfae938f7a39655a8a4004c769b1f24",
+    "semantic_judge": "8ae6b4f4162d36d7c428942d70d41b392048e491a9ab3bcbaf2cd625153b611c"
+  },
+  "pricing": {
+    "input_usd_per_million_tokens": 0.05,
+    "output_usd_per_million_tokens": 0.4
+  },
+  "input": {
+    "sample_manifest": "data/wgo_bench/full/manifest.json",
+    "sample_manifest_sha256": "669ddb68b5a95c48b045e917220eb9bafd3c3048a93a34bb6dab0fdcaeced29a",
+    "sample_source": "external_manifest",
+    "num_samples": 100,
+    "repeats": 1,
+    "sample_order": "duration-asc"
+  },
+  "windowing": {
+    "window_sec": 16.0,
+    "step_sec": 8.0,
+    "frames_per_window": 16
+  },
+  "summary": {
+    "num_runs": 2,
+    "valid_runs": 1,
+    "errored_runs": 1,
+    "baseline": {
+      "instruction_token_f1": 0.5,
+      "target_mention_f1": null,
+      "action_coverage_f1": 0.631578947368421,
+      "action_edit": 0.0,
+      "boundary_f1_0.5s": 0.0,
+      "boundary_f1_1.0s": 0.0,
+      "segment_f1_iou_0.5": 0.0,
+      "segment_f1_iou_0.75": 0.0,
+      "semantic_label_accuracy": null,
+      "semantic_label_temporal_coverage": null,
+      "slot_macro_f1": null,
+      "labeled_e2e_f1_iou_0.5": null,
+      "labeled_e2e_f1_iou_0.75": null,
+      "semantic_action_edit": null,
+      "mean_latency_s": 123.03749699999935,
+      "mean_estimated_cost_usd": 0.00080475
+    },
+    "semantic_motion": {
+      "instruction_token_f1": 0.3870967741935484,
+      "target_mention_f1": null,
+      "action_coverage_f1": 0.4000000000000001,
+      "action_edit": 0.0,
+      "boundary_f1_0.5s": 0.0,
+      "boundary_f1_1.0s": 0.0,
+      "segment_f1_iou_0.5": 0.0,
+      "segment_f1_iou_0.75": 0.0,
+      "semantic_label_accuracy": null,
+      "semantic_label_temporal_coverage": null,
+      "slot_macro_f1": null,
+      "labeled_e2e_f1_iou_0.5": null,
+      "labeled_e2e_f1_iou_0.75": null,
+      "semantic_action_edit": null,
+      "mean_latency_s": 120.74298429100054,
+      "mean_estimated_cost_usd": 0.0007817000000000001
+    },
+    "temporal_gold_run_count": 1,
+    "paired_bootstrap_95ci": {
+      "instruction_token_f1": null,
+      "target_mention_f1": null,
+      "action_coverage_f1": null,
+      "action_edit": null,
+      "boundary_f1_0.5s": null,
+      "boundary_f1_1.0s": null,
+      "segment_f1_iou_0.5": null,
+      "segment_f1_iou_0.75": null,
+      "semantic_label_accuracy": null,
+      "slot_macro_f1": null,
+      "labeled_e2e_f1_iou_0.5": null,
+      "labeled_e2e_f1_iou_0.75": null,
+      "semantic_action_edit": null
+    },
+    "wins": 0,
+    "ties": 0,
+    "losses": 1
+  },
+  "results": [
+    {
+      "sample": {
+        "id": "galaxea_065",
+        "video": "/Users/gaiyi/Downloads/mini-vlo/data/wgo_bench/full/videos/galaxea_065.mp4",
+        "instruction": "use a gripper to pick the target object and place on the gray plate.",
+        "target_object": "",
+        "actions": [
+          "pick up the yellow banana",
+          "place the yellow banana on the gray plate"
+        ],
+        "boundaries_sec": [
+          1.963
+        ],
+        "segments": [
+          {
+            "start_sec": 0.0,
+            "end_sec": 1.963,
+            "label": "pick up the yellow banana"
+          },
+          {
+            "start_sec": 1.963,
+            "end_sec": 3.287,
+            "label": "place the yellow banana on the gray plate"
+          }
+        ],
+        "annotation_status": "benchmark_gold",
+        "gold_source": "macrodata/WGO-Bench",
+        "source_row_index": 94,
+        "source_metadata": {
+          "bench_id": "galaxea_065",
+          "camera": "observation.images.cam_head_left_rgb",
+          "duration_sec": 4.433,
+          "fps": 30.0,
+          "notes": "",
+          "num_frames": 133,
+          "num_segments": 2,
+          "original_instruction": "use a gripper to pick the target object and place on the gray plate.",
+          "saved_at_unix": 1782041290.455992,
+          "source_dataset": "RoboCOIN/Galaxea_R1_Lite_storage_object_gray_plate",
+          "source_episode_index": 1,
+          "source_family": "galaxea",
+          "source_video_path": "videos/chunk-000/observation.images.cam_head_left_rgb/episode_000001.mp4",
+          "source_video_size": 1310633
+        },
+        "video_sha256": "8cf1f94916ea2c6299be57aa83b714d10c7c40870eb4b426d3f0d32f7ec87530"
+      },
+      "repeat": 0,
+      "method_order": [
+        "baseline",
+        "semantic_motion"
+      ],
+      "input_budget": {
+        "window_sec": 16.0,
+        "step_sec": 8.0,
+        "frames_per_window": 16,
+        "max_tokens_per_call": 1024,
+        "same_model": true,
+        "temperature": 0.0
+      },
+      "baseline": {
+        "method": "pinned Video2Tasks prompt + aggregation",
+        "prediction": {
+          "sample_id": "galaxea_065",
+          "nframes": 133,
+          "segments": [
+            {
+              "seg_id": 0,
+              "start_frame": 0,
+              "end_frame": 133,
+              "instruction": "Place the banana on the plate",
+              "confidence": 1.0
+            }
+          ],
+          "fps": 30.0,
+          "upstream_repository": "https://github.com/ly-geming/video2tasks",
+          "upstream_revision": "8d405a120a37df4e5a4869b61ba3d9edb7b4dfe3",
+          "window_sec": 16.0,
+          "step_sec": 8.0,
+          "frames_per_window": 16,
+          "window_count": 1
+        },
+        "latency_s": 123.03749699999935,
+        "api_calls": 1,
+        "usage": {
+          "requests": 1,
+          "input_tokens": 14615,
+          "output_tokens": 185,
+          "estimated_cost_usd": 0.00080475
+        },
+        "window_outputs": [
+          {
+            "window_id": 0,
+            "frame_indices": [
+              0,
+              8,
+              17,
+              26,
+              35,
+              44,
+              52,
+              61,
+              70,
+              79,
+              88,
+              96,
+              105,
+              114,
+              123,
+              132
+            ],
+            "parsed": {
+              "thought": "Frames 0-4: The scene is static with no robot interaction. Frame 5: The robotic arm enters the frame and begins to interact with the banana, which is the first object of manipulation. Frames 5-10: The robot grasps, lifts, and moves the banana toward the plate. Frame 11: The robot places the banana onto the gray plate and releases it. Frame 12: The robot has fully released the banana and is now retracted, with no contact with any object. From frame 13 onward, the robot remains idle or out of frame, and no new object is touched. Since the robot only interacted with one object (the banana) and completed that task before the clip ends, there are no switches between different objects.",
+              "transitions": [],
+              "instructions": [
+                "Place the banana on the plate"
+              ]
+            }
+          }
+        ],
+        "scores": {
+          "instruction_token_f1": 0.5,
+          "target_mention_f1": null,
+          "action_coverage_f1": 0.631578947368421,
+          "action_edit": 0.0
+        },
+        "boundary": {
+          "0.5s": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 1.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 0.5
+          },
+          "1.0s": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 1.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 1.0
+          }
+        },
+        "segmental": {
+          "0.5": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "mean_iou": 0.0,
+            "threshold": 0.5,
+            "tp": 0.0,
+            "fp": 1.0,
+            "fn": 2.0
+          },
+          "0.75": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "mean_iou": 0.0,
+            "threshold": 0.75,
+            "tp": 0.0,
+            "fp": 1.0,
+            "fn": 2.0
+          }
+        },
+        "semantic_evaluation": null,
+        "semantic_evaluation_error": "",
+        "judge_usage": {
+          "requests": 0,
+          "input_tokens": 0,
+          "output_tokens": 0,
+          "estimated_cost_usd": 0.0
+        },
+        "error": ""
+      },
+      "semantic_motion": {
+        "method": "blind Semantic-Motion prompt + Video2Tasks aggregation",
+        "prediction": {
+          "sample_id": "galaxea_065",
+          "nframes": 133,
+          "segments": [
+            {
+              "seg_id": 0,
+              "start_frame": 0,
+              "end_frame": 133,
+              "instruction": "A robotic arm picks up a banana from the table and places it on a gray plate.",
+              "confidence": 1.0
+            }
+          ],
+          "fps": 30.0,
+          "upstream_repository": "https://github.com/ly-geming/video2tasks",
+          "upstream_revision": "8d405a120a37df4e5a4869b61ba3d9edb7b4dfe3",
+          "window_sec": 16.0,
+          "step_sec": 8.0,
+          "frames_per_window": 16,
+          "window_count": 1
+        },
+        "latency_s": 120.74298429100054,
+        "api_calls": 1,
+        "usage": {
+          "requests": 1,
+          "input_tokens": 14386,
+          "output_tokens": 156,
+          "estimated_cost_usd": 0.0007817000000000001
+        },
+        "window_outputs": [
+          {
+            "window_id": 0,
+            "frame_indices": [
+              0,
+              8,
+              17,
+              26,
+              35,
+              44,
+              52,
+              61,
+              70,
+              79,
+              88,
+              96,
+              105,
+              114,
+              123,
+              132
+            ],
+            "parsed": {
+              "transitions": [],
+              "instructions": [
+                "A robotic arm picks up a banana from the table and places it on a gray plate."
+              ],
+              "instruction": "Place the banana on the plate",
+              "task_type": "Object Placement",
+              "objects": [
+                "banana",
+                "plate",
+                "robotic arm"
+              ],
+              "target_object": "banana",
+              "destination": "plate",
+              "action_sequence": [
+                "The robotic arm approaches the banana",
+                "The robotic arm grasps the banana",
+                "The robotic arm lifts the banana",
+                "The robotic arm moves the banana over the plate",
+                "The robotic arm places the banana on the plate"
+              ],
+              "confidence": 1.0
+            }
+          }
+        ],
+        "scores": {
+          "instruction_token_f1": 0.3870967741935484,
+          "target_mention_f1": null,
+          "action_coverage_f1": 0.4000000000000001,
+          "action_edit": 0.0
+        },
+        "boundary": {
+          "0.5s": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 1.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 0.5
+          },
+          "1.0s": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 1.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 1.0
+          }
+        },
+        "segmental": {
+          "0.5": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "mean_iou": 0.0,
+            "threshold": 0.5,
+            "tp": 0.0,
+            "fp": 1.0,
+            "fn": 2.0
+          },
+          "0.75": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "mean_iou": 0.0,
+            "threshold": 0.75,
+            "tp": 0.0,
+            "fp": 1.0,
+            "fn": 2.0
+          }
+        },
+        "semantic_evaluation": null,
+        "semantic_evaluation_error": "",
+        "judge_usage": {
+          "requests": 0,
+          "input_tokens": 0,
+          "output_tokens": 0,
+          "estimated_cost_usd": 0.0
+        },
+        "error": ""
+      },
+      "delta_instruction_token_f1": -0.11290322580645162
+    },
+    {
+      "sample": {
+        "id": "galaxea_071",
+        "video": "/Users/gaiyi/Downloads/mini-vlo/data/wgo_bench/full/videos/galaxea_071.mp4",
+        "instruction": "use a gripper to pick the target object and place on the yellow basket.",
+        "target_object": "",
+        "actions": [
+          "pick up the banana",
+          "drop the banana into the basked"
+        ],
+        "boundaries_sec": [
+          1.869
+        ],
+        "segments": [
+          {
+            "start_sec": 0.0,
+            "end_sec": 1.869,
+            "label": "pick up the banana"
+          },
+          {
+            "start_sec": 1.869,
+            "end_sec": 3.33,
+            "label": "drop the banana into the basked"
+          }
+        ],
+        "annotation_status": "benchmark_gold",
+        "gold_source": "macrodata/WGO-Bench",
+        "source_row_index": 97,
+        "source_metadata": {
+          "bench_id": "galaxea_071",
+          "camera": "observation.images.cam_head_left_rgb",
+          "duration_sec": 4.333,
+          "fps": 30.0,
+          "notes": "",
+          "num_frames": 130,
+          "num_segments": 2,
+          "original_instruction": "use a gripper to pick the target object and place on the yellow basket.",
+          "saved_at_unix": 1782041124.069246,
+          "source_dataset": "RoboCOIN/Galaxea_R1_Lite_storage_object_yellow_basket",
+          "source_episode_index": 1,
+          "source_family": "galaxea",
+          "source_video_path": "videos/chunk-000/observation.images.cam_head_left_rgb/episode_000001.mp4",
+          "source_video_size": 1093776
+        },
+        "video_sha256": "94a7197ba1a54c19cfbfaac9e26568b5ce2f202ef3c27852b4445ba247b2633b"
+      },
+      "repeat": 0,
+      "method_order": [
+        "semantic_motion",
+        "baseline"
+      ],
+      "input_budget": {
+        "window_sec": 16.0,
+        "step_sec": 8.0,
+        "frames_per_window": 16,
+        "max_tokens_per_call": 1024,
+        "same_model": true,
+        "temperature": 0.0
+      },
+      "baseline": {
+        "method": "baseline",
+        "prediction": {},
+        "latency_s": 0.0,
+        "api_calls": 0,
+        "usage": {
+          "requests": 0,
+          "input_tokens": 0,
+          "output_tokens": 0,
+          "estimated_cost_usd": 0.0
+        },
+        "scores": {
+          "instruction_token_f1": 0.0,
+          "target_mention_f1": null,
+          "action_coverage_f1": 0.0,
+          "action_edit": 0.0
+        },
+        "boundary": null,
+        "segmental": null,
+        "semantic_evaluation": null,
+        "semantic_evaluation_error": "",
+        "judge_usage": {
+          "requests": 0,
+          "input_tokens": 0,
+          "output_tokens": 0,
+          "estimated_cost_usd": 0.0
+        },
+        "error": "ValueError: baseline returned 0 transitions but 2 instructions"
+      },
+      "semantic_motion": {
+        "method": "blind Semantic-Motion prompt + Video2Tasks aggregation",
+        "prediction": {
+          "sample_id": "galaxea_071",
+          "nframes": 130,
+          "segments": [
+            {
+              "seg_id": 0,
+              "start_frame": 0,
+              "end_frame": 130,
+              "instruction": "A robotic arm picks up a banana from a white table and places it into a woven basket.",
+              "confidence": 1.0
+            }
+          ],
+          "fps": 30.0,
+          "upstream_repository": "https://github.com/ly-geming/video2tasks",
+          "upstream_revision": "8d405a120a37df4e5a4869b61ba3d9edb7b4dfe3",
+          "window_sec": 16.0,
+          "step_sec": 8.0,
+          "frames_per_window": 16,
+          "window_count": 1
+        },
+        "latency_s": 279.07317350000085,
+        "api_calls": 1,
+        "usage": {
+          "requests": 1,
+          "input_tokens": 14386,
+          "output_tokens": 154,
+          "estimated_cost_usd": 0.0007809000000000001
+        },
+        "window_outputs": [
+          {
+            "window_id": 0,
+            "frame_indices": [
+              0,
+              8,
+              17,
+              25,
+              34,
+              43,
+              51,
+              60,
+              68,
+              77,
+              86,
+              94,
+              103,
+              111,
+              120,
+              129
+            ],
+            "parsed": {
+              "transitions": [],
+              "instructions": [
+                "A robotic arm picks up a banana from a white table and places it into a woven basket."
+              ],
+              "instruction": "Place the banana in the basket",
+              "task_type": "object placement",
+              "objects": [
+                "banana",
+                "basket",
+                "robotic arm"
+              ],
+              "target_object": "banana",
+              "destination": "basket",
+              "action_sequence": [
+                "The robotic arm enters the frame from the right.",
+                "The arm grasps the banana on the table.",
+                "The arm lifts the banana and moves it toward the basket.",
+                "The arm places the banana into the basket."
+              ],
+              "confidence": 1.0
+            }
+          }
+        ],
+        "scores": {
+          "instruction_token_f1": 0.1875,
+          "target_mention_f1": null,
+          "action_coverage_f1": 0.21428571428571427,
+          "action_edit": 0.0
+        },
+        "boundary": {
+          "0.5s": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 1.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 0.5
+          },
+          "1.0s": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 1.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 1.0
+          }
+        },
+        "segmental": {
+          "0.5": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "mean_iou": 0.0,
+            "threshold": 0.5,
+            "tp": 0.0,
+            "fp": 1.0,
+            "fn": 2.0
+          },
+          "0.75": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "mean_iou": 0.0,
+            "threshold": 0.75,
+            "tp": 0.0,
+            "fp": 1.0,
+            "fn": 2.0
+          }
+        },
+        "semantic_evaluation": null,
+        "semantic_evaluation_error": "",
+        "judge_usage": {
+          "requests": 0,
+          "input_tokens": 0,
+          "output_tokens": 0,
+          "estimated_cost_usd": 0.0
+        },
+        "error": ""
+      },
+      "delta_instruction_token_f1": 0.1875
+    }
+  ]
+}

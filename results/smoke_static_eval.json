@@ -1,0 +1,133 @@
+{
+  "schema_version": "mini-vlo-static-eval/v2",
+  "evaluation_kind": "diagnostic_static_schematic",
+  "formal": false,
+  "generated_at": "2026-07-15T15:19:41.435018+00:00",
+  "code_revision": "2f260ee0874acb8cfe3d72abb500590782215147",
+  "model": "qwen3-vl-flash",
+  "base_url": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+  "timeout_s": 300.0,
+  "max_retries": 2,
+  "input": {
+    "scenarios": "/Users/gaiyi/Downloads/mini-vlo/benchmark/scenarios.json",
+    "sha256": "eb77b00a19ac14cf9f0cbdfb9cce7221a55523c4cb82974db7fbbc186f0e8319",
+    "categories": [],
+    "limit": 1
+  },
+  "prompt_sha256": "ad6dba56cb13b699546b5c65ed94f4f6290bac095b25ef49da9d479ec07a0195",
+  "requested_scenarios": 1,
+  "num_scenarios": 1,
+  "counts": {
+    "succeeded": 1,
+    "failed": 0,
+    "skipped": 0
+  },
+  "summary": {
+    "object_f1": 1.0,
+    "task_accuracy": 1.0,
+    "action_rouge_l": 0.7999999999999999,
+    "semantic_similarity": 0.9722263783234858,
+    "spatial_accuracy": 1.0,
+    "composite": 0.9544452756646973
+  },
+  "per_scenario": [
+    {
+      "scenario_id": "pnp_01",
+      "category": "pick_and_place",
+      "instruction": "Pick up the red mug and place it on the shelf.",
+      "status": "ok",
+      "latency_s": 13.117017984390259,
+      "prediction": {
+        "objects": [
+          "red mug",
+          "shelf",
+          "table"
+        ],
+        "spatial_relations": [
+          "red mug ON table",
+          "shelf ON table"
+        ],
+        "task_type": "pick_and_place",
+        "action_sequence": [
+          "approach red mug",
+          "grasp red mug",
+          "lift red mug",
+          "move red mug toward shelf",
+          "place red mug on shelf"
+        ],
+        "target_object": "red mug",
+        "destination": "shelf",
+        "domain": "manipulation",
+        "instruction": "Pick up the red mug and place it on the shelf.",
+        "transitions": [],
+        "confidence": 1.0,
+        "action_details": [
+          {
+            "text": "approach red mug",
+            "verb": "approach",
+            "object": "red mug",
+            "body_part": "hand",
+            "contact_state": "approach",
+            "posture": "standing",
+            "start_image_index": 0,
+            "end_image_index": 0
+          },
+          {
+            "text": "grasp red mug",
+            "verb": "grasp",
+            "object": "red mug",
+            "body_part": "hand",
+            "contact_state": "grasp",
+            "posture": "standing",
+            "start_image_index": 0,
+            "end_image_index": 0
+          },
+          {
+            "text": "lift red mug",
+            "verb": "lift",
+            "object": "red mug",
+            "body_part": "hand",
+            "contact_state": "contact",
+            "posture": "standing",
+            "start_image_index": 0,
+            "end_image_index": 0
+          },
+          {
+            "text": "move red mug toward shelf",
+            "verb": "move",
+            "object": "red mug",
+            "body_part": "hand",
+            "contact_state": "contact",
+            "posture": "standing",
+            "start_image_index": 0,
+            "end_image_index": 0
+          },
+          {
+            "text": "place red mug on shelf",
+            "verb": "place",
+            "object": "red mug",
+            "body_part": "hand",
+            "contact_state": "release",
+            "posture": "standing",
+            "start_image_index": 0,
+            "end_image_index": 0
+          }
+        ],
+        "raw_text": "{\n  \"objects\": [\"red mug\", \"shelf\", \"table\"],\n  \"spatial_relations\": [\"red mug ON table\", \"shelf ON table\"],\n  \"task_type\": \"pick_and_place\",\n  \"domain\": \"manipulation\",\n  \"action_sequence\": [\n    \"approach red mug\",\n    \"grasp red mug\",\n    \"lift red mug\",\n    \"move red mug toward shelf\",\n    \"place red mug on shelf\"\n  ],\n  \"action_details\": [\n    {\n      \"text\": \"approach red mug\",\n      \"verb\": \"approach\",\n      \"object\": \"red mug\",\n      \"body_part\": \"hand\",\n      \"contact_state\": \"approach\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 0,\n      \"end_image_index\": 0\n    },\n    {\n      \"text\": \"grasp red mug\",\n      \"verb\": \"grasp\",\n      \"object\": \"red mug\",\n      \"body_part\": \"hand\",\n      \"contact_state\": \"grasp\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 0,\n      \"end_image_index\": 0\n    },\n    {\n      \"text\": \"lift red mug\",\n      \"verb\": \"lift\",\n      \"object\": \"red mug\",\n      \"body_part\": \"hand\",\n      \"contact_state\": \"contact\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 0,\n      \"end_image_index\": 0\n    },\n    {\n      \"text\": \"move red mug toward shelf\",\n      \"verb\": \"move\",\n      \"object\": \"red mug\",\n      \"body_part\": \"hand\",\n      \"contact_state\": \"contact\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 0,\n      \"end_image_index\": 0\n    },\n    {\n      \"text\": \"place red mug on shelf\",\n      \"verb\": \"place\",\n      \"object\": \"red mug\",\n      \"body_part\": \"hand\",\n      \"contact_state\": \"release\",\n      \"posture\": \"standing\",\n      \"start_image_index\": 0,\n      \"end_image_index\": 0\n    }\n  ],\n  \"target_object\": \"red mug\",\n  \"destination\": \"shelf\",\n  \"instruction\": \"Pick up the red mug and place it on the shelf.\",\n  \"transitions\": [],\n  \"confidence\": 1.0\n}"
+      },
+      "metrics": {
+        "object_f1": 1.0,
+        "task_accuracy": 1.0,
+        "action_rouge_l": 0.7999999999999999,
+        "semantic_similarity": 0.9722263783234858,
+        "spatial_accuracy": 1.0,
+        "composite": 0.9544452756646973
+      }
+    }
+  ],
+  "limitations": [
+    "synthetic single-image benchmark",
+    "no temporal, multi-view, motion, or policy-success evaluation",
+    "provider failures are excluded from metric means and reported separately"
+  ]
+}

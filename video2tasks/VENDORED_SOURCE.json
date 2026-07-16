@@ -1,0 +1,7 @@
+{
+  "repository": "https://github.com/ly-geming/video2tasks",
+  "revision": "8d405a120a37df4e5a4869b61ba3d9edb7b4dfe3",
+  "license": "MIT",
+  "vendored_at": "2026-07-16",
+  "local_integration": "run_video2tasks.py"
+}

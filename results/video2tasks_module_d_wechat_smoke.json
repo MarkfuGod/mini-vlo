@@ -1,0 +1,101 @@
+{
+  "schema_version": "vendored-video2tasks-run/v2",
+  "formal": false,
+  "generated_at": "2026-07-15T18:12:24.073402+00:00",
+  "code_revision": "2f260ee0874acb8cfe3d72abb500590782215147",
+  "upstream_repository": "https://github.com/ly-geming/video2tasks",
+  "upstream_revision": "8d405a120a37df4e5a4869b61ba3d9edb7b4dfe3",
+  "vendored_source": "video2tasks/",
+  "model": "qwen3-vl-flash",
+  "base_url": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+  "prompt_sha256": "72e065ceee214ac019b6a13d898e2d74963ff6449df7d0c0b349bbb4004c036f",
+  "input": {
+    "manifest": "data/module_d_wechat/manifest.json",
+    "manifest_sha256": "3c14c004652141deb42f87716e8da7c94c6da9d2dad248ec36e3de3da8c2b79a",
+    "requested_samples": 1,
+    "view_mode": "fixed"
+  },
+  "windowing": {
+    "window_sec": 16.0,
+    "step_sec": 8.0,
+    "frames_per_window": 8,
+    "target_width": 384,
+    "target_height": 256,
+    "png_compression": 3
+  },
+  "summary": {
+    "completed": 1,
+    "succeeded": 1,
+    "failed": 0
+  },
+  "limitations": [
+    "generic VLM; not a robot-domain world model",
+    "output quality depends on provider vision grounding"
+  ],
+  "results": [
+    {
+      "sample_id": "Walking",
+      "view_mode": "fixed",
+      "views": {
+        "fixed": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Walking/Fixed_View.mp4"
+      },
+      "view_sha256": {
+        "fixed": "740007394d636088daf9889c72902d68eb008aefb056bc986e0261810f3aa42e"
+      },
+      "fps": 30.0,
+      "frame_count": 32,
+      "window_count": 1,
+      "latency_s": 5.641528625001229,
+      "usage": {
+        "requests": 1,
+        "input_tokens": 1302,
+        "output_tokens": 142
+      },
+      "prediction": {
+        "sample_id": "Walking",
+        "nframes": 32,
+        "segments": [
+          {
+            "seg_id": 0,
+            "start_frame": 0,
+            "end_frame": 32,
+            "instruction": "Walk",
+            "confidence": 1.0
+          }
+        ]
+      },
+      "window_outputs": [
+        {
+          "window_id": 0,
+          "start_frame": 0,
+          "end_frame": 31,
+          "frame_ids": [
+            0,
+            4,
+            8,
+            13,
+            17,
+            22,
+            26,
+            31
+          ],
+          "view_ids": [
+            "fixed"
+          ],
+          "images_per_timestamp": 1,
+          "vlm_json": {
+            "thought": "The provided frames show a humanoid figure moving across a plain environment. There are no objects being manipulated—no cups, spoons, shirts, or tools are present. The figure appears to be walking or running in place, with its arms swinging and legs moving in a gait cycle. Since there is no interaction with any object (neither grasping nor releasing), there can be no 'Atomic Task Boundary' or 'Switch' as defined by the rule (which requires completing interaction with one object and starting with a different one). The entire sequence is a single continuous action of locomotion without object manipulation.",
+            "transitions": [],
+            "instructions": [
+              "Walk"
+            ]
+          },
+          "warnings": [],
+          "raw_response": "{\n  \"thought\": \"The provided frames show a humanoid figure moving across a plain environment. There are no objects being manipulated—no cups, spoons, shirts, or tools are present. The figure appears to be walking or running in place, with its arms swinging and legs moving in a gait cycle. Since there is no interaction with any object (neither grasping nor releasing), there can be no 'Atomic Task Boundary' or 'Switch' as defined by the rule (which requires completing interaction with one object and starting with a different one). The entire sequence is a single continuous action of locomotion without object manipulation.\",\n  \"transitions\": [],\n  \"instructions\": [\"Walk\"]\n}",
+          "error": ""
+        }
+      ],
+      "error": ""
+    }
+  ]
+}

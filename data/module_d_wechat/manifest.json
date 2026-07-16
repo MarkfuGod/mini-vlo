@@ -1,0 +1,278 @@
+{
+  "schema_version": "module-d-wechat/v1",
+  "source_dir": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos",
+  "samples": [
+    {
+      "id": "Air_Squat",
+      "views": {
+        "fixed": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Air_Squat/Air_Squat_Fixed_View.mp4",
+        "ego": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Air_Squat/Air_Squat_Ego_View.mp4"
+      },
+      "trajectory": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Air_Squat/Air_Squat_trajectory.json"
+    },
+    {
+      "id": "Backflip",
+      "views": {
+        "fixed": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Backflip/Backflip_Fixed_View.mp4",
+        "ego": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Backflip/Backflip_Ego_View.mp4"
+      },
+      "trajectory": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Backflip/Backflip_trajectory.json"
+    },
+    {
+      "id": "Capoeira",
+      "views": {
+        "fixed": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Capoeira/Capoeira_Fixed_View.mp4",
+        "ego": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Capoeira/Capoeira_Ego_View.mp4"
+      },
+      "trajectory": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Capoeira/Capoeira_trajectory.json"
+    },
+    {
+      "id": "Cartwheel",
+      "views": {
+        "fixed": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Cartwheel/Cartwheel_Fixed_View.mp4",
+        "ego": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Cartwheel/Cartwheel_Ego_View.mp4"
+      },
+      "trajectory": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Cartwheel/Cartwheel_trajectory.json"
+    },
+    {
+      "id": "Defeated",
+      "views": {
+        "fixed": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Defeated/Defeated_Fixed_View.mp4",
+        "ego": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Defeated/Defeated_Ego_View.mp4"
+      },
+      "trajectory": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Defeated/Defeated_trajectory.json"
+    },
+    {
+      "id": "Dying",
+      "views": {
+        "fixed": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Dying/Dying_Fixed_View.mp4",
+        "ego": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Dying/Dying_Ego_View.mp4"
+      },
+      "trajectory": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Dying/Dying_trajectory.json"
+    },
+    {
+      "id": "Flying_Knee_Punch_Combo",
+      "views": {
+        "fixed": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Flying_Knee_Punch_Combo/Flying_Knee_Punch_Combo_Fixed_View.mp4",
+        "ego": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Flying_Knee_Punch_Combo/Flying_Knee_Punch_Combo_Ego_View.mp4"
+      },
+      "trajectory": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Flying_Knee_Punch_Combo/Flying_Knee_Punch_Combo_trajectory.json"
+    },
+    {
+      "id": "Front_Raises",
+      "views": {
+        "fixed": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Front_Raises/Front_Raises_Fixed_View.mp4",
+        "ego": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Front_Raises/Front_Raises_Ego_View.mp4"
+      },
+      "trajectory": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Front_Raises/Front_Raises_trajectory.json"
+    },
+    {
+      "id": "Headspin_End",
+      "views": {
+        "fixed": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Headspin_End/Headspin_End_Fixed_View.mp4",
+        "ego": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Headspin_End/Headspin_End_Ego_View.mp4"
+      },
+      "trajectory": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Headspin_End/Headspin_End_trajectory.json"
+    },
+    {
+      "id": "Illegal_Knee",
+      "views": {
+        "fixed": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Illegal_Knee/Illegal_Knee_Fixed_View.mp4",
+        "ego": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Illegal_Knee/Illegal_Knee_Ego_View.mp4"
+      },
+      "trajectory": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Illegal_Knee/Illegal_Knee_trajectory.json"
+    },
+    {
+      "id": "Insult",
+      "views": {
+        "fixed": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Insult/Insult_Fixed_View.mp4",
+        "ego": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Insult/Insult_Ego_View.mp4"
+      },
+      "trajectory": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Insult/Insult_trajectory.json"
+    },
+    {
+      "id": "Jab_Cross",
+      "views": {
+        "fixed": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Jab_Cross/Jab_Cross_Fixed_View.mp4",
+        "ego": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Jab_Cross/Jab_Cross_Ego_View.mp4"
+      },
+      "trajectory": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Jab_Cross/Jab_Cross_trajectory.json"
+    },
+    {
+      "id": "Jog_In_Circle",
+      "views": {
+        "fixed": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Jog_In_Circle/Jog_In_Circle_Fixed_View.mp4",
+        "ego": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Jog_In_Circle/Jog_In_Circle_Ego_View.mp4"
+      },
+      "trajectory": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Jog_In_Circle/Jog_In_Circle_trajectory.json"
+    },
+    {
+      "id": "Joyful_Jump",
+      "views": {
+        "fixed": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Joyful_Jump/Joyful_Jump_Fixed_View.mp4",
+        "ego": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Joyful_Jump/Joyful_Jump_Ego_View.mp4"
+      },
+      "trajectory": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Joyful_Jump/Joyful_Jump_trajectory.json"
+    },
+    {
+      "id": "Jump_Push_Up",
+      "views": {
+        "fixed": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Jump_Push_Up/Jump_Push_Up_Fixed_View.mp4",
+        "ego": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Jump_Push_Up/Jump_Push_Up_Ego_View.mp4"
+      },
+      "trajectory": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Jump_Push_Up/Jump_Push_Up_trajectory.json"
+    },
+    {
+      "id": "Jumping_Jacks",
+      "views": {
+        "fixed": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Jumping_Jacks/Jumping_Jacks_Fixed_View.mp4",
+        "ego": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Jumping_Jacks/Jumping_Jacks_Ego_View.mp4"
+      },
+      "trajectory": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Jumping_Jacks/Jumping_Jacks_trajectory.json"
+    },
+    {
+      "id": "Looking",
+      "views": {
+        "fixed": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Looking/Looking_Fixed_View.mp4",
+        "ego": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Looking/Looking_Ego_View.mp4"
+      },
+      "trajectory": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Looking/Looking_trajectory.json"
+    },
+    {
+      "id": "Low_Crawl",
+      "views": {
+        "fixed": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Low_Crawl/Low_Crawl_Fixed_View.mp4",
+        "ego": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Low_Crawl/Low_Crawl_Ego_View.mp4"
+      },
+      "trajectory": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Low_Crawl/Low_Crawl_trajectory.json"
+    },
+    {
+      "id": "Pike_Walk",
+      "views": {
+        "fixed": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Pike_Walk/Pike_Walk_Fixed_View.mp4",
+        "ego": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Pike_Walk/Pike_Walk_Ego_View.mp4"
+      },
+      "trajectory": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Pike_Walk/Pike_Walk_trajectory.json"
+    },
+    {
+      "id": "Pistol",
+      "views": {
+        "fixed": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Pistol/Pistol_Fixed_View.mp4",
+        "ego": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Pistol/Pistol_Ego_View.mp4"
+      },
+      "trajectory": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Pistol/Pistol_trajectory.json"
+    },
+    {
+      "id": "Praying",
+      "views": {
+        "fixed": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Praying/Fixed_View.mp4",
+        "ego": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Praying/Ego_View.mp4"
+      },
+      "trajectory": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Praying/Praying_trajectory.json"
+    },
+    {
+      "id": "Quick_Steps",
+      "views": {
+        "fixed": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Quick_Steps/Quick_Steps_Fixed_View.mp4",
+        "ego": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Quick_Steps/Quick_Steps_Ego_View.mp4"
+      },
+      "trajectory": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Quick_Steps/Quick_Steps_trajectory.json"
+    },
+    {
+      "id": "Rallying",
+      "views": {
+        "fixed": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Rallying/Rallying_Fixed_View.mp4",
+        "ego": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Rallying/Rallying_Ego_View.mp4"
+      },
+      "trajectory": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Rallying/Rallying_trajectory.json"
+    },
+    {
+      "id": "Rumba_Dancing",
+      "views": {
+        "fixed": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Rumba_Dancing/Rumba_Dancing_Fixed_View.mp4",
+        "ego": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Rumba_Dancing/Rumba_Dancing_Ego_View.mp4"
+      },
+      "trajectory": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Rumba_Dancing/Rumba_Dancing_trajectory.json"
+    },
+    {
+      "id": "Run_To_Rolling",
+      "views": {
+        "fixed": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Run_To_Rolling/Run_To_Rolling_Fixed_View.mp4",
+        "ego": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Run_To_Rolling/Run_To_Rolling_Ego_View.mp4"
+      },
+      "trajectory": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Run_To_Rolling/Run_To_Rolling_trajectory.json"
+    },
+    {
+      "id": "Sneak_Walk",
+      "views": {
+        "fixed": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Sneak_Walk/Sneak_Walk_Fixed_View.mp4",
+        "ego": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Sneak_Walk/Sneak_Walk_Ego_View.mp4"
+      },
+      "trajectory": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Sneak_Walk/Sneak_Walk_trajectory.json"
+    },
+    {
+      "id": "Spat_In_Face",
+      "views": {
+        "fixed": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Spat_In_Face/Spat_In_Face_Fixed_View.mp4",
+        "ego": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Spat_In_Face/Spat_In_Face_Ego_View.mp4"
+      },
+      "trajectory": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Spat_In_Face/Spat_In_Face_trajectory.json"
+    },
+    {
+      "id": "Strut_Walking",
+      "views": {
+        "fixed": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Strut_Walking/Strut_Walking_Fixed_View.mp4",
+        "ego": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Strut_Walking/Strut_Walking_Ego_View.mp4"
+      },
+      "trajectory": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Strut_Walking/Strut_Walking_trajectory.json"
+    },
+    {
+      "id": "Talking_On_Phone",
+      "views": {
+        "fixed": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Talking_On_Phone/Talking_On_Phone_Fixed_View.mp4",
+        "ego": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Talking_On_Phone/Talking_On_Phone_Ego_View.mp4"
+      },
+      "trajectory": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Talking_On_Phone/Talking_On_Phone_trajectory.json"
+    },
+    {
+      "id": "Tripping",
+      "views": {
+        "fixed": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Tripping/Tripping_Fixed_View.mp4",
+        "ego": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Tripping/Tripping_Ego_View.mp4"
+      },
+      "trajectory": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Tripping/Tripping_trajectory.json"
+    },
+    {
+      "id": "Walking",
+      "views": {
+        "fixed": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Walking/Fixed_View.mp4",
+        "ego": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Walking/Ego_View.mp4"
+      },
+      "trajectory": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Walking/Walking_trajectory.json"
+    },
+    {
+      "id": "Ymca_Dance",
+      "views": {
+        "fixed": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Ymca_Dance/Ymca_Dance_Fixed_View.mp4",
+        "ego": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Ymca_Dance/Ymca_Dance_Ego_View.mp4"
+      },
+      "trajectory": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Ymca_Dance/Ymca_Dance_trajectory.json"
+    },
+    {
+      "id": "jump_down",
+      "views": {
+        "fixed": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/jump_down/Fixed_View.mp4",
+        "ego": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/jump_down/Ego_View.mp4"
+      },
+      "trajectory": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/jump_down/jump_down_trajectory.json"
+    },
+    {
+      "id": "sitting",
+      "views": {
+        "fixed": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/sitting/Fixed_View.mp4",
+        "ego": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/sitting/Ego_View.mp4"
+      },
+      "trajectory": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/sitting/sitting_trajectory.json"
+    }
+  ]
+}

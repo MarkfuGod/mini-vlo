@@ -1,4 +1,4 @@
-"""Pinned adapter around the upstream Video2Tasks algorithmic pipeline."""
+"""Adapter around the pinned Video2Tasks source vendored in this repository."""
 
 from __future__ import annotations
 
@@ -34,9 +34,10 @@ def _windowing_module():
         return module
     except ImportError as exc:
         raise RuntimeError(
-            "The full Video2Tasks baseline is optional. Install "
-            "requirements-video2tasks.txt, which pins upstream revision "
-            f"{UPSTREAM_REVISION}."
+            "The vendored Video2Tasks package is missing or cannot be imported. "
+            "Restore video2tasks/ from upstream revision "
+            f"{UPSTREAM_REVISION}; install requirements-video2tasks.txt only "
+            "when using the original server/worker CLIs."
         ) from exc
 
 

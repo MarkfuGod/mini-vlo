@@ -1,0 +1,54 @@
+{
+  "schema_version": "vendored-video2tasks-run/v2",
+  "formal": false,
+  "generated_at": "2026-07-15T18:12:14.850336+00:00",
+  "code_revision": "2f260ee0874acb8cfe3d72abb500590782215147",
+  "upstream_repository": "https://github.com/ly-geming/video2tasks",
+  "upstream_revision": "8d405a120a37df4e5a4869b61ba3d9edb7b4dfe3",
+  "vendored_source": "video2tasks/",
+  "model": "qwen3-vl-flash",
+  "base_url": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+  "prompt_sha256": "72e065ceee214ac019b6a13d898e2d74963ff6449df7d0c0b349bbb4004c036f",
+  "input": {
+    "manifest": "data/module_d_wechat/manifest.json",
+    "manifest_sha256": "3c14c004652141deb42f87716e8da7c94c6da9d2dad248ec36e3de3da8c2b79a",
+    "requested_samples": 1,
+    "view_mode": "fused"
+  },
+  "windowing": {
+    "window_sec": 16.0,
+    "step_sec": 8.0,
+    "frames_per_window": 8,
+    "target_width": 384,
+    "target_height": 256,
+    "png_compression": 3
+  },
+  "summary": {
+    "completed": 1,
+    "succeeded": 0,
+    "failed": 1
+  },
+  "limitations": [
+    "generic VLM; not a robot-domain world model",
+    "output quality depends on provider vision grounding"
+  ],
+  "results": [
+    {
+      "sample_id": "Walking",
+      "view_mode": "fused",
+      "views": {
+        "fixed": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Walking/Fixed_View.mp4",
+        "ego": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Walking/Ego_View.mp4"
+      },
+      "prediction": {},
+      "window_outputs": [],
+      "usage": {
+        "requests": 0,
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "latency_s": 0.0,
+      "error": "RuntimeError: Window 0 failed after 2 attempt(s): ValueError: VLM response did not contain a JSON object"
+    }
+  ]
+}

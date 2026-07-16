@@ -1,0 +1,2318 @@
+{
+  "schema_version": "vendored-video2tasks-run/v2",
+  "formal": false,
+  "generated_at": "2026-07-15T18:15:03.836375+00:00",
+  "code_revision": "2f260ee0874acb8cfe3d72abb500590782215147",
+  "upstream_repository": "https://github.com/ly-geming/video2tasks",
+  "upstream_revision": "8d405a120a37df4e5a4869b61ba3d9edb7b4dfe3",
+  "vendored_source": "video2tasks/",
+  "model": "qwen3-vl-flash",
+  "base_url": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+  "prompt_sha256": "72e065ceee214ac019b6a13d898e2d74963ff6449df7d0c0b349bbb4004c036f",
+  "input": {
+    "manifest": "data/module_d_wechat/manifest.json",
+    "manifest_sha256": "3c14c004652141deb42f87716e8da7c94c6da9d2dad248ec36e3de3da8c2b79a",
+    "requested_samples": 1,
+    "view_mode": "fixed"
+  },
+  "windowing": {
+    "window_sec": 16.0,
+    "step_sec": 8.0,
+    "frames_per_window": 8,
+    "target_width": 384,
+    "target_height": 256,
+    "png_compression": 3
+  },
+  "summary": {
+    "completed": 34,
+    "succeeded": 34,
+    "failed": 0
+  },
+  "limitations": [
+    "generic VLM; not a robot-domain world model",
+    "output quality depends on provider vision grounding"
+  ],
+  "results": [
+    {
+      "sample_id": "Rumba_Dancing",
+      "view_mode": "fixed",
+      "views": {
+        "fixed": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Rumba_Dancing/Rumba_Dancing_Fixed_View.mp4"
+      },
+      "view_sha256": {
+        "fixed": "ef8d64f203a8a006bf9c883ad78f20654aa000c3c233ddf8fe9ebff733421de5"
+      },
+      "fps": 30.0,
+      "frame_count": 72,
+      "window_count": 1,
+      "latency_s": 9.020444875000976,
+      "usage": {
+        "requests": 2,
+        "input_tokens": 2604,
+        "output_tokens": 236
+      },
+      "prediction": {
+        "sample_id": "Rumba_Dancing",
+        "nframes": 72,
+        "segments": [
+          {
+            "seg_id": 0,
+            "start_frame": 0,
+            "end_frame": 72,
+            "instruction": "Perform a dance-like motion",
+            "confidence": 1.0
+          }
+        ]
+      },
+      "window_outputs": [
+        {
+          "window_id": 0,
+          "start_frame": 0,
+          "end_frame": 71,
+          "frame_ids": [
+            0,
+            10,
+            20,
+            30,
+            40,
+            50,
+            60,
+            71
+          ],
+          "view_ids": [
+            "fixed"
+          ],
+          "images_per_timestamp": 1,
+          "vlm_json": {
+            "thought": "The sequence shows a humanoid figure in a static environment with no objects being manipulated. The figure is performing a repetitive motion, possibly dancing or gesturing, but there is no interaction with any physical object (e.g., grasping, releasing, moving an object). Since the task requires detecting switches between interactions with *different* objects, and no object manipulation occurs at all, there are no atomic task boundaries or switches. The entire sequence is one continuous, non-object-interaction action.",
+            "transitions": [],
+            "instructions": [
+              "Perform a dance-like motion"
+            ]
+          },
+          "warnings": [],
+          "raw_response": "{\n  \"thought\": \"The sequence shows a humanoid figure in a static environment with no objects being manipulated. The figure is performing a repetitive motion, possibly dancing or gesturing, but there is no interaction with any physical object (e.g., grasping, releasing, moving an object). Since the task requires detecting switches between interactions with *different* objects, and no object manipulation occurs at all, there are no atomic task boundaries or switches. The entire sequence is one continuous, non-object-interaction action.\",\n  \"transitions\": [],\n  \"instructions\": [\"Perform a dance-like motion\"]\n}",
+          "error": ""
+        }
+      ],
+      "error": ""
+    },
+    {
+      "sample_id": "Air_Squat",
+      "view_mode": "fixed",
+      "views": {
+        "fixed": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Air_Squat/Air_Squat_Fixed_View.mp4"
+      },
+      "view_sha256": {
+        "fixed": "3c987988d0998056af9e206ae59d25bc4cb99db5df74271ccd1f5e7f8881f92f"
+      },
+      "fps": 30.0,
+      "frame_count": 57,
+      "window_count": 1,
+      "latency_s": 9.19295137500012,
+      "usage": {
+        "requests": 3,
+        "input_tokens": 3906,
+        "output_tokens": 429
+      },
+      "prediction": {
+        "sample_id": "Air_Squat",
+        "nframes": 57,
+        "segments": [
+          {
+            "seg_id": 0,
+            "start_frame": 0,
+            "end_frame": 57,
+            "instruction": "Stand still; Perform idle motion",
+            "confidence": 1.0
+          }
+        ]
+      },
+      "window_outputs": [
+        {
+          "window_id": 0,
+          "start_frame": 0,
+          "end_frame": 56,
+          "frame_ids": [
+            0,
+            8,
+            16,
+            24,
+            32,
+            40,
+            48,
+            56
+          ],
+          "view_ids": [
+            "fixed"
+          ],
+          "images_per_timestamp": 1,
+          "vlm_json": {
+            "thought": "The sequence shows a humanoid figure in a simple 3D environment. From frames 0 to 7, the figure is standing still or performing a brief, non-physical motion (a slight crouch and arm extension) but never makes physical contact with any object. The only object present is a static, irregular gray shape on the left, which remains untouched throughout all frames. Since no object is grasped, released, or manipulated at any point — the robot (or figure) does not interact with any object — there are no atomic task boundaries or switches. The action appears to be a pose or idle animation, not an object manipulation task.",
+            "transitions": [],
+            "instructions": [
+              "Stand still; Perform idle motion"
+            ]
+          },
+          "warnings": [
+            "merged 1 extra instruction(s) into the final segment"
+          ],
+          "raw_response": "{\n  \"thought\": \"The sequence shows a humanoid figure in a simple 3D environment. From frames 0 to 7, the figure is standing still or performing a brief, non-physical motion (a slight crouch and arm extension) but never makes physical contact with any object. The only object present is a static, irregular gray shape on the left, which remains untouched throughout all frames. Since no object is grasped, released, or manipulated at any point — the robot (or figure) does not interact with any object — there are no atomic task boundaries or switches. The action appears to be a pose or idle animation, not an object manipulation task.\",\n  \"transitions\": [],\n  \"instructions\": [\"Stand still\", \"Perform idle motion\"]\n}",
+          "error": ""
+        }
+      ],
+      "error": ""
+    },
+    {
+      "sample_id": "Backflip",
+      "view_mode": "fixed",
+      "views": {
+        "fixed": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Backflip/Backflip_Fixed_View.mp4"
+      },
+      "view_sha256": {
+        "fixed": "fd25d1953de5390e5bad1fe020f0fc9e231644d3f7acb87488876194c66ae816"
+      },
+      "fps": 30.0,
+      "frame_count": 124,
+      "window_count": 1,
+      "latency_s": 3.043009583998355,
+      "usage": {
+        "requests": 1,
+        "input_tokens": 1302,
+        "output_tokens": 183
+      },
+      "prediction": {
+        "sample_id": "Backflip",
+        "nframes": 124,
+        "segments": [
+          {
+            "seg_id": 0,
+            "start_frame": 0,
+            "end_frame": 124,
+            "instruction": "Stand upright; Raise arms; Fall/roll; Crouch; Stand upright",
+            "confidence": 1.0
+          }
+        ]
+      },
+      "window_outputs": [
+        {
+          "window_id": 0,
+          "start_frame": 0,
+          "end_frame": 123,
+          "frame_ids": [
+            0,
+            17,
+            35,
+            52,
+            70,
+            87,
+            105,
+            123
+          ],
+          "view_ids": [
+            "fixed"
+          ],
+          "images_per_timestamp": 1,
+          "vlm_json": {
+            "thought": "The sequence shows a humanoid figure performing a series of movements in an empty space. There are no objects being manipulated—no cups, spoons, shirts, or tools are present. The figure is simply moving: standing (0), raising arm (1), raising both arms (2), falling/rolling (3), crouching (4), standing again (5-6), and standing still (7). Since there is no interaction with any object at all, there can be no 'switch' between objects. The 'Distinct Object' rule requires the robot to complete interaction with one object and start with a different one; here, no object interaction occurs throughout the entire clip. Therefore, no atomic task boundaries exist.",
+            "transitions": [],
+            "instructions": [
+              "Stand upright; Raise arms; Fall/roll; Crouch; Stand upright"
+            ]
+          },
+          "warnings": [
+            "merged 4 extra instruction(s) into the final segment"
+          ],
+          "raw_response": "{\n  \"thought\": \"The sequence shows a humanoid figure performing a series of movements in an empty space. There are no objects being manipulated—no cups, spoons, shirts, or tools are present. The figure is simply moving: standing (0), raising arm (1), raising both arms (2), falling/rolling (3), crouching (4), standing again (5-6), and standing still (7). Since there is no interaction with any object at all, there can be no 'switch' between objects. The 'Distinct Object' rule requires the robot to complete interaction with one object and start with a different one; here, no object interaction occurs throughout the entire clip. Therefore, no atomic task boundaries exist.\",\n  \"transitions\": [],\n  \"instructions\": [\"Stand upright\", \"Raise arms\", \"Fall/roll\", \"Crouch\", \"Stand upright\"]\n}",
+          "error": ""
+        }
+      ],
+      "error": ""
+    },
+    {
+      "sample_id": "Capoeira",
+      "view_mode": "fixed",
+      "views": {
+        "fixed": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Capoeira/Capoeira_Fixed_View.mp4"
+      },
+      "view_sha256": {
+        "fixed": "a03e19311cae89ad501c89947c16cba71ecdc2fe2af8ae44e99257033df897a7"
+      },
+      "fps": 30.0,
+      "frame_count": 104,
+      "window_count": 1,
+      "latency_s": 2.372022666000703,
+      "usage": {
+        "requests": 1,
+        "input_tokens": 1302,
+        "output_tokens": 143
+      },
+      "prediction": {
+        "sample_id": "Capoeira",
+        "nframes": 104,
+        "segments": [
+          {
+            "seg_id": 0,
+            "start_frame": 0,
+            "end_frame": 104,
+            "instruction": "Perform a series of dynamic movements",
+            "confidence": 1.0
+          }
+        ]
+      },
+      "window_outputs": [
+        {
+          "window_id": 0,
+          "start_frame": 0,
+          "end_frame": 103,
+          "frame_ids": [
+            0,
+            14,
+            29,
+            44,
+            58,
+            73,
+            88,
+            103
+          ],
+          "view_ids": [
+            "fixed"
+          ],
+          "images_per_timestamp": 1,
+          "vlm_json": {
+            "thought": "The sequence shows a humanoid figure performing a series of dynamic, athletic movements (e.g., crouching, lunging, arm swings) in an empty space. There is no visible object being manipulated—no cup, spoon, shirt, or tool is present. The gray object on the left remains static and uninteracted with throughout all frames (0–7). Since there is no interaction with any object at all, no 'switch' can occur under the defined rule (which requires completing interaction with one object and starting with a different one). Therefore, no transitions are detected.",
+            "transitions": [],
+            "instructions": [
+              "Perform a series of dynamic movements"
+            ]
+          },
+          "warnings": [],
+          "raw_response": "{\n  \"thought\": \"The sequence shows a humanoid figure performing a series of dynamic, athletic movements (e.g., crouching, lunging, arm swings) in an empty space. There is no visible object being manipulated—no cup, spoon, shirt, or tool is present. The gray object on the left remains static and uninteracted with throughout all frames (0–7). Since there is no interaction with any object at all, no 'switch' can occur under the defined rule (which requires completing interaction with one object and starting with a different one). Therefore, no transitions are detected.\",\n  \"transitions\": [],\n  \"instructions\": [\"Perform a series of dynamic movements\"]\n}",
+          "error": ""
+        }
+      ],
+      "error": ""
+    },
+    {
+      "sample_id": "Cartwheel",
+      "view_mode": "fixed",
+      "views": {
+        "fixed": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Cartwheel/Cartwheel_Fixed_View.mp4"
+      },
+      "view_sha256": {
+        "fixed": "c1e08d4500b55d3c18f72bbe6865f5a97d743fa475a33d12d46b615b6e1d725c"
+      },
+      "fps": 30.0,
+      "frame_count": 107,
+      "window_count": 1,
+      "latency_s": 2.3466237089996866,
+      "usage": {
+        "requests": 1,
+        "input_tokens": 1302,
+        "output_tokens": 125
+      },
+      "prediction": {
+        "sample_id": "Cartwheel",
+        "nframes": 107,
+        "segments": [
+          {
+            "seg_id": 0,
+            "start_frame": 0,
+            "end_frame": 107,
+            "instruction": "Perform a handstand and land",
+            "confidence": 1.0
+          }
+        ]
+      },
+      "window_outputs": [
+        {
+          "window_id": 0,
+          "start_frame": 0,
+          "end_frame": 106,
+          "frame_ids": [
+            0,
+            15,
+            30,
+            45,
+            60,
+            75,
+            90,
+            106
+          ],
+          "view_ids": [
+            "fixed"
+          ],
+          "images_per_timestamp": 1,
+          "vlm_json": {
+            "thought": "The sequence shows a humanoid figure performing a series of acrobatic movements (reaching, bending, handstand, landing) in an empty space. There are no objects being manipulated—only the figure's own body and a static rock-like object in the background. Since no physical interaction with external objects occurs, there are no 'switches' between different objects. The entire sequence is a single continuous action: a short acrobatic routine. No release or grasp of a distinct object happens.",
+            "transitions": [],
+            "instructions": [
+              "Perform a handstand and land"
+            ]
+          },
+          "warnings": [],
+          "raw_response": "{\n  \"thought\": \"The sequence shows a humanoid figure performing a series of acrobatic movements (reaching, bending, handstand, landing) in an empty space. There are no objects being manipulated—only the figure's own body and a static rock-like object in the background. Since no physical interaction with external objects occurs, there are no 'switches' between different objects. The entire sequence is a single continuous action: a short acrobatic routine. No release or grasp of a distinct object happens.\",\n  \"transitions\": [],\n  \"instructions\": [\"Perform a handstand and land\"]\n}",
+          "error": ""
+        }
+      ],
+      "error": ""
+    },
+    {
+      "sample_id": "Defeated",
+      "view_mode": "fixed",
+      "views": {
+        "fixed": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Defeated/Defeated_Fixed_View.mp4"
+      },
+      "view_sha256": {
+        "fixed": "74d8d9e9e11c883a307fb466066f7c274deb62a5e6aad03f68747eb6542c0dc1"
+      },
+      "fps": 30.0,
+      "frame_count": 203,
+      "window_count": 1,
+      "latency_s": 2.421597333999671,
+      "usage": {
+        "requests": 1,
+        "input_tokens": 1302,
+        "output_tokens": 150
+      },
+      "prediction": {
+        "sample_id": "Defeated",
+        "nframes": 203,
+        "segments": [
+          {
+            "seg_id": 0,
+            "start_frame": 0,
+            "end_frame": 203,
+            "instruction": "Stand near the rock",
+            "confidence": 1.0
+          }
+        ]
+      },
+      "window_outputs": [
+        {
+          "window_id": 0,
+          "start_frame": 0,
+          "end_frame": 202,
+          "frame_ids": [
+            0,
+            28,
+            57,
+            86,
+            115,
+            144,
+            173,
+            202
+          ],
+          "view_ids": [
+            "fixed"
+          ],
+          "images_per_timestamp": 1,
+          "vlm_json": {
+            "thought": "The sequence shows a humanoid figure standing in a simple environment with a rock-like object to the left. In frames 0-1, the figure is upright and stationary. In frame 2, the figure bends forward slightly, suggesting a preparatory motion for interaction. However, throughout all 8 frames, the figure never makes physical contact with the rock or any other object. The figure remains at a distance, and no grasping, lifting, or manipulation occurs. Since there is no interaction with any object—let alone completion of interaction with one object followed by initiation with another—no atomic task boundary (switch) is detected.",
+            "transitions": [],
+            "instructions": [
+              "Stand near the rock"
+            ]
+          },
+          "warnings": [],
+          "raw_response": "{\n  \"thought\": \"The sequence shows a humanoid figure standing in a simple environment with a rock-like object to the left. In frames 0-1, the figure is upright and stationary. In frame 2, the figure bends forward slightly, suggesting a preparatory motion for interaction. However, throughout all 8 frames, the figure never makes physical contact with the rock or any other object. The figure remains at a distance, and no grasping, lifting, or manipulation occurs. Since there is no interaction with any object—let alone completion of interaction with one object followed by initiation with another—no atomic task boundary (switch) is detected.\",\n  \"transitions\": [],\n  \"instructions\": [\"Stand near the rock\"]\n}",
+          "error": ""
+        }
+      ],
+      "error": ""
+    },
+    {
+      "sample_id": "Dying",
+      "view_mode": "fixed",
+      "views": {
+        "fixed": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Dying/Dying_Fixed_View.mp4"
+      },
+      "view_sha256": {
+        "fixed": "f275812b1df91eb7c6a4ffed574b6bf09e7406bbe49ccc72f94412ee17e23d20"
+      },
+      "fps": 30.0,
+      "frame_count": 133,
+      "window_count": 1,
+      "latency_s": 2.737921959000232,
+      "usage": {
+        "requests": 1,
+        "input_tokens": 1302,
+        "output_tokens": 184
+      },
+      "prediction": {
+        "sample_id": "Dying",
+        "nframes": 133,
+        "segments": [
+          {
+            "seg_id": 0,
+            "start_frame": 0,
+            "end_frame": 133,
+            "instruction": "Fall to the ground",
+            "confidence": 1.0
+          }
+        ]
+      },
+      "window_outputs": [
+        {
+          "window_id": 0,
+          "start_frame": 0,
+          "end_frame": 132,
+          "frame_ids": [
+            0,
+            18,
+            37,
+            56,
+            75,
+            94,
+            113,
+            132
+          ],
+          "view_ids": [
+            "fixed"
+          ],
+          "images_per_timestamp": 1,
+          "vlm_json": {
+            "thought": "The sequence shows a single humanoid figure performing a continuous motion: starting from a standing position (frame 0), it begins to move forward with arms outstretched (frames 1-2), then crouches (frame 3), and finally falls forward onto the ground (frames 4-7). There is no interaction with any external object—no grasping, releasing, or manipulation of tools, furniture, or other items. The figure is only interacting with its own body (e.g., moving limbs, changing posture) throughout. According to the 'Distinct Object' Rule, manipulating different parts of the same entity (the human body) does not constitute a switch. Since no object is introduced or released, and no new object is engaged, there are no atomic task boundaries or switches.",
+            "transitions": [],
+            "instructions": [
+              "Fall to the ground"
+            ]
+          },
+          "warnings": [],
+          "raw_response": "{\n  \"thought\": \"The sequence shows a single humanoid figure performing a continuous motion: starting from a standing position (frame 0), it begins to move forward with arms outstretched (frames 1-2), then crouches (frame 3), and finally falls forward onto the ground (frames 4-7). There is no interaction with any external object—no grasping, releasing, or manipulation of tools, furniture, or other items. The figure is only interacting with its own body (e.g., moving limbs, changing posture) throughout. According to the 'Distinct Object' Rule, manipulating different parts of the same entity (the human body) does not constitute a switch. Since no object is introduced or released, and no new object is engaged, there are no atomic task boundaries or switches.\",\n  \"transitions\": [],\n  \"instructions\": [\"Fall to the ground\"]\n}",
+          "error": ""
+        }
+      ],
+      "error": ""
+    },
+    {
+      "sample_id": "Flying_Knee_Punch_Combo",
+      "view_mode": "fixed",
+      "views": {
+        "fixed": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Flying_Knee_Punch_Combo/Flying_Knee_Punch_Combo_Fixed_View.mp4"
+      },
+      "view_sha256": {
+        "fixed": "2d4f62c2061a20b9107b42a04b5bc145db24d726aae784e81d0445a6212566bf"
+      },
+      "fps": 30.0,
+      "frame_count": 81,
+      "window_count": 1,
+      "latency_s": 3.1414663750001637,
+      "usage": {
+        "requests": 1,
+        "input_tokens": 1302,
+        "output_tokens": 202
+      },
+      "prediction": {
+        "sample_id": "Flying_Knee_Punch_Combo",
+        "nframes": 81,
+        "segments": [
+          {
+            "seg_id": 0,
+            "start_frame": 0,
+            "end_frame": 81,
+            "instruction": "Perform a dynamic movement sequence",
+            "confidence": 1.0
+          }
+        ]
+      },
+      "window_outputs": [
+        {
+          "window_id": 0,
+          "start_frame": 0,
+          "end_frame": 80,
+          "frame_ids": [
+            0,
+            11,
+            22,
+            34,
+            45,
+            57,
+            68,
+            80
+          ],
+          "view_ids": [
+            "fixed"
+          ],
+          "images_per_timestamp": 1,
+          "vlm_json": {
+            "thought": "The sequence shows a humanoid figure performing a continuous acrobatic or dance-like motion. The figure starts in a standing pose (frame 0), then moves into a jump/leap (frames 1-4), lands and transitions to a crawling/kneeling position (frames 5-7), and finally rises to a crouched run (frame 8). Throughout the entire sequence, there is no object interaction — the figure never grasps, holds, releases, or manipulates any physical object. The only visible objects are the static gray floor and a stationary white shape (possibly a rock or prop) that remains untouched. Since no object manipulation occurs at all, there are no 'Atomic Task Boundaries' or 'Switches' as defined by the rule (which requires completing interaction with one object and starting with a different one). Therefore, no transitions are detected.",
+            "transitions": [],
+            "instructions": [
+              "Perform a dynamic movement sequence"
+            ]
+          },
+          "warnings": [],
+          "raw_response": "{\n  \"thought\": \"The sequence shows a humanoid figure performing a continuous acrobatic or dance-like motion. The figure starts in a standing pose (frame 0), then moves into a jump/leap (frames 1-4), lands and transitions to a crawling/kneeling position (frames 5-7), and finally rises to a crouched run (frame 8). Throughout the entire sequence, there is no object interaction — the figure never grasps, holds, releases, or manipulates any physical object. The only visible objects are the static gray floor and a stationary white shape (possibly a rock or prop) that remains untouched. Since no object manipulation occurs at all, there are no 'Atomic Task Boundaries' or 'Switches' as defined by the rule (which requires completing interaction with one object and starting with a different one). Therefore, no transitions are detected.\",\n  \"transitions\": [],\n  \"instructions\": [\"Perform a dynamic movement sequence\"]\n}",
+          "error": ""
+        }
+      ],
+      "error": ""
+    },
+    {
+      "sample_id": "Front_Raises",
+      "view_mode": "fixed",
+      "views": {
+        "fixed": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Front_Raises/Front_Raises_Fixed_View.mp4"
+      },
+      "view_sha256": {
+        "fixed": "0dd3c043feaa7175043d881dcb1a0a901526c42721add3044a8a589ac33feaee"
+      },
+      "fps": 30.0,
+      "frame_count": 188,
+      "window_count": 1,
+      "latency_s": 6.004960624999512,
+      "usage": {
+        "requests": 2,
+        "input_tokens": 2604,
+        "output_tokens": 407
+      },
+      "prediction": {
+        "sample_id": "Front_Raises",
+        "nframes": 188,
+        "segments": [
+          {
+            "seg_id": 0,
+            "start_frame": 0,
+            "end_frame": 188,
+            "instruction": "Stand still",
+            "confidence": 1.0
+          }
+        ]
+      },
+      "window_outputs": [
+        {
+          "window_id": 0,
+          "start_frame": 0,
+          "end_frame": 187,
+          "frame_ids": [
+            0,
+            26,
+            53,
+            80,
+            106,
+            133,
+            160,
+            187
+          ],
+          "view_ids": [
+            "fixed"
+          ],
+          "images_per_timestamp": 1,
+          "vlm_json": {
+            "thought": "The sequence shows a humanoid figure in a static environment with a rock-like object on the left and the figure on the right. Observing the frames: Frames 0-1, 4-5, 7: The figure is standing still or in a neutral pose. Frame 2: The figure begins to extend its right arm. Frame 3: The right arm is extended further, suggesting a reaching or pointing motion toward the rock. Frame 6: The figure has retracted the arm and returned to a neutral stance. There is no physical contact shown between the figure and the rock in any frame — the shadow changes slightly due to arm position, but no grasp or release occurs. Since there is no interaction (no grasping, no manipulation) with any object, there are no atomic task boundaries or switches. The entire sequence appears to be a single continuous state of the figure preparing or pausing, without completing an interaction with any object.",
+            "transitions": [],
+            "instructions": [
+              "Stand still"
+            ]
+          },
+          "warnings": [],
+          "raw_response": "{\n  \"thought\": \"The sequence shows a humanoid figure in a static environment with a rock-like object on the left and the figure on the right. Observing the frames: Frames 0-1, 4-5, 7: The figure is standing still or in a neutral pose. Frame 2: The figure begins to extend its right arm. Frame 3: The right arm is extended further, suggesting a reaching or pointing motion toward the rock. Frame 6: The figure has retracted the arm and returned to a neutral stance. There is no physical contact shown between the figure and the rock in any frame — the shadow changes slightly due to arm position, but no grasp or release occurs. Since there is no interaction (no grasping, no manipulation) with any object, there are no atomic task boundaries or switches. The entire sequence appears to be a single continuous state of the figure preparing or pausing, without completing an interaction with any object.\",\n  \"transitions\": [],\n  \"instructions\": [\"Stand still\"]\n}",
+          "error": ""
+        }
+      ],
+      "error": ""
+    },
+    {
+      "sample_id": "Headspin_End",
+      "view_mode": "fixed",
+      "views": {
+        "fixed": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Headspin_End/Headspin_End_Fixed_View.mp4"
+      },
+      "view_sha256": {
+        "fixed": "da0702049eb04bebf873cd56614e49266ac128226d2ea1af56c20bf33265a70e"
+      },
+      "fps": 30.0,
+      "frame_count": 62,
+      "window_count": 1,
+      "latency_s": 2.338473874999181,
+      "usage": {
+        "requests": 1,
+        "input_tokens": 1302,
+        "output_tokens": 150
+      },
+      "prediction": {
+        "sample_id": "Headspin_End",
+        "nframes": 62,
+        "segments": [
+          {
+            "seg_id": 0,
+            "start_frame": 0,
+            "end_frame": 62,
+            "instruction": "Perform a flip",
+            "confidence": 1.0
+          }
+        ]
+      },
+      "window_outputs": [
+        {
+          "window_id": 0,
+          "start_frame": 0,
+          "end_frame": 61,
+          "frame_ids": [
+            0,
+            8,
+            17,
+            26,
+            34,
+            43,
+            52,
+            61
+          ],
+          "view_ids": [
+            "fixed"
+          ],
+          "images_per_timestamp": 1,
+          "vlm_json": {
+            "thought": "The sequence shows a single brown humanoid figure performing a continuous acrobatic motion (a flip or somersault) across the frames. The figure starts in an inverted position (frame 0), rotates through various mid-air poses (frames 1-5), and lands on the ground (frames 6-7). There is no interaction with any external object — the figure is self-contained, and no object is grasped, released, or manipulated. Since there are no objects involved at all, there can be no 'switch' between different objects. The entire sequence is one continuous action: performing a flip. No transitions occur.",
+            "transitions": [],
+            "instructions": [
+              "Perform a flip"
+            ]
+          },
+          "warnings": [],
+          "raw_response": "{\n  \"thought\": \"The sequence shows a single brown humanoid figure performing a continuous acrobatic motion (a flip or somersault) across the frames. The figure starts in an inverted position (frame 0), rotates through various mid-air poses (frames 1-5), and lands on the ground (frames 6-7). There is no interaction with any external object — the figure is self-contained, and no object is grasped, released, or manipulated. Since there are no objects involved at all, there can be no 'switch' between different objects. The entire sequence is one continuous action: performing a flip. No transitions occur.\",\n  \"transitions\": [],\n  \"instructions\": [\"Perform a flip\"]\n}",
+          "error": ""
+        }
+      ],
+      "error": ""
+    },
+    {
+      "sample_id": "Illegal_Knee",
+      "view_mode": "fixed",
+      "views": {
+        "fixed": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Illegal_Knee/Illegal_Knee_Fixed_View.mp4"
+      },
+      "view_sha256": {
+        "fixed": "dc2eba8c940509cc526736a842a2f05c941af09f5645e3d86dcc33e9a42634c7"
+      },
+      "fps": 30.0,
+      "frame_count": 69,
+      "window_count": 1,
+      "latency_s": 2.8146527909993893,
+      "usage": {
+        "requests": 1,
+        "input_tokens": 1302,
+        "output_tokens": 185
+      },
+      "prediction": {
+        "sample_id": "Illegal_Knee",
+        "nframes": 69,
+        "segments": [
+          {
+            "seg_id": 0,
+            "start_frame": 0,
+            "end_frame": 69,
+            "instruction": "Perform a right-leg kick",
+            "confidence": 1.0
+          }
+        ]
+      },
+      "window_outputs": [
+        {
+          "window_id": 0,
+          "start_frame": 0,
+          "end_frame": 68,
+          "frame_ids": [
+            0,
+            9,
+            19,
+            29,
+            38,
+            48,
+            58,
+            68
+          ],
+          "view_ids": [
+            "fixed"
+          ],
+          "images_per_timestamp": 1,
+          "vlm_json": {
+            "thought": "The sequence shows a humanoid figure in a neutral stance, then performing a high kick with the right leg (frames 2-3), and returning to the initial stance (frames 4-7). The figure is not interacting with any physical object—there is no grasping, releasing, or manipulation of an item. The only objects present are the static gray floor and a stationary white shape on the left, which the figure never touches or interacts with. Since no object interaction occurs at all, there are no atomic task boundaries or switches between objects. The entire sequence represents a single continuous action: a martial arts or boxing-style movement (e.g., practicing a kick), but since it's not 'household manipulation' and no objects are handled, no switch can be detected per the defined rule.",
+            "transitions": [],
+            "instructions": [
+              "Perform a right-leg kick"
+            ]
+          },
+          "warnings": [],
+          "raw_response": "{\n  \"thought\": \"The sequence shows a humanoid figure in a neutral stance, then performing a high kick with the right leg (frames 2-3), and returning to the initial stance (frames 4-7). The figure is not interacting with any physical object—there is no grasping, releasing, or manipulation of an item. The only objects present are the static gray floor and a stationary white shape on the left, which the figure never touches or interacts with. Since no object interaction occurs at all, there are no atomic task boundaries or switches between objects. The entire sequence represents a single continuous action: a martial arts or boxing-style movement (e.g., practicing a kick), but since it's not 'household manipulation' and no objects are handled, no switch can be detected per the defined rule.\",\n  \"transitions\": [],\n  \"instructions\": [\"Perform a right-leg kick\"]\n}",
+          "error": ""
+        }
+      ],
+      "error": ""
+    },
+    {
+      "sample_id": "Insult",
+      "view_mode": "fixed",
+      "views": {
+        "fixed": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Insult/Insult_Fixed_View.mp4"
+      },
+      "view_sha256": {
+        "fixed": "1b95483416ee412716c7c4a48f46ac17c946c24068db0425bcb00563f9dacb66"
+      },
+      "fps": 30.0,
+      "frame_count": 81,
+      "window_count": 1,
+      "latency_s": 2.411385583000083,
+      "usage": {
+        "requests": 1,
+        "input_tokens": 1302,
+        "output_tokens": 182
+      },
+      "prediction": {
+        "sample_id": "Insult",
+        "nframes": 81,
+        "segments": [
+          {
+            "seg_id": 0,
+            "start_frame": 0,
+            "end_frame": 81,
+            "instruction": "Adjust clothing",
+            "confidence": 1.0
+          }
+        ]
+      },
+      "window_outputs": [
+        {
+          "window_id": 0,
+          "start_frame": 0,
+          "end_frame": 80,
+          "frame_ids": [
+            0,
+            11,
+            22,
+            34,
+            45,
+            57,
+            68,
+            80
+          ],
+          "view_ids": [
+            "fixed"
+          ],
+          "images_per_timestamp": 1,
+          "vlm_json": {
+            "thought": "Frames 0-1: The robot is standing still, no interaction. Frame 2: Robot raises both hands toward its chest/upper body, appearing to grasp or manipulate its own torso/clothing area. Frame 3: Hands are positioned near the chest, possibly adjusting clothing. Frame 4: Hands remain in similar position, continuing the same manipulation. Frame 5: Robot lowers arms and returns to a neutral stance. Frames 6-7: Robot remains still again. The entire sequence from frame 2 to 4 involves the robot interacting with its own body (a single 'object' — the self), which qualifies as a false switch per the 'Distinct Object' rule. No external objects are grasped or released. Therefore, there are no true switches between different objects.",
+            "transitions": [],
+            "instructions": [
+              "Adjust clothing"
+            ]
+          },
+          "warnings": [],
+          "raw_response": "{\n  \"thought\": \"Frames 0-1: The robot is standing still, no interaction. Frame 2: Robot raises both hands toward its chest/upper body, appearing to grasp or manipulate its own torso/clothing area. Frame 3: Hands are positioned near the chest, possibly adjusting clothing. Frame 4: Hands remain in similar position, continuing the same manipulation. Frame 5: Robot lowers arms and returns to a neutral stance. Frames 6-7: Robot remains still again. The entire sequence from frame 2 to 4 involves the robot interacting with its own body (a single 'object' — the self), which qualifies as a false switch per the 'Distinct Object' rule. No external objects are grasped or released. Therefore, there are no true switches between different objects.\",\n  \"transitions\": [],\n  \"instructions\": [\"Adjust clothing\"]\n}",
+          "error": ""
+        }
+      ],
+      "error": ""
+    },
+    {
+      "sample_id": "Jab_Cross",
+      "view_mode": "fixed",
+      "views": {
+        "fixed": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Jab_Cross/Jab_Cross_Fixed_View.mp4"
+      },
+      "view_sha256": {
+        "fixed": "7369fe4b8acf51447432ef39f4971e1d338a49a35e28e14859efc20111c95b38"
+      },
+      "fps": 30.0,
+      "frame_count": 65,
+      "window_count": 1,
+      "latency_s": 2.0694937919979566,
+      "usage": {
+        "requests": 1,
+        "input_tokens": 1302,
+        "output_tokens": 123
+      },
+      "prediction": {
+        "sample_id": "Jab_Cross",
+        "nframes": 65,
+        "segments": [
+          {
+            "seg_id": 0,
+            "start_frame": 0,
+            "end_frame": 65,
+            "instruction": "Boxing stance",
+            "confidence": 1.0
+          }
+        ]
+      },
+      "window_outputs": [
+        {
+          "window_id": 0,
+          "start_frame": 0,
+          "end_frame": 64,
+          "frame_ids": [
+            0,
+            9,
+            18,
+            27,
+            36,
+            45,
+            54,
+            64
+          ],
+          "view_ids": [
+            "fixed"
+          ],
+          "images_per_timestamp": 1,
+          "vlm_json": {
+            "thought": "The sequence shows a humanoid figure in a boxing stance, moving slightly but not interacting with any object. The gray object on the left is stationary and appears to be a static prop (e.g., a rock or sculpture), not an object being manipulated. The robot/figure never grasps, releases, or physically interacts with any object. There are no changes in object interaction—no 'releases Object A and starts interacting with Object B' events. Therefore, no atomic task boundaries or switches occur.",
+            "transitions": [],
+            "instructions": [
+              "Boxing stance"
+            ]
+          },
+          "warnings": [],
+          "raw_response": "{\n  \"thought\": \"The sequence shows a humanoid figure in a boxing stance, moving slightly but not interacting with any object. The gray object on the left is stationary and appears to be a static prop (e.g., a rock or sculpture), not an object being manipulated. The robot/figure never grasps, releases, or physically interacts with any object. There are no changes in object interaction—no 'releases Object A and starts interacting with Object B' events. Therefore, no atomic task boundaries or switches occur.\",\n  \"transitions\": [],\n  \"instructions\": [\"Boxing stance\"]\n}",
+          "error": ""
+        }
+      ],
+      "error": ""
+    },
+    {
+      "sample_id": "Jog_In_Circle",
+      "view_mode": "fixed",
+      "views": {
+        "fixed": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Jog_In_Circle/Jog_In_Circle_Fixed_View.mp4"
+      },
+      "view_sha256": {
+        "fixed": "98e1b3959a64481e107b7ad39843ddd401d8e23c93dbcf2d97a6e38f61b7fbfb"
+      },
+      "fps": 30.0,
+      "frame_count": 179,
+      "window_count": 1,
+      "latency_s": 2.176952124998934,
+      "usage": {
+        "requests": 1,
+        "input_tokens": 1302,
+        "output_tokens": 130
+      },
+      "prediction": {
+        "sample_id": "Jog_In_Circle",
+        "nframes": 179,
+        "segments": [
+          {
+            "seg_id": 0,
+            "start_frame": 0,
+            "end_frame": 179,
+            "instruction": "Run in place",
+            "confidence": 1.0
+          }
+        ]
+      },
+      "window_outputs": [
+        {
+          "window_id": 0,
+          "start_frame": 0,
+          "end_frame": 178,
+          "frame_ids": [
+            0,
+            25,
+            50,
+            76,
+            101,
+            127,
+            152,
+            178
+          ],
+          "view_ids": [
+            "fixed"
+          ],
+          "images_per_timestamp": 1,
+          "vlm_json": {
+            "thought": "The sequence shows a humanoid figure running in place or moving laterally across a plain gray environment. There is no object manipulation occurring at all—no grasping, releasing, or interaction with any physical objects. The only visible elements are the figure and a static, irregularly shaped object on the left (which appears to be a rock or terrain feature). Since there is no interaction with any object, let alone a change of object, there are no atomic task boundaries or switches. The entire sequence is a continuous motion without any task transition.",
+            "transitions": [],
+            "instructions": [
+              "Run in place"
+            ]
+          },
+          "warnings": [],
+          "raw_response": "{\n  \"thought\": \"The sequence shows a humanoid figure running in place or moving laterally across a plain gray environment. There is no object manipulation occurring at all—no grasping, releasing, or interaction with any physical objects. The only visible elements are the figure and a static, irregularly shaped object on the left (which appears to be a rock or terrain feature). Since there is no interaction with any object, let alone a change of object, there are no atomic task boundaries or switches. The entire sequence is a continuous motion without any task transition.\",\n  \"transitions\": [],\n  \"instructions\": [\"Run in place\"]\n}",
+          "error": ""
+        }
+      ],
+      "error": ""
+    },
+    {
+      "sample_id": "Joyful_Jump",
+      "view_mode": "fixed",
+      "views": {
+        "fixed": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Joyful_Jump/Joyful_Jump_Fixed_View.mp4"
+      },
+      "view_sha256": {
+        "fixed": "f00c28cc764eb36950696d28acec8b7b1b51f55c8c61ce0cb331a5a47f736724"
+      },
+      "fps": 30.0,
+      "frame_count": 57,
+      "window_count": 1,
+      "latency_s": 2.567092749999574,
+      "usage": {
+        "requests": 1,
+        "input_tokens": 1302,
+        "output_tokens": 173
+      },
+      "prediction": {
+        "sample_id": "Joyful_Jump",
+        "nframes": 57,
+        "segments": [
+          {
+            "seg_id": 0,
+            "start_frame": 0,
+            "end_frame": 57,
+            "instruction": "Stand still; Jump; Stand still",
+            "confidence": 1.0
+          }
+        ]
+      },
+      "window_outputs": [
+        {
+          "window_id": 0,
+          "start_frame": 0,
+          "end_frame": 56,
+          "frame_ids": [
+            0,
+            8,
+            16,
+            24,
+            32,
+            40,
+            48,
+            56
+          ],
+          "view_ids": [
+            "fixed"
+          ],
+          "images_per_timestamp": 1,
+          "vlm_json": {
+            "thought": "The sequence shows a humanoid figure in a static environment with a gray object on the left. Observing the frames: Frames 0-1, 2-3, 5-7 show the figure standing still or making minor postural adjustments (e.g., arms moving slightly, jumping at frame 4). However, there is no physical interaction with any object — the figure never grasps, lifts, or manipulates the gray object. The gray object remains stationary and unaltered throughout all frames. Since no object is ever touched or manipulated, there are no 'atomic task' boundaries to detect. The task is essentially idle motion or posture adjustment, not an object manipulation task. Therefore, no switches occur.",
+            "transitions": [],
+            "instructions": [
+              "Stand still; Jump; Stand still"
+            ]
+          },
+          "warnings": [
+            "merged 2 extra instruction(s) into the final segment"
+          ],
+          "raw_response": "{\n  \"thought\": \"The sequence shows a humanoid figure in a static environment with a gray object on the left. Observing the frames: Frames 0-1, 2-3, 5-7 show the figure standing still or making minor postural adjustments (e.g., arms moving slightly, jumping at frame 4). However, there is no physical interaction with any object — the figure never grasps, lifts, or manipulates the gray object. The gray object remains stationary and unaltered throughout all frames. Since no object is ever touched or manipulated, there are no 'atomic task' boundaries to detect. The task is essentially idle motion or posture adjustment, not an object manipulation task. Therefore, no switches occur.\",\n  \"transitions\": [],\n  \"instructions\": [\"Stand still\", \"Jump\", \"Stand still\"]\n}",
+          "error": ""
+        }
+      ],
+      "error": ""
+    },
+    {
+      "sample_id": "Jump_Push_Up",
+      "view_mode": "fixed",
+      "views": {
+        "fixed": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Jump_Push_Up/Jump_Push_Up_Fixed_View.mp4"
+      },
+      "view_sha256": {
+        "fixed": "89eccd2b8a07baccff295fca5a1e875b2d5f4aa881f0f88f2bc1ee49dd411266"
+      },
+      "fps": 30.0,
+      "frame_count": 36,
+      "window_count": 1,
+      "latency_s": 2.779627250001795,
+      "usage": {
+        "requests": 1,
+        "input_tokens": 1302,
+        "output_tokens": 189
+      },
+      "prediction": {
+        "sample_id": "Jump_Push_Up",
+        "nframes": 36,
+        "segments": [
+          {
+            "seg_id": 0,
+            "start_frame": 0,
+            "end_frame": 36,
+            "instruction": "Crawl on the floor",
+            "confidence": 1.0
+          }
+        ]
+      },
+      "window_outputs": [
+        {
+          "window_id": 0,
+          "start_frame": 0,
+          "end_frame": 35,
+          "frame_ids": [
+            0,
+            5,
+            10,
+            15,
+            20,
+            25,
+            30,
+            35
+          ],
+          "view_ids": [
+            "fixed"
+          ],
+          "images_per_timestamp": 1,
+          "vlm_json": {
+            "thought": "The sequence shows a single humanoid figure in a static, dimly lit environment. The figure is on the right side of the frame and appears to be performing a crawling or creeping motion across the floor. Observing the frames: from 0 to 7, the figure's posture changes slightly (e.g., arms extend, body shifts), but it remains the same object — the same person — and there is no indication of interaction with any external objects (like tools, furniture, or items). There are no grasping, releasing, or moving between distinct objects. The 'object' being manipulated is the figure’s own body, which constitutes a single continuous action (e.g., crawling/creeping). No switch occurs because no different object is introduced or interacted with. Therefore, no atomic task boundaries are detected.",
+            "transitions": [],
+            "instructions": [
+              "Crawl on the floor"
+            ]
+          },
+          "warnings": [],
+          "raw_response": "{\n  \"thought\": \"The sequence shows a single humanoid figure in a static, dimly lit environment. The figure is on the right side of the frame and appears to be performing a crawling or creeping motion across the floor. Observing the frames: from 0 to 7, the figure's posture changes slightly (e.g., arms extend, body shifts), but it remains the same object — the same person — and there is no indication of interaction with any external objects (like tools, furniture, or items). There are no grasping, releasing, or moving between distinct objects. The 'object' being manipulated is the figure’s own body, which constitutes a single continuous action (e.g., crawling/creeping). No switch occurs because no different object is introduced or interacted with. Therefore, no atomic task boundaries are detected.\",\n  \"transitions\": [],\n  \"instructions\": [\"Crawl on the floor\"]\n}",
+          "error": ""
+        }
+      ],
+      "error": ""
+    },
+    {
+      "sample_id": "Jumping_Jacks",
+      "view_mode": "fixed",
+      "views": {
+        "fixed": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Jumping_Jacks/Jumping_Jacks_Fixed_View.mp4"
+      },
+      "view_sha256": {
+        "fixed": "b164e67fd9d9b2d97497c8ddc702d7a03e6695fabc2bcc5429e5f1779c42f959"
+      },
+      "fps": 30.0,
+      "frame_count": 33,
+      "window_count": 1,
+      "latency_s": 2.9366887910000514,
+      "usage": {
+        "requests": 1,
+        "input_tokens": 1302,
+        "output_tokens": 181
+      },
+      "prediction": {
+        "sample_id": "Jumping_Jacks",
+        "nframes": 33,
+        "segments": [
+          {
+            "seg_id": 0,
+            "start_frame": 0,
+            "end_frame": 33,
+            "instruction": "Perform a stretching motion",
+            "confidence": 1.0
+          }
+        ]
+      },
+      "window_outputs": [
+        {
+          "window_id": 0,
+          "start_frame": 0,
+          "end_frame": 32,
+          "frame_ids": [
+            0,
+            4,
+            9,
+            13,
+            18,
+            22,
+            27,
+            32
+          ],
+          "view_ids": [
+            "fixed"
+          ],
+          "images_per_timestamp": 1,
+          "vlm_json": {
+            "thought": "The sequence shows a humanoid figure performing a repetitive motion. In frames 0, 1, 7, and 8, the figure has both hands raised above the head in a similar pose (e.g., frame 0: hands together above head; frame 1: arms outstretched; frame 7: hands together above head again). The motion appears to be a single continuous action—perhaps a stretch or dance move—where the figure transitions between poses but never interacts with any object. There is no object being grasped, released, or manipulated at all. Since no objects are involved, there can be no 'switch' according to the definition (which requires interaction with one object followed by a different object). The entire sequence is one atomic task with no boundaries.",
+            "transitions": [],
+            "instructions": [
+              "Perform a stretching motion"
+            ]
+          },
+          "warnings": [],
+          "raw_response": "{\n  \"thought\": \"The sequence shows a humanoid figure performing a repetitive motion. In frames 0, 1, 7, and 8, the figure has both hands raised above the head in a similar pose (e.g., frame 0: hands together above head; frame 1: arms outstretched; frame 7: hands together above head again). The motion appears to be a single continuous action—perhaps a stretch or dance move—where the figure transitions between poses but never interacts with any object. There is no object being grasped, released, or manipulated at all. Since no objects are involved, there can be no 'switch' according to the definition (which requires interaction with one object followed by a different object). The entire sequence is one atomic task with no boundaries.\",\n  \"transitions\": [],\n  \"instructions\": [\"Perform a stretching motion\"]\n}",
+          "error": ""
+        }
+      ],
+      "error": ""
+    },
+    {
+      "sample_id": "Looking",
+      "view_mode": "fixed",
+      "views": {
+        "fixed": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Looking/Looking_Fixed_View.mp4"
+      },
+      "view_sha256": {
+        "fixed": "5baacb895b5e4fcdef7f00e9cbf7dcbe4b0d90487d55008ed6c93f7478cb84cc"
+      },
+      "fps": 30.0,
+      "frame_count": 144,
+      "window_count": 1,
+      "latency_s": 2.9059865419985726,
+      "usage": {
+        "requests": 1,
+        "input_tokens": 1302,
+        "output_tokens": 188
+      },
+      "prediction": {
+        "sample_id": "Looking",
+        "nframes": 144,
+        "segments": [
+          {
+            "seg_id": 0,
+            "start_frame": 0,
+            "end_frame": 144,
+            "instruction": "Perform a salute",
+            "confidence": 1.0
+          }
+        ]
+      },
+      "window_outputs": [
+        {
+          "window_id": 0,
+          "start_frame": 0,
+          "end_frame": 143,
+          "frame_ids": [
+            0,
+            20,
+            40,
+            61,
+            81,
+            102,
+            122,
+            143
+          ],
+          "view_ids": [
+            "fixed"
+          ],
+          "images_per_timestamp": 1,
+          "vlm_json": {
+            "thought": "The sequence shows a humanoid figure in a simple gray environment. The figure performs a series of arm movements: starting with arms at sides (frame 0), raising the right arm (frame 1), then raising the left hand to the head (frames 2–6), and finally lowering the arm (frame 7). Throughout all frames, the figure never interacts with any object — there is no grasping, lifting, or manipulation of physical items. The only objects present are a static gray shape on the left and the figure itself. Since no object interaction occurs, there are no 'atomic task boundaries' or switches between objects. The entire sequence is a single continuous action (a saluting or greeting gesture) involving only the figure's own body, which does not constitute a switch per the 'Distinct Object' rule.",
+            "transitions": [],
+            "instructions": [
+              "Perform a salute"
+            ]
+          },
+          "warnings": [],
+          "raw_response": "{\n  \"thought\": \"The sequence shows a humanoid figure in a simple gray environment. The figure performs a series of arm movements: starting with arms at sides (frame 0), raising the right arm (frame 1), then raising the left hand to the head (frames 2–6), and finally lowering the arm (frame 7). Throughout all frames, the figure never interacts with any object — there is no grasping, lifting, or manipulation of physical items. The only objects present are a static gray shape on the left and the figure itself. Since no object interaction occurs, there are no 'atomic task boundaries' or switches between objects. The entire sequence is a single continuous action (a saluting or greeting gesture) involving only the figure's own body, which does not constitute a switch per the 'Distinct Object' rule.\",\n  \"transitions\": [],\n  \"instructions\": [\"Perform a salute\"]\n}",
+          "error": ""
+        }
+      ],
+      "error": ""
+    },
+    {
+      "sample_id": "Low_Crawl",
+      "view_mode": "fixed",
+      "views": {
+        "fixed": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Low_Crawl/Low_Crawl_Fixed_View.mp4"
+      },
+      "view_sha256": {
+        "fixed": "8686e60fc074020431db0489b4502636572b73228de46b31c1813a9363a9b6cc"
+      },
+      "fps": 30.0,
+      "frame_count": 71,
+      "window_count": 1,
+      "latency_s": 3.2303068340006575,
+      "usage": {
+        "requests": 1,
+        "input_tokens": 1302,
+        "output_tokens": 148
+      },
+      "prediction": {
+        "sample_id": "Low_Crawl",
+        "nframes": 71,
+        "segments": [
+          {
+            "seg_id": 0,
+            "start_frame": 0,
+            "end_frame": 71,
+            "instruction": "Perform a crawling motion",
+            "confidence": 1.0
+          }
+        ]
+      },
+      "window_outputs": [
+        {
+          "window_id": 0,
+          "start_frame": 0,
+          "end_frame": 70,
+          "frame_ids": [
+            0,
+            10,
+            20,
+            30,
+            40,
+            50,
+            60,
+            70
+          ],
+          "view_ids": [
+            "fixed"
+          ],
+          "images_per_timestamp": 1,
+          "vlm_json": {
+            "thought": "The sequence shows a humanoid figure in a prone position on the floor, performing a continuous motion that resembles crawling or stretching. The figure's limbs move in a coordinated way: arms and legs alternate in reaching and pushing, but the figure remains in contact with the same object (its own body) throughout all frames. There is no evidence of the robot interacting with any external object (like a cup, spoon, or shirt), nor is there any release-and-regrasp of a separate item. The entire sequence is one continuous action involving the same entity (the figure itself). Therefore, no atomic task boundary or switch occurs.",
+            "transitions": [],
+            "instructions": [
+              "Perform a crawling motion"
+            ]
+          },
+          "warnings": [],
+          "raw_response": "{\n  \"thought\": \"The sequence shows a humanoid figure in a prone position on the floor, performing a continuous motion that resembles crawling or stretching. The figure's limbs move in a coordinated way: arms and legs alternate in reaching and pushing, but the figure remains in contact with the same object (its own body) throughout all frames. There is no evidence of the robot interacting with any external object (like a cup, spoon, or shirt), nor is there any release-and-regrasp of a separate item. The entire sequence is one continuous action involving the same entity (the figure itself). Therefore, no atomic task boundary or switch occurs.\",\n  \"transitions\": [],\n  \"instructions\": [\"Perform a crawling motion\"]\n}",
+          "error": ""
+        }
+      ],
+      "error": ""
+    },
+    {
+      "sample_id": "Pike_Walk",
+      "view_mode": "fixed",
+      "views": {
+        "fixed": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Pike_Walk/Pike_Walk_Fixed_View.mp4"
+      },
+      "view_sha256": {
+        "fixed": "e09b2e48d1d6b348648bd1f42455a616d8e6e4e86a3bbea454786522f417e48b"
+      },
+      "fps": 30.0,
+      "frame_count": 196,
+      "window_count": 1,
+      "latency_s": 2.5357696669998404,
+      "usage": {
+        "requests": 1,
+        "input_tokens": 1302,
+        "output_tokens": 170
+      },
+      "prediction": {
+        "sample_id": "Pike_Walk",
+        "nframes": 196,
+        "segments": [
+          {
+            "seg_id": 0,
+            "start_frame": 0,
+            "end_frame": 196,
+            "instruction": "Crawl forward",
+            "confidence": 1.0
+          }
+        ]
+      },
+      "window_outputs": [
+        {
+          "window_id": 0,
+          "start_frame": 0,
+          "end_frame": 195,
+          "frame_ids": [
+            0,
+            27,
+            55,
+            83,
+            111,
+            139,
+            167,
+            195
+          ],
+          "view_ids": [
+            "fixed"
+          ],
+          "images_per_timestamp": 1,
+          "vlm_json": {
+            "thought": "The sequence shows a single humanoid figure on the floor performing a continuous motion. From frame 0 to 7, the figure is in a prone position and appears to be crawling or moving forward. The figure's posture changes gradually: it starts with arms extended (frame 0), then bends its torso and moves its limbs in a crawling-like motion (frames 1-5), and returns to a more extended prone position (frames 6-7). There is no evidence of the figure interacting with any object—no grasping, releasing, or manipulating an external item. Since there are no objects involved at all, no 'switch' between different objects can occur. The entire sequence is one continuous action without any object-based transitions.",
+            "transitions": [],
+            "instructions": [
+              "Crawl forward"
+            ]
+          },
+          "warnings": [],
+          "raw_response": "{\n  \"thought\": \"The sequence shows a single humanoid figure on the floor performing a continuous motion. From frame 0 to 7, the figure is in a prone position and appears to be crawling or moving forward. The figure's posture changes gradually: it starts with arms extended (frame 0), then bends its torso and moves its limbs in a crawling-like motion (frames 1-5), and returns to a more extended prone position (frames 6-7). There is no evidence of the figure interacting with any object—no grasping, releasing, or manipulating an external item. Since there are no objects involved at all, no 'switch' between different objects can occur. The entire sequence is one continuous action without any object-based transitions.\",\n  \"transitions\": [],\n  \"instructions\": [\"Crawl forward\"]\n}",
+          "error": ""
+        }
+      ],
+      "error": ""
+    },
+    {
+      "sample_id": "Pistol",
+      "view_mode": "fixed",
+      "views": {
+        "fixed": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Pistol/Pistol_Fixed_View.mp4"
+      },
+      "view_sha256": {
+        "fixed": "3f9f2519b02602208c5e042834de87422824559ecab90c2ed6dcd47a45c05f8a"
+      },
+      "fps": 30.0,
+      "frame_count": 122,
+      "window_count": 1,
+      "latency_s": 6.111602707998827,
+      "usage": {
+        "requests": 3,
+        "input_tokens": 3906,
+        "output_tokens": 367
+      },
+      "prediction": {
+        "sample_id": "Pistol",
+        "nframes": 122,
+        "segments": [
+          {
+            "seg_id": 0,
+            "start_frame": 0,
+            "end_frame": 122,
+            "instruction": "Move in place",
+            "confidence": 1.0
+          }
+        ]
+      },
+      "window_outputs": [
+        {
+          "window_id": 0,
+          "start_frame": 0,
+          "end_frame": 121,
+          "frame_ids": [
+            0,
+            17,
+            34,
+            51,
+            69,
+            86,
+            103,
+            121
+          ],
+          "view_ids": [
+            "fixed"
+          ],
+          "images_per_timestamp": 1,
+          "vlm_json": {
+            "thought": "The sequence shows a humanoid figure performing a series of movements in an empty space. There are no objects being manipulated—no cups, spoons, shirts, or tools are present. The figure is simply moving (e.g., crouching, standing, shifting weight), but there is no interaction with any physical object at all. Since the task requires detecting switches between interactions with *different objects*, and no object interaction occurs throughout frames 0–7, there are no atomic task boundaries or switches to detect.",
+            "transitions": [],
+            "instructions": [
+              "Move in place"
+            ]
+          },
+          "warnings": [],
+          "raw_response": "{\n  \"thought\": \"The sequence shows a humanoid figure performing a series of movements in an empty space. There are no objects being manipulated—no cups, spoons, shirts, or tools are present. The figure is simply moving (e.g., crouching, standing, shifting weight), but there is no interaction with any physical object at all. Since the task requires detecting switches between interactions with *different objects*, and no object interaction occurs throughout frames 0–7, there are no atomic task boundaries or switches to detect.\",\n  \"transitions\": [],\n  \"instructions\": [\"Move in place\"]\n}",
+          "error": ""
+        }
+      ],
+      "error": ""
+    },
+    {
+      "sample_id": "Praying",
+      "view_mode": "fixed",
+      "views": {
+        "fixed": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Praying/Fixed_View.mp4"
+      },
+      "view_sha256": {
+        "fixed": "987ce1dc26ee2a1c99ae43fa32d79bab2d7b2439fafda8ad8c436921ad7f1408"
+      },
+      "fps": 30.0,
+      "frame_count": 207,
+      "window_count": 1,
+      "latency_s": 2.7332292920000327,
+      "usage": {
+        "requests": 1,
+        "input_tokens": 1302,
+        "output_tokens": 199
+      },
+      "prediction": {
+        "sample_id": "Praying",
+        "nframes": 207,
+        "segments": [
+          {
+            "seg_id": 0,
+            "start_frame": 0,
+            "end_frame": 207,
+            "instruction": "Kneel; Stand up; Walk",
+            "confidence": 1.0
+          }
+        ]
+      },
+      "window_outputs": [
+        {
+          "window_id": 0,
+          "start_frame": 0,
+          "end_frame": 206,
+          "frame_ids": [
+            0,
+            29,
+            58,
+            88,
+            117,
+            147,
+            176,
+            206
+          ],
+          "view_ids": [
+            "fixed"
+          ],
+          "images_per_timestamp": 1,
+          "vlm_json": {
+            "thought": "In frames 0-3, the robot is in a kneeling pose with arms crossed, appearing to be in a static or preparatory state. In frame 4, the robot begins to move its arms and body, transitioning from the kneeling posture. By frame 5, it starts rising from the knee, and by frame 6, it is fully standing and beginning to walk forward. Frame 7 shows the robot walking away from the initial position. Throughout all frames, the robot never interacts with any object — there is no grasping, releasing, or manipulation of any item. The only change is the robot's own posture and locomotion (kneeling → standing → walking). Since no object is involved at all, there are no 'switches' between objects. The task appears to be a simple movement sequence without object interaction.",
+            "transitions": [],
+            "instructions": [
+              "Kneel; Stand up; Walk"
+            ]
+          },
+          "warnings": [
+            "merged 2 extra instruction(s) into the final segment"
+          ],
+          "raw_response": "{\n  \"thought\": \"In frames 0-3, the robot is in a kneeling pose with arms crossed, appearing to be in a static or preparatory state. In frame 4, the robot begins to move its arms and body, transitioning from the kneeling posture. By frame 5, it starts rising from the knee, and by frame 6, it is fully standing and beginning to walk forward. Frame 7 shows the robot walking away from the initial position. Throughout all frames, the robot never interacts with any object — there is no grasping, releasing, or manipulation of any item. The only change is the robot's own posture and locomotion (kneeling → standing → walking). Since no object is involved at all, there are no 'switches' between objects. The task appears to be a simple movement sequence without object interaction.\",\n  \"transitions\": [],\n  \"instructions\": [\"Kneel\", \"Stand up\", \"Walk\"]\n}",
+          "error": ""
+        }
+      ],
+      "error": ""
+    },
+    {
+      "sample_id": "Quick_Steps",
+      "view_mode": "fixed",
+      "views": {
+        "fixed": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Quick_Steps/Quick_Steps_Fixed_View.mp4"
+      },
+      "view_sha256": {
+        "fixed": "2f2c9b108160ceb22f2afaa6e08836a2312596dd561cd44190245fc10067ba89"
+      },
+      "fps": 30.0,
+      "frame_count": 221,
+      "window_count": 1,
+      "latency_s": 2.6551440410003124,
+      "usage": {
+        "requests": 1,
+        "input_tokens": 1302,
+        "output_tokens": 178
+      },
+      "prediction": {
+        "sample_id": "Quick_Steps",
+        "nframes": 221,
+        "segments": [
+          {
+            "seg_id": 0,
+            "start_frame": 0,
+            "end_frame": 221,
+            "instruction": "Stand still; Crouch; Extend arm; Return to stand",
+            "confidence": 1.0
+          }
+        ]
+      },
+      "window_outputs": [
+        {
+          "window_id": 0,
+          "start_frame": 0,
+          "end_frame": 220,
+          "frame_ids": [
+            0,
+            31,
+            62,
+            94,
+            125,
+            157,
+            188,
+            220
+          ],
+          "view_ids": [
+            "fixed"
+          ],
+          "images_per_timestamp": 1,
+          "vlm_json": {
+            "thought": "The sequence shows a humanoid figure in a neutral environment with a static, irregular gray object on the left. The figure performs various poses: standing upright (frames 0, 3, 7), crouching/leaning forward (frames 1, 5, 6, 7), and extending an arm (frame 2). However, there is no visible interaction with any object — the figure never grasps, touches, or manipulates the gray object. The object remains completely stationary and unaltered across all frames. Since no physical interaction occurs with any object, there are no 'atomic task boundaries' or switches between objects. The entire sequence appears to be idle movement or posing without manipulation.",
+            "transitions": [],
+            "instructions": [
+              "Stand still; Crouch; Extend arm; Return to stand"
+            ]
+          },
+          "warnings": [
+            "merged 3 extra instruction(s) into the final segment"
+          ],
+          "raw_response": "{\n  \"thought\": \"The sequence shows a humanoid figure in a neutral environment with a static, irregular gray object on the left. The figure performs various poses: standing upright (frames 0, 3, 7), crouching/leaning forward (frames 1, 5, 6, 7), and extending an arm (frame 2). However, there is no visible interaction with any object — the figure never grasps, touches, or manipulates the gray object. The object remains completely stationary and unaltered across all frames. Since no physical interaction occurs with any object, there are no 'atomic task boundaries' or switches between objects. The entire sequence appears to be idle movement or posing without manipulation.\",\n  \"transitions\": [],\n  \"instructions\": [\"Stand still\", \"Crouch\", \"Extend arm\", \"Return to stand\"]\n}",
+          "error": ""
+        }
+      ],
+      "error": ""
+    },
+    {
+      "sample_id": "Rallying",
+      "view_mode": "fixed",
+      "views": {
+        "fixed": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Rallying/Rallying_Fixed_View.mp4"
+      },
+      "view_sha256": {
+        "fixed": "4f0050872c38eff29f56320ca4da94abcaa381c1d948bba8e0e2c24df54e4ee9"
+      },
+      "fps": 30.0,
+      "frame_count": 187,
+      "window_count": 1,
+      "latency_s": 2.4525335840007756,
+      "usage": {
+        "requests": 1,
+        "input_tokens": 1302,
+        "output_tokens": 165
+      },
+      "prediction": {
+        "sample_id": "Rallying",
+        "nframes": 187,
+        "segments": [
+          {
+            "seg_id": 0,
+            "start_frame": 0,
+            "end_frame": 187,
+            "instruction": "Perform a dance routine",
+            "confidence": 1.0
+          }
+        ]
+      },
+      "window_outputs": [
+        {
+          "window_id": 0,
+          "start_frame": 0,
+          "end_frame": 186,
+          "frame_ids": [
+            0,
+            26,
+            53,
+            79,
+            106,
+            132,
+            159,
+            186
+          ],
+          "view_ids": [
+            "fixed"
+          ],
+          "images_per_timestamp": 1,
+          "vlm_json": {
+            "thought": "The sequence shows a humanoid figure performing a continuous motion, likely a dance or exercise routine. The figure is not interacting with any objects (the gray shape on the left appears to be a static environmental object, like a rock or prop, and the figure never touches it). The figure's arms and body move in a fluid, cyclical pattern: starting with arms crossed (frame 0), extending them outward (frames 1-4), then returning to a neutral stance (frames 5-7). Since no object is ever grasped, released, or manipulated — and the figure never interacts with a different object — there are no atomic task boundaries or switches. The entire sequence is one continuous action.",
+            "transitions": [],
+            "instructions": [
+              "Perform a dance routine"
+            ]
+          },
+          "warnings": [],
+          "raw_response": "{\n  \"thought\": \"The sequence shows a humanoid figure performing a continuous motion, likely a dance or exercise routine. The figure is not interacting with any objects (the gray shape on the left appears to be a static environmental object, like a rock or prop, and the figure never touches it). The figure's arms and body move in a fluid, cyclical pattern: starting with arms crossed (frame 0), extending them outward (frames 1-4), then returning to a neutral stance (frames 5-7). Since no object is ever grasped, released, or manipulated — and the figure never interacts with a different object — there are no atomic task boundaries or switches. The entire sequence is one continuous action.\",\n  \"transitions\": [],\n  \"instructions\": [\"Perform a dance routine\"]\n}",
+          "error": ""
+        }
+      ],
+      "error": ""
+    },
+    {
+      "sample_id": "Run_To_Rolling",
+      "view_mode": "fixed",
+      "views": {
+        "fixed": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Run_To_Rolling/Run_To_Rolling_Fixed_View.mp4"
+      },
+      "view_sha256": {
+        "fixed": "7121134880d986ce9b925e01604c5d5a87d7c98084f911c67b70cefce8fa60d9"
+      },
+      "fps": 30.0,
+      "frame_count": 74,
+      "window_count": 1,
+      "latency_s": 2.393734790999588,
+      "usage": {
+        "requests": 1,
+        "input_tokens": 1302,
+        "output_tokens": 151
+      },
+      "prediction": {
+        "sample_id": "Run_To_Rolling",
+        "nframes": 74,
+        "segments": [
+          {
+            "seg_id": 0,
+            "start_frame": 0,
+            "end_frame": 74,
+            "instruction": "Fall and recover; Run away",
+            "confidence": 1.0
+          }
+        ]
+      },
+      "window_outputs": [
+        {
+          "window_id": 0,
+          "start_frame": 0,
+          "end_frame": 73,
+          "frame_ids": [
+            0,
+            10,
+            20,
+            31,
+            41,
+            52,
+            62,
+            73
+          ],
+          "view_ids": [
+            "fixed"
+          ],
+          "images_per_timestamp": 1,
+          "vlm_json": {
+            "thought": "The sequence shows a single humanoid figure performing a continuous motion, likely a fall or a roll, across all frames. There is no object manipulation occurring at any point — the figure is not interacting with any physical object (e.g., grasping, lifting, placing). The 'object' in the scene is a static white shape on the left, but the figure never touches it; its shadow moves independently, indicating the figure is moving in space without contact. Since no object interaction occurs, there are no atomic task boundaries or switches. The entire sequence is one continuous action: a fall/roll followed by recovery and movement.",
+            "transitions": [],
+            "instructions": [
+              "Fall and recover; Run away"
+            ]
+          },
+          "warnings": [
+            "merged 1 extra instruction(s) into the final segment"
+          ],
+          "raw_response": "{\n  \"thought\": \"The sequence shows a single humanoid figure performing a continuous motion, likely a fall or a roll, across all frames. There is no object manipulation occurring at any point — the figure is not interacting with any physical object (e.g., grasping, lifting, placing). The 'object' in the scene is a static white shape on the left, but the figure never touches it; its shadow moves independently, indicating the figure is moving in space without contact. Since no object interaction occurs, there are no atomic task boundaries or switches. The entire sequence is one continuous action: a fall/roll followed by recovery and movement.\",\n  \"transitions\": [],\n  \"instructions\": [\"Fall and recover\", \"Run away\"]\n}",
+          "error": ""
+        }
+      ],
+      "error": ""
+    },
+    {
+      "sample_id": "Sneak_Walk",
+      "view_mode": "fixed",
+      "views": {
+        "fixed": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Sneak_Walk/Sneak_Walk_Fixed_View.mp4"
+      },
+      "view_sha256": {
+        "fixed": "30cdb82f4503040b0c4d55f468e954f3a90d843c23a47255d5cb8ef2076e2be7"
+      },
+      "fps": 30.0,
+      "frame_count": 33,
+      "window_count": 1,
+      "latency_s": 2.3436306250005146,
+      "usage": {
+        "requests": 1,
+        "input_tokens": 1302,
+        "output_tokens": 128
+      },
+      "prediction": {
+        "sample_id": "Sneak_Walk",
+        "nframes": 33,
+        "segments": [
+          {
+            "seg_id": 0,
+            "start_frame": 0,
+            "end_frame": 33,
+            "instruction": "Walk",
+            "confidence": 1.0
+          }
+        ]
+      },
+      "window_outputs": [
+        {
+          "window_id": 0,
+          "start_frame": 0,
+          "end_frame": 32,
+          "frame_ids": [
+            0,
+            4,
+            9,
+            13,
+            18,
+            22,
+            27,
+            32
+          ],
+          "view_ids": [
+            "fixed"
+          ],
+          "images_per_timestamp": 1,
+          "vlm_json": {
+            "thought": "The provided frames show a humanoid figure in a static environment with no objects being manipulated. The figure is performing a continuous motion, likely walking or running, as indicated by the changing posture across frames 0-7. There are no objects (e.g., cups, spoons, shirts) present that the figure interacts with. Since there is no object manipulation at all, no 'switch' can occur — the condition for a switch requires interaction with one object followed by interaction with a different object. Therefore, no atomic task boundaries exist.",
+            "transitions": [],
+            "instructions": [
+              "Walk"
+            ]
+          },
+          "warnings": [],
+          "raw_response": "{\n  \"thought\": \"The provided frames show a humanoid figure in a static environment with no objects being manipulated. The figure is performing a continuous motion, likely walking or running, as indicated by the changing posture across frames 0-7. There are no objects (e.g., cups, spoons, shirts) present that the figure interacts with. Since there is no object manipulation at all, no 'switch' can occur — the condition for a switch requires interaction with one object followed by interaction with a different object. Therefore, no atomic task boundaries exist.\",\n  \"transitions\": [],\n  \"instructions\": [\"Walk\"]\n}",
+          "error": ""
+        }
+      ],
+      "error": ""
+    },
+    {
+      "sample_id": "Spat_In_Face",
+      "view_mode": "fixed",
+      "views": {
+        "fixed": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Spat_In_Face/Spat_In_Face_Fixed_View.mp4"
+      },
+      "view_sha256": {
+        "fixed": "fa26a00d87a557502b3ee4adc9c4192b3e6c3638cb3a69037905e07520899e24"
+      },
+      "fps": 30.0,
+      "frame_count": 77,
+      "window_count": 1,
+      "latency_s": 2.8213209999994433,
+      "usage": {
+        "requests": 1,
+        "input_tokens": 1302,
+        "output_tokens": 201
+      },
+      "prediction": {
+        "sample_id": "Spat_In_Face",
+        "nframes": 77,
+        "segments": [
+          {
+            "seg_id": 0,
+            "start_frame": 0,
+            "end_frame": 77,
+            "instruction": "Stand facing left; Adopt defensive stance",
+            "confidence": 1.0
+          }
+        ]
+      },
+      "window_outputs": [
+        {
+          "window_id": 0,
+          "start_frame": 0,
+          "end_frame": 76,
+          "frame_ids": [
+            0,
+            10,
+            21,
+            32,
+            43,
+            54,
+            65,
+            76
+          ],
+          "view_ids": [
+            "fixed"
+          ],
+          "images_per_timestamp": 1,
+          "vlm_json": {
+            "thought": "The sequence shows a humanoid figure in a neutral environment with a static object (a crumpled white shape) on the left and the figure on the right. In frames 0-1, the figure is standing upright, facing left. From frame 2 onward, the figure raises both hands to its head/face area and adopts a crouched, defensive or preparatory stance. The figure remains in this posture through frames 3-7, with minor shifts in stance but no change in the object being interacted with — there is no visible grasp or manipulation of any object. The white crumpled object remains untouched throughout all 8 frames. Since the robot (or figure) never touches or interacts with any object, there is no completion of interaction with one object followed by initiation of interaction with another. Therefore, no atomic task switch occurs.",
+            "transitions": [],
+            "instructions": [
+              "Stand facing left; Adopt defensive stance"
+            ]
+          },
+          "warnings": [
+            "merged 1 extra instruction(s) into the final segment"
+          ],
+          "raw_response": "{\n  \"thought\": \"The sequence shows a humanoid figure in a neutral environment with a static object (a crumpled white shape) on the left and the figure on the right. In frames 0-1, the figure is standing upright, facing left. From frame 2 onward, the figure raises both hands to its head/face area and adopts a crouched, defensive or preparatory stance. The figure remains in this posture through frames 3-7, with minor shifts in stance but no change in the object being interacted with — there is no visible grasp or manipulation of any object. The white crumpled object remains untouched throughout all 8 frames. Since the robot (or figure) never touches or interacts with any object, there is no completion of interaction with one object followed by initiation of interaction with another. Therefore, no atomic task switch occurs.\",\n  \"transitions\": [],\n  \"instructions\": [\"Stand facing left\", \"Adopt defensive stance\"]\n}",
+          "error": ""
+        }
+      ],
+      "error": ""
+    },
+    {
+      "sample_id": "Strut_Walking",
+      "view_mode": "fixed",
+      "views": {
+        "fixed": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Strut_Walking/Strut_Walking_Fixed_View.mp4"
+      },
+      "view_sha256": {
+        "fixed": "f2d06d2e4ee2cb656918b6e7eeb3860ff1bc0f59aa4c4b04f258fce51177811c"
+      },
+      "fps": 30.0,
+      "frame_count": 44,
+      "window_count": 1,
+      "latency_s": 2.461844082998141,
+      "usage": {
+        "requests": 1,
+        "input_tokens": 1302,
+        "output_tokens": 119
+      },
+      "prediction": {
+        "sample_id": "Strut_Walking",
+        "nframes": 44,
+        "segments": [
+          {
+            "seg_id": 0,
+            "start_frame": 0,
+            "end_frame": 44,
+            "instruction": "Walk across the room",
+            "confidence": 1.0
+          }
+        ]
+      },
+      "window_outputs": [
+        {
+          "window_id": 0,
+          "start_frame": 0,
+          "end_frame": 43,
+          "frame_ids": [
+            0,
+            6,
+            12,
+            18,
+            24,
+            30,
+            36,
+            43
+          ],
+          "view_ids": [
+            "fixed"
+          ],
+          "images_per_timestamp": 1,
+          "vlm_json": {
+            "thought": "The sequence shows a humanoid figure walking across a plain room. There is no interaction with any objects—no grasping, releasing, or manipulation of items occurs in any frame. The figure simply moves from right to left (or appears to walk in place with slight positional shifts), but there is no object engagement at all. Since the task requires detecting switches between interactions with different objects, and no object interaction happens throughout the entire clip, there are no atomic task boundaries or transitions.",
+            "transitions": [],
+            "instructions": [
+              "Walk across the room"
+            ]
+          },
+          "warnings": [],
+          "raw_response": "{\n  \"thought\": \"The sequence shows a humanoid figure walking across a plain room. There is no interaction with any objects—no grasping, releasing, or manipulation of items occurs in any frame. The figure simply moves from right to left (or appears to walk in place with slight positional shifts), but there is no object engagement at all. Since the task requires detecting switches between interactions with different objects, and no object interaction happens throughout the entire clip, there are no atomic task boundaries or transitions.\",\n  \"transitions\": [],\n  \"instructions\": [\"Walk across the room\"]\n}",
+          "error": ""
+        }
+      ],
+      "error": ""
+    },
+    {
+      "sample_id": "Talking_On_Phone",
+      "view_mode": "fixed",
+      "views": {
+        "fixed": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Talking_On_Phone/Talking_On_Phone_Fixed_View.mp4"
+      },
+      "view_sha256": {
+        "fixed": "605d9abcd877565fd8701252d00e6b8298b50e67141e5046770d5242a9e73da0"
+      },
+      "fps": 30.0,
+      "frame_count": 1166,
+      "window_count": 4,
+      "latency_s": 14.657554250003159,
+      "usage": {
+        "requests": 4,
+        "input_tokens": 5208,
+        "output_tokens": 833
+      },
+      "prediction": {
+        "sample_id": "Talking_On_Phone",
+        "nframes": 1166,
+        "segments": [
+          {
+            "seg_id": 0,
+            "start_frame": 0,
+            "end_frame": 1166,
+            "instruction": "Stand still",
+            "confidence": 1.0
+          }
+        ]
+      },
+      "window_outputs": [
+        {
+          "window_id": 0,
+          "start_frame": 0,
+          "end_frame": 479,
+          "frame_ids": [
+            0,
+            68,
+            136,
+            205,
+            273,
+            342,
+            410,
+            479
+          ],
+          "view_ids": [
+            "fixed"
+          ],
+          "images_per_timestamp": 1,
+          "vlm_json": {
+            "thought": "The sequence shows a humanoid figure in a simple 3D environment. In frames 0-1, the figure is walking forward with arms at sides. In frames 2-7, the figure raises its right hand to its head (e.g., touching or holding near the ear/face), then places it on the hip, and finally crosses arms. The object of interaction is the figure's own body—specifically, the hand is moving from a neutral position to the head, then to the hip, then crossing the arms. Since all these actions involve the same entity (the robot’s own body) and no external object is grasped, released, or manipulated, there are no 'atomic task boundaries' as defined by the 'Distinct Object' rule. No switch occurs because the robot never interacts with a different object; it only repositions parts of itself. Therefore, this entire sequence constitutes a single continuous action.",
+            "transitions": [],
+            "instructions": [
+              "Walk forward; Touch head; Place hand on hip; Cross arms"
+            ]
+          },
+          "warnings": [
+            "merged 3 extra instruction(s) into the final segment"
+          ],
+          "raw_response": "{\n  \"thought\": \"The sequence shows a humanoid figure in a simple 3D environment. In frames 0-1, the figure is walking forward with arms at sides. In frames 2-7, the figure raises its right hand to its head (e.g., touching or holding near the ear/face), then places it on the hip, and finally crosses arms. The object of interaction is the figure's own body—specifically, the hand is moving from a neutral position to the head, then to the hip, then crossing the arms. Since all these actions involve the same entity (the robot’s own body) and no external object is grasped, released, or manipulated, there are no 'atomic task boundaries' as defined by the 'Distinct Object' rule. No switch occurs because the robot never interacts with a different object; it only repositions parts of itself. Therefore, this entire sequence constitutes a single continuous action.\",\n  \"transitions\": [],\n  \"instructions\": [\"Walk forward\", \"Touch head\", \"Place hand on hip\", \"Cross arms\"]\n}",
+          "error": ""
+        },
+        {
+          "window_id": 1,
+          "start_frame": 240,
+          "end_frame": 719,
+          "frame_ids": [
+            240,
+            308,
+            376,
+            445,
+            513,
+            582,
+            650,
+            719
+          ],
+          "view_ids": [
+            "fixed"
+          ],
+          "images_per_timestamp": 1,
+          "vlm_json": {
+            "thought": "The sequence shows a humanoid figure standing in a room with a small object (possibly a rock or toy) on the left. The figure's posture changes across frames: initially, the figure has one hand near the head (frames 0-1), then places the other hand on the hip (frames 2-4), then returns to hand near head (frames 5-6), and finally back to hands-on-hips (frame 7). However, there is no visible interaction with any object — the figure does not grasp, lift, move, or release any object. The object on the left remains completely stationary and untouched throughout all 8 frames. Since no physical interaction with any object occurs at all, there are no atomic task boundaries or switches. The entire sequence represents a static pose change without manipulation.",
+            "transitions": [],
+            "instructions": [
+              "Stand still"
+            ]
+          },
+          "warnings": [],
+          "raw_response": "{\n  \"thought\": \"The sequence shows a humanoid figure standing in a room with a small object (possibly a rock or toy) on the left. The figure's posture changes across frames: initially, the figure has one hand near the head (frames 0-1), then places the other hand on the hip (frames 2-4), then returns to hand near head (frames 5-6), and finally back to hands-on-hips (frame 7). However, there is no visible interaction with any object — the figure does not grasp, lift, move, or release any object. The object on the left remains completely stationary and untouched throughout all 8 frames. Since no physical interaction with any object occurs at all, there are no atomic task boundaries or switches. The entire sequence represents a static pose change without manipulation.\",\n  \"transitions\": [],\n  \"instructions\": [\"Stand still\"]\n}",
+          "error": ""
+        },
+        {
+          "window_id": 2,
+          "start_frame": 480,
+          "end_frame": 959,
+          "frame_ids": [
+            480,
+            548,
+            616,
+            685,
+            753,
+            822,
+            890,
+            959
+          ],
+          "view_ids": [
+            "fixed"
+          ],
+          "images_per_timestamp": 1,
+          "vlm_json": {
+            "thought": "The sequence shows a humanoid figure in a static environment. Observing the frames: Frames 0-1, the figure stands with arms crossed. In Frame 2, the figure raises its right hand to its head (e.g., touching hair or ear), while the left hand remains on the hip. This pose is maintained through Frames 3-4 and again in Frames 6-7. Frame 5 shows the figure briefly returning to a neutral stance (arms down, no hand on head). However, the key observation is that the figure never interacts with any physical object — there is no grasping, lifting, or manipulation of an object. The only visible objects are the static rock-like shape (left) and the figure’s own body. Since no object interaction occurs at all, there are no atomic task boundaries or switches between objects. The entire sequence is a single continuous action of the figure standing and making minor postural adjustments, but no manipulation of external objects.",
+            "transitions": [],
+            "instructions": [
+              "Stand and adjust posture"
+            ]
+          },
+          "warnings": [],
+          "raw_response": "{\n  \"thought\": \"The sequence shows a humanoid figure in a static environment. Observing the frames: Frames 0-1, the figure stands with arms crossed. In Frame 2, the figure raises its right hand to its head (e.g., touching hair or ear), while the left hand remains on the hip. This pose is maintained through Frames 3-4 and again in Frames 6-7. Frame 5 shows the figure briefly returning to a neutral stance (arms down, no hand on head). However, the key observation is that the figure never interacts with any physical object — there is no grasping, lifting, or manipulation of an object. The only visible objects are the static rock-like shape (left) and the figure’s own body. Since no object interaction occurs at all, there are no atomic task boundaries or switches between objects. The entire sequence is a single continuous action of the figure standing and making minor postural adjustments, but no manipulation of external objects.\",\n  \"transitions\": [],\n  \"instructions\": [\"Stand and adjust posture\"]\n}",
+          "error": ""
+        },
+        {
+          "window_id": 3,
+          "start_frame": 720,
+          "end_frame": 1165,
+          "frame_ids": [
+            720,
+            783,
+            847,
+            910,
+            974,
+            1037,
+            1101,
+            1165
+          ],
+          "view_ids": [
+            "fixed"
+          ],
+          "images_per_timestamp": 1,
+          "vlm_json": {
+            "thought": "In all frames (0-7), the robot is interacting with a single object: its own body. The sequence shows the robot bringing its hand to its head/face area (frames 0-4), then placing the hand on its hip (frames 5-7), and finally lowering the arm and walking away (frame 8). However, since the robot never releases or fully disengages from the 'object' of its own body—this is a continuous self-manipulation action (e.g., adjusting posture, touching face, then standing), and no external object is introduced or released. According to the 'Distinct Object' rule, manipulating different parts of the same object (the human body) is not considered a switch. There is no point where the robot completes interaction with one object and starts interacting with a different object. Therefore, no switch occurs.",
+            "transitions": [],
+            "instructions": [
+              "Adjust posture; Stand upright; Walk away"
+            ]
+          },
+          "warnings": [
+            "merged 2 extra instruction(s) into the final segment"
+          ],
+          "raw_response": "{\n  \"thought\": \"In all frames (0-7), the robot is interacting with a single object: its own body. The sequence shows the robot bringing its hand to its head/face area (frames 0-4), then placing the hand on its hip (frames 5-7), and finally lowering the arm and walking away (frame 8). However, since the robot never releases or fully disengages from the 'object' of its own body—this is a continuous self-manipulation action (e.g., adjusting posture, touching face, then standing), and no external object is introduced or released. According to the 'Distinct Object' rule, manipulating different parts of the same object (the human body) is not considered a switch. There is no point where the robot completes interaction with one object and starts interacting with a different object. Therefore, no switch occurs.\",\n  \"transitions\": [],\n  \"instructions\": [\"Adjust posture\", \"Stand upright\", \"Walk away\"]\n}",
+          "error": ""
+        }
+      ],
+      "error": ""
+    },
+    {
+      "sample_id": "Tripping",
+      "view_mode": "fixed",
+      "views": {
+        "fixed": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Tripping/Tripping_Fixed_View.mp4"
+      },
+      "view_sha256": {
+        "fixed": "c1583aafe84046b3ba73a24a8b906bf23938a382a9ed7e387c81cc08100555ee"
+      },
+      "fps": 30.0,
+      "frame_count": 84,
+      "window_count": 1,
+      "latency_s": 2.7093056670018996,
+      "usage": {
+        "requests": 1,
+        "input_tokens": 1302,
+        "output_tokens": 176
+      },
+      "prediction": {
+        "sample_id": "Tripping",
+        "nframes": 84,
+        "segments": [
+          {
+            "seg_id": 0,
+            "start_frame": 0,
+            "end_frame": 84,
+            "instruction": "Fall to the ground",
+            "confidence": 1.0
+          }
+        ]
+      },
+      "window_outputs": [
+        {
+          "window_id": 0,
+          "start_frame": 0,
+          "end_frame": 83,
+          "frame_ids": [
+            0,
+            11,
+            23,
+            35,
+            47,
+            59,
+            71,
+            83
+          ],
+          "view_ids": [
+            "fixed"
+          ],
+          "images_per_timestamp": 1,
+          "vlm_json": {
+            "thought": "The sequence shows a humanoid figure in a static environment with no objects being manipulated. The figure transitions from standing (frame 0), to running (frames 1-2), to falling (frame 3), and then lying on the ground (frames 4-7). Since there are no objects present in any frame, and the robot (or figure) is not interacting with any object at all—only moving its own body—the 'Distinct Object' rule does not apply. There is no interaction with an object to complete or start, so no atomic task boundaries (switches) exist. This is a continuous motion of the same agent (the figure) performing a fall sequence, but since no external object is involved, it's not a manipulation task.",
+            "transitions": [],
+            "instructions": [
+              "Fall to the ground"
+            ]
+          },
+          "warnings": [],
+          "raw_response": "{\n  \"thought\": \"The sequence shows a humanoid figure in a static environment with no objects being manipulated. The figure transitions from standing (frame 0), to running (frames 1-2), to falling (frame 3), and then lying on the ground (frames 4-7). Since there are no objects present in any frame, and the robot (or figure) is not interacting with any object at all—only moving its own body—the 'Distinct Object' rule does not apply. There is no interaction with an object to complete or start, so no atomic task boundaries (switches) exist. This is a continuous motion of the same agent (the figure) performing a fall sequence, but since no external object is involved, it's not a manipulation task.\",\n  \"transitions\": [],\n  \"instructions\": [\"Fall to the ground\"]\n}",
+          "error": ""
+        }
+      ],
+      "error": ""
+    },
+    {
+      "sample_id": "Walking",
+      "view_mode": "fixed",
+      "views": {
+        "fixed": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Walking/Fixed_View.mp4"
+      },
+      "view_sha256": {
+        "fixed": "740007394d636088daf9889c72902d68eb008aefb056bc986e0261810f3aa42e"
+      },
+      "fps": 30.0,
+      "frame_count": 32,
+      "window_count": 1,
+      "latency_s": 2.3562707500022952,
+      "usage": {
+        "requests": 1,
+        "input_tokens": 1302,
+        "output_tokens": 127
+      },
+      "prediction": {
+        "sample_id": "Walking",
+        "nframes": 32,
+        "segments": [
+          {
+            "seg_id": 0,
+            "start_frame": 0,
+            "end_frame": 32,
+            "instruction": "Walk",
+            "confidence": 1.0
+          }
+        ]
+      },
+      "window_outputs": [
+        {
+          "window_id": 0,
+          "start_frame": 0,
+          "end_frame": 31,
+          "frame_ids": [
+            0,
+            4,
+            8,
+            13,
+            17,
+            22,
+            26,
+            31
+          ],
+          "view_ids": [
+            "fixed"
+          ],
+          "images_per_timestamp": 1,
+          "vlm_json": {
+            "thought": "The provided frames show a humanoid figure moving across a plain environment. There are no objects being manipulated—no cups, spoons, shirts, or tools are present. The figure appears to be walking or running in place, with its arms swinging and legs moving. Since there is no interaction with any object (neither grasping nor releasing), there can be no 'Atomic Task' involving object manipulation. Therefore, no switch points exist as per the definition requiring completion of interaction with one object and start of interaction with a different object.",
+            "transitions": [],
+            "instructions": [
+              "Walk"
+            ]
+          },
+          "warnings": [],
+          "raw_response": "{\n  \"thought\": \"The provided frames show a humanoid figure moving across a plain environment. There are no objects being manipulated—no cups, spoons, shirts, or tools are present. The figure appears to be walking or running in place, with its arms swinging and legs moving. Since there is no interaction with any object (neither grasping nor releasing), there can be no 'Atomic Task' involving object manipulation. Therefore, no switch points exist as per the definition requiring completion of interaction with one object and start of interaction with a different object.\",\n  \"transitions\": [],\n  \"instructions\": [\"Walk\"]\n}",
+          "error": ""
+        }
+      ],
+      "error": ""
+    },
+    {
+      "sample_id": "Ymca_Dance",
+      "view_mode": "fixed",
+      "views": {
+        "fixed": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Ymca_Dance/Ymca_Dance_Fixed_View.mp4"
+      },
+      "view_sha256": {
+        "fixed": "ca18cd919d0b75e28affa7028df1747da56cd2744cdcae6878a517802bd50f51"
+      },
+      "fps": 30.0,
+      "frame_count": 136,
+      "window_count": 1,
+      "latency_s": 2.697804041999916,
+      "usage": {
+        "requests": 1,
+        "input_tokens": 1302,
+        "output_tokens": 170
+      },
+      "prediction": {
+        "sample_id": "Ymca_Dance",
+        "nframes": 136,
+        "segments": [
+          {
+            "seg_id": 0,
+            "start_frame": 0,
+            "end_frame": 136,
+            "instruction": "Perform arm movements",
+            "confidence": 1.0
+          }
+        ]
+      },
+      "window_outputs": [
+        {
+          "window_id": 0,
+          "start_frame": 0,
+          "end_frame": 135,
+          "frame_ids": [
+            0,
+            19,
+            38,
+            57,
+            77,
+            96,
+            115,
+            135
+          ],
+          "view_ids": [
+            "fixed"
+          ],
+          "images_per_timestamp": 1,
+          "vlm_json": {
+            "thought": "The sequence shows a humanoid figure performing a series of arm movements in an empty space. There is no object being manipulated at all—no cup, spoon, shirt, or counter is present. The figure's arms move from a wide-open pose (frames 0, 1, 5, 7) to various intermediate poses (frames 2, 3, 4, 6), but these are all part of a continuous motion sequence (e.g., dancing or stretching). Since no physical interaction with any object occurs, there are no 'atomic task boundaries' or 'switches' as defined by the rule (which requires completing interaction with one object and starting with a different one). Therefore, no transitions are detected.",
+            "transitions": [],
+            "instructions": [
+              "Perform arm movements"
+            ]
+          },
+          "warnings": [],
+          "raw_response": "{\n  \"thought\": \"The sequence shows a humanoid figure performing a series of arm movements in an empty space. There is no object being manipulated at all—no cup, spoon, shirt, or counter is present. The figure's arms move from a wide-open pose (frames 0, 1, 5, 7) to various intermediate poses (frames 2, 3, 4, 6), but these are all part of a continuous motion sequence (e.g., dancing or stretching). Since no physical interaction with any object occurs, there are no 'atomic task boundaries' or 'switches' as defined by the rule (which requires completing interaction with one object and starting with a different one). Therefore, no transitions are detected.\",\n  \"transitions\": [],\n  \"instructions\": [\"Perform arm movements\"]\n}",
+          "error": ""
+        }
+      ],
+      "error": ""
+    },
+    {
+      "sample_id": "jump_down",
+      "view_mode": "fixed",
+      "views": {
+        "fixed": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/jump_down/Fixed_View.mp4"
+      },
+      "view_sha256": {
+        "fixed": "3e584ec8efce5fc0c3d61b94a32df523250205a0218411def5d90b0c6b021950"
+      },
+      "fps": 30.0,
+      "frame_count": 70,
+      "window_count": 1,
+      "latency_s": 5.670493749999878,
+      "usage": {
+        "requests": 1,
+        "input_tokens": 1302,
+        "output_tokens": 229
+      },
+      "prediction": {
+        "sample_id": "jump_down",
+        "nframes": 70,
+        "segments": [
+          {
+            "seg_id": 0,
+            "start_frame": 0,
+            "end_frame": 70,
+            "instruction": "Jump from the platform to the floor",
+            "confidence": 1.0
+          }
+        ]
+      },
+      "window_outputs": [
+        {
+          "window_id": 0,
+          "start_frame": 0,
+          "end_frame": 69,
+          "frame_ids": [
+            0,
+            9,
+            19,
+            29,
+            39,
+            49,
+            59,
+            69
+          ],
+          "view_ids": [
+            "fixed"
+          ],
+          "images_per_timestamp": 1,
+          "vlm_json": {
+            "thought": "The sequence shows a single humanoid figure performing a continuous motion of jumping off a platform. In frames 0-1, the figure is crouched on the platform. In frames 2-3, it jumps upward and forward, with arms raised. In frames 4-5, it lands on the floor and begins to crouch again. In frames 6-7, it remains in a low crouch, seemingly preparing for or completing the landing phase. There is no interaction with any external object (e.g., picking up, placing, or manipulating an object). The figure is only interacting with its own body posture and the platform (as a launch point), but since the platform is part of the environment and not an 'object' being manipulated (no grasping, lifting, or repositioning of the platform occurs), and the figure never releases one object to grasp another, there are no atomic task boundaries. The entire sequence is one continuous action: jumping from the platform to the floor.",
+            "transitions": [],
+            "instructions": [
+              "Jump from the platform to the floor"
+            ]
+          },
+          "warnings": [],
+          "raw_response": "{\n  \"thought\": \"The sequence shows a single humanoid figure performing a continuous motion of jumping off a platform. In frames 0-1, the figure is crouched on the platform. In frames 2-3, it jumps upward and forward, with arms raised. In frames 4-5, it lands on the floor and begins to crouch again. In frames 6-7, it remains in a low crouch, seemingly preparing for or completing the landing phase. There is no interaction with any external object (e.g., picking up, placing, or manipulating an object). The figure is only interacting with its own body posture and the platform (as a launch point), but since the platform is part of the environment and not an 'object' being manipulated (no grasping, lifting, or repositioning of the platform occurs), and the figure never releases one object to grasp another, there are no atomic task boundaries. The entire sequence is one continuous action: jumping from the platform to the floor.\",\n  \"transitions\": [],\n  \"instructions\": [\"Jump from the platform to the floor\"]\n}",
+          "error": ""
+        }
+      ],
+      "error": ""
+    },
+    {
+      "sample_id": "sitting",
+      "view_mode": "fixed",
+      "views": {
+        "fixed": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/sitting/Fixed_View.mp4"
+      },
+      "view_sha256": {
+        "fixed": "7ce81d383c0a39e45a1108c1e301881b28ff3db5ff1ae8db30d2e3d85948255e"
+      },
+      "fps": 30.0,
+      "frame_count": 134,
+      "window_count": 1,
+      "latency_s": 2.9319223330021487,
+      "usage": {
+        "requests": 1,
+        "input_tokens": 1302,
+        "output_tokens": 179
+      },
+      "prediction": {
+        "sample_id": "sitting",
+        "nframes": 134,
+        "segments": [
+          {
+            "seg_id": 0,
+            "start_frame": 0,
+            "end_frame": 134,
+            "instruction": "Sit on the cube",
+            "confidence": 1.0
+          }
+        ]
+      },
+      "window_outputs": [
+        {
+          "window_id": 0,
+          "start_frame": 0,
+          "end_frame": 133,
+          "frame_ids": [
+            0,
+            19,
+            38,
+            57,
+            76,
+            95,
+            114,
+            133
+          ],
+          "view_ids": [
+            "fixed"
+          ],
+          "images_per_timestamp": 1,
+          "vlm_json": {
+            "thought": "In frames 0-3, the robot is standing upright and moving toward the cube. In frame 4, the robot begins to bend down, initiating interaction with the cube. From frame 5 through 7, the robot is in the process of sitting on the cube — the motion is continuous (bending → lowering → seating). There is no release of a different object followed by grasping another; the entire sequence involves only one object: the cube. The robot starts interacting with the cube at frame 4 (when it begins to lean), and completes the interaction (sitting fully) by frame 7. Since the task is 'sit on the cube' and involves only one object throughout, there are no switches. No other objects are touched or manipulated.",
+            "transitions": [],
+            "instructions": [
+              "Sit on the cube"
+            ]
+          },
+          "warnings": [],
+          "raw_response": "{\n  \"thought\": \"In frames 0-3, the robot is standing upright and moving toward the cube. In frame 4, the robot begins to bend down, initiating interaction with the cube. From frame 5 through 7, the robot is in the process of sitting on the cube — the motion is continuous (bending → lowering → seating). There is no release of a different object followed by grasping another; the entire sequence involves only one object: the cube. The robot starts interacting with the cube at frame 4 (when it begins to lean), and completes the interaction (sitting fully) by frame 7. Since the task is 'sit on the cube' and involves only one object throughout, there are no switches. No other objects are touched or manipulated.\",\n  \"transitions\": [],\n  \"instructions\": [\"Sit on the cube\"]\n}",
+          "error": ""
+        }
+      ],
+      "error": ""
+    }
+  ]
+}

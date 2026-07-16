@@ -1,0 +1,104 @@
+{
+  "schema_version": "vendored-video2tasks-run/v2",
+  "formal": false,
+  "generated_at": "2026-07-15T18:12:34.588882+00:00",
+  "code_revision": "2f260ee0874acb8cfe3d72abb500590782215147",
+  "upstream_repository": "https://github.com/ly-geming/video2tasks",
+  "upstream_revision": "8d405a120a37df4e5a4869b61ba3d9edb7b4dfe3",
+  "vendored_source": "video2tasks/",
+  "model": "qwen3-vl-flash",
+  "base_url": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+  "prompt_sha256": "72e065ceee214ac019b6a13d898e2d74963ff6449df7d0c0b349bbb4004c036f",
+  "input": {
+    "manifest": "data/module_d_wechat/manifest.json",
+    "manifest_sha256": "3c14c004652141deb42f87716e8da7c94c6da9d2dad248ec36e3de3da8c2b79a",
+    "requested_samples": 1,
+    "view_mode": "fused"
+  },
+  "windowing": {
+    "window_sec": 16.0,
+    "step_sec": 8.0,
+    "frames_per_window": 8,
+    "target_width": 384,
+    "target_height": 256,
+    "png_compression": 3
+  },
+  "summary": {
+    "completed": 1,
+    "succeeded": 1,
+    "failed": 0
+  },
+  "limitations": [
+    "generic VLM; not a robot-domain world model",
+    "output quality depends on provider vision grounding"
+  ],
+  "results": [
+    {
+      "sample_id": "Air_Squat",
+      "view_mode": "fused",
+      "views": {
+        "fixed": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Air_Squat/Air_Squat_Fixed_View.mp4",
+        "ego": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Air_Squat/Air_Squat_Ego_View.mp4"
+      },
+      "view_sha256": {
+        "fixed": "3c987988d0998056af9e206ae59d25bc4cb99db5df74271ccd1f5e7f8881f92f",
+        "ego": "b3e710b9ec9175e5686010d286ffb069ee52bf417b90e752473228346fbf794a"
+      },
+      "fps": 30.0,
+      "frame_count": 57,
+      "window_count": 1,
+      "latency_s": 7.185195083002327,
+      "usage": {
+        "requests": 1,
+        "input_tokens": 2136,
+        "output_tokens": 301
+      },
+      "prediction": {
+        "sample_id": "Air_Squat",
+        "nframes": 57,
+        "segments": [
+          {
+            "seg_id": 0,
+            "start_frame": 0,
+            "end_frame": 57,
+            "instruction": "Stand facing the head/mask",
+            "confidence": 1.0
+          }
+        ]
+      },
+      "window_outputs": [
+        {
+          "window_id": 0,
+          "start_frame": 0,
+          "end_frame": 56,
+          "frame_ids": [
+            0,
+            8,
+            16,
+            24,
+            32,
+            40,
+            48,
+            56
+          ],
+          "view_ids": [
+            "fixed",
+            "ego"
+          ],
+          "images_per_timestamp": 2,
+          "vlm_json": {
+            "thought": "The video shows a robot interacting with two distinct objects: a humanoid figure (the 'robot' or agent) and a separate object that appears to be a head or mask. In frames 0, 2, 4, 6, 8, 10, 12, 14, the robot is standing in a neutral pose, facing the head/mask object, which is on the left side of the scene. The robot's shadow moves slightly, indicating small postural adjustments, but no physical interaction (grasping, moving, releasing) occurs with the head/mask. In frames 1, 3, 5, 7, 9, 11, 13, 15, the view switches to a close-up of the head/mask, showing it in isolation — this is the 'ego view' as per the prompt. However, the robot is not visible in these ego frames, meaning the robot is not currently interacting with the head/mask in those frames. Since the robot never touches or manipulates the head/mask at all — it only stands near it — there is no interaction to complete or start. Therefore, no atomic task boundaries exist because no manipulation occurs. The entire sequence is a static observation of the robot’s stance relative to the object, with no grasp/release events.",
+            "transitions": [],
+            "instructions": [
+              "Stand facing the head/mask"
+            ]
+          },
+          "warnings": [],
+          "raw_response": "{\n  \"thought\": \"The video shows a robot interacting with two distinct objects: a humanoid figure (the 'robot' or agent) and a separate object that appears to be a head or mask. In frames 0, 2, 4, 6, 8, 10, 12, 14, the robot is standing in a neutral pose, facing the head/mask object, which is on the left side of the scene. The robot's shadow moves slightly, indicating small postural adjustments, but no physical interaction (grasping, moving, releasing) occurs with the head/mask. In frames 1, 3, 5, 7, 9, 11, 13, 15, the view switches to a close-up of the head/mask, showing it in isolation — this is the 'ego view' as per the prompt. However, the robot is not visible in these ego frames, meaning the robot is not currently interacting with the head/mask in those frames. Since the robot never touches or manipulates the head/mask at all — it only stands near it — there is no interaction to complete or start. Therefore, no atomic task boundaries exist because no manipulation occurs. The entire sequence is a static observation of the robot’s stance relative to the object, with no grasp/release events.\",\n  \"transitions\": [],\n  \"instructions\": [\"Stand facing the head/mask\"]\n}",
+          "error": ""
+        }
+      ],
+      "error": ""
+    }
+  ]
+}

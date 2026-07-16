@@ -1,0 +1,378 @@
+{
+  "schema_version": "mini-vlo-wgo-bench-subset/v1",
+  "generated_at": "2026-07-15T15:19:46.761216+00:00",
+  "dataset": "macrodata/WGO-Bench",
+  "config": "default",
+  "split": "train",
+  "offset": 75,
+  "limit": 3,
+  "license": "CC-BY-NC-SA-4.0",
+  "samples": [
+    {
+      "id": "galaxea_002",
+      "video": "/Users/gaiyi/Downloads/mini-vlo/data/wgo_bench/galaxea_subset/videos/galaxea_002.mp4",
+      "instruction": "rearrange the word baai as brain.",
+      "target_object": "",
+      "actions": [
+        "pick up the left-most pink plastic craft stick next to letter B",
+        "place the pink plastic stick left next to the up most red curved stick",
+        "pick up the left-most pink plastic craft stick next to letter B",
+        "place the pink plastic stick under the sign brain left next to the blue stick",
+        "pick up the left-top-most pink plastic craft stick",
+        "place the pink plastic stick next to letter B vertically",
+        "pick up the red curved stick from top of the table",
+        "place the red curved stick next to the vertical pink stick to form a letter P",
+        "pick up the purple stick from top of the table",
+        "place the purple stick next to the pink stick to form and under the red curved stick to form letter R",
+        "adjust the purple stick to better align with other sticks",
+        "pick up the pink stick from the top center of the table",
+        "place the pink stick verticaly right next to the blue stick (letter I) on the right side of the table",
+        "pick up the blue stick from the top center of the table",
+        "place the blue stick diagonally next to right most pink stick to prepare middle part of letter N",
+        "pick up the pink stick from the top of the table",
+        "place the pink stick vertically between t"
+      ],
+      "boundaries_sec": [
+        5.578,
+        6.905,
+        8.234,
+        10.889,
+        13.282,
+        15.14,
+        17.53,
+        20.188,
+        23.859,
+        26.528,
+        30.354,
+        32.444,
+        34.037,
+        35.341,
+        37.579,
+        38.916
+      ],
+      "segments": [
+        {
+          "start_sec": 0.0,
+          "end_sec": 5.578,
+          "label": "pick up the left-most pink plastic craft stick next to letter B"
+        },
+        {
+          "start_sec": 5.578,
+          "end_sec": 6.905,
+          "label": "place the pink plastic stick left next to the up most red curved stick"
+        },
+        {
+          "start_sec": 6.905,
+          "end_sec": 8.234,
+          "label": "pick up the left-most pink plastic craft stick next to letter B"
+        },
+        {
+          "start_sec": 8.234,
+          "end_sec": 10.889,
+          "label": "place the pink plastic stick under the sign brain left next to the blue stick"
+        },
+        {
+          "start_sec": 10.889,
+          "end_sec": 13.282,
+          "label": "pick up the left-top-most pink plastic craft stick"
+        },
+        {
+          "start_sec": 13.282,
+          "end_sec": 15.14,
+          "label": "place the pink plastic stick next to letter B vertically"
+        },
+        {
+          "start_sec": 15.14,
+          "end_sec": 17.53,
+          "label": "pick up the red curved stick from top of the table"
+        },
+        {
+          "start_sec": 17.53,
+          "end_sec": 20.188,
+          "label": "place the red curved stick next to the vertical pink stick to form a letter P"
+        },
+        {
+          "start_sec": 20.188,
+          "end_sec": 23.859,
+          "label": "pick up the purple stick from top of the table"
+        },
+        {
+          "start_sec": 23.859,
+          "end_sec": 26.528,
+          "label": "place the purple stick next to the pink stick to form and under the red curved stick to form letter R"
+        },
+        {
+          "start_sec": 26.528,
+          "end_sec": 30.354,
+          "label": "adjust the purple stick to better align with other sticks"
+        },
+        {
+          "start_sec": 30.354,
+          "end_sec": 32.444,
+          "label": "pick up the pink stick from the top center of the table"
+        },
+        {
+          "start_sec": 32.444,
+          "end_sec": 34.037,
+          "label": "place the pink stick verticaly right next to the blue stick (letter I) on the right side of the table"
+        },
+        {
+          "start_sec": 34.037,
+          "end_sec": 35.341,
+          "label": "pick up the blue stick from the top center of the table"
+        },
+        {
+          "start_sec": 35.341,
+          "end_sec": 37.579,
+          "label": "place the blue stick diagonally next to right most pink stick to prepare middle part of letter N"
+        },
+        {
+          "start_sec": 37.579,
+          "end_sec": 38.916,
+          "label": "pick up the pink stick from the top of the table"
+        },
+        {
+          "start_sec": 38.916,
+          "end_sec": 42.22,
+          "label": "place the pink stick vertically between t"
+        }
+      ],
+      "annotation_status": "benchmark_gold",
+      "gold_source": "macrodata/WGO-Bench",
+      "source_row_index": 75,
+      "source_metadata": {
+        "bench_id": "galaxea_002",
+        "camera": "observation.images.cam_head_left_rgb",
+        "duration_sec": 43.833,
+        "fps": 30.0,
+        "notes": "",
+        "num_frames": 1315,
+        "num_segments": 17,
+        "original_instruction": "rearrange the word baai as brain.",
+        "saved_at_unix": 1782046028.3767412,
+        "source_dataset": "RoboCOIN/Galaxea_R1_Lite_change_baai_into_brain",
+        "source_episode_index": 0,
+        "source_family": "galaxea",
+        "source_video_path": "videos/chunk-000/observation.images.cam_head_left_rgb/episode_000000.mp4",
+        "source_video_size": 17645937
+      },
+      "video_sha256": "2bd07b0f7fdbeb8b6ecc909bb554edf0b281c3af67a0a7446b4a57ff021af117"
+    },
+    {
+      "id": "galaxea_007",
+      "video": "/Users/gaiyi/Downloads/mini-vlo/data/wgo_bench/galaxea_subset/videos/galaxea_007.mp4",
+      "instruction": "place the food in the right basket with the right gripper, and place the non food items in the left basket with the left gripper.",
+      "target_object": "",
+      "actions": [
+        "grasp the orange snack bag on the green tray",
+        "place the orange bag of food into the right basket",
+        "grasp the whiteboard eraser on the green tray",
+        "place the whiteboard eraser into the left basket",
+        "grasp the black tube on the green tray",
+        "place the black tube into the left brown basket",
+        "pick up the wooden spoon from the green tray",
+        "place the wooden spoon into the left dark brown basket"
+      ],
+      "boundaries_sec": [
+        3.98,
+        6.372,
+        10.609,
+        12.735,
+        18.048,
+        21.513,
+        27.358
+      ],
+      "segments": [
+        {
+          "start_sec": 0.0,
+          "end_sec": 3.98,
+          "label": "grasp the orange snack bag on the green tray"
+        },
+        {
+          "start_sec": 3.98,
+          "end_sec": 6.372,
+          "label": "place the orange bag of food into the right basket"
+        },
+        {
+          "start_sec": 6.372,
+          "end_sec": 10.609,
+          "label": "grasp the whiteboard eraser on the green tray"
+        },
+        {
+          "start_sec": 10.609,
+          "end_sec": 12.735,
+          "label": "place the whiteboard eraser into the left basket"
+        },
+        {
+          "start_sec": 12.735,
+          "end_sec": 18.048,
+          "label": "grasp the black tube on the green tray"
+        },
+        {
+          "start_sec": 18.048,
+          "end_sec": 21.513,
+          "label": "place the black tube into the left brown basket"
+        },
+        {
+          "start_sec": 21.513,
+          "end_sec": 27.358,
+          "label": "pick up the wooden spoon from the green tray"
+        },
+        {
+          "start_sec": 27.358,
+          "end_sec": 31.076,
+          "label": "place the wooden spoon into the left dark brown basket"
+        }
+      ],
+      "annotation_status": "benchmark_gold",
+      "gold_source": "macrodata/WGO-Bench",
+      "source_row_index": 76,
+      "source_metadata": {
+        "bench_id": "galaxea_007",
+        "camera": "observation.images.cam_head_left_rgb",
+        "duration_sec": 35.533,
+        "fps": 30.0,
+        "notes": "",
+        "num_frames": 1066,
+        "num_segments": 8,
+        "original_instruction": "place the food in the right basket with the right gripper, and place the non food items in the left basket with the left gripper.",
+        "saved_at_unix": 1782043442.4866948,
+        "source_dataset": "RoboCOIN/Galaxea_R1_Lite_classify_object_four",
+        "source_episode_index": 1,
+        "source_family": "galaxea",
+        "source_video_path": "videos/chunk-000/observation.images.cam_head_left_rgb/episode_000001.mp4",
+        "source_video_size": 16021934
+      },
+      "video_sha256": "3c4557725f6980da726b5f493c0acce739c52d04c1c48a2213ebb4ceb0230496"
+    },
+    {
+      "id": "galaxea_009",
+      "video": "/Users/gaiyi/Downloads/mini-vlo/data/wgo_bench/galaxea_subset/videos/galaxea_009.mp4",
+      "instruction": "on the green table,place the food in the right basket with the right gripper, and place the non food items in the left basket with the left gripper.",
+      "target_object": "",
+      "actions": [
+        "pick up plastic bottle",
+        "place the plastic bottle into the right basket",
+        "pick up red coke can",
+        "place the red can into the right basket",
+        "pick up pink bottle",
+        "place the pink bottle into the left basket",
+        "pick up the wooden spoon",
+        "place the wooden spoon into the left basket",
+        "pick up the blue cloth from the table",
+        "place the blue cloth into the left basket",
+        "pick up yellow lemon from the table",
+        "place yellow lemon in front of the right basket",
+        "pick up yellow lemon from the table",
+        "place yellow lemon into right basket"
+      ],
+      "boundaries_sec": [
+        3.445,
+        4.773,
+        8.493,
+        10.085,
+        12.741,
+        15.133,
+        18.853,
+        22.189,
+        24.586,
+        26.435,
+        29.091,
+        31.447,
+        32.432
+      ],
+      "segments": [
+        {
+          "start_sec": 0.0,
+          "end_sec": 3.445,
+          "label": "pick up plastic bottle"
+        },
+        {
+          "start_sec": 3.445,
+          "end_sec": 4.773,
+          "label": "place the plastic bottle into the right basket"
+        },
+        {
+          "start_sec": 4.773,
+          "end_sec": 8.493,
+          "label": "pick up red coke can"
+        },
+        {
+          "start_sec": 8.493,
+          "end_sec": 10.085,
+          "label": "place the red can into the right basket"
+        },
+        {
+          "start_sec": 10.085,
+          "end_sec": 12.741,
+          "label": "pick up pink bottle"
+        },
+        {
+          "start_sec": 12.741,
+          "end_sec": 15.133,
+          "label": "place the pink bottle into the left basket"
+        },
+        {
+          "start_sec": 15.133,
+          "end_sec": 18.853,
+          "label": "pick up the wooden spoon"
+        },
+        {
+          "start_sec": 18.853,
+          "end_sec": 22.189,
+          "label": "place the wooden spoon into the left basket"
+        },
+        {
+          "start_sec": 22.189,
+          "end_sec": 24.586,
+          "label": "pick up the blue cloth from the table"
+        },
+        {
+          "start_sec": 24.586,
+          "end_sec": 26.435,
+          "label": "place the blue cloth into the left basket"
+        },
+        {
+          "start_sec": 26.435,
+          "end_sec": 29.091,
+          "label": "pick up yellow lemon from the table"
+        },
+        {
+          "start_sec": 29.091,
+          "end_sec": 31.447,
+          "label": "place yellow lemon in front of the right basket"
+        },
+        {
+          "start_sec": 31.447,
+          "end_sec": 32.432,
+          "label": "pick up yellow lemon from the table"
+        },
+        {
+          "start_sec": 32.432,
+          "end_sec": 38.573,
+          "label": "place yellow lemon into right basket"
+        }
+      ],
+      "annotation_status": "benchmark_gold",
+      "gold_source": "macrodata/WGO-Bench",
+      "source_row_index": 77,
+      "source_metadata": {
+        "bench_id": "galaxea_009",
+        "camera": "observation.images.cam_head_left_rgb",
+        "duration_sec": 40.167,
+        "fps": 30.0,
+        "notes": "",
+        "num_frames": 1205,
+        "num_segments": 14,
+        "original_instruction": "on the green table,place the food in the right basket with the right gripper, and place the non food items in the left basket with the left gripper.",
+        "saved_at_unix": 1782043042.174815,
+        "source_dataset": "RoboCOIN/Galaxea_R1_Lite_classify_object_green_tablecloth",
+        "source_episode_index": 1,
+        "source_family": "galaxea",
+        "source_video_path": "videos/chunk-000/observation.images.cam_head_left_rgb/episode_000001.mp4",
+        "source_video_size": 53385694
+      },
+      "video_sha256": "03d74fb723220c7bc745e6c78e87ef7dc5aa1b43b6641acc9661476ffa9f03de"
+    }
+  ]
+}

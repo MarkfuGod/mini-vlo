@@ -1,0 +1,500 @@
+{
+  "schema_version": "mini-vlo-wgo-bench-subset/v1",
+  "generated_at": "2026-07-15T15:19:39.172260+00:00",
+  "dataset": "macrodata/WGO-Bench",
+  "config": "default",
+  "split": "train",
+  "offset": 0,
+  "limit": 3,
+  "license": "CC-BY-NC-SA-4.0",
+  "samples": [
+    {
+      "id": "homer_1",
+      "video": "/Users/gaiyi/Downloads/mini-vlo/data/wgo_bench/homer_subset/videos/homer_1.mp4",
+      "instruction": "use pitcher to pour water into tall glass and wine glass",
+      "target_object": "",
+      "actions": [
+        "twist open the pitcher lid",
+        "pick up the pitcher",
+        "pour water from the pitcher into the wine glass",
+        "place the pitcher on the black board right next to wine glass",
+        "twist the pitcher lid to close it",
+        "pick up the pitcher",
+        "pour water from the pitcher into the wine glass",
+        "move the tall glass closer to the wine glass",
+        "place the pitcher on the black board right and below the wine glass",
+        "twist the pitcher lid to open it slightly",
+        "pick up the pitcher",
+        "pour a bit of water from the pitcher into the tall glass",
+        "move the glass wine 7cm to the left",
+        "pour water from the pitcher into the tall glass until it's almost full",
+        "pour water from the pitcher into the wine glass until it's full",
+        "pour water from the pitcher into the tall glass until it's full",
+        "place the pitcher on the table",
+        "reposition the wine glass to the left center part of table",
+        "move the tall glass to the right-center part of the table",
+        "place the pitcher on the center part of the table between the two glasses"
+      ],
+      "boundaries_sec": [
+        7.709,
+        10.837,
+        20.746,
+        21.712,
+        26.514,
+        27.855,
+        62.588,
+        65.413,
+        67.987,
+        72.944,
+        74.356,
+        79.969,
+        83.203,
+        134.022,
+        137.134,
+        140.219,
+        142.2,
+        147.534,
+        152.14
+      ],
+      "segments": [
+        {
+          "start_sec": 0.0,
+          "end_sec": 7.709,
+          "label": "twist open the pitcher lid"
+        },
+        {
+          "start_sec": 7.709,
+          "end_sec": 10.837,
+          "label": "pick up the pitcher"
+        },
+        {
+          "start_sec": 10.837,
+          "end_sec": 20.746,
+          "label": "pour water from the pitcher into the wine glass"
+        },
+        {
+          "start_sec": 20.746,
+          "end_sec": 21.712,
+          "label": "place the pitcher on the black board right next to wine glass"
+        },
+        {
+          "start_sec": 21.712,
+          "end_sec": 26.514,
+          "label": "twist the pitcher lid to close it"
+        },
+        {
+          "start_sec": 26.514,
+          "end_sec": 27.855,
+          "label": "pick up the pitcher"
+        },
+        {
+          "start_sec": 27.855,
+          "end_sec": 62.588,
+          "label": "pour water from the pitcher into the wine glass"
+        },
+        {
+          "start_sec": 62.588,
+          "end_sec": 65.413,
+          "label": "move the tall glass closer to the wine glass"
+        },
+        {
+          "start_sec": 65.413,
+          "end_sec": 67.987,
+          "label": "place the pitcher on the black board right and below the wine glass"
+        },
+        {
+          "start_sec": 67.987,
+          "end_sec": 72.944,
+          "label": "twist the pitcher lid to open it slightly"
+        },
+        {
+          "start_sec": 72.944,
+          "end_sec": 74.356,
+          "label": "pick up the pitcher"
+        },
+        {
+          "start_sec": 74.356,
+          "end_sec": 79.969,
+          "label": "pour a bit of water from the pitcher into the tall glass"
+        },
+        {
+          "start_sec": 79.969,
+          "end_sec": 83.203,
+          "label": "move the glass wine 7cm to the left"
+        },
+        {
+          "start_sec": 83.203,
+          "end_sec": 134.022,
+          "label": "pour water from the pitcher into the tall glass until it's almost full"
+        },
+        {
+          "start_sec": 134.022,
+          "end_sec": 137.134,
+          "label": "pour water from the pitcher into the wine glass until it's full"
+        },
+        {
+          "start_sec": 137.134,
+          "end_sec": 140.219,
+          "label": "pour water from the pitcher into the tall glass until it's full"
+        },
+        {
+          "start_sec": 140.219,
+          "end_sec": 142.2,
+          "label": "place the pitcher on the table"
+        },
+        {
+          "start_sec": 142.2,
+          "end_sec": 147.534,
+          "label": "reposition the wine glass to the left center part of table"
+        },
+        {
+          "start_sec": 147.534,
+          "end_sec": 152.14,
+          "label": "move the tall glass to the right-center part of the table"
+        },
+        {
+          "start_sec": 152.14,
+          "end_sec": 161.18,
+          "label": "place the pitcher on the center part of the table between the two glasses"
+        }
+      ],
+      "annotation_status": "benchmark_gold",
+      "gold_source": "macrodata/WGO-Bench",
+      "source_row_index": 0,
+      "source_metadata": {
+        "local_reannotation_line": 62,
+        "local_reannotation_saved_at_unix": 1782483511.842509,
+        "num_segments": 20,
+        "source_artifact": "/Users/hynky/Projects/carton_marketing/datasets/wasup_homer_gold/wasup_homer_gold.parquet",
+        "source_dataset": "toloka/HomER",
+        "source_family": "homer",
+        "source_video_url": "https://prodtlkcsafiles.blob.core.windows.net/ego-centric/5_Pouring%20liquids_Video%20Pw.mp4",
+        "updated_from_local_reannotations": true
+      },
+      "video_sha256": "f261d76e18d374f401b2a0408cc7c8b905f958adb17237d7d793745009110083"
+    },
+    {
+      "id": "homer_2",
+      "video": "/Users/gaiyi/Downloads/mini-vlo/data/wgo_bench/homer_subset/videos/homer_2.mp4",
+      "instruction": "wash the dishes in the sink",
+      "target_object": "",
+      "actions": [
+        "turn on the kitchen faucet",
+        "wet the yellow sponge under the running water",
+        "put a dish soap on the dish sponge",
+        "wet and squeeze the yellow sponge under the running water",
+        "pick up the silver spoon from glass mug with cofee",
+        "wash the silver spoon with a sponge under running water",
+        "place the silver spoon on the kitchen towel and the above the black up",
+        "pick up the glass mug from the sink",
+        "wash the glass mug with a sponge under running water",
+        "place the glass mug on the kitchen towel and above the right most plate",
+        "pick up the yellow sponge from the sink",
+        "pick up the black mug from the sink",
+        "scrub the black mug with a sponge under running water in the sink",
+        "place the black mug on the kitchen towel and to the left of the glass mug",
+        "pick up the yellow sponge",
+        "pick up the clear glass from the sink",
+        "scrub and rinse a clear glass under running water in the sink",
+        "place the clear glass on top of the right most plate",
+        "pick up the yellow sponge",
+        "pick up the white saucer from the sink",
+        "scrub the white saucer with a sponge under running water in the sink",
+        "place the white saucer on top of the black cup",
+        "pick up the clear glass bowl from the sink",
+        "scrub and rinse a clear glass bowl with a sponge under running water in the sink",
+        "place the clear glass bowl on top of the black cup",
+        "pick up the white spatula from the sink",
+        "rinse the white spatula under running water in the sink",
+        "clean the sink with sponge",
+        "rinse and squeeze the sponge under running water in the sink and wash your hands",
+        "turn off the kitchen faucet"
+      ],
+      "boundaries_sec": [
+        3.981,
+        6.717,
+        11.151,
+        19.269,
+        21.116,
+        28.83,
+        30.91,
+        31.75,
+        43.735,
+        46.979,
+        49.714,
+        52.377,
+        59.439,
+        62.175,
+        63.36,
+        65.845,
+        80.872,
+        82.09,
+        84.287,
+        89.636,
+        98.315,
+        99.826,
+        103.358,
+        114.467,
+        116.115,
+        123.573,
+        134.741,
+        140.618,
+        149.256
+      ],
+      "segments": [
+        {
+          "start_sec": 0.0,
+          "end_sec": 3.981,
+          "label": "turn on the kitchen faucet"
+        },
+        {
+          "start_sec": 3.981,
+          "end_sec": 6.717,
+          "label": "wet the yellow sponge under the running water"
+        },
+        {
+          "start_sec": 6.717,
+          "end_sec": 11.151,
+          "label": "put a dish soap on the dish sponge"
+        },
+        {
+          "start_sec": 11.151,
+          "end_sec": 19.269,
+          "label": "wet and squeeze the yellow sponge under the running water"
+        },
+        {
+          "start_sec": 19.269,
+          "end_sec": 21.116,
+          "label": "pick up the silver spoon from glass mug with cofee"
+        },
+        {
+          "start_sec": 21.116,
+          "end_sec": 28.83,
+          "label": "wash the silver spoon with a sponge under running water"
+        },
+        {
+          "start_sec": 28.83,
+          "end_sec": 30.91,
+          "label": "place the silver spoon on the kitchen towel and the above the black up"
+        },
+        {
+          "start_sec": 30.91,
+          "end_sec": 31.75,
+          "label": "pick up the glass mug from the sink"
+        },
+        {
+          "start_sec": 31.75,
+          "end_sec": 43.735,
+          "label": "wash the glass mug with a sponge under running water"
+        },
+        {
+          "start_sec": 43.735,
+          "end_sec": 46.979,
+          "label": "place the glass mug on the kitchen towel and above the right most plate"
+        },
+        {
+          "start_sec": 46.979,
+          "end_sec": 49.714,
+          "label": "pick up the yellow sponge from the sink"
+        },
+        {
+          "start_sec": 49.714,
+          "end_sec": 52.377,
+          "label": "pick up the black mug from the sink"
+        },
+        {
+          "start_sec": 52.377,
+          "end_sec": 59.439,
+          "label": "scrub the black mug with a sponge under running water in the sink"
+        },
+        {
+          "start_sec": 59.439,
+          "end_sec": 62.175,
+          "label": "place the black mug on the kitchen towel and to the left of the glass mug"
+        },
+        {
+          "start_sec": 62.175,
+          "end_sec": 63.36,
+          "label": "pick up the yellow sponge"
+        },
+        {
+          "start_sec": 63.36,
+          "end_sec": 65.845,
+          "label": "pick up the clear glass from the sink"
+        },
+        {
+          "start_sec": 65.845,
+          "end_sec": 80.872,
+          "label": "scrub and rinse a clear glass under running water in the sink"
+        },
+        {
+          "start_sec": 80.872,
+          "end_sec": 82.09,
+          "label": "place the clear glass on top of the right most plate"
+        },
+        {
+          "start_sec": 82.09,
+          "end_sec": 84.287,
+          "label": "pick up the yellow sponge"
+        },
+        {
+          "start_sec": 84.287,
+          "end_sec": 89.636,
+          "label": "pick up the white saucer from the sink"
+        },
+        {
+          "start_sec": 89.636,
+          "end_sec": 98.315,
+          "label": "scrub the white saucer with a sponge under running water in the sink"
+        },
+        {
+          "start_sec": 98.315,
+          "end_sec": 99.826,
+          "label": "place the white saucer on top of the black cup"
+        },
+        {
+          "start_sec": 99.826,
+          "end_sec": 103.358,
+          "label": "pick up the clear glass bowl from the sink"
+        },
+        {
+          "start_sec": 103.358,
+          "end_sec": 114.467,
+          "label": "scrub and rinse a clear glass bowl with a sponge under running water in the sink"
+        },
+        {
+          "start_sec": 114.467,
+          "end_sec": 116.115,
+          "label": "place the clear glass bowl on top of the black cup"
+        },
+        {
+          "start_sec": 116.115,
+          "end_sec": 123.573,
+          "label": "pick up the white spatula from the sink"
+        },
+        {
+          "start_sec": 123.573,
+          "end_sec": 134.741,
+          "label": "rinse the white spatula under running water in the sink"
+        },
+        {
+          "start_sec": 134.741,
+          "end_sec": 140.618,
+          "label": "clean the sink with sponge"
+        },
+        {
+          "start_sec": 140.618,
+          "end_sec": 149.256,
+          "label": "rinse and squeeze the sponge under running water in the sink and wash your hands"
+        },
+        {
+          "start_sec": 149.256,
+          "end_sec": 151.542,
+          "label": "turn off the kitchen faucet"
+        }
+      ],
+      "annotation_status": "benchmark_gold",
+      "gold_source": "macrodata/WGO-Bench",
+      "source_row_index": 1,
+      "source_metadata": {
+        "local_reannotation_line": 63,
+        "local_reannotation_saved_at_unix": 1782483513.340191,
+        "num_segments": 30,
+        "source_artifact": "/Users/hynky/Projects/carton_marketing/datasets/wasup_homer_gold/wasup_homer_gold.parquet",
+        "source_dataset": "toloka/HomER",
+        "source_family": "homer",
+        "source_video_url": "https://prodtlkcsafiles.blob.core.windows.net/ego-centric/21_Washing%20dishes%20by%20hand_222.mp4",
+        "updated_from_local_reannotations": true
+      },
+      "video_sha256": "24d81b8e3d70c450fe9378297ce5c0d316403d5da14c19efa70bfdce3388a861"
+    },
+    {
+      "id": "homer_3",
+      "video": "/Users/gaiyi/Downloads/mini-vlo/data/wgo_bench/homer_subset/videos/homer_3.mp4",
+      "instruction": "use a spoon to stir contents in a bowl",
+      "target_object": "",
+      "actions": [
+        "pick up the green bag with brown powder",
+        "pour brown powder from the green bag into the metal pan",
+        "new subtask",
+        "pick up the blue-shite cup from the left side of the table",
+        "pour water from the blue-white cup into the pan",
+        "place the blue cup on the left side of the table",
+        "pick up a white spatula",
+        "stir the brown liquid in the pan using a white spatula",
+        "place the pan containing orange liquid onto the black stovetop"
+      ],
+      "boundaries_sec": [
+        3.285,
+        8.841,
+        10.572,
+        12.296,
+        17.648,
+        18.597,
+        19.856,
+        131.898
+      ],
+      "segments": [
+        {
+          "start_sec": 0.0,
+          "end_sec": 3.285,
+          "label": "pick up the green bag with brown powder"
+        },
+        {
+          "start_sec": 3.285,
+          "end_sec": 8.841,
+          "label": "pour brown powder from the green bag into the metal pan"
+        },
+        {
+          "start_sec": 8.841,
+          "end_sec": 10.572,
+          "label": "new subtask"
+        },
+        {
+          "start_sec": 10.572,
+          "end_sec": 12.296,
+          "label": "pick up the blue-shite cup from the left side of the table"
+        },
+        {
+          "start_sec": 12.296,
+          "end_sec": 17.648,
+          "label": "pour water from the blue-white cup into the pan"
+        },
+        {
+          "start_sec": 17.648,
+          "end_sec": 18.597,
+          "label": "place the blue cup on the left side of the table"
+        },
+        {
+          "start_sec": 18.597,
+          "end_sec": 19.856,
+          "label": "pick up a white spatula"
+        },
+        {
+          "start_sec": 19.856,
+          "end_sec": 131.898,
+          "label": "stir the brown liquid in the pan using a white spatula"
+        },
+        {
+          "start_sec": 131.898,
+          "end_sec": 135.747,
+          "label": "place the pan containing orange liquid onto the black stovetop"
+        }
+      ],
+      "annotation_status": "benchmark_gold",
+      "gold_source": "macrodata/WGO-Bench",
+      "source_row_index": 2,
+      "source_metadata": {
+        "local_reannotation_line": 64,
+        "local_reannotation_saved_at_unix": 1782483515.3551092,
+        "num_segments": 9,
+        "source_artifact": "/Users/hynky/Projects/carton_marketing/datasets/wasup_homer_gold/wasup_homer_gold.parquet",
+        "source_dataset": "toloka/HomER",
+        "source_family": "homer",
+        "source_video_url": "https://prodtlkcsafiles.blob.core.windows.net/ego-centric/59_Stirring%20or%20mixing%20in%20a%20bowl_WhatsApp%20Video%202026-03-06%20at%208.03.59%20PM.mp4",
+        "updated_from_local_reannotations": true
+      },
+      "video_sha256": "b097b61a2db997a7b1178131131e59b532ed2a4875955c956b2891720dfd9d60"
+    }
+  ]
+}

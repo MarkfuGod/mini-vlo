@@ -47,6 +47,7 @@ from src.runtime_utils import (
     write_json,
 )
 from src.vlm_engine import _parse_json_response
+from run_video2tasks import normalize_window_output
 
 
 ROOT = Path(__file__).parent
@@ -280,6 +281,12 @@ def parse_args() -> argparse.Namespace:
         help="Deprecated alias for --frames-per-window.",
     )
     parser.add_argument("--repeats", type=int, default=1)
+    parser.add_argument(
+        "--sample-order",
+        choices=["manifest", "duration-asc"],
+        default="manifest",
+        help="Optionally run short episodes first without changing evaluation.",
+    )
     parser.add_argument("--resume", action="store_true")
     parser.add_argument(
         "--rescore-only",
@@ -327,6 +334,22 @@ def load_samples(path_value: str) -> tuple[list[dict[str, Any]], Path | None]:
             raise ValueError(f"Sample {index} is missing fields: {missing}")
         sample["video"] = str(_resolve_path(str(sample["video"]), path))
     return samples, path
+
+
+def sample_duration_sec(sample: dict[str, Any]) -> float:
+    segments = sample.get("segments")
+    if isinstance(segments, list):
+        end_times = [
+            float(segment["end_sec"])
+            for segment in segments
+            if isinstance(segment, dict) and "end_sec" in segment
+        ]
+        if end_times:
+            return max(end_times)
+    metadata = sample.get("source_metadata")
+    if isinstance(metadata, dict) and metadata.get("duration_sec") is not None:
+        return float(metadata["duration_sec"])
+    return float("inf")
 
 
 def extract_frame_indices(
@@ -441,6 +464,10 @@ def _run_method(
             frame_paths=frame_paths,
             max_tokens=max_tokens,
         )
+        parsed, normalization_warnings = normalize_window_output(
+            parsed,
+            frame_count=len(frame_indices),
+        )
         input_tokens += usage["input_tokens"]
         output_tokens += usage["output_tokens"]
         if method == "semantic_motion":
@@ -469,6 +496,7 @@ def _run_method(
                 "window_id": window_id,
                 "frame_indices": frame_indices,
                 "parsed": parsed,
+                "normalization_warnings": normalization_warnings,
             }
         )
         return parsed
@@ -1172,6 +1200,8 @@ def main() -> None:
         raise ValueError("--frames-per-window must be >= 1")
 
     samples, sample_manifest = load_samples(args.samples)
+    if args.sample_order == "duration-asc":
+        samples.sort(key=lambda sample: (sample_duration_sec(sample), str(sample["id"])))
     output = Path(args.output)
     previous: dict[tuple[str, int], dict[str, Any]] = {}
     if args.resume and output.exists():
@@ -1254,6 +1284,7 @@ def main() -> None:
                     ),
                     "num_samples": len(samples),
                     "repeats": args.repeats,
+                    "sample_order": args.sample_order,
                 },
                 "windowing": {
                     "window_sec": args.window_sec,

@@ -7,6 +7,8 @@
 
 \RequirePackage[a4paper,top=25mm,bottom=27mm,left=28mm,right=28mm,headheight=15pt]{geometry}
 \RequirePackage{graphicx}
+\RequirePackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,calc,fit,backgrounds,shapes.geometric}
 \RequirePackage{booktabs}
 \RequirePackage{tabularx}
 \RequirePackage{array}
@@ -34,6 +36,21 @@
 \definecolor{SMGray}{RGB}{88,96,105}
 \definecolor{SMLightGray}{RGB}{244,246,248}
 \definecolor{SMRule}{RGB}{205,211,217}
+
+% Shared TikZ styles for flow and architecture diagrams.
+\tikzset{
+  smnode/.style={rectangle, rounded corners=2pt, draw=SMRule, line width=0.6pt,
+    fill=SMLightGray, align=center, font=\small, minimum height=8mm, inner sep=4pt},
+  smmodule/.style={smnode, draw=SMBlue, fill=SMBlue!12},
+  smio/.style={smnode, draw=SMGray, fill=white},
+  smkeep/.style={smnode, draw=green!55!black, fill=green!12},
+  smdrop/.style={smnode, draw=red!65!black, fill=red!10},
+  smdecision/.style={diamond, aspect=2.2, draw=SMBlue, line width=0.6pt,
+    fill=SMBlue!12, align=center, font=\footnotesize, inner sep=1pt},
+  smarrow/.style={-{Stealth[length=2.2mm]}, draw=SMGray, line width=0.7pt},
+  smdash/.style={smarrow, dashed},
+  smlbl/.style={font=\footnotesize\itshape, text=SMGray, align=center},
+}
 
 \setstretch{1.12}
 \setlength{\parindent}{1.5em}
@@ -110,26 +127,46 @@
 \newcommand{\InstitutionName}[1]{\renewcommand{\sm@institution}{#1}}
 \newcommand{\SubmissionDate}[1]{\renewcommand{\sm@date}{#1}}
 
-\newcommand{\makeprojecttitle}{%
-  \hypersetup{pageanchor=false}
-  \begin{titlepage}
-    \centering
-    {\large \sm@institution\par}
-    \vspace{2.2cm}
-    {\Huge\bfseries\color{SMBlue}\sm@title\par}
-    \vspace{0.6cm}
-    {\Large\sm@subtitle\par}
-    \vfill
-    \begin{tabular}{@{}ll@{}}
-      Author: & \sm@author \\
-      Student ID: & \sm@studentid \\
-      Supervisor: & \sm@supervisor \\
-      Programme: & \sm@programme \\
-      Submission date: & \sm@date
-    \end{tabular}
-    \vfill
-  \end{titlepage}
-  \hypersetup{pageanchor=true}
+\def\ProjectTitle#1{\gdef\@ProjectTitle{#1}}
+\def\ProjectSubtitle#1{\gdef\@ProjectSubtitle{#1}}
+\def\AuthorName#1{\gdef\@AuthorName{#1}}
+\def\StudentID#1{\gdef\@StudentID{#1}}
+\def\SupervisorName#1{\gdef\@SupervisorName{#1}}
+\def\SubmissionDate#1{\gdef\@SubmissionDate{#1}}
+
+\newcommand{\makeprojecttitle}{
+    \begin{titlepage}
+        \centering 
+
+        \includegraphics[width=4.5cm]{hku_logo.png} \par
+        \vspace{0.8cm}
+
+        {\large The University of Hong Kong \par}
+        \vspace{0.2cm}
+        {\large School of Computing and Data Science \par}
+
+        \vspace{2.5cm} 
+
+        {\large COMP7705 \par}
+        \vspace{0.2cm}
+        {\large Project Report \par}
+        {\large \@ProjectTitle \par}
+
+        \vspace{2.5cm} 
+
+        {\normalsize Submitted in partial fulfillment of the requirements for the admission to the degree of \par}
+        {\normalsize Master of Science in Computer Science \par}
+
+        \vspace{2.5cm} 
+
+        {\normalsize By \par}
+        \vspace{0.5cm}
+        {\normalsize \@AuthorName\ (\@StudentID) \par}
+        \vspace{0.5cm}
+        {\normalsize Mentor: \@SupervisorName \par}
+        {\normalsize Date of submission: \@SubmissionDate \par}
+
+    \end{titlepage}
 }
 
 \newenvironment{projectabstract}
@@ -164,7 +201,8 @@
   \textbf{#1}: #2
 }
 
-\newcommand{\codepath}[1]{\texttt{\detokenize{#1}}}
+% Typewriter path command that may break at slashes/dots to avoid overfull lines.
+\DeclareUrlCommand\codepath{\urlstyle{tt}}
 
 \hypersetup{
   pdftitle={\sm@title},

@@ -1,0 +1,822 @@
+{
+  "schema_version": "module-d-wechat-compare/v1",
+  "ground_truth_policy": "folder_name_as_one_full_video_segment",
+  "samples": [
+    {
+      "id": "Air_Squat",
+      "video": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Air_Squat/Air_Squat_Fixed_View.mp4",
+      "instruction": "Perform air squat.",
+      "target_object": "",
+      "actions": [
+        "air squat"
+      ],
+      "boundaries_sec": [],
+      "segments": [
+        {
+          "start_sec": 0.0,
+          "end_sec": 1.9,
+          "label": "Air Squat"
+        }
+      ],
+      "annotation_status": "weak_folder_name_proxy",
+      "source_metadata": {
+        "duration_sec": 1.9,
+        "frame_count": 57,
+        "fps": 30.0,
+        "motion_source": "module_d_wechat"
+      }
+    },
+    {
+      "id": "Backflip",
+      "video": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Backflip/Backflip_Fixed_View.mp4",
+      "instruction": "Perform backflip.",
+      "target_object": "",
+      "actions": [
+        "backflip"
+      ],
+      "boundaries_sec": [],
+      "segments": [
+        {
+          "start_sec": 0.0,
+          "end_sec": 4.133333333333334,
+          "label": "Backflip"
+        }
+      ],
+      "annotation_status": "weak_folder_name_proxy",
+      "source_metadata": {
+        "duration_sec": 4.133333333333334,
+        "frame_count": 124,
+        "fps": 30.0,
+        "motion_source": "module_d_wechat"
+      }
+    },
+    {
+      "id": "Capoeira",
+      "video": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Capoeira/Capoeira_Fixed_View.mp4",
+      "instruction": "Perform capoeira.",
+      "target_object": "",
+      "actions": [
+        "capoeira"
+      ],
+      "boundaries_sec": [],
+      "segments": [
+        {
+          "start_sec": 0.0,
+          "end_sec": 3.466666666666667,
+          "label": "Capoeira"
+        }
+      ],
+      "annotation_status": "weak_folder_name_proxy",
+      "source_metadata": {
+        "duration_sec": 3.466666666666667,
+        "frame_count": 104,
+        "fps": 30.0,
+        "motion_source": "module_d_wechat"
+      }
+    },
+    {
+      "id": "Cartwheel",
+      "video": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Cartwheel/Cartwheel_Fixed_View.mp4",
+      "instruction": "Perform cartwheel.",
+      "target_object": "",
+      "actions": [
+        "cartwheel"
+      ],
+      "boundaries_sec": [],
+      "segments": [
+        {
+          "start_sec": 0.0,
+          "end_sec": 3.566666666666667,
+          "label": "Cartwheel"
+        }
+      ],
+      "annotation_status": "weak_folder_name_proxy",
+      "source_metadata": {
+        "duration_sec": 3.566666666666667,
+        "frame_count": 107,
+        "fps": 30.0,
+        "motion_source": "module_d_wechat"
+      }
+    },
+    {
+      "id": "Defeated",
+      "video": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Defeated/Defeated_Fixed_View.mp4",
+      "instruction": "Perform defeated.",
+      "target_object": "",
+      "actions": [
+        "defeated"
+      ],
+      "boundaries_sec": [],
+      "segments": [
+        {
+          "start_sec": 0.0,
+          "end_sec": 6.766666666666667,
+          "label": "Defeated"
+        }
+      ],
+      "annotation_status": "weak_folder_name_proxy",
+      "source_metadata": {
+        "duration_sec": 6.766666666666667,
+        "frame_count": 203,
+        "fps": 30.0,
+        "motion_source": "module_d_wechat"
+      }
+    },
+    {
+      "id": "Dying",
+      "video": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Dying/Dying_Fixed_View.mp4",
+      "instruction": "Perform dying.",
+      "target_object": "",
+      "actions": [
+        "dying"
+      ],
+      "boundaries_sec": [],
+      "segments": [
+        {
+          "start_sec": 0.0,
+          "end_sec": 4.433333333333334,
+          "label": "Dying"
+        }
+      ],
+      "annotation_status": "weak_folder_name_proxy",
+      "source_metadata": {
+        "duration_sec": 4.433333333333334,
+        "frame_count": 133,
+        "fps": 30.0,
+        "motion_source": "module_d_wechat"
+      }
+    },
+    {
+      "id": "Flying_Knee_Punch_Combo",
+      "video": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Flying_Knee_Punch_Combo/Flying_Knee_Punch_Combo_Fixed_View.mp4",
+      "instruction": "Perform flying knee punch combo.",
+      "target_object": "",
+      "actions": [
+        "flying knee punch combo"
+      ],
+      "boundaries_sec": [],
+      "segments": [
+        {
+          "start_sec": 0.0,
+          "end_sec": 2.7,
+          "label": "Flying Knee Punch Combo"
+        }
+      ],
+      "annotation_status": "weak_folder_name_proxy",
+      "source_metadata": {
+        "duration_sec": 2.7,
+        "frame_count": 81,
+        "fps": 30.0,
+        "motion_source": "module_d_wechat"
+      }
+    },
+    {
+      "id": "Front_Raises",
+      "video": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Front_Raises/Front_Raises_Fixed_View.mp4",
+      "instruction": "Perform front raises.",
+      "target_object": "",
+      "actions": [
+        "front raises"
+      ],
+      "boundaries_sec": [],
+      "segments": [
+        {
+          "start_sec": 0.0,
+          "end_sec": 6.266666666666667,
+          "label": "Front Raises"
+        }
+      ],
+      "annotation_status": "weak_folder_name_proxy",
+      "source_metadata": {
+        "duration_sec": 6.266666666666667,
+        "frame_count": 188,
+        "fps": 30.0,
+        "motion_source": "module_d_wechat"
+      }
+    },
+    {
+      "id": "Headspin_End",
+      "video": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Headspin_End/Headspin_End_Fixed_View.mp4",
+      "instruction": "Perform headspin end.",
+      "target_object": "",
+      "actions": [
+        "headspin end"
+      ],
+      "boundaries_sec": [],
+      "segments": [
+        {
+          "start_sec": 0.0,
+          "end_sec": 2.066666666666667,
+          "label": "Headspin End"
+        }
+      ],
+      "annotation_status": "weak_folder_name_proxy",
+      "source_metadata": {
+        "duration_sec": 2.066666666666667,
+        "frame_count": 62,
+        "fps": 30.0,
+        "motion_source": "module_d_wechat"
+      }
+    },
+    {
+      "id": "Illegal_Knee",
+      "video": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Illegal_Knee/Illegal_Knee_Fixed_View.mp4",
+      "instruction": "Perform illegal knee.",
+      "target_object": "",
+      "actions": [
+        "illegal knee"
+      ],
+      "boundaries_sec": [],
+      "segments": [
+        {
+          "start_sec": 0.0,
+          "end_sec": 2.3,
+          "label": "Illegal Knee"
+        }
+      ],
+      "annotation_status": "weak_folder_name_proxy",
+      "source_metadata": {
+        "duration_sec": 2.3,
+        "frame_count": 69,
+        "fps": 30.0,
+        "motion_source": "module_d_wechat"
+      }
+    },
+    {
+      "id": "Insult",
+      "video": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Insult/Insult_Fixed_View.mp4",
+      "instruction": "Perform insult.",
+      "target_object": "",
+      "actions": [
+        "insult"
+      ],
+      "boundaries_sec": [],
+      "segments": [
+        {
+          "start_sec": 0.0,
+          "end_sec": 2.7,
+          "label": "Insult"
+        }
+      ],
+      "annotation_status": "weak_folder_name_proxy",
+      "source_metadata": {
+        "duration_sec": 2.7,
+        "frame_count": 81,
+        "fps": 30.0,
+        "motion_source": "module_d_wechat"
+      }
+    },
+    {
+      "id": "Jab_Cross",
+      "video": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Jab_Cross/Jab_Cross_Fixed_View.mp4",
+      "instruction": "Perform jab cross.",
+      "target_object": "",
+      "actions": [
+        "jab cross"
+      ],
+      "boundaries_sec": [],
+      "segments": [
+        {
+          "start_sec": 0.0,
+          "end_sec": 2.1666666666666665,
+          "label": "Jab Cross"
+        }
+      ],
+      "annotation_status": "weak_folder_name_proxy",
+      "source_metadata": {
+        "duration_sec": 2.1666666666666665,
+        "frame_count": 65,
+        "fps": 30.0,
+        "motion_source": "module_d_wechat"
+      }
+    },
+    {
+      "id": "Jog_In_Circle",
+      "video": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Jog_In_Circle/Jog_In_Circle_Fixed_View.mp4",
+      "instruction": "Perform jog in circle.",
+      "target_object": "",
+      "actions": [
+        "jog in circle"
+      ],
+      "boundaries_sec": [],
+      "segments": [
+        {
+          "start_sec": 0.0,
+          "end_sec": 5.966666666666667,
+          "label": "Jog In Circle"
+        }
+      ],
+      "annotation_status": "weak_folder_name_proxy",
+      "source_metadata": {
+        "duration_sec": 5.966666666666667,
+        "frame_count": 179,
+        "fps": 30.0,
+        "motion_source": "module_d_wechat"
+      }
+    },
+    {
+      "id": "Joyful_Jump",
+      "video": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Joyful_Jump/Joyful_Jump_Fixed_View.mp4",
+      "instruction": "Perform joyful jump.",
+      "target_object": "",
+      "actions": [
+        "joyful jump"
+      ],
+      "boundaries_sec": [],
+      "segments": [
+        {
+          "start_sec": 0.0,
+          "end_sec": 1.9,
+          "label": "Joyful Jump"
+        }
+      ],
+      "annotation_status": "weak_folder_name_proxy",
+      "source_metadata": {
+        "duration_sec": 1.9,
+        "frame_count": 57,
+        "fps": 30.0,
+        "motion_source": "module_d_wechat"
+      }
+    },
+    {
+      "id": "Jump_Push_Up",
+      "video": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Jump_Push_Up/Jump_Push_Up_Fixed_View.mp4",
+      "instruction": "Perform jump push up.",
+      "target_object": "",
+      "actions": [
+        "jump push up"
+      ],
+      "boundaries_sec": [],
+      "segments": [
+        {
+          "start_sec": 0.0,
+          "end_sec": 1.2,
+          "label": "Jump Push Up"
+        }
+      ],
+      "annotation_status": "weak_folder_name_proxy",
+      "source_metadata": {
+        "duration_sec": 1.2,
+        "frame_count": 36,
+        "fps": 30.0,
+        "motion_source": "module_d_wechat"
+      }
+    },
+    {
+      "id": "Jumping_Jacks",
+      "video": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Jumping_Jacks/Jumping_Jacks_Fixed_View.mp4",
+      "instruction": "Perform jumping jacks.",
+      "target_object": "",
+      "actions": [
+        "jumping jacks"
+      ],
+      "boundaries_sec": [],
+      "segments": [
+        {
+          "start_sec": 0.0,
+          "end_sec": 1.1,
+          "label": "Jumping Jacks"
+        }
+      ],
+      "annotation_status": "weak_folder_name_proxy",
+      "source_metadata": {
+        "duration_sec": 1.1,
+        "frame_count": 33,
+        "fps": 30.0,
+        "motion_source": "module_d_wechat"
+      }
+    },
+    {
+      "id": "Looking",
+      "video": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Looking/Looking_Fixed_View.mp4",
+      "instruction": "Perform looking.",
+      "target_object": "",
+      "actions": [
+        "looking"
+      ],
+      "boundaries_sec": [],
+      "segments": [
+        {
+          "start_sec": 0.0,
+          "end_sec": 4.8,
+          "label": "Looking"
+        }
+      ],
+      "annotation_status": "weak_folder_name_proxy",
+      "source_metadata": {
+        "duration_sec": 4.8,
+        "frame_count": 144,
+        "fps": 30.0,
+        "motion_source": "module_d_wechat"
+      }
+    },
+    {
+      "id": "Low_Crawl",
+      "video": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Low_Crawl/Low_Crawl_Fixed_View.mp4",
+      "instruction": "Perform low crawl.",
+      "target_object": "",
+      "actions": [
+        "low crawl"
+      ],
+      "boundaries_sec": [],
+      "segments": [
+        {
+          "start_sec": 0.0,
+          "end_sec": 2.3666666666666667,
+          "label": "Low Crawl"
+        }
+      ],
+      "annotation_status": "weak_folder_name_proxy",
+      "source_metadata": {
+        "duration_sec": 2.3666666666666667,
+        "frame_count": 71,
+        "fps": 30.0,
+        "motion_source": "module_d_wechat"
+      }
+    },
+    {
+      "id": "Pike_Walk",
+      "video": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Pike_Walk/Pike_Walk_Fixed_View.mp4",
+      "instruction": "Perform pike walk.",
+      "target_object": "",
+      "actions": [
+        "pike walk"
+      ],
+      "boundaries_sec": [],
+      "segments": [
+        {
+          "start_sec": 0.0,
+          "end_sec": 6.533333333333333,
+          "label": "Pike Walk"
+        }
+      ],
+      "annotation_status": "weak_folder_name_proxy",
+      "source_metadata": {
+        "duration_sec": 6.533333333333333,
+        "frame_count": 196,
+        "fps": 30.0,
+        "motion_source": "module_d_wechat"
+      }
+    },
+    {
+      "id": "Pistol",
+      "video": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Pistol/Pistol_Fixed_View.mp4",
+      "instruction": "Perform pistol.",
+      "target_object": "",
+      "actions": [
+        "pistol"
+      ],
+      "boundaries_sec": [],
+      "segments": [
+        {
+          "start_sec": 0.0,
+          "end_sec": 4.066666666666666,
+          "label": "Pistol"
+        }
+      ],
+      "annotation_status": "weak_folder_name_proxy",
+      "source_metadata": {
+        "duration_sec": 4.066666666666666,
+        "frame_count": 122,
+        "fps": 30.0,
+        "motion_source": "module_d_wechat"
+      }
+    },
+    {
+      "id": "Praying",
+      "video": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Praying/Fixed_View.mp4",
+      "instruction": "Perform praying.",
+      "target_object": "",
+      "actions": [
+        "praying"
+      ],
+      "boundaries_sec": [],
+      "segments": [
+        {
+          "start_sec": 0.0,
+          "end_sec": 6.9,
+          "label": "Praying"
+        }
+      ],
+      "annotation_status": "weak_folder_name_proxy",
+      "source_metadata": {
+        "duration_sec": 6.9,
+        "frame_count": 207,
+        "fps": 30.0,
+        "motion_source": "module_d_wechat"
+      }
+    },
+    {
+      "id": "Quick_Steps",
+      "video": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Quick_Steps/Quick_Steps_Fixed_View.mp4",
+      "instruction": "Perform quick steps.",
+      "target_object": "",
+      "actions": [
+        "quick steps"
+      ],
+      "boundaries_sec": [],
+      "segments": [
+        {
+          "start_sec": 0.0,
+          "end_sec": 7.366666666666666,
+          "label": "Quick Steps"
+        }
+      ],
+      "annotation_status": "weak_folder_name_proxy",
+      "source_metadata": {
+        "duration_sec": 7.366666666666666,
+        "frame_count": 221,
+        "fps": 30.0,
+        "motion_source": "module_d_wechat"
+      }
+    },
+    {
+      "id": "Rallying",
+      "video": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Rallying/Rallying_Fixed_View.mp4",
+      "instruction": "Perform rallying.",
+      "target_object": "",
+      "actions": [
+        "rallying"
+      ],
+      "boundaries_sec": [],
+      "segments": [
+        {
+          "start_sec": 0.0,
+          "end_sec": 6.233333333333333,
+          "label": "Rallying"
+        }
+      ],
+      "annotation_status": "weak_folder_name_proxy",
+      "source_metadata": {
+        "duration_sec": 6.233333333333333,
+        "frame_count": 187,
+        "fps": 30.0,
+        "motion_source": "module_d_wechat"
+      }
+    },
+    {
+      "id": "Rumba_Dancing",
+      "video": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Rumba_Dancing/Rumba_Dancing_Fixed_View.mp4",
+      "instruction": "Perform rumba dancing.",
+      "target_object": "",
+      "actions": [
+        "rumba dancing"
+      ],
+      "boundaries_sec": [],
+      "segments": [
+        {
+          "start_sec": 0.0,
+          "end_sec": 2.4,
+          "label": "Rumba Dancing"
+        }
+      ],
+      "annotation_status": "weak_folder_name_proxy",
+      "source_metadata": {
+        "duration_sec": 2.4,
+        "frame_count": 72,
+        "fps": 30.0,
+        "motion_source": "module_d_wechat"
+      }
+    },
+    {
+      "id": "Run_To_Rolling",
+      "video": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Run_To_Rolling/Run_To_Rolling_Fixed_View.mp4",
+      "instruction": "Perform run to rolling.",
+      "target_object": "",
+      "actions": [
+        "run to rolling"
+      ],
+      "boundaries_sec": [],
+      "segments": [
+        {
+          "start_sec": 0.0,
+          "end_sec": 2.466666666666667,
+          "label": "Run To Rolling"
+        }
+      ],
+      "annotation_status": "weak_folder_name_proxy",
+      "source_metadata": {
+        "duration_sec": 2.466666666666667,
+        "frame_count": 74,
+        "fps": 30.0,
+        "motion_source": "module_d_wechat"
+      }
+    },
+    {
+      "id": "Sneak_Walk",
+      "video": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Sneak_Walk/Sneak_Walk_Fixed_View.mp4",
+      "instruction": "Perform sneak walk.",
+      "target_object": "",
+      "actions": [
+        "sneak walk"
+      ],
+      "boundaries_sec": [],
+      "segments": [
+        {
+          "start_sec": 0.0,
+          "end_sec": 1.1,
+          "label": "Sneak Walk"
+        }
+      ],
+      "annotation_status": "weak_folder_name_proxy",
+      "source_metadata": {
+        "duration_sec": 1.1,
+        "frame_count": 33,
+        "fps": 30.0,
+        "motion_source": "module_d_wechat"
+      }
+    },
+    {
+      "id": "Spat_In_Face",
+      "video": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Spat_In_Face/Spat_In_Face_Fixed_View.mp4",
+      "instruction": "Perform spat in face.",
+      "target_object": "",
+      "actions": [
+        "spat in face"
+      ],
+      "boundaries_sec": [],
+      "segments": [
+        {
+          "start_sec": 0.0,
+          "end_sec": 2.566666666666667,
+          "label": "Spat In Face"
+        }
+      ],
+      "annotation_status": "weak_folder_name_proxy",
+      "source_metadata": {
+        "duration_sec": 2.566666666666667,
+        "frame_count": 77,
+        "fps": 30.0,
+        "motion_source": "module_d_wechat"
+      }
+    },
+    {
+      "id": "Strut_Walking",
+      "video": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Strut_Walking/Strut_Walking_Fixed_View.mp4",
+      "instruction": "Perform strut walking.",
+      "target_object": "",
+      "actions": [
+        "strut walking"
+      ],
+      "boundaries_sec": [],
+      "segments": [
+        {
+          "start_sec": 0.0,
+          "end_sec": 1.4666666666666666,
+          "label": "Strut Walking"
+        }
+      ],
+      "annotation_status": "weak_folder_name_proxy",
+      "source_metadata": {
+        "duration_sec": 1.4666666666666666,
+        "frame_count": 44,
+        "fps": 30.0,
+        "motion_source": "module_d_wechat"
+      }
+    },
+    {
+      "id": "Talking_On_Phone",
+      "video": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Talking_On_Phone/Talking_On_Phone_Fixed_View.mp4",
+      "instruction": "Perform talking on phone.",
+      "target_object": "",
+      "actions": [
+        "talking on phone"
+      ],
+      "boundaries_sec": [],
+      "segments": [
+        {
+          "start_sec": 0.0,
+          "end_sec": 38.86666666666667,
+          "label": "Talking On Phone"
+        }
+      ],
+      "annotation_status": "weak_folder_name_proxy",
+      "source_metadata": {
+        "duration_sec": 38.86666666666667,
+        "frame_count": 1166,
+        "fps": 30.0,
+        "motion_source": "module_d_wechat"
+      }
+    },
+    {
+      "id": "Tripping",
+      "video": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Tripping/Tripping_Fixed_View.mp4",
+      "instruction": "Perform tripping.",
+      "target_object": "",
+      "actions": [
+        "tripping"
+      ],
+      "boundaries_sec": [],
+      "segments": [
+        {
+          "start_sec": 0.0,
+          "end_sec": 2.8,
+          "label": "Tripping"
+        }
+      ],
+      "annotation_status": "weak_folder_name_proxy",
+      "source_metadata": {
+        "duration_sec": 2.8,
+        "frame_count": 84,
+        "fps": 30.0,
+        "motion_source": "module_d_wechat"
+      }
+    },
+    {
+      "id": "Walking",
+      "video": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Walking/Fixed_View.mp4",
+      "instruction": "Perform walking.",
+      "target_object": "",
+      "actions": [
+        "walking"
+      ],
+      "boundaries_sec": [],
+      "segments": [
+        {
+          "start_sec": 0.0,
+          "end_sec": 1.0666666666666667,
+          "label": "Walking"
+        }
+      ],
+      "annotation_status": "weak_folder_name_proxy",
+      "source_metadata": {
+        "duration_sec": 1.0666666666666667,
+        "frame_count": 32,
+        "fps": 30.0,
+        "motion_source": "module_d_wechat"
+      }
+    },
+    {
+      "id": "Ymca_Dance",
+      "video": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/Ymca_Dance/Ymca_Dance_Fixed_View.mp4",
+      "instruction": "Perform ymca dance.",
+      "target_object": "",
+      "actions": [
+        "ymca dance"
+      ],
+      "boundaries_sec": [],
+      "segments": [
+        {
+          "start_sec": 0.0,
+          "end_sec": 4.533333333333333,
+          "label": "Ymca Dance"
+        }
+      ],
+      "annotation_status": "weak_folder_name_proxy",
+      "source_metadata": {
+        "duration_sec": 4.533333333333333,
+        "frame_count": 136,
+        "fps": 30.0,
+        "motion_source": "module_d_wechat"
+      }
+    },
+    {
+      "id": "jump_down",
+      "video": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/jump_down/Fixed_View.mp4",
+      "instruction": "Perform jump down.",
+      "target_object": "",
+      "actions": [
+        "jump down"
+      ],
+      "boundaries_sec": [],
+      "segments": [
+        {
+          "start_sec": 0.0,
+          "end_sec": 2.3333333333333335,
+          "label": "jump down"
+        }
+      ],
+      "annotation_status": "weak_folder_name_proxy",
+      "source_metadata": {
+        "duration_sec": 2.3333333333333335,
+        "frame_count": 70,
+        "fps": 30.0,
+        "motion_source": "module_d_wechat"
+      }
+    },
+    {
+      "id": "sitting",
+      "video": "/Users/gaiyi/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_k71fjilz171332_afc3/msg/file/2026-07/output_videos/sitting/Fixed_View.mp4",
+      "instruction": "Perform sitting.",
+      "target_object": "",
+      "actions": [
+        "sitting"
+      ],
+      "boundaries_sec": [],
+      "segments": [
+        {
+          "start_sec": 0.0,
+          "end_sec": 4.466666666666667,
+          "label": "sitting"
+        }
+      ],
+      "annotation_status": "weak_folder_name_proxy",
+      "source_metadata": {
+        "duration_sec": 4.466666666666667,
+        "frame_count": 134,
+        "fps": 30.0,
+        "motion_source": "module_d_wechat"
+      }
+    }
+  ]
+}

@@ -1,3 +1,8 @@
-# Optional prompt-ablation dependency. The adapter verifies upstream source hashes.
+# The pinned Video2Tasks source is vendored under video2tasks/.
+# These extras are only needed for its original server/worker CLIs.
 -r requirements.txt
-video2tasks @ git+https://github.com/ly-geming/video2tasks.git@8d405a120a37df4e5a4869b61ba3d9edb7b4dfe3
+fastapi>=0.100.0
+uvicorn[standard]>=0.23.0
+pydantic-settings>=2.0.0
+requests>=2.31.0
+click>=8.0.0

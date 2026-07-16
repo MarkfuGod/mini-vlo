@@ -1,0 +1,101 @@
+{
+  "schema_version": "vendored-video2tasks-run/v2",
+  "formal": false,
+  "generated_at": "2026-07-15T17:12:27.125081+00:00",
+  "code_revision": "2f260ee0874acb8cfe3d72abb500590782215147",
+  "upstream_repository": "https://github.com/ly-geming/video2tasks",
+  "upstream_revision": "8d405a120a37df4e5a4869b61ba3d9edb7b4dfe3",
+  "vendored_source": "video2tasks/",
+  "model": "qwen3-vl-flash",
+  "base_url": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+  "prompt_sha256": "72e065ceee214ac019b6a13d898e2d74963ff6449df7d0c0b349bbb4004c036f",
+  "input": {
+    "manifest": "data/libero_goal/processed/manifest.json",
+    "manifest_sha256": "bfc210b7134802027334e427fe9facecac5737960e54a5f8836a71a6ecd725f3",
+    "requested_samples": 1,
+    "view_mode": "fixed"
+  },
+  "windowing": {
+    "window_sec": 16.0,
+    "step_sec": 8.0,
+    "frames_per_window": 8,
+    "target_width": 384,
+    "target_height": 256,
+    "png_compression": 3
+  },
+  "summary": {
+    "completed": 1,
+    "succeeded": 1,
+    "failed": 0
+  },
+  "limitations": [
+    "generic VLM; not a robot-domain world model",
+    "output quality depends on provider vision grounding"
+  ],
+  "results": [
+    {
+      "sample_id": "put_the_bowl_on_the_plate_demo_0",
+      "view_mode": "fixed",
+      "views": {
+        "fixed": "/Users/gaiyi/Downloads/mini-vlo/data/libero_goal/processed/put_the_bowl_on_the_plate_demo/demo_0_agentview_rgb.mp4"
+      },
+      "view_sha256": {
+        "fixed": "07d97f742888d009fad759672de77d067f458d7f8b6e31a9e74aabf62e563c72"
+      },
+      "fps": 20.0,
+      "frame_count": 90,
+      "window_count": 1,
+      "latency_s": 8.004736958000649,
+      "usage": {
+        "requests": 1,
+        "input_tokens": 1302,
+        "output_tokens": 210
+      },
+      "prediction": {
+        "sample_id": "put_the_bowl_on_the_plate_demo_0",
+        "nframes": 90,
+        "segments": [
+          {
+            "seg_id": 0,
+            "start_frame": 0,
+            "end_frame": 90,
+            "instruction": "Manipulate the silver bowl",
+            "confidence": 1.0
+          }
+        ]
+      },
+      "window_outputs": [
+        {
+          "window_id": 0,
+          "start_frame": 0,
+          "end_frame": 89,
+          "frame_ids": [
+            0,
+            12,
+            25,
+            38,
+            50,
+            63,
+            76,
+            89
+          ],
+          "view_ids": [
+            "fixed"
+          ],
+          "images_per_timestamp": 1,
+          "vlm_json": {
+            "thought": "In frames 0-2, the robot is positioned below the objects but not interacting with any. In frame 3, the robot begins moving upward toward the central cluster of objects (the pink ring, the silver bowl, and the white plate with a black circular object). From frame 4 to 7, the robot's end-effector moves into contact with the silver bowl and then appears to manipulate it — specifically, it lifts and rotates the bowl, possibly to place or adjust it. The key observation is that the robot interacts with only one object—the silver bowl—throughout frames 4–7. There is no release of the bowl followed by grasping a different object; the manipulation is continuous on the same object. No switch occurs because the robot never disengages from the bowl to start interacting with another distinct object (e.g., the pink ring, the white plate, or the black box).",
+            "transitions": [],
+            "instructions": [
+              "Manipulate the silver bowl"
+            ]
+          },
+          "warnings": [],
+          "raw_response": "{\n  \"thought\": \"In frames 0-2, the robot is positioned below the objects but not interacting with any. In frame 3, the robot begins moving upward toward the central cluster of objects (the pink ring, the silver bowl, and the white plate with a black circular object). From frame 4 to 7, the robot's end-effector moves into contact with the silver bowl and then appears to manipulate it — specifically, it lifts and rotates the bowl, possibly to place or adjust it. The key observation is that the robot interacts with only one object—the silver bowl—throughout frames 4–7. There is no release of the bowl followed by grasping a different object; the manipulation is continuous on the same object. No switch occurs because the robot never disengages from the bowl to start interacting with another distinct object (e.g., the pink ring, the white plate, or the black box).\",\n  \"transitions\": [],\n  \"instructions\": [\"Manipulate the silver bowl\"]\n}",
+          "error": ""
+        }
+      ],
+      "error": ""
+    }
+  ]
+}

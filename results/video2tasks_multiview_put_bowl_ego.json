@@ -1,0 +1,101 @@
+{
+  "schema_version": "vendored-video2tasks-run/v2",
+  "formal": false,
+  "generated_at": "2026-07-15T17:14:58.855694+00:00",
+  "code_revision": "2f260ee0874acb8cfe3d72abb500590782215147",
+  "upstream_repository": "https://github.com/ly-geming/video2tasks",
+  "upstream_revision": "8d405a120a37df4e5a4869b61ba3d9edb7b4dfe3",
+  "vendored_source": "video2tasks/",
+  "model": "qwen3-vl-flash",
+  "base_url": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+  "prompt_sha256": "72e065ceee214ac019b6a13d898e2d74963ff6449df7d0c0b349bbb4004c036f",
+  "input": {
+    "manifest": "data/libero_goal/processed/manifest.json",
+    "manifest_sha256": "bfc210b7134802027334e427fe9facecac5737960e54a5f8836a71a6ecd725f3",
+    "requested_samples": 1,
+    "view_mode": "ego"
+  },
+  "windowing": {
+    "window_sec": 16.0,
+    "step_sec": 8.0,
+    "frames_per_window": 8,
+    "target_width": 384,
+    "target_height": 256,
+    "png_compression": 3
+  },
+  "summary": {
+    "completed": 1,
+    "succeeded": 1,
+    "failed": 0
+  },
+  "limitations": [
+    "generic VLM; not a robot-domain world model",
+    "output quality depends on provider vision grounding"
+  ],
+  "results": [
+    {
+      "sample_id": "put_the_bowl_on_the_plate_demo_0",
+      "view_mode": "ego",
+      "views": {
+        "ego": "/Users/gaiyi/Downloads/mini-vlo/data/libero_goal/processed/put_the_bowl_on_the_plate_demo/demo_0_eye_in_hand_rgb.mp4"
+      },
+      "view_sha256": {
+        "ego": "54617feb13f17d89e9bf9f29cbf80241889eed60e2599c9bc3681da92e4d254f"
+      },
+      "fps": 20.0,
+      "frame_count": 90,
+      "window_count": 1,
+      "latency_s": 28.36497641599999,
+      "usage": {
+        "requests": 1,
+        "input_tokens": 1302,
+        "output_tokens": 919
+      },
+      "prediction": {
+        "sample_id": "put_the_bowl_on_the_plate_demo_0",
+        "nframes": 90,
+        "segments": [
+          {
+            "seg_id": 0,
+            "start_frame": 0,
+            "end_frame": 90,
+            "instruction": "Place the black object on the striped plate",
+            "confidence": 1.0
+          }
+        ]
+      },
+      "window_outputs": [
+        {
+          "window_id": 0,
+          "start_frame": 0,
+          "end_frame": 89,
+          "frame_ids": [
+            0,
+            12,
+            25,
+            38,
+            50,
+            63,
+            76,
+            89
+          ],
+          "view_ids": [
+            "ego"
+          ],
+          "images_per_timestamp": 1,
+          "vlm_json": {
+            "thought": "In frames 0-1, the robot is interacting with a black object (possibly a pan or pot) that is positioned above the striped plate. In frame 2, the black object has been moved out of view and the robot is now near the blue box (left side) and the striped plate. However, looking closely: in frame 0, the black object is at top center; in frame 1, it's still there but slightly lower; in frame 2, the black object is gone — instead, the blue box is now visible on the left, and the robot’s arm (or hand) appears to be moving toward the blue box. But wait — actually, let’s re-examine the sequence.\n\nFrame 0: Black object (with yellow top) is near top center. The gray bowl and striped plate are below.\nFrame 1: Black object is now lower, closer to the gray bowl. The robot seems to be moving it downward.\nFrame 2: The black object is no longer visible — instead, the blue box is now on the left, and the gray bowl and striped plate remain. This suggests the black object was lifted or moved away.\n\nBut crucially, from frame 3 onward, the black object (now with a yellow rim) is seen being lowered onto the striped plate — it’s clearly the same black object (same texture, shape, yellow rim). So the robot picked up the black object (in frames 0–2), then placed it down on the plate (frames 3–7).\n\nLet’s trace the interaction:\n- Frames 0–2: Robot is likely lifting or moving the black object away from its initial position (it’s not fully visible in frame 2, suggesting it’s being repositioned or carried). The blue box remains stationary — so no interaction with it yet.\n- Frame 3: The black object appears again, now being lowered onto the striped plate.\n- Frames 4–7: The black object is placed onto the striped plate, partially covering it.\n\nThe key question: Did the robot interact with a *different* object before/after? The only objects involved are: the black object (which appears to be a pan or lid), the striped plate, and the blue box. The blue box is never touched — it just sits there. The robot’s attention is on the black object.\n\nWait — in frame 0, the black object is near the top center. In frame 1, it’s lower. In frame 2, it’s gone — but the blue box is now more visible. Then in frame 3, the black object returns, now being placed on the plate. So the robot must have picked up the black object (from somewhere off-screen or from the top), moved it, and placed it on the plate.\n\nBut note: the black object is the *same* object throughout frames 3–7 — it’s being placed on the plate. So the action is continuous: pick up → place. No switch occurs because the robot is always interacting with the same object (the black object). The blue box is untouched.\n\nHowever, let’s double-check: Is there any point where the robot interacts with the blue box? In frame 0, the blue box is visible but not touched. In frame 1, still not touched. In frame 2, the blue box is still there, and the black object is gone — but the robot may be moving away from the black object. In frame 3, the black object is back, and the blue box is still untouched. So the robot never touches the blue box.\n\nTherefore, the entire sequence involves only one object: the black object (pan/lid). The robot picks it up (implied between frames 2 and 3), then places it on the plate (frames 3–7). Since the object doesn’t change, this is a single continuous task — no switch.\n\nWait — but what about the transition from moving the black object to placing it? That’s part of the same manipulation — picking up and placing the same object is not a switch. A switch only happens when the robot finishes with Object A and starts with Object B.\n\nSo: no switch detected.",
+            "transitions": [],
+            "instructions": [
+              "Place the black object on the striped plate"
+            ]
+          },
+          "warnings": [],
+          "raw_response": "{\n  \"thought\": \"In frames 0-1, the robot is interacting with a black object (possibly a pan or pot) that is positioned above the striped plate. In frame 2, the black object has been moved out of view and the robot is now near the blue box (left side) and the striped plate. However, looking closely: in frame 0, the black object is at top center; in frame 1, it's still there but slightly lower; in frame 2, the black object is gone — instead, the blue box is now visible on the left, and the robot’s arm (or hand) appears to be moving toward the blue box. But wait — actually, let’s re-examine the sequence.\\n\\nFrame 0: Black object (with yellow top) is near top center. The gray bowl and striped plate are below.\\nFrame 1: Black object is now lower, closer to the gray bowl. The robot seems to be moving it downward.\\nFrame 2: The black object is no longer visible — instead, the blue box is now on the left, and the gray bowl and striped plate remain. This suggests the black object was lifted or moved away.\\n\\nBut crucially, from frame 3 onward, the black object (now with a yellow rim) is seen being lowered onto the striped plate — it’s clearly the same black object (same texture, shape, yellow rim). So the robot picked up the black object (in frames 0–2), then placed it down on the plate (frames 3–7).\\n\\nLet’s trace the interaction:\\n- Frames 0–2: Robot is likely lifting or moving the black object away from its initial position (it’s not fully visible in frame 2, suggesting it’s being repositioned or carried). The blue box remains stationary — so no interaction with it yet.\\n- Frame 3: The black object appears again, now being lowered onto the striped plate.\\n- Frames 4–7: The black object is placed onto the striped plate, partially covering it.\\n\\nThe key question: Did the robot interact with a *different* object before/after? The only objects involved are: the black object (which appears to be a pan or lid), the striped plate, and the blue box. The blue box is never touched — it just sits there. The robot’s attention is on the black object.\\n\\nWait — in frame 0, the black object is near the top center. In frame 1, it’s lower. In frame 2, it’s gone — but the blue box is now more visible. Then in frame 3, the black object returns, now being placed on the plate. So the robot must have picked up the black object (from somewhere off-screen or from the top), moved it, and placed it on the plate.\\n\\nBut note: the black object is the *same* object throughout frames 3–7 — it’s being placed on the plate. So the action is continuous: pick up → place. No switch occurs because the robot is always interacting with the same object (the black object). The blue box is untouched.\\n\\nHowever, let’s double-check: Is there any point where the robot interacts with the blue box? In frame 0, the blue box is visible but not touched. In frame 1, still not touched. In frame 2, the blue box is still there, and the black object is gone — but the robot may be moving away from the black object. In frame 3, the black object is back, and the blue box is still untouched. So the robot never touches the blue box.\\n\\nTherefore, the entire sequence involves only one object: the black object (pan/lid). The robot picks it up (implied between frames 2 and 3), then places it on the plate (frames 3–7). Since the object doesn’t change, this is a single continuous task — no switch.\\n\\nWait — but what about the transition from moving the black object to placing it? That’s part of the same manipulation — picking up and placing the same object is not a switch. A switch only happens when the robot finishes with Object A and starts with Object B.\\n\\nSo: no switch detected.\",\n  \"transitions\": [],\n  \"instructions\": [\n    \"Place the black object on the striped plate\"\n  ]\n}",
+          "error": ""
+        }
+      ],
+      "error": ""
+    }
+  ]
+}

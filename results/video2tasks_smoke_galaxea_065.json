@@ -1,0 +1,92 @@
+{
+  "schema_version": "vendored-video2tasks-run/v1",
+  "formal": false,
+  "generated_at": "2026-07-15T16:32:18.957638+00:00",
+  "code_revision": "2f260ee0874acb8cfe3d72abb500590782215147",
+  "upstream_repository": "https://github.com/ly-geming/video2tasks",
+  "upstream_revision": "8d405a120a37df4e5a4869b61ba3d9edb7b4dfe3",
+  "vendored_source": "video2tasks/",
+  "model": "qwen3-vl-flash",
+  "base_url": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+  "prompt_sha256": "72e065ceee214ac019b6a13d898e2d74963ff6449df7d0c0b349bbb4004c036f",
+  "input": {
+    "manifest": null,
+    "manifest_sha256": null,
+    "requested_samples": 1
+  },
+  "windowing": {
+    "window_sec": 16.0,
+    "step_sec": 8.0,
+    "frames_per_window": 8,
+    "target_width": 384,
+    "target_height": 256,
+    "png_compression": 3
+  },
+  "summary": {
+    "completed": 1,
+    "succeeded": 1,
+    "failed": 0
+  },
+  "limitations": [
+    "generic VLM; not a robot-domain world model",
+    "single-view RGB only",
+    "output quality depends on provider vision grounding"
+  ],
+  "results": [
+    {
+      "sample_id": "galaxea_065",
+      "video": "/Users/gaiyi/Downloads/mini-vlo/data/wgo_bench/full/videos/galaxea_065.mp4",
+      "video_sha256": "8cf1f94916ea2c6299be57aa83b714d10c7c40870eb4b426d3f0d32f7ec87530",
+      "fps": 30.0,
+      "frame_count": 133,
+      "window_count": 1,
+      "latency_s": 57.90519874999882,
+      "usage": {
+        "requests": 1,
+        "input_tokens": 1285,
+        "output_tokens": 145
+      },
+      "prediction": {
+        "sample_id": "galaxea_065",
+        "nframes": 133,
+        "segments": [
+          {
+            "seg_id": 0,
+            "start_frame": 0,
+            "end_frame": 133,
+            "instruction": "Place the banana on the plate",
+            "confidence": 1.0
+          }
+        ]
+      },
+      "window_outputs": [
+        {
+          "window_id": 0,
+          "start_frame": 0,
+          "end_frame": 132,
+          "frame_ids": [
+            0,
+            18,
+            37,
+            56,
+            75,
+            94,
+            113,
+            132
+          ],
+          "vlm_json": {
+            "thought": "Frames 0-2: Robot is idle. Frame 3: Robot's arm enters the scene and grasps the banana. Frames 4-5: Robot lifts and moves the banana toward the plate. Frame 6: Robot places the banana on the plate and releases it. Frame 7: Robot's arm is now idle (no object in hand) and remains stationary. The robot interacted with only one object—the banana—throughout the entire sequence. There is no point where the robot releases the banana and then begins interacting with a different object. Therefore, no switch occurs.",
+            "transitions": [],
+            "instructions": [
+              "Place the banana on the plate"
+            ]
+          },
+          "warnings": [],
+          "raw_response": "{\n  \"thought\": \"Frames 0-2: Robot is idle. Frame 3: Robot's arm enters the scene and grasps the banana. Frames 4-5: Robot lifts and moves the banana toward the plate. Frame 6: Robot places the banana on the plate and releases it. Frame 7: Robot's arm is now idle (no object in hand) and remains stationary. The robot interacted with only one object—the banana—throughout the entire sequence. There is no point where the robot releases the banana and then begins interacting with a different object. Therefore, no switch occurs.\",\n  \"transitions\": [],\n  \"instructions\": [\"Place the banana on the plate\"]\n}",
+          "error": ""
+        }
+      ],
+      "error": ""
+    }
+  ]
+}

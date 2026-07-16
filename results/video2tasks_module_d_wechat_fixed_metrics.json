@@ -1,0 +1,2288 @@
+{
+  "schema_version": "video2tasks-run-metrics/v1",
+  "evaluation_kind": "weak_folder_name_single_segment",
+  "formal": false,
+  "generated_at": "2026-07-15T18:17:04.250798+00:00",
+  "code_revision": "2f260ee0874acb8cfe3d72abb500590782215147",
+  "input": {
+    "prediction": "results/video2tasks_module_d_wechat_fixed.json",
+    "prediction_sha256": "174d3db5c1261e13848cc10aaed16f645b11954b1629bc4c57a77823d78931e7",
+    "manifest": "data/module_d_wechat/manifest.json",
+    "manifest_sha256": "3c14c004652141deb42f87716e8da7c94c6da9d2dad248ec36e3de3da8c2b79a",
+    "ground_truth_policy": "motion_folder_name_as_one_full_video_label; underscores replaced with spaces",
+    "model": "qwen3-vl-flash",
+    "view_mode": "fixed"
+  },
+  "counts": {
+    "total": 34,
+    "ok": 34,
+    "failed": 0
+  },
+  "summary": {
+    "action_name_token_f1": 0.051704014939309054,
+    "action_rouge_l": 0.12742763772175536,
+    "semantic_similarity": 0.052060103678178635,
+    "keyword_hit": 0.11764705882352941,
+    "loose_title_match": 0.0,
+    "strict_title_match": 0.0,
+    "segment_count_accuracy": 1.0,
+    "composite": 0.11905581158530894,
+    "pipeline_success_rate": 1.0,
+    "distinct_1": 0.4855072463768116,
+    "distinct_2": 0.7788461538461539,
+    "self_bleu_2": 0.3189075630252101,
+    "mean_segment_f1_iou_0.5": 1.0
+  },
+  "per_sample": [
+    {
+      "sample_id": "Rumba_Dancing",
+      "gold_title": "Rumba Dancing",
+      "prediction_text": "Perform a dance-like motion",
+      "status": "ok",
+      "error": "",
+      "metrics": {
+        "action_name_token_f1": 0.0,
+        "action_rouge_l": 0.28571428571428575,
+        "semantic_similarity": 0.0,
+        "keyword_hit": 0.0,
+        "loose_title_match": 0.0,
+        "strict_title_match": 0.0,
+        "segment_count_accuracy": 1.0,
+        "predicted_segment_count": 1.0,
+        "composite": 0.10714285714285715
+      },
+      "temporal": {
+        "duration_sec": 2.4,
+        "boundary_f1": {
+          "0.5s": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 0.5
+          },
+          "1.0s": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 1.0
+          }
+        },
+        "segment_f1_at_iou": {
+          "0.5": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "mean_iou": 1.0,
+            "threshold": 0.5,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "0.75": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "mean_iou": 1.0,
+            "threshold": 0.75,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 0.0
+          }
+        },
+        "label_edit": 0.0
+      }
+    },
+    {
+      "sample_id": "Air_Squat",
+      "gold_title": "Air Squat",
+      "prediction_text": "Stand still; Perform idle motion",
+      "status": "ok",
+      "error": "",
+      "metrics": {
+        "action_name_token_f1": 0.0,
+        "action_rouge_l": 0.0,
+        "semantic_similarity": 0.0,
+        "keyword_hit": 0.0,
+        "loose_title_match": 0.0,
+        "strict_title_match": 0.0,
+        "segment_count_accuracy": 1.0,
+        "predicted_segment_count": 1.0,
+        "composite": 0.05
+      },
+      "temporal": {
+        "duration_sec": 1.9,
+        "boundary_f1": {
+          "0.5s": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 0.5
+          },
+          "1.0s": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 1.0
+          }
+        },
+        "segment_f1_at_iou": {
+          "0.5": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "mean_iou": 1.0,
+            "threshold": 0.5,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "0.75": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "mean_iou": 1.0,
+            "threshold": 0.75,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 0.0
+          }
+        },
+        "label_edit": 0.0
+      }
+    },
+    {
+      "sample_id": "Backflip",
+      "gold_title": "Backflip",
+      "prediction_text": "Stand upright; Raise arms; Fall/roll; Crouch; Stand upright",
+      "status": "ok",
+      "error": "",
+      "metrics": {
+        "action_name_token_f1": 0.0,
+        "action_rouge_l": 0.0,
+        "semantic_similarity": 0.0,
+        "keyword_hit": 0.0,
+        "loose_title_match": 0.0,
+        "strict_title_match": 0.0,
+        "segment_count_accuracy": 1.0,
+        "predicted_segment_count": 1.0,
+        "composite": 0.05
+      },
+      "temporal": {
+        "duration_sec": 4.133333333333334,
+        "boundary_f1": {
+          "0.5s": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 0.5
+          },
+          "1.0s": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 1.0
+          }
+        },
+        "segment_f1_at_iou": {
+          "0.5": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "mean_iou": 1.0,
+            "threshold": 0.5,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "0.75": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "mean_iou": 1.0,
+            "threshold": 0.75,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 0.0
+          }
+        },
+        "label_edit": 0.0
+      }
+    },
+    {
+      "sample_id": "Capoeira",
+      "gold_title": "Capoeira",
+      "prediction_text": "Perform a series of dynamic movements",
+      "status": "ok",
+      "error": "",
+      "metrics": {
+        "action_name_token_f1": 0.0,
+        "action_rouge_l": 0.0,
+        "semantic_similarity": 0.0,
+        "keyword_hit": 0.0,
+        "loose_title_match": 0.0,
+        "strict_title_match": 0.0,
+        "segment_count_accuracy": 1.0,
+        "predicted_segment_count": 1.0,
+        "composite": 0.05
+      },
+      "temporal": {
+        "duration_sec": 3.466666666666667,
+        "boundary_f1": {
+          "0.5s": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 0.5
+          },
+          "1.0s": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 1.0
+          }
+        },
+        "segment_f1_at_iou": {
+          "0.5": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "mean_iou": 1.0,
+            "threshold": 0.5,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "0.75": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "mean_iou": 1.0,
+            "threshold": 0.75,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 0.0
+          }
+        },
+        "label_edit": 0.0
+      }
+    },
+    {
+      "sample_id": "Cartwheel",
+      "gold_title": "Cartwheel",
+      "prediction_text": "Perform a handstand and land",
+      "status": "ok",
+      "error": "",
+      "metrics": {
+        "action_name_token_f1": 0.0,
+        "action_rouge_l": 0.0,
+        "semantic_similarity": 0.0,
+        "keyword_hit": 0.0,
+        "loose_title_match": 0.0,
+        "strict_title_match": 0.0,
+        "segment_count_accuracy": 1.0,
+        "predicted_segment_count": 1.0,
+        "composite": 0.05
+      },
+      "temporal": {
+        "duration_sec": 3.566666666666667,
+        "boundary_f1": {
+          "0.5s": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 0.5
+          },
+          "1.0s": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 1.0
+          }
+        },
+        "segment_f1_at_iou": {
+          "0.5": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "mean_iou": 1.0,
+            "threshold": 0.5,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "0.75": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "mean_iou": 1.0,
+            "threshold": 0.75,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 0.0
+          }
+        },
+        "label_edit": 0.0
+      }
+    },
+    {
+      "sample_id": "Defeated",
+      "gold_title": "Defeated",
+      "prediction_text": "Stand near the rock",
+      "status": "ok",
+      "error": "",
+      "metrics": {
+        "action_name_token_f1": 0.0,
+        "action_rouge_l": 0.0,
+        "semantic_similarity": 0.0,
+        "keyword_hit": 0.0,
+        "loose_title_match": 0.0,
+        "strict_title_match": 0.0,
+        "segment_count_accuracy": 1.0,
+        "predicted_segment_count": 1.0,
+        "composite": 0.05
+      },
+      "temporal": {
+        "duration_sec": 6.766666666666667,
+        "boundary_f1": {
+          "0.5s": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 0.5
+          },
+          "1.0s": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 1.0
+          }
+        },
+        "segment_f1_at_iou": {
+          "0.5": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "mean_iou": 1.0,
+            "threshold": 0.5,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "0.75": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "mean_iou": 1.0,
+            "threshold": 0.75,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 0.0
+          }
+        },
+        "label_edit": 0.0
+      }
+    },
+    {
+      "sample_id": "Dying",
+      "gold_title": "Dying",
+      "prediction_text": "Fall to the ground",
+      "status": "ok",
+      "error": "",
+      "metrics": {
+        "action_name_token_f1": 0.0,
+        "action_rouge_l": 0.0,
+        "semantic_similarity": 0.0,
+        "keyword_hit": 0.0,
+        "loose_title_match": 0.0,
+        "strict_title_match": 0.0,
+        "segment_count_accuracy": 1.0,
+        "predicted_segment_count": 1.0,
+        "composite": 0.05
+      },
+      "temporal": {
+        "duration_sec": 4.433333333333334,
+        "boundary_f1": {
+          "0.5s": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 0.5
+          },
+          "1.0s": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 1.0
+          }
+        },
+        "segment_f1_at_iou": {
+          "0.5": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "mean_iou": 1.0,
+            "threshold": 0.5,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "0.75": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "mean_iou": 1.0,
+            "threshold": 0.75,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 0.0
+          }
+        },
+        "label_edit": 0.0
+      }
+    },
+    {
+      "sample_id": "Flying_Knee_Punch_Combo",
+      "gold_title": "Flying Knee Punch Combo",
+      "prediction_text": "Perform a dynamic movement sequence",
+      "status": "ok",
+      "error": "",
+      "metrics": {
+        "action_name_token_f1": 0.0,
+        "action_rouge_l": 0.0,
+        "semantic_similarity": 0.0,
+        "keyword_hit": 0.0,
+        "loose_title_match": 0.0,
+        "strict_title_match": 0.0,
+        "segment_count_accuracy": 1.0,
+        "predicted_segment_count": 1.0,
+        "composite": 0.05
+      },
+      "temporal": {
+        "duration_sec": 2.7,
+        "boundary_f1": {
+          "0.5s": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 0.5
+          },
+          "1.0s": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 1.0
+          }
+        },
+        "segment_f1_at_iou": {
+          "0.5": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "mean_iou": 1.0,
+            "threshold": 0.5,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "0.75": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "mean_iou": 1.0,
+            "threshold": 0.75,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 0.0
+          }
+        },
+        "label_edit": 0.0
+      }
+    },
+    {
+      "sample_id": "Front_Raises",
+      "gold_title": "Front Raises",
+      "prediction_text": "Stand still",
+      "status": "ok",
+      "error": "",
+      "metrics": {
+        "action_name_token_f1": 0.0,
+        "action_rouge_l": 0.0,
+        "semantic_similarity": 0.0,
+        "keyword_hit": 0.0,
+        "loose_title_match": 0.0,
+        "strict_title_match": 0.0,
+        "segment_count_accuracy": 1.0,
+        "predicted_segment_count": 1.0,
+        "composite": 0.05
+      },
+      "temporal": {
+        "duration_sec": 6.266666666666667,
+        "boundary_f1": {
+          "0.5s": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 0.5
+          },
+          "1.0s": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 1.0
+          }
+        },
+        "segment_f1_at_iou": {
+          "0.5": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "mean_iou": 1.0,
+            "threshold": 0.5,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "0.75": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "mean_iou": 1.0,
+            "threshold": 0.75,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 0.0
+          }
+        },
+        "label_edit": 0.0
+      }
+    },
+    {
+      "sample_id": "Headspin_End",
+      "gold_title": "Headspin End",
+      "prediction_text": "Perform a flip",
+      "status": "ok",
+      "error": "",
+      "metrics": {
+        "action_name_token_f1": 0.0,
+        "action_rouge_l": 0.0,
+        "semantic_similarity": 0.0,
+        "keyword_hit": 0.0,
+        "loose_title_match": 0.0,
+        "strict_title_match": 0.0,
+        "segment_count_accuracy": 1.0,
+        "predicted_segment_count": 1.0,
+        "composite": 0.05
+      },
+      "temporal": {
+        "duration_sec": 2.066666666666667,
+        "boundary_f1": {
+          "0.5s": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 0.5
+          },
+          "1.0s": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 1.0
+          }
+        },
+        "segment_f1_at_iou": {
+          "0.5": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "mean_iou": 1.0,
+            "threshold": 0.5,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "0.75": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "mean_iou": 1.0,
+            "threshold": 0.75,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 0.0
+          }
+        },
+        "label_edit": 0.0
+      }
+    },
+    {
+      "sample_id": "Illegal_Knee",
+      "gold_title": "Illegal Knee",
+      "prediction_text": "Perform a right-leg kick",
+      "status": "ok",
+      "error": "",
+      "metrics": {
+        "action_name_token_f1": 0.0,
+        "action_rouge_l": 0.0,
+        "semantic_similarity": 0.0,
+        "keyword_hit": 0.0,
+        "loose_title_match": 0.0,
+        "strict_title_match": 0.0,
+        "segment_count_accuracy": 1.0,
+        "predicted_segment_count": 1.0,
+        "composite": 0.05
+      },
+      "temporal": {
+        "duration_sec": 2.3,
+        "boundary_f1": {
+          "0.5s": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 0.5
+          },
+          "1.0s": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 1.0
+          }
+        },
+        "segment_f1_at_iou": {
+          "0.5": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "mean_iou": 1.0,
+            "threshold": 0.5,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "0.75": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "mean_iou": 1.0,
+            "threshold": 0.75,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 0.0
+          }
+        },
+        "label_edit": 0.0
+      }
+    },
+    {
+      "sample_id": "Insult",
+      "gold_title": "Insult",
+      "prediction_text": "Adjust clothing",
+      "status": "ok",
+      "error": "",
+      "metrics": {
+        "action_name_token_f1": 0.0,
+        "action_rouge_l": 0.0,
+        "semantic_similarity": 0.0,
+        "keyword_hit": 0.0,
+        "loose_title_match": 0.0,
+        "strict_title_match": 0.0,
+        "segment_count_accuracy": 1.0,
+        "predicted_segment_count": 1.0,
+        "composite": 0.05
+      },
+      "temporal": {
+        "duration_sec": 2.7,
+        "boundary_f1": {
+          "0.5s": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 0.5
+          },
+          "1.0s": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 1.0
+          }
+        },
+        "segment_f1_at_iou": {
+          "0.5": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "mean_iou": 1.0,
+            "threshold": 0.5,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "0.75": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "mean_iou": 1.0,
+            "threshold": 0.75,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 0.0
+          }
+        },
+        "label_edit": 0.0
+      }
+    },
+    {
+      "sample_id": "Jab_Cross",
+      "gold_title": "Jab Cross",
+      "prediction_text": "Boxing stance",
+      "status": "ok",
+      "error": "",
+      "metrics": {
+        "action_name_token_f1": 0.0,
+        "action_rouge_l": 0.0,
+        "semantic_similarity": 0.0,
+        "keyword_hit": 0.0,
+        "loose_title_match": 0.0,
+        "strict_title_match": 0.0,
+        "segment_count_accuracy": 1.0,
+        "predicted_segment_count": 1.0,
+        "composite": 0.05
+      },
+      "temporal": {
+        "duration_sec": 2.1666666666666665,
+        "boundary_f1": {
+          "0.5s": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 0.5
+          },
+          "1.0s": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 1.0
+          }
+        },
+        "segment_f1_at_iou": {
+          "0.5": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "mean_iou": 1.0,
+            "threshold": 0.5,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "0.75": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "mean_iou": 1.0,
+            "threshold": 0.75,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 0.0
+          }
+        },
+        "label_edit": 0.0
+      }
+    },
+    {
+      "sample_id": "Jog_In_Circle",
+      "gold_title": "Jog In Circle",
+      "prediction_text": "Run in place",
+      "status": "ok",
+      "error": "",
+      "metrics": {
+        "action_name_token_f1": 0.3333333333333333,
+        "action_rouge_l": 0.3333333333333333,
+        "semantic_similarity": 0.33333333333333337,
+        "keyword_hit": 0.0,
+        "loose_title_match": 0.0,
+        "strict_title_match": 0.0,
+        "segment_count_accuracy": 1.0,
+        "predicted_segment_count": 1.0,
+        "composite": 0.2833333333333333
+      },
+      "temporal": {
+        "duration_sec": 5.966666666666667,
+        "boundary_f1": {
+          "0.5s": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 0.5
+          },
+          "1.0s": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 1.0
+          }
+        },
+        "segment_f1_at_iou": {
+          "0.5": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "mean_iou": 1.0,
+            "threshold": 0.5,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "0.75": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "mean_iou": 1.0,
+            "threshold": 0.75,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 0.0
+          }
+        },
+        "label_edit": 0.0
+      }
+    },
+    {
+      "sample_id": "Joyful_Jump",
+      "gold_title": "Joyful Jump",
+      "prediction_text": "Stand still; Jump; Stand still",
+      "status": "ok",
+      "error": "",
+      "metrics": {
+        "action_name_token_f1": 0.28571428571428575,
+        "action_rouge_l": 0.28571428571428575,
+        "semantic_similarity": 0.2357022603955158,
+        "keyword_hit": 1.0,
+        "loose_title_match": 0.0,
+        "strict_title_match": 0.0,
+        "segment_count_accuracy": 1.0,
+        "predicted_segment_count": 1.0,
+        "composite": 0.38999759493624603
+      },
+      "temporal": {
+        "duration_sec": 1.9,
+        "boundary_f1": {
+          "0.5s": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 0.5
+          },
+          "1.0s": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 1.0
+          }
+        },
+        "segment_f1_at_iou": {
+          "0.5": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "mean_iou": 1.0,
+            "threshold": 0.5,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "0.75": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "mean_iou": 1.0,
+            "threshold": 0.75,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 0.0
+          }
+        },
+        "label_edit": 0.0
+      }
+    },
+    {
+      "sample_id": "Jump_Push_Up",
+      "gold_title": "Jump Push Up",
+      "prediction_text": "Crawl on the floor",
+      "status": "ok",
+      "error": "",
+      "metrics": {
+        "action_name_token_f1": 0.0,
+        "action_rouge_l": 0.0,
+        "semantic_similarity": 0.0,
+        "keyword_hit": 0.0,
+        "loose_title_match": 0.0,
+        "strict_title_match": 0.0,
+        "segment_count_accuracy": 1.0,
+        "predicted_segment_count": 1.0,
+        "composite": 0.05
+      },
+      "temporal": {
+        "duration_sec": 1.2,
+        "boundary_f1": {
+          "0.5s": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 0.5
+          },
+          "1.0s": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 1.0
+          }
+        },
+        "segment_f1_at_iou": {
+          "0.5": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "mean_iou": 1.0,
+            "threshold": 0.5,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "0.75": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "mean_iou": 1.0,
+            "threshold": 0.75,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 0.0
+          }
+        },
+        "label_edit": 0.0
+      }
+    },
+    {
+      "sample_id": "Jumping_Jacks",
+      "gold_title": "Jumping Jacks",
+      "prediction_text": "Perform a stretching motion",
+      "status": "ok",
+      "error": "",
+      "metrics": {
+        "action_name_token_f1": 0.0,
+        "action_rouge_l": 0.0,
+        "semantic_similarity": 0.0,
+        "keyword_hit": 0.0,
+        "loose_title_match": 0.0,
+        "strict_title_match": 0.0,
+        "segment_count_accuracy": 1.0,
+        "predicted_segment_count": 1.0,
+        "composite": 0.05
+      },
+      "temporal": {
+        "duration_sec": 1.1,
+        "boundary_f1": {
+          "0.5s": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 0.5
+          },
+          "1.0s": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 1.0
+          }
+        },
+        "segment_f1_at_iou": {
+          "0.5": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "mean_iou": 1.0,
+            "threshold": 0.5,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "0.75": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "mean_iou": 1.0,
+            "threshold": 0.75,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 0.0
+          }
+        },
+        "label_edit": 0.0
+      }
+    },
+    {
+      "sample_id": "Looking",
+      "gold_title": "Looking",
+      "prediction_text": "Perform a salute",
+      "status": "ok",
+      "error": "",
+      "metrics": {
+        "action_name_token_f1": 0.0,
+        "action_rouge_l": 0.0,
+        "semantic_similarity": 0.0,
+        "keyword_hit": 0.0,
+        "loose_title_match": 0.0,
+        "strict_title_match": 0.0,
+        "segment_count_accuracy": 1.0,
+        "predicted_segment_count": 1.0,
+        "composite": 0.05
+      },
+      "temporal": {
+        "duration_sec": 4.8,
+        "boundary_f1": {
+          "0.5s": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 0.5
+          },
+          "1.0s": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 1.0
+          }
+        },
+        "segment_f1_at_iou": {
+          "0.5": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "mean_iou": 1.0,
+            "threshold": 0.5,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "0.75": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "mean_iou": 1.0,
+            "threshold": 0.75,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 0.0
+          }
+        },
+        "label_edit": 0.0
+      }
+    },
+    {
+      "sample_id": "Low_Crawl",
+      "gold_title": "Low Crawl",
+      "prediction_text": "Perform a crawling motion",
+      "status": "ok",
+      "error": "",
+      "metrics": {
+        "action_name_token_f1": 0.0,
+        "action_rouge_l": 0.3333333333333333,
+        "semantic_similarity": 0.0,
+        "keyword_hit": 0.0,
+        "loose_title_match": 0.0,
+        "strict_title_match": 0.0,
+        "segment_count_accuracy": 1.0,
+        "predicted_segment_count": 1.0,
+        "composite": 0.11666666666666667
+      },
+      "temporal": {
+        "duration_sec": 2.3666666666666667,
+        "boundary_f1": {
+          "0.5s": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 0.5
+          },
+          "1.0s": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 1.0
+          }
+        },
+        "segment_f1_at_iou": {
+          "0.5": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "mean_iou": 1.0,
+            "threshold": 0.5,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "0.75": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "mean_iou": 1.0,
+            "threshold": 0.75,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 0.0
+          }
+        },
+        "label_edit": 0.0
+      }
+    },
+    {
+      "sample_id": "Pike_Walk",
+      "gold_title": "Pike Walk",
+      "prediction_text": "Crawl forward",
+      "status": "ok",
+      "error": "",
+      "metrics": {
+        "action_name_token_f1": 0.0,
+        "action_rouge_l": 0.0,
+        "semantic_similarity": 0.0,
+        "keyword_hit": 0.0,
+        "loose_title_match": 0.0,
+        "strict_title_match": 0.0,
+        "segment_count_accuracy": 1.0,
+        "predicted_segment_count": 1.0,
+        "composite": 0.05
+      },
+      "temporal": {
+        "duration_sec": 6.533333333333333,
+        "boundary_f1": {
+          "0.5s": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 0.5
+          },
+          "1.0s": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 1.0
+          }
+        },
+        "segment_f1_at_iou": {
+          "0.5": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "mean_iou": 1.0,
+            "threshold": 0.5,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "0.75": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "mean_iou": 1.0,
+            "threshold": 0.75,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 0.0
+          }
+        },
+        "label_edit": 0.0
+      }
+    },
+    {
+      "sample_id": "Pistol",
+      "gold_title": "Pistol",
+      "prediction_text": "Move in place",
+      "status": "ok",
+      "error": "",
+      "metrics": {
+        "action_name_token_f1": 0.0,
+        "action_rouge_l": 0.0,
+        "semantic_similarity": 0.0,
+        "keyword_hit": 0.0,
+        "loose_title_match": 0.0,
+        "strict_title_match": 0.0,
+        "segment_count_accuracy": 1.0,
+        "predicted_segment_count": 1.0,
+        "composite": 0.05
+      },
+      "temporal": {
+        "duration_sec": 4.066666666666666,
+        "boundary_f1": {
+          "0.5s": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 0.5
+          },
+          "1.0s": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 1.0
+          }
+        },
+        "segment_f1_at_iou": {
+          "0.5": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "mean_iou": 1.0,
+            "threshold": 0.5,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "0.75": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "mean_iou": 1.0,
+            "threshold": 0.75,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 0.0
+          }
+        },
+        "label_edit": 0.0
+      }
+    },
+    {
+      "sample_id": "Praying",
+      "gold_title": "Praying",
+      "prediction_text": "Kneel; Stand up; Walk",
+      "status": "ok",
+      "error": "",
+      "metrics": {
+        "action_name_token_f1": 0.0,
+        "action_rouge_l": 0.0,
+        "semantic_similarity": 0.0,
+        "keyword_hit": 0.0,
+        "loose_title_match": 0.0,
+        "strict_title_match": 0.0,
+        "segment_count_accuracy": 1.0,
+        "predicted_segment_count": 1.0,
+        "composite": 0.05
+      },
+      "temporal": {
+        "duration_sec": 6.9,
+        "boundary_f1": {
+          "0.5s": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 0.5
+          },
+          "1.0s": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 1.0
+          }
+        },
+        "segment_f1_at_iou": {
+          "0.5": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "mean_iou": 1.0,
+            "threshold": 0.5,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "0.75": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "mean_iou": 1.0,
+            "threshold": 0.75,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 0.0
+          }
+        },
+        "label_edit": 0.0
+      }
+    },
+    {
+      "sample_id": "Quick_Steps",
+      "gold_title": "Quick Steps",
+      "prediction_text": "Stand still; Crouch; Extend arm; Return to stand",
+      "status": "ok",
+      "error": "",
+      "metrics": {
+        "action_name_token_f1": 0.0,
+        "action_rouge_l": 0.0,
+        "semantic_similarity": 0.0,
+        "keyword_hit": 0.0,
+        "loose_title_match": 0.0,
+        "strict_title_match": 0.0,
+        "segment_count_accuracy": 1.0,
+        "predicted_segment_count": 1.0,
+        "composite": 0.05
+      },
+      "temporal": {
+        "duration_sec": 7.366666666666666,
+        "boundary_f1": {
+          "0.5s": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 0.5
+          },
+          "1.0s": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 1.0
+          }
+        },
+        "segment_f1_at_iou": {
+          "0.5": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "mean_iou": 1.0,
+            "threshold": 0.5,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "0.75": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "mean_iou": 1.0,
+            "threshold": 0.75,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 0.0
+          }
+        },
+        "label_edit": 0.0
+      }
+    },
+    {
+      "sample_id": "Rallying",
+      "gold_title": "Rallying",
+      "prediction_text": "Perform a dance routine",
+      "status": "ok",
+      "error": "",
+      "metrics": {
+        "action_name_token_f1": 0.0,
+        "action_rouge_l": 0.0,
+        "semantic_similarity": 0.0,
+        "keyword_hit": 0.0,
+        "loose_title_match": 0.0,
+        "strict_title_match": 0.0,
+        "segment_count_accuracy": 1.0,
+        "predicted_segment_count": 1.0,
+        "composite": 0.05
+      },
+      "temporal": {
+        "duration_sec": 6.233333333333333,
+        "boundary_f1": {
+          "0.5s": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 0.5
+          },
+          "1.0s": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 1.0
+          }
+        },
+        "segment_f1_at_iou": {
+          "0.5": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "mean_iou": 1.0,
+            "threshold": 0.5,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "0.75": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "mean_iou": 1.0,
+            "threshold": 0.75,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 0.0
+          }
+        },
+        "label_edit": 0.0
+      }
+    },
+    {
+      "sample_id": "Run_To_Rolling",
+      "gold_title": "Run To Rolling",
+      "prediction_text": "Fall and recover; Run away",
+      "status": "ok",
+      "error": "",
+      "metrics": {
+        "action_name_token_f1": 0.25,
+        "action_rouge_l": 0.25,
+        "semantic_similarity": 0.2581988897471611,
+        "keyword_hit": 1.0,
+        "loose_title_match": 0.0,
+        "strict_title_match": 0.0,
+        "segment_count_accuracy": 1.0,
+        "predicted_segment_count": 1.0,
+        "composite": 0.3766397779494322
+      },
+      "temporal": {
+        "duration_sec": 2.466666666666667,
+        "boundary_f1": {
+          "0.5s": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 0.5
+          },
+          "1.0s": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 1.0
+          }
+        },
+        "segment_f1_at_iou": {
+          "0.5": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "mean_iou": 1.0,
+            "threshold": 0.5,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "0.75": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "mean_iou": 1.0,
+            "threshold": 0.75,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 0.0
+          }
+        },
+        "label_edit": 0.0
+      }
+    },
+    {
+      "sample_id": "Sneak_Walk",
+      "gold_title": "Sneak Walk",
+      "prediction_text": "Walk",
+      "status": "ok",
+      "error": "",
+      "metrics": {
+        "action_name_token_f1": 0.6666666666666666,
+        "action_rouge_l": 0.6666666666666666,
+        "semantic_similarity": 0.7071067811865475,
+        "keyword_hit": 1.0,
+        "loose_title_match": 0.0,
+        "strict_title_match": 0.0,
+        "segment_count_accuracy": 1.0,
+        "predicted_segment_count": 1.0,
+        "composite": 0.6747546895706429
+      },
+      "temporal": {
+        "duration_sec": 1.1,
+        "boundary_f1": {
+          "0.5s": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 0.5
+          },
+          "1.0s": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 1.0
+          }
+        },
+        "segment_f1_at_iou": {
+          "0.5": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "mean_iou": 1.0,
+            "threshold": 0.5,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "0.75": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "mean_iou": 1.0,
+            "threshold": 0.75,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 0.0
+          }
+        },
+        "label_edit": 0.0
+      }
+    },
+    {
+      "sample_id": "Spat_In_Face",
+      "gold_title": "Spat In Face",
+      "prediction_text": "Stand facing left; Adopt defensive stance",
+      "status": "ok",
+      "error": "",
+      "metrics": {
+        "action_name_token_f1": 0.0,
+        "action_rouge_l": 0.2222222222222222,
+        "semantic_similarity": 0.0,
+        "keyword_hit": 0.0,
+        "loose_title_match": 0.0,
+        "strict_title_match": 0.0,
+        "segment_count_accuracy": 1.0,
+        "predicted_segment_count": 1.0,
+        "composite": 0.09444444444444444
+      },
+      "temporal": {
+        "duration_sec": 2.566666666666667,
+        "boundary_f1": {
+          "0.5s": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 0.5
+          },
+          "1.0s": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 1.0
+          }
+        },
+        "segment_f1_at_iou": {
+          "0.5": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "mean_iou": 1.0,
+            "threshold": 0.5,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "0.75": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "mean_iou": 1.0,
+            "threshold": 0.75,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 0.0
+          }
+        },
+        "label_edit": 0.0
+      }
+    },
+    {
+      "sample_id": "Strut_Walking",
+      "gold_title": "Strut Walking",
+      "prediction_text": "Walk across the room",
+      "status": "ok",
+      "error": "",
+      "metrics": {
+        "action_name_token_f1": 0.0,
+        "action_rouge_l": 0.3333333333333333,
+        "semantic_similarity": 0.0,
+        "keyword_hit": 0.0,
+        "loose_title_match": 0.0,
+        "strict_title_match": 0.0,
+        "segment_count_accuracy": 1.0,
+        "predicted_segment_count": 1.0,
+        "composite": 0.11666666666666667
+      },
+      "temporal": {
+        "duration_sec": 1.4666666666666666,
+        "boundary_f1": {
+          "0.5s": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 0.5
+          },
+          "1.0s": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 1.0
+          }
+        },
+        "segment_f1_at_iou": {
+          "0.5": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "mean_iou": 1.0,
+            "threshold": 0.5,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "0.75": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "mean_iou": 1.0,
+            "threshold": 0.75,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 0.0
+          }
+        },
+        "label_edit": 0.0
+      }
+    },
+    {
+      "sample_id": "Talking_On_Phone",
+      "gold_title": "Talking On Phone",
+      "prediction_text": "Stand still",
+      "status": "ok",
+      "error": "",
+      "metrics": {
+        "action_name_token_f1": 0.0,
+        "action_rouge_l": 0.0,
+        "semantic_similarity": 0.0,
+        "keyword_hit": 0.0,
+        "loose_title_match": 0.0,
+        "strict_title_match": 0.0,
+        "segment_count_accuracy": 1.0,
+        "predicted_segment_count": 1.0,
+        "composite": 0.05
+      },
+      "temporal": {
+        "duration_sec": 38.86666666666667,
+        "boundary_f1": {
+          "0.5s": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 0.5
+          },
+          "1.0s": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 1.0
+          }
+        },
+        "segment_f1_at_iou": {
+          "0.5": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "mean_iou": 1.0,
+            "threshold": 0.5,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "0.75": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "mean_iou": 1.0,
+            "threshold": 0.75,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 0.0
+          }
+        },
+        "label_edit": 0.0
+      }
+    },
+    {
+      "sample_id": "Tripping",
+      "gold_title": "Tripping",
+      "prediction_text": "Fall to the ground",
+      "status": "ok",
+      "error": "",
+      "metrics": {
+        "action_name_token_f1": 0.0,
+        "action_rouge_l": 0.0,
+        "semantic_similarity": 0.0,
+        "keyword_hit": 0.0,
+        "loose_title_match": 0.0,
+        "strict_title_match": 0.0,
+        "segment_count_accuracy": 1.0,
+        "predicted_segment_count": 1.0,
+        "composite": 0.05
+      },
+      "temporal": {
+        "duration_sec": 2.8,
+        "boundary_f1": {
+          "0.5s": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 0.5
+          },
+          "1.0s": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 1.0
+          }
+        },
+        "segment_f1_at_iou": {
+          "0.5": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "mean_iou": 1.0,
+            "threshold": 0.5,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "0.75": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "mean_iou": 1.0,
+            "threshold": 0.75,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 0.0
+          }
+        },
+        "label_edit": 0.0
+      }
+    },
+    {
+      "sample_id": "Walking",
+      "gold_title": "Walking",
+      "prediction_text": "Walk",
+      "status": "ok",
+      "error": "",
+      "metrics": {
+        "action_name_token_f1": 0.0,
+        "action_rouge_l": 1.0,
+        "semantic_similarity": 0.0,
+        "keyword_hit": 0.0,
+        "loose_title_match": 0.0,
+        "strict_title_match": 0.0,
+        "segment_count_accuracy": 1.0,
+        "predicted_segment_count": 1.0,
+        "composite": 0.25
+      },
+      "temporal": {
+        "duration_sec": 1.0666666666666667,
+        "boundary_f1": {
+          "0.5s": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 0.5
+          },
+          "1.0s": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 1.0
+          }
+        },
+        "segment_f1_at_iou": {
+          "0.5": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "mean_iou": 1.0,
+            "threshold": 0.5,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "0.75": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "mean_iou": 1.0,
+            "threshold": 0.75,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 0.0
+          }
+        },
+        "label_edit": 0.0
+      }
+    },
+    {
+      "sample_id": "Ymca_Dance",
+      "gold_title": "Ymca Dance",
+      "prediction_text": "Perform arm movements",
+      "status": "ok",
+      "error": "",
+      "metrics": {
+        "action_name_token_f1": 0.0,
+        "action_rouge_l": 0.0,
+        "semantic_similarity": 0.0,
+        "keyword_hit": 0.0,
+        "loose_title_match": 0.0,
+        "strict_title_match": 0.0,
+        "segment_count_accuracy": 1.0,
+        "predicted_segment_count": 1.0,
+        "composite": 0.05
+      },
+      "temporal": {
+        "duration_sec": 4.533333333333333,
+        "boundary_f1": {
+          "0.5s": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 0.5
+          },
+          "1.0s": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 1.0
+          }
+        },
+        "segment_f1_at_iou": {
+          "0.5": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "mean_iou": 1.0,
+            "threshold": 0.5,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "0.75": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "mean_iou": 1.0,
+            "threshold": 0.75,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 0.0
+          }
+        },
+        "label_edit": 0.0
+      }
+    },
+    {
+      "sample_id": "jump_down",
+      "gold_title": "jump down",
+      "prediction_text": "Jump from the platform to the floor",
+      "status": "ok",
+      "error": "",
+      "metrics": {
+        "action_name_token_f1": 0.22222222222222224,
+        "action_rouge_l": 0.22222222222222224,
+        "semantic_similarity": 0.2357022603955158,
+        "keyword_hit": 1.0,
+        "loose_title_match": 0.0,
+        "strict_title_match": 0.0,
+        "segment_count_accuracy": 1.0,
+        "predicted_segment_count": 1.0,
+        "composite": 0.3582515631902143
+      },
+      "temporal": {
+        "duration_sec": 2.3333333333333335,
+        "boundary_f1": {
+          "0.5s": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 0.5
+          },
+          "1.0s": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 1.0
+          }
+        },
+        "segment_f1_at_iou": {
+          "0.5": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "mean_iou": 1.0,
+            "threshold": 0.5,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "0.75": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "mean_iou": 1.0,
+            "threshold": 0.75,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 0.0
+          }
+        },
+        "label_edit": 0.0
+      }
+    },
+    {
+      "sample_id": "sitting",
+      "gold_title": "sitting",
+      "prediction_text": "Sit on the cube",
+      "status": "ok",
+      "error": "",
+      "metrics": {
+        "action_name_token_f1": 0.0,
+        "action_rouge_l": 0.4,
+        "semantic_similarity": 0.0,
+        "keyword_hit": 0.0,
+        "loose_title_match": 0.0,
+        "strict_title_match": 0.0,
+        "segment_count_accuracy": 1.0,
+        "predicted_segment_count": 1.0,
+        "composite": 0.13
+      },
+      "temporal": {
+        "duration_sec": 4.466666666666667,
+        "boundary_f1": {
+          "0.5s": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 0.5
+          },
+          "1.0s": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0,
+            "mean_abs_error_sec": 0.0,
+            "tolerance_sec": 1.0
+          }
+        },
+        "segment_f1_at_iou": {
+          "0.5": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "mean_iou": 1.0,
+            "threshold": 0.5,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "0.75": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "mean_iou": 1.0,
+            "threshold": 0.75,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 0.0
+          }
+        },
+        "label_edit": 0.0
+      }
+    }
+  ],
+  "limitations": [
+    "folder names are weak gold, not human adjudication",
+    "generic Video2Tasks prompt targets object manipulation, not human motion",
+    "no temporal boundary gold; single-segment IoU only checks full-clip coverage",
+    "semantic similarity is bag-of-words cosine, not an embedding judge"
+  ]
+}

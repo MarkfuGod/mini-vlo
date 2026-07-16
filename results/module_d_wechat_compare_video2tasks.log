@@ -1,0 +1,358 @@
+Walking repeat=0 baseline=0.000 semantic=0.000 delta=+0.000 errors=False
+Jumping_Jacks repeat=0 baseline=0.000 semantic=0.000 delta=+0.000 errors=False
+Sneak_Walk repeat=0 baseline=0.000 semantic=0.000 delta=+0.000 errors=False
+Jump_Push_Up repeat=0 baseline=0.000 semantic=0.000 delta=+0.000 errors=False
+Strut_Walking repeat=0 baseline=0.000 semantic=0.000 delta=+0.000 errors=False
+Air_Squat repeat=0 baseline=0.000 semantic=0.000 delta=+0.000 errors=True
+Joyful_Jump repeat=0 baseline=0.333 semantic=0.000 delta=-0.333 errors=False
+Headspin_End repeat=0 baseline=0.333 semantic=0.000 delta=-0.333 errors=False
+Jab_Cross repeat=0 baseline=0.000 semantic=0.000 delta=+0.000 errors=False
+Illegal_Knee repeat=0 baseline=0.222 semantic=0.000 delta=-0.222 errors=False
+jump_down repeat=0 baseline=0.286 semantic=0.000 delta=-0.286 errors=False
+Low_Crawl repeat=0 baseline=0.286 semantic=0.000 delta=-0.286 errors=False
+Rumba_Dancing repeat=0 baseline=0.250 semantic=0.000 delta=-0.250 errors=False
+Run_To_Rolling repeat=0 baseline=0.200 semantic=0.059 delta=-0.141 errors=False
+Spat_In_Face repeat=0 baseline=0.000 semantic=0.148 delta=+0.148 errors=False
+Flying_Knee_Punch_Combo repeat=0 baseline=0.000 semantic=0.000 delta=+0.000 errors=True
+Insult repeat=0 baseline=0.000 semantic=0.000 delta=+0.000 errors=True
+Tripping repeat=0 baseline=0.000 semantic=0.000 delta=+0.000 errors=False
+Capoeira repeat=0 baseline=0.000 semantic=0.000 delta=+0.000 errors=False
+Cartwheel repeat=0 baseline=0.286 semantic=0.000 delta=-0.286 errors=False
+Pistol repeat=0 baseline=0.286 semantic=0.000 delta=-0.286 errors=False
+Backflip repeat=0 baseline=0.000 semantic=0.000 delta=+0.000 errors=True
+Dying repeat=0 baseline=0.000 semantic=0.000 delta=+0.000 errors=False
+sitting repeat=0 baseline=0.000 semantic=0.000 delta=+0.000 errors=False
+Ymca_Dance repeat=0 baseline=0.250 semantic=0.000 delta=-0.250 errors=False
+Looking repeat=0 baseline=0.000 semantic=0.000 delta=+0.000 errors=False
+Jog_In_Circle repeat=0 baseline=0.286 semantic=0.095 delta=-0.190 errors=False
+Rallying repeat=0 baseline=0.200 semantic=0.000 delta=-0.200 errors=False
+Front_Raises repeat=0 baseline=0.333 semantic=0.050 delta=-0.283 errors=False
+Pike_Walk repeat=0 baseline=0.000 semantic=0.000 delta=+0.000 errors=False
+Defeated repeat=0 baseline=0.000 semantic=0.000 delta=+0.000 errors=False
+Praying repeat=0 baseline=0.000 semantic=0.000 delta=+0.000 errors=True
+Quick_Steps repeat=0 baseline=0.000 semantic=0.000 delta=+0.000 errors=True
+Talking_On_Phone repeat=0 baseline=0.167 semantic=0.065 delta=-0.102 errors=False
+{
+  "num_runs": 34,
+  "valid_runs": 28,
+  "errored_runs": 6,
+  "baseline": {
+    "instruction_token_f1": 0.13276643990929707,
+    "target_mention_f1": null,
+    "action_coverage_f1": 0.05649350649350649,
+    "action_edit": 0.0,
+    "boundary_f1_0.5s": 1.0,
+    "boundary_f1_1.0s": 1.0,
+    "segment_f1_iou_0.5": 0.8571428571428571,
+    "segment_f1_iou_0.75": 0.8571428571428571,
+    "semantic_label_accuracy": 0.17857142857142858,
+    "semantic_label_temporal_coverage": 0.8571428571428571,
+    "slot_macro_f1": 0.3948412698412698,
+    "labeled_e2e_f1_iou_0.5": 0.17857142857142858,
+    "labeled_e2e_f1_iou_0.75": 0.17857142857142858,
+    "semantic_action_edit": 0.17857142857142858,
+    "mean_latency_s": 3.6066053989642177,
+    "mean_estimated_cost_usd": 0.0005693107142857144
+  },
+  "semantic_motion": {
+    "instruction_token_f1": 0.014883067922509504,
+    "target_mention_f1": null,
+    "action_coverage_f1": 0.015442890442890442,
+    "action_edit": 0.0,
+    "boundary_f1_0.5s": 1.0,
+    "boundary_f1_1.0s": 1.0,
+    "segment_f1_iou_0.5": 1.0,
+    "segment_f1_iou_0.75": 1.0,
+    "semantic_label_accuracy": 0.14285714285714285,
+    "semantic_label_temporal_coverage": 1.0,
+    "slot_macro_f1": 0.2066137566137566,
+    "labeled_e2e_f1_iou_0.5": 0.14285714285714285,
+    "labeled_e2e_f1_iou_0.75": 0.14285714285714285,
+    "semantic_action_edit": 0.14285714285714285,
+    "mean_latency_s": 3.9715026382855285,
+    "mean_estimated_cost_usd": 0.0005590232142857144
+  },
+  "temporal_gold_run_count": 28,
+  "paired_bootstrap_95ci": {
+    "instruction_token_f1": {
+      "mean_delta": -0.11788337198678756,
+      "lower": -0.1689546786456518,
+      "upper": -0.06817626692253963,
+      "confidence": 0.95,
+      "draws": 4000.0,
+      "n": 28.0
+    },
+    "target_mention_f1": null,
+    "action_coverage_f1": {
+      "mean_delta": -0.04105061605061605,
+      "lower": -0.08961871461871462,
+      "upper": 0.0008241758241758247,
+      "confidence": 0.95,
+      "draws": 4000.0,
+      "n": 28.0
+    },
+    "action_edit": {
+      "mean_delta": 0.0,
+      "lower": 0.0,
+      "upper": 0.0,
+      "confidence": 0.95,
+      "draws": 4000.0,
+      "n": 28.0
+    },
+    "boundary_f1_0.5s": {
+      "mean_delta": 0.0,
+      "lower": 0.0,
+      "upper": 0.0,
+      "confidence": 0.95,
+      "draws": 4000.0,
+      "n": 28.0
+    },
+    "boundary_f1_1.0s": {
+      "mean_delta": 0.0,
+      "lower": 0.0,
+      "upper": 0.0,
+      "confidence": 0.95,
+      "draws": 4000.0,
+      "n": 28.0
+    },
+    "segment_f1_iou_0.5": {
+      "mean_delta": 0.14285714285714285,
+      "lower": 0.03571428571428571,
+      "upper": 0.2857142857142857,
+      "confidence": 0.95,
+      "draws": 4000.0,
+      "n": 28.0
+    },
+    "segment_f1_iou_0.75": {
+      "mean_delta": 0.14285714285714285,
+      "lower": 0.03571428571428571,
+      "upper": 0.2857142857142857,
+      "confidence": 0.95,
+      "draws": 4000.0,
+      "n": 28.0
+    },
+    "semantic_label_accuracy": {
+      "mean_delta": -0.03571428571428571,
+      "lower": -0.25,
+      "upper": 0.17857142857142858,
+      "confidence": 0.95,
+      "draws": 4000.0,
+      "n": 28.0
+    },
+    "slot_macro_f1": {
+      "mean_delta": -0.18822751322751324,
+      "lower": -0.3379629629629629,
+      "upper": -0.027116402116402125,
+      "confidence": 0.95,
+      "draws": 4000.0,
+      "n": 28.0
+    },
+    "labeled_e2e_f1_iou_0.5": {
+      "mean_delta": -0.03571428571428571,
+      "lower": -0.25,
+      "upper": 0.17857142857142858,
+      "confidence": 0.95,
+      "draws": 4000.0,
+      "n": 28.0
+    },
+    "labeled_e2e_f1_iou_0.75": {
+      "mean_delta": -0.03571428571428571,
+      "lower": -0.25,
+      "upper": 0.17857142857142858,
+      "confidence": 0.95,
+      "draws": 4000.0,
+      "n": 28.0
+    },
+    "semantic_action_edit": {
+      "mean_delta": -0.03571428571428571,
+      "lower": -0.25,
+      "upper": 0.17857142857142858,
+      "confidence": 0.95,
+      "draws": 4000.0,
+      "n": 28.0
+    }
+  },
+  "wins": 1,
+  "ties": 13,
+  "losses": 14
+}
+Saved prompt ablation to results/module_d_wechat_compare_video2tasks.json
+Walking repeat=0 already complete
+Jumping_Jacks repeat=0 already complete
+Sneak_Walk repeat=0 already complete
+Jump_Push_Up repeat=0 already complete
+Strut_Walking repeat=0 already complete
+Air_Squat repeat=0 baseline=0.000 semantic=0.000 delta=+0.000 errors=False
+Joyful_Jump repeat=0 already complete
+Headspin_End repeat=0 already complete
+Jab_Cross repeat=0 already complete
+Illegal_Knee repeat=0 already complete
+jump_down repeat=0 already complete
+Low_Crawl repeat=0 already complete
+Rumba_Dancing repeat=0 already complete
+Run_To_Rolling repeat=0 already complete
+Spat_In_Face repeat=0 already complete
+Flying_Knee_Punch_Combo repeat=0 baseline=0.143 semantic=0.000 delta=-0.143 errors=False
+Insult repeat=0 baseline=0.222 semantic=0.000 delta=-0.222 errors=False
+Tripping repeat=0 already complete
+Capoeira repeat=0 already complete
+Cartwheel repeat=0 already complete
+Pistol repeat=0 already complete
+Backflip repeat=0 baseline=0.800 semantic=0.000 delta=-0.800 errors=False
+Dying repeat=0 already complete
+sitting repeat=0 already complete
+Ymca_Dance repeat=0 already complete
+Looking repeat=0 already complete
+Jog_In_Circle repeat=0 already complete
+Rallying repeat=0 already complete
+Front_Raises repeat=0 already complete
+Pike_Walk repeat=0 already complete
+Defeated repeat=0 already complete
+Praying repeat=0 baseline=0.000 semantic=0.000 delta=+0.000 errors=False
+Quick_Steps repeat=0 baseline=0.000 semantic=0.000 delta=+0.000 errors=False
+Talking_On_Phone repeat=0 already complete
+{
+  "num_runs": 34,
+  "valid_runs": 34,
+  "errored_runs": 0,
+  "baseline": {
+    "instruction_token_f1": 0.14360410830999068,
+    "target_mention_f1": null,
+    "action_coverage_f1": 0.061229946524064174,
+    "action_edit": 0.0,
+    "boundary_f1_0.5s": 1.0,
+    "boundary_f1_1.0s": 1.0,
+    "segment_f1_iou_0.5": 0.8823529411764706,
+    "segment_f1_iou_0.75": 0.8823529411764706,
+    "semantic_label_accuracy": 0.20588235294117646,
+    "semantic_label_temporal_coverage": 0.8823529411764706,
+    "slot_macro_f1": 0.4232026143790849,
+    "labeled_e2e_f1_iou_0.5": 0.20588235294117646,
+    "labeled_e2e_f1_iou_0.75": 0.20588235294117646,
+    "semantic_action_edit": 0.20588235294117646,
+    "mean_latency_s": 3.6062865871471708,
+    "mean_estimated_cost_usd": 0.0005630014705882353
+  },
+  "semantic_motion": {
+    "instruction_token_f1": 0.012256644171478415,
+    "target_mention_f1": null,
+    "action_coverage_f1": 0.012717674482380363,
+    "action_edit": 0.0,
+    "boundary_f1_0.5s": 1.0,
+    "boundary_f1_1.0s": 1.0,
+    "segment_f1_iou_0.5": 1.0,
+    "segment_f1_iou_0.75": 1.0,
+    "semantic_label_accuracy": 0.14705882352941177,
+    "semantic_label_temporal_coverage": 1.0,
+    "slot_macro_f1": 0.21917211328976036,
+    "labeled_e2e_f1_iou_0.5": 0.14705882352941177,
+    "labeled_e2e_f1_iou_0.75": 0.14705882352941177,
+    "semantic_action_edit": 0.14705882352941177,
+    "mean_latency_s": 4.125884698441094,
+    "mean_estimated_cost_usd": 0.0005501220588235294
+  },
+  "temporal_gold_run_count": 34,
+  "paired_bootstrap_95ci": {
+    "instruction_token_f1": {
+      "mean_delta": -0.13134746413851225,
+      "lower": -0.19486287030097724,
+      "upper": -0.07513730982589115,
+      "confidence": 0.95,
+      "draws": 4000.0,
+      "n": 34.0
+    },
+    "target_mention_f1": null,
+    "action_coverage_f1": {
+      "mean_delta": -0.048512272041683804,
+      "lower": -0.09946524064171124,
+      "upper": -0.005532702591526123,
+      "confidence": 0.95,
+      "draws": 4000.0,
+      "n": 34.0
+    },
+    "action_edit": {
+      "mean_delta": 0.0,
+      "lower": 0.0,
+      "upper": 0.0,
+      "confidence": 0.95,
+      "draws": 4000.0,
+      "n": 34.0
+    },
+    "boundary_f1_0.5s": {
+      "mean_delta": 0.0,
+      "lower": 0.0,
+      "upper": 0.0,
+      "confidence": 0.95,
+      "draws": 4000.0,
+      "n": 34.0
+    },
+    "boundary_f1_1.0s": {
+      "mean_delta": 0.0,
+      "lower": 0.0,
+      "upper": 0.0,
+      "confidence": 0.95,
+      "draws": 4000.0,
+      "n": 34.0
+    },
+    "segment_f1_iou_0.5": {
+      "mean_delta": 0.11764705882352941,
+      "lower": 0.029411764705882353,
+      "upper": 0.23529411764705882,
+      "confidence": 0.95,
+      "draws": 4000.0,
+      "n": 34.0
+    },
+    "segment_f1_iou_0.75": {
+      "mean_delta": 0.11764705882352941,
+      "lower": 0.029411764705882353,
+      "upper": 0.23529411764705882,
+      "confidence": 0.95,
+      "draws": 4000.0,
+      "n": 34.0
+    },
+    "semantic_label_accuracy": {
+      "mean_delta": -0.058823529411764705,
+      "lower": -0.2647058823529412,
+      "upper": 0.14705882352941177,
+      "confidence": 0.95,
+      "draws": 4000.0,
+      "n": 34.0
+    },
+    "slot_macro_f1": {
+      "mean_delta": -0.2040305010893246,
+      "lower": -0.3464052287581699,
+      "upper": -0.06361655773420478,
+      "confidence": 0.95,
+      "draws": 4000.0,
+      "n": 34.0
+    },
+    "labeled_e2e_f1_iou_0.5": {
+      "mean_delta": -0.058823529411764705,
+      "lower": -0.2647058823529412,
+      "upper": 0.14705882352941177,
+      "confidence": 0.95,
+      "draws": 4000.0,
+      "n": 34.0
+    },
+    "labeled_e2e_f1_iou_0.75": {
+      "mean_delta": -0.058823529411764705,
+      "lower": -0.2647058823529412,
+      "upper": 0.14705882352941177,
+      "confidence": 0.95,
+      "draws": 4000.0,
+      "n": 34.0
+    },
+    "semantic_action_edit": {
+      "mean_delta": -0.058823529411764705,
+      "lower": -0.2647058823529412,
+      "upper": 0.14705882352941177,
+      "confidence": 0.95,
+      "draws": 4000.0,
+      "n": 34.0
+    }
+  },
+  "wins": 1,
+  "ties": 16,
+  "losses": 17
+}
+Saved prompt ablation to results/module_d_wechat_compare_video2tasks.json
